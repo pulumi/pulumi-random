@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "bin",
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true
+    },
+    "files": [
+        "index.ts",
+        "provider.ts",
+        "randomId.ts",
+        "randomInteger.ts",
+        "randomPet.ts",
+        "randomShuffle.ts",
+        "randomString.ts",
+        "randomUuid.ts",
+        "utilities.ts"
+    ]
+}
+
