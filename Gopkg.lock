@@ -175,22 +175,10 @@
   revision = "4bda8fa99001c61db3cad96b421d4c12a81f256d"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/hashicorp/go-hclog"
-  packages = ["."]
-  revision = "61d530d6c27f994fb6c83b80f99a69c54125ec8a"
-
-[[projects]]
   name = "github.com/hashicorp/go-multierror"
   packages = ["."]
   revision = "886a7fbe3eb1c874d46f623bfa70af45f425b3d1"
   version = "v1.0.0"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/hashicorp/go-plugin"
-  packages = ["."]
-  revision = "314501b665e0b2cc71bbd829783179fc38840a85"
 
 [[projects]]
   name = "github.com/hashicorp/go-safetemp"
@@ -271,7 +259,6 @@
     "helper/schema",
     "httpclient",
     "moduledeps",
-    "plugin",
     "plugin/discovery",
     "registry",
     "registry/regsrc",
@@ -285,12 +272,6 @@
   ]
   revision = "17850e9a55d33c43d7c31fd6ac122ba97a51d899"
   version = "v0.11.10"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/hashicorp/yamux"
-  packages = ["."]
-  revision = "2f1d1f20f75d5404f53b9edf6b53ed5505508675"
 
 [[projects]]
   name = "github.com/inconshreveable/mousetrap"
@@ -382,12 +363,6 @@
   version = "v1.0.0"
 
 [[projects]]
-  name = "github.com/oklog/run"
-  packages = ["."]
-  revision = "4dadeb3030eda0273a12382bb2348ffc7c9d1a39"
-  version = "v1.0.0"
-
-[[projects]]
   name = "github.com/opentracing/opentracing-go"
   packages = [
     ".",
@@ -450,6 +425,8 @@
     "pkg/util/rpcutil",
     "pkg/util/rpcutil/rpcerror",
     "pkg/workspace",
+    "sdk/go/pulumi",
+    "sdk/go/pulumi/asset",
     "sdk/proto/go"
   ]
   revision = "da880eab6c0df18f476c8db2ec51da7435aaf807"
@@ -477,6 +454,12 @@
   version = "v1.0.0"
 
 [[projects]]
+  name = "github.com/spf13/cast"
+  packages = ["."]
+  revision = "8965335b8c7107321228e3e3702cab9832751bac"
+  version = "v1.2.0"
+
+[[projects]]
   name = "github.com/spf13/cobra"
   packages = ["."]
   revision = "ef82de70bb3f60c65fb8eebacbb2d122ef517385"
@@ -502,10 +485,7 @@
 [[projects]]
   branch = "master"
   name = "github.com/terraform-providers/terraform-provider-random"
-  packages = [
-    ".",
-    "random"
-  ]
+  packages = ["random"]
   revision = "a3da7a23d7f9965c16311d203aee385c4c9e770c"
 
 [[projects]]
@@ -662,8 +642,6 @@
     "encoding",
     "encoding/proto",
     "grpclog",
-    "health",
-    "health/grpc_health_v1",
     "internal",
     "internal/backoff",
     "internal/channelz",
@@ -760,6 +738,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c7064210ce99bee2575f8ce9929737b7355dfa6e92aae50b8ddf51f9b9f13c93"
+  inputs-digest = "0b505a30cb93bb25338ef4a72588aeb9df06892c62223ee0cb735c0e319b362f"
   solver-name = "gps-cdcl"
   solver-version = 1
