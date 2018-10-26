@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/pulumi/pulumi-aws.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-random)
+[![Build Status](https://travis-ci.com/pulumi/pulumi-random.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-random)
 
 # Random Provider
 
