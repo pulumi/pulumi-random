@@ -20,45 +20,19 @@ class RandomPet(pulumi.CustomResource):
         """Create a RandomPet resource with the given unique name, props, and options."""
         if not __name__:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(__name__, basestring):
+        if not isinstance(__name__, str):
             raise TypeError('Expected resource name to be a string')
         if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
-        if keepers and not isinstance(keepers, dict):
-            raise TypeError('Expected property keepers to be a dict')
-        __self__.keepers = keepers
-        """
-        Arbitrary map of values that, when changed, will
-        trigger a new id to be generated. See
-        the main provider documentation for more information.
-        """
         __props__['keepers'] = keepers
 
-        if length and not isinstance(length, int):
-            raise TypeError('Expected property length to be a int')
-        __self__.length = length
-        """
-        The length (in words) of the pet name.
-        """
         __props__['length'] = length
 
-        if prefix and not isinstance(prefix, basestring):
-            raise TypeError('Expected property prefix to be a basestring')
-        __self__.prefix = prefix
-        """
-        A string to prefix the name with.
-        """
         __props__['prefix'] = prefix
 
-        if separator and not isinstance(separator, basestring):
-            raise TypeError('Expected property separator to be a basestring')
-        __self__.separator = separator
-        """
-        The character to separate words in the pet name.
-        """
         __props__['separator'] = separator
 
         super(RandomPet, __self__).__init__(
@@ -67,12 +41,3 @@ class RandomPet(pulumi.CustomResource):
             __props__,
             __opts__)
 
-    def set_outputs(self, outs):
-        if 'keepers' in outs:
-            self.keepers = outs['keepers']
-        if 'length' in outs:
-            self.length = outs['length']
-        if 'prefix' in outs:
-            self.prefix = outs['prefix']
-        if 'separator' in outs:
-            self.separator = outs['separator']
