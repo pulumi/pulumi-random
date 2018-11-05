@@ -84,12 +84,12 @@ func GetRandomString(ctx *pulumi.Context,
 
 // URN is this resource's unique name assigned by Pulumi.
 func (r *RandomString) URN() *pulumi.URNOutput {
-	return r.s.URN
+	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
 func (r *RandomString) ID() *pulumi.IDOutput {
-	return r.s.ID
+	return r.s.ID()
 }
 
 // Arbitrary map of values that, when changed, will
