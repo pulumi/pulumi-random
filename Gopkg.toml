@@ -1,11 +1,12 @@
 [[constraint]]
   name = "github.com/pulumi/pulumi"
-  version = "v0.15.1"
+  branch = "master"
 
 [[constraint]]
-  branch = "master"
   name = "github.com/pulumi/pulumi-terraform"
+  branch = "master"
 
 [[constraint]]
-  branch = "master"
   name = "github.com/terraform-providers/terraform-provider-random"
+  branch = "master"
+

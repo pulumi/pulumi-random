@@ -19,55 +19,26 @@ class RandomInteger(pulumi.CustomResource):
         """Create a RandomInteger resource with the given unique name, props, and options."""
         if not __name__:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(__name__, basestring):
+        if not isinstance(__name__, str):
             raise TypeError('Expected resource name to be a string')
         if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
-        if keepers and not isinstance(keepers, dict):
-            raise TypeError('Expected property keepers to be a dict')
-        __self__.keepers = keepers
-        """
-        Arbitrary map of values that, when changed, will
-        trigger a new id to be generated. See
-        the main provider documentation for more information.
-        """
         __props__['keepers'] = keepers
 
         if not max:
             raise TypeError('Missing required property max')
-        elif not isinstance(max, int):
-            raise TypeError('Expected property max to be a int')
-        __self__.max = max
-        """
-        The maximum inclusive value of the range.
-        """
         __props__['max'] = max
 
         if not min:
             raise TypeError('Missing required property min')
-        elif not isinstance(min, int):
-            raise TypeError('Expected property min to be a int')
-        __self__.min = min
-        """
-        The minimum inclusive value of the range.
-        """
         __props__['min'] = min
 
-        if seed and not isinstance(seed, basestring):
-            raise TypeError('Expected property seed to be a basestring')
-        __self__.seed = seed
-        """
-        A custom seed to always produce the same value.
-        """
         __props__['seed'] = seed
 
-        __self__.result = pulumi.runtime.UNKNOWN
-        """
-        (int) The random Integer result.
-        """
+        __props__['result'] = None
 
         super(RandomInteger, __self__).__init__(
             'random:index/randomInteger:RandomInteger',
@@ -75,14 +46,3 @@ class RandomInteger(pulumi.CustomResource):
             __props__,
             __opts__)
 
-    def set_outputs(self, outs):
-        if 'keepers' in outs:
-            self.keepers = outs['keepers']
-        if 'max' in outs:
-            self.max = outs['max']
-        if 'min' in outs:
-            self.min = outs['min']
-        if 'result' in outs:
-            self.result = outs['result']
-        if 'seed' in outs:
-            self.seed = outs['seed']
