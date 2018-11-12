@@ -4,7 +4,7 @@
 
 import pulumi
 import pulumi.runtime
-from . import utilities
+from . import utilities, tables
 
 class RandomShuffle(pulumi.CustomResource):
     """
@@ -28,7 +28,7 @@ class RandomShuffle(pulumi.CustomResource):
 
         __props__['keepers'] = keepers
 
-        __props__['resultCount'] = result_count
+        __props__['result_count'] = result_count
 
         __props__['seed'] = seed
 
@@ -39,4 +39,11 @@ class RandomShuffle(pulumi.CustomResource):
             __name__,
             __props__,
             __opts__)
+
+
+    def translate_output_property(self, prop):
+        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+    def translate_input_property(self, prop):
+        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
