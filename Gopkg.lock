@@ -516,13 +516,13 @@
   revision = "bbd21725415cdcee6b95089bcc0a6f6464fba15e"
 
 [[projects]]
-  branch = "master"
+  branch = "ellismg/rollback-importers"
   name = "github.com/pulumi/pulumi-terraform"
   packages = [
     "pkg/tfbridge",
     "pkg/tfgen"
   ]
-  revision = "76de635651f249fda570be21fdbb7676123d12f6"
+  revision = "5b8cd566103e0ef4c2f01e464c9216322fa53230"
 
 [[projects]]
   branch = "master"
@@ -843,6 +843,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ffa7d40f0c0a645bec1954839ff32baf3b1761b4bbea216a264a539ce2a09d45"
+  inputs-digest = "9043156e2908acd4064ff8b752b2067859465319488b35dd1650469508096259"
   solver-name = "gps-cdcl"
   solver-version = 1
