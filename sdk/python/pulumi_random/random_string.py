@@ -4,7 +4,7 @@
 
 import pulumi
 import pulumi.runtime
-from . import utilities
+from . import utilities, tables
 
 class RandomString(pulumi.CustomResource):
     """
@@ -32,17 +32,17 @@ class RandomString(pulumi.CustomResource):
 
         __props__['lower'] = lower
 
-        __props__['minLower'] = min_lower
+        __props__['min_lower'] = min_lower
 
-        __props__['minNumeric'] = min_numeric
+        __props__['min_numeric'] = min_numeric
 
-        __props__['minSpecial'] = min_special
+        __props__['min_special'] = min_special
 
-        __props__['minUpper'] = min_upper
+        __props__['min_upper'] = min_upper
 
         __props__['number'] = number
 
-        __props__['overrideSpecial'] = override_special
+        __props__['override_special'] = override_special
 
         __props__['special'] = special
 
@@ -55,4 +55,11 @@ class RandomString(pulumi.CustomResource):
             __name__,
             __props__,
             __opts__)
+
+
+    def translate_output_property(self, prop):
+        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+    def translate_input_property(self, prop):
+        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
