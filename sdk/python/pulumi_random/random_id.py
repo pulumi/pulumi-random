@@ -4,7 +4,7 @@
 
 import pulumi
 import pulumi.runtime
-from . import utilities
+from . import utilities, tables
 
 class RandomId(pulumi.CustomResource):
     """
@@ -34,7 +34,7 @@ class RandomId(pulumi.CustomResource):
 
         if not byte_length:
             raise TypeError('Missing required property byte_length')
-        __props__['byteLength'] = byte_length
+        __props__['byte_length'] = byte_length
 
         __props__['keepers'] = keepers
 
@@ -51,4 +51,11 @@ class RandomId(pulumi.CustomResource):
             __name__,
             __props__,
             __opts__)
+
+
+    def translate_output_property(self, prop):
+        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+    def translate_input_property(self, prop):
+        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
