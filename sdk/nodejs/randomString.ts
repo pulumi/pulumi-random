@@ -19,8 +19,8 @@ export class RandomString extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomStringState): RandomString {
-        return new RandomString(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomStringState, opts?: pulumi.CustomResourceOptions): RandomString {
+        return new RandomString(name, <any>state, { ...opts, id: id });
     }
 
     /**
