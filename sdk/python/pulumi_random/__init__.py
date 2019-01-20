@@ -9,3 +9,4 @@ from .random_pet import *
 from .random_shuffle import *
 from .random_string import *
 from .random_uuid import *
+from .provider import *

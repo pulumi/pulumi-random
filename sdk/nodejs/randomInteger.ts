@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
+ * The result of the above will set a random priority.
+ * 
  */
 export class RandomInteger extends pulumi.CustomResource {
     /**
@@ -21,8 +23,8 @@ export class RandomInteger extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomIntegerState): RandomInteger {
-        return new RandomInteger(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomIntegerState, opts?: pulumi.CustomResourceOptions): RandomInteger {
+        return new RandomInteger(name, <any>state, { ...opts, id: id });
     }
 
     /**

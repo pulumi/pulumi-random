@@ -12,6 +12,9 @@ import * as utilities from "./utilities";
  * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
+ * The result of the above will set the Name of the AWS Instance to
+ * `web-server-simple-snake`.
+ * 
  */
 export class RandomPet extends pulumi.CustomResource {
     /**
@@ -22,8 +25,8 @@ export class RandomPet extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomPetState): RandomPet {
-        return new RandomPet(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomPetState, opts?: pulumi.CustomResourceOptions): RandomPet {
+        return new RandomPet(name, <any>state, { ...opts, id: id });
     }
 
     /**

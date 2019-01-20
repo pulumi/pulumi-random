@@ -7,6 +7,27 @@ import * as utilities from "./utilities";
 /**
  * The resource `random_shuffle` generates a random permutation of a list
  * of strings given as an argument.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as random from "@pulumi/random";
+ * 
+ * const random_shuffle_az = new random.RandomShuffle("az", {
+ *     inputs: [
+ *         "us-west-1a",
+ *         "us-west-1c",
+ *         "us-west-1d",
+ *         "us-west-1e",
+ *     ],
+ *     resultCount: 2,
+ * });
+ * const aws_elb_example = new aws.elasticloadbalancing.LoadBalancer("example", {
+ *     availabilityZones: random_shuffle_az.results,
+ * });
+ * ```
  */
 export class RandomShuffle extends pulumi.CustomResource {
     /**
@@ -17,8 +38,8 @@ export class RandomShuffle extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomShuffleState): RandomShuffle {
-        return new RandomShuffle(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomShuffleState, opts?: pulumi.CustomResourceOptions): RandomShuffle {
+        return new RandomShuffle(name, <any>state, { ...opts, id: id });
     }
 
     /**
