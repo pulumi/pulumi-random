@@ -7,32 +7,16 @@ import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class RandomUuid(pulumi.CustomResource):
-    keepers: pulumi.Output[dict]
-    """
-    Arbitrary map of values that, when changed, will
-    trigger a new uuid to be generated. See
-    the main provider documentation for more information.
-    """
-    result: pulumi.Output[str]
-    """
-    The generated uuid presented in string format.
-    """
-    def __init__(__self__, __name__, __opts__=None, keepers=None):
+class Provider(pulumi.ProviderResource):
+    def __init__(__self__, __name__, __opts__=None):
         """
-        The resource `random_uuid` generates random uuid string that is intended to be
-        used as unique identifiers for other resources.
-        
-        This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
-        for use with services needed a unique string identifier.
-        
-        
+        The provider type for the random package. By default, resources use package-wide configuration
+        settings, however an explicit `Provider` instance may be created and passed during resource
+        construction to achieve fine-grained programmatic control over provider settings. See the
+        [documentation](https://pulumi.io/reference/programming-model.html#providers) for more information.
         
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
         """
         if not __name__:
             raise TypeError('Missing resource name argument (for URN creation)')
@@ -43,12 +27,8 @@ class RandomUuid(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__['keepers'] = keepers
-
-        __props__['result'] = None
-
-        super(RandomUuid, __self__).__init__(
-            'random:index/randomUuid:RandomUuid',
+        super(Provider, __self__).__init__(
+            'random',
             __name__,
             __props__,
             __opts__)

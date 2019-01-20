@@ -11,6 +11,22 @@ import * as utilities from "./utilities";
  * This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
  * for use with services needed a unique string identifier.
  * 
+ * 
+ * ## Example Usage
+ * 
+ * The following example shows how to generate a unique name for an Azure Resource Group.
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azure from "@pulumi/azure";
+ * import * as random from "@pulumi/random";
+ * 
+ * const random_uuid_test = new random.RandomUuid("test", {});
+ * const azurerm_resource_group_test = new azure.core.ResourceGroup("test", {
+ *     location: "Central US",
+ *     name: random_uuid_test.result.apply(__arg0 => `${__arg0}-rg`),
+ * });
+ * ```
  */
 export class RandomUuid extends pulumi.CustomResource {
     /**
@@ -21,8 +37,8 @@ export class RandomUuid extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomUuidState): RandomUuid {
-        return new RandomUuid(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomUuidState, opts?: pulumi.CustomResourceOptions): RandomUuid {
+        return new RandomUuid(name, <any>state, { ...opts, id: id });
     }
 
     /**

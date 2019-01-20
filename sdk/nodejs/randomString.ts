@@ -9,6 +9,23 @@ import * as utilities from "./utilities";
  * characters and optionally special characters.
  * 
  * This resource *does* use a cryptographic random number generator.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as random from "@pulumi/random";
+ * 
+ * const random_string_password = new random.RandomString("password", {
+ *     length: 16,
+ *     overrideSpecial: "/@\" ",
+ *     special: true,
+ * });
+ * const aws_db_instance_example = new aws.rds.Instance("example", {
+ *     password: random_string_password.result,
+ * });
+ * ```
  */
 export class RandomString extends pulumi.CustomResource {
     /**
@@ -19,8 +36,8 @@ export class RandomString extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomStringState): RandomString {
-        return new RandomString(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomStringState, opts?: pulumi.CustomResourceOptions): RandomString {
+        return new RandomString(name, <any>state, { ...opts, id: id });
     }
 
     /**
