@@ -45,9 +45,10 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
 
-"@pulumi/pulumi@^0.16.11":
-  version "0.16.11"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.11.tgz#b3fc8f666ec0dc3d8d4a51cebfbbf229258d016c"
+"@pulumi/pulumi@feature-proxyOutput":
+  version "0.16.15-dev.1549321584"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.15-dev.1549321584.tgz#8fe7ff57ba13d2f7ad321c4847ab07654b7446a3"
+  integrity sha512-4kH0A5i20OYM1M7w6XI3c80/MghR40NtQoqk7eHptUYr1e7vT3Iuqe1Zi/6+aABIuraI4DoZjrS6IDs5/V2Jvw==
   dependencies:
     google-protobuf "^3.5.0"
     grpc "^1.12.2"
