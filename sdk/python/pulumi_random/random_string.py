@@ -3,6 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
+import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
@@ -69,16 +70,15 @@ class RandomString(pulumi.CustomResource):
     (default true) Include uppercase alphabet characters
     in random string.
     """
-    def __init__(__self__, __name__, __opts__=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None):
+    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None, __name__=None, __opts__=None):
         """
         The resource `random_string` generates a random permutation of alphanumeric
         characters and optionally special characters.
         
         This resource *does* use a cryptographic random number generator.
         
-        
-        :param str __name__: The name of the resource.
-        :param pulumi.ResourceOptions __opts__: Options for the resource.
+        :param str resource_name: The name of the resource.
+        :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
                the main provider documentation for more information.
@@ -104,18 +104,24 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
                in random string.
         """
-        if not __name__:
+        if __name__ is not None:
+            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
+            resource_name = __name__
+        if __opts__ is not None:
+            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
+            opts = __opts__
+        if not resource_name:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(__name__, str):
+        if not isinstance(resource_name, str):
             raise TypeError('Expected resource name to be a string')
-        if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
+        if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
         __props__['keepers'] = keepers
 
-        if not length:
+        if length is None:
             raise TypeError('Missing required property length')
         __props__['length'] = length
 
@@ -141,9 +147,9 @@ class RandomString(pulumi.CustomResource):
 
         super(RandomString, __self__).__init__(
             'random:index/randomString:RandomString',
-            __name__,
+            resource_name,
             __props__,
-            __opts__)
+            opts)
 
 
     def translate_output_property(self, prop):

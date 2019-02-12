@@ -12,9 +12,33 @@ import * as utilities from "./utilities";
  * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
+ * 
+ * ## Example Usage
+ * 
+ * The following example shows how to generate a unique pet name for an AWS EC2
+ * instance that changes each time a new AMI id is selected.
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as random from "@pulumi/random";
+ * 
+ * const serverRandomPet = new random.RandomPet("server", {
+ *     keepers: {
+ *         // Generate a new pet name each time we switch to a new AMI id
+ *         ami_id: var_ami_id,
+ *     },
+ * });
+ * const serverInstance = new aws.ec2.Instance("server", {
+ *     ami: serverRandomPet.keepers.apply(keepers => keepers.amiId),
+ *     tags: {
+ *         Name: serverRandomPet.id.apply(id => `web-server-${id}`),
+ *     },
+ * });
+ * ```
+ * 
  * The result of the above will set the Name of the AWS Instance to
  * `web-server-simple-snake`.
- * 
  */
 export class RandomPet extends pulumi.CustomResource {
     /**

@@ -3,6 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
+import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
@@ -26,7 +27,7 @@ class RandomPet(pulumi.CustomResource):
     """
     The character to separate words in the pet name.
     """
-    def __init__(__self__, __name__, __opts__=None, keepers=None, length=None, prefix=None, separator=None):
+    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, prefix=None, separator=None, __name__=None, __opts__=None):
         """
         The resource `random_pet` generates random pet names that are intended to be
         used as unique identifiers for other resources.
@@ -36,9 +37,8 @@ class RandomPet(pulumi.CustomResource):
         unique names during the brief period where both the old and new resources
         exist concurrently.
         
-        
-        :param str __name__: The name of the resource.
-        :param pulumi.ResourceOptions __opts__: Options for the resource.
+        :param str resource_name: The name of the resource.
+        :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
                the main provider documentation for more information.
@@ -46,11 +46,17 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
         """
-        if not __name__:
+        if __name__ is not None:
+            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
+            resource_name = __name__
+        if __opts__ is not None:
+            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
+            opts = __opts__
+        if not resource_name:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(__name__, str):
+        if not isinstance(resource_name, str):
             raise TypeError('Expected resource name to be a string')
-        if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
+        if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
@@ -65,9 +71,9 @@ class RandomPet(pulumi.CustomResource):
 
         super(RandomPet, __self__).__init__(
             'random:index/randomPet:RandomPet',
-            __name__,
+            resource_name,
             __props__,
-            __opts__)
+            opts)
 
 
     def translate_output_property(self, prop):

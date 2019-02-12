@@ -17,13 +17,13 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  * 
- * const random_string_password = new random.RandomString("password", {
+ * const password = new random.RandomString("password", {
  *     length: 16,
  *     overrideSpecial: "/@\" ",
  *     special: true,
  * });
- * const aws_db_instance_example = new aws.rds.Instance("example", {
- *     password: random_string_password.result,
+ * const example = new aws.rds.Instance("example", {
+ *     password: password.result,
  * });
  * ```
  */
