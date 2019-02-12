@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  * 
- * const random_shuffle_az = new random.RandomShuffle("az", {
+ * const az = new random.RandomShuffle("az", {
  *     inputs: [
  *         "us-west-1a",
  *         "us-west-1c",
@@ -24,8 +24,10 @@ import * as utilities from "./utilities";
  *     ],
  *     resultCount: 2,
  * });
- * const aws_elb_example = new aws.elasticloadbalancing.LoadBalancer("example", {
- *     availabilityZones: random_shuffle_az.results,
+ * const example = new aws.elasticloadbalancing.LoadBalancer("example", {
+ *     // Place the ELB in any two of the given availability zones, selected
+ *     // at random.
+ *     availabilityZones: az.results,
  * });
  * ```
  */

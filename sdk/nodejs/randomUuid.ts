@@ -21,10 +21,9 @@ import * as utilities from "./utilities";
  * import * as azure from "@pulumi/azure";
  * import * as random from "@pulumi/random";
  * 
- * const random_uuid_test = new random.RandomUuid("test", {});
- * const azurerm_resource_group_test = new azure.core.ResourceGroup("test", {
+ * const testRandomUuid = new random.RandomUuid("test", {});
+ * const testResourceGroup = new azure.core.ResourceGroup("test", {
  *     location: "Central US",
- *     name: random_uuid_test.result.apply(__arg0 => `${__arg0}-rg`),
  * });
  * ```
  */
