@@ -65,10 +65,10 @@ install::
 	cd ${PACKDIR}/python/bin && $(PIP) install --user -e .
 
 test_fast::
-	PATH=$(PULUMI_BIN):$(PATH) go test -short -v -count=1 -cover -timeout 1h -parallel ${TESTPARALLELISM} ./examples
+	GOBIN=$(PULUMI_BIN) go test -short -v -count=1 -cover -timeout 1h -parallel ${TESTPARALLELISM} ./examples
 
 test_all::
-	PATH=$(PULUMI_BIN):$(PATH) go test -v -count=1 -cover -timeout 1h -parallel ${TESTPARALLELISM} ./examples
+	GOBIN=$(PULUMI_BIN) go test -v -count=1 -cover -timeout 1h -parallel ${TESTPARALLELISM} ./examples
 
 .PHONY: publish_tgz
 publish_tgz:
