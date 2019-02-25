@@ -24,9 +24,18 @@ func TestExamples(t *testing.T) {
 		},
 	}
 
-	for _, ex := range []integration.ProgramTestOptions{
+	shortTests := []integration.ProgramTestOptions{
 		base.With(integration.ProgramTestOptions{Dir: path.Join(cwd, "simple")}),
-	} {
+	}
+
+	longTests := []integration.ProgramTestOptions{}
+
+	tests := shortTests
+	if !testing.Short() {
+		tests = append(tests, longTests...)
+	}
+
+	for _, ex := range tests {
 		example := ex
 		t.Run(example.Dir, func(t *testing.T) {
 			integration.ProgramTest(t, &example)

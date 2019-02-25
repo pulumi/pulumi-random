@@ -196,7 +196,7 @@ install::
 	@mkdir -p $(PULUMI_BIN)
 	@mkdir -p $(PULUMI_NODE_MODULES)
 
-test_all:: test_fast
+test_all::
 	$(call STEP_MESSAGE)
 
 ifneq ($(NODE_MODULE_NAME),)
