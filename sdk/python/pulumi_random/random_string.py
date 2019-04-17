@@ -15,7 +15,7 @@ class RandomString(pulumi.CustomResource):
     trigger a new id to be generated. See
     the main provider documentation for more information.
     """
-    length: pulumi.Output[int]
+    length: pulumi.Output[float]
     """
     The length of the string desired
     """
@@ -24,22 +24,22 @@ class RandomString(pulumi.CustomResource):
     (default true) Include lowercase alphabet characters
     in random string.
     """
-    min_lower: pulumi.Output[int]
+    min_lower: pulumi.Output[float]
     """
     (default 0) Minimum number of lowercase alphabet
     characters in random string.
     """
-    min_numeric: pulumi.Output[int]
+    min_numeric: pulumi.Output[float]
     """
     (default 0) Minimum number of numeric characters
     in random string.
     """
-    min_special: pulumi.Output[int]
+    min_special: pulumi.Output[float]
     """
     (default 0) Minimum number of special characters
     in random string.
     """
-    min_upper: pulumi.Output[int]
+    min_upper: pulumi.Output[float]
     """
     (default 0) Minimum number of uppercase alphabet
     characters in random string.
@@ -82,16 +82,16 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
                the main provider documentation for more information.
-        :param pulumi.Input[int] length: The length of the string desired
+        :param pulumi.Input[float] length: The length of the string desired
         :param pulumi.Input[bool] lower: (default true) Include lowercase alphabet characters
                in random string.
-        :param pulumi.Input[int] min_lower: (default 0) Minimum number of lowercase alphabet
+        :param pulumi.Input[float] min_lower: (default 0) Minimum number of lowercase alphabet
                characters in random string.
-        :param pulumi.Input[int] min_numeric: (default 0) Minimum number of numeric characters
+        :param pulumi.Input[float] min_numeric: (default 0) Minimum number of numeric characters
                in random string.
-        :param pulumi.Input[int] min_special: (default 0) Minimum number of special characters
+        :param pulumi.Input[float] min_special: (default 0) Minimum number of special characters
                in random string.
-        :param pulumi.Input[int] min_upper: (default 0) Minimum number of uppercase alphabet
+        :param pulumi.Input[float] min_upper: (default 0) Minimum number of uppercase alphabet
                characters in random string.
         :param pulumi.Input[bool] number: (default true) Include numeric characters in random
                string.
@@ -122,7 +122,7 @@ class RandomString(pulumi.CustomResource):
         __props__['keepers'] = keepers
 
         if length is None:
-            raise TypeError('Missing required property length')
+            raise TypeError("Missing required property 'length'")
         __props__['length'] = length
 
         __props__['lower'] = lower
