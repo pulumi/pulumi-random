@@ -23,7 +23,7 @@ class RandomShuffle(pulumi.CustomResource):
     """
     Random permutation of the list of strings given in `input`.
     """
-    result_count: pulumi.Output[int]
+    result_count: pulumi.Output[float]
     """
     The number of results to return. Defaults to
     the number of items in the `input` list. If fewer items are requested,
@@ -51,7 +51,7 @@ class RandomShuffle(pulumi.CustomResource):
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
                the main provider documentation for more information.
-        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
+        :param pulumi.Input[float] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
@@ -79,7 +79,7 @@ class RandomShuffle(pulumi.CustomResource):
         __props__ = dict()
 
         if inputs is None:
-            raise TypeError('Missing required property inputs')
+            raise TypeError("Missing required property 'inputs'")
         __props__['inputs'] = inputs
 
         __props__['keepers'] = keepers

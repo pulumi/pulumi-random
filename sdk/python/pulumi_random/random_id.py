@@ -18,7 +18,7 @@ class RandomId(pulumi.CustomResource):
     """
     The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
     """
-    byte_length: pulumi.Output[int]
+    byte_length: pulumi.Output[float]
     """
     The number of random bytes to produce. The
     minimum value is 1, which produces eight bits of randomness.
@@ -60,7 +60,7 @@ class RandomId(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] byte_length: The number of random bytes to produce. The
+        :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
                minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
@@ -85,7 +85,7 @@ class RandomId(pulumi.CustomResource):
         __props__ = dict()
 
         if byte_length is None:
-            raise TypeError('Missing required property byte_length')
+            raise TypeError("Missing required property 'byte_length'")
         __props__['byte_length'] = byte_length
 
         __props__['keepers'] = keepers

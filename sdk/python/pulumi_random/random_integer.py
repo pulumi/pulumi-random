@@ -15,15 +15,15 @@ class RandomInteger(pulumi.CustomResource):
     trigger a new id to be generated. See
     the main provider documentation for more information.
     """
-    max: pulumi.Output[int]
+    max: pulumi.Output[float]
     """
     The maximum inclusive value of the range.
     """
-    min: pulumi.Output[int]
+    min: pulumi.Output[float]
     """
     The minimum inclusive value of the range.
     """
-    result: pulumi.Output[int]
+    result: pulumi.Output[float]
     """
     (int) The random Integer result.
     """
@@ -45,8 +45,8 @@ class RandomInteger(pulumi.CustomResource):
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
                the main provider documentation for more information.
-        :param pulumi.Input[int] max: The maximum inclusive value of the range.
-        :param pulumi.Input[int] min: The minimum inclusive value of the range.
+        :param pulumi.Input[float] max: The maximum inclusive value of the range.
+        :param pulumi.Input[float] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         if __name__ is not None:
@@ -67,11 +67,11 @@ class RandomInteger(pulumi.CustomResource):
         __props__['keepers'] = keepers
 
         if max is None:
-            raise TypeError('Missing required property max')
+            raise TypeError("Missing required property 'max'")
         __props__['max'] = max
 
         if min is None:
-            raise TypeError('Missing required property min')
+            raise TypeError("Missing required property 'min'")
         __props__['min'] = min
 
         __props__['seed'] = seed
