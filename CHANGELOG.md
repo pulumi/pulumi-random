@@ -1,16 +1,18 @@
-## 0.5.2 (Unreleased)
+## 0.5.3 (Unreleased)
+
+## 0.5.2 (Released April 22nd, 2019)
 
 ### Improvements
 
 - Updated to v2.1.1 of the upstream Terraform Random provider.
 
-## 0.5.1 (Released March 6, 2019)
+## 0.5.1 (Released March 6th, 2019)
 
 ### Improvements
 
 - Fix an issue where the Python `pulumi_random` package was depending on an older `pulumi` package.
 
-## 0.5.0 (Released March 5, 2019)
+## 0.5.0 (Released March 5th, 2019)
 
 ### Important
 
