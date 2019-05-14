@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const testRandomUuid = new random.RandomUuid("test", {});
  * const testResourceGroup = new azure.core.ResourceGroup("test", {
  *     location: "Central US",
- *     name: testRandomUuid.result.apply(result => `${result}-rg`),
+ *     name: pulumi.interpolate`${testRandomUuid.result}-rg`,
  * });
  * ```
  */
