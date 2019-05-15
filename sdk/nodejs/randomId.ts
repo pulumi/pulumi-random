@@ -36,9 +36,11 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const serverInstance = new aws.ec2.Instance("server", {
- *     ami: serverRandomId.keepers.apply(keepers => keepers.amiId),
+ *     // Read the AMI id "through" the random_id resource to ensure that
+ *     // both will change together.
+ *     ami: serverRandomId.keepers.amiId,
  *     tags: {
- *         Name: serverRandomId.hex.apply(hex => `web-server ${hex}`),
+ *         Name: pulumi.interpolate`web-server ${serverRandomId.hex}`,
  *     },
  * });
  * ```
