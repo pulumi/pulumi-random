@@ -58,40 +58,40 @@ export class RandomId extends pulumi.CustomResource {
         return new RandomId(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly b64: pulumi.Output<string>;
+    public /*out*/ readonly b64!: pulumi.Output<string>;
     /**
      * The generated id presented in base64 without additional transformations.
      */
-    public /*out*/ readonly b64Std: pulumi.Output<string>;
+    public /*out*/ readonly b64Std!: pulumi.Output<string>;
     /**
      * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      */
-    public /*out*/ readonly b64Url: pulumi.Output<string>;
+    public /*out*/ readonly b64Url!: pulumi.Output<string>;
     /**
      * The number of random bytes to produce. The
      * minimum value is 1, which produces eight bits of randomness.
      */
-    public readonly byteLength: pulumi.Output<number>;
+    public readonly byteLength!: pulumi.Output<number>;
     /**
      * The generated id presented in non-padded decimal digits.
      */
-    public /*out*/ readonly dec: pulumi.Output<string>;
+    public /*out*/ readonly dec!: pulumi.Output<string>;
     /**
      * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      */
-    public /*out*/ readonly hex: pulumi.Output<string>;
+    public /*out*/ readonly hex!: pulumi.Output<string>;
     /**
      * Arbitrary map of values that, when changed, will
      * trigger a new id to be generated. See
      * the main provider documentation for more information.
      */
-    public readonly keepers: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * Arbitrary string to prefix the output value with. This
      * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
      * base64 encoded.
      */
-    public readonly prefix: pulumi.Output<string | undefined>;
+    public readonly prefix!: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomId resource with the given unique name, arguments, and options.
@@ -104,7 +104,7 @@ export class RandomId extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RandomIdArgs | RandomIdState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RandomIdState = argsOrState as RandomIdState | undefined;
+            const state = argsOrState as RandomIdState | undefined;
             inputs["b64"] = state ? state.b64 : undefined;
             inputs["b64Std"] = state ? state.b64Std : undefined;
             inputs["b64Url"] = state ? state.b64Url : undefined;
