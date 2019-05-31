@@ -45,62 +45,62 @@ export class RandomString extends pulumi.CustomResource {
      * trigger a new id to be generated. See
      * the main provider documentation for more information.
      */
-    public readonly keepers: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The length of the string desired
      */
-    public readonly length: pulumi.Output<number>;
+    public readonly length!: pulumi.Output<number>;
     /**
      * (default true) Include lowercase alphabet characters
      * in random string.
      */
-    public readonly lower: pulumi.Output<boolean | undefined>;
+    public readonly lower!: pulumi.Output<boolean | undefined>;
     /**
      * (default 0) Minimum number of lowercase alphabet
      * characters in random string.
      */
-    public readonly minLower: pulumi.Output<number | undefined>;
+    public readonly minLower!: pulumi.Output<number | undefined>;
     /**
      * (default 0) Minimum number of numeric characters
      * in random string.
      */
-    public readonly minNumeric: pulumi.Output<number | undefined>;
+    public readonly minNumeric!: pulumi.Output<number | undefined>;
     /**
      * (default 0) Minimum number of special characters
      * in random string.
      */
-    public readonly minSpecial: pulumi.Output<number | undefined>;
+    public readonly minSpecial!: pulumi.Output<number | undefined>;
     /**
      * (default 0) Minimum number of uppercase alphabet
      * characters in random string.
      */
-    public readonly minUpper: pulumi.Output<number | undefined>;
+    public readonly minUpper!: pulumi.Output<number | undefined>;
     /**
      * (default true) Include numeric characters in random
      * string.
      */
-    public readonly number: pulumi.Output<boolean | undefined>;
+    public readonly number!: pulumi.Output<boolean | undefined>;
     /**
      * Supply your own list of special characters to
      * use for string generation.  This overrides characters list in the special
      * argument.  The special argument must still be set to true for any overwritten
      * characters to be used in generation.
      */
-    public readonly overrideSpecial: pulumi.Output<string | undefined>;
+    public readonly overrideSpecial!: pulumi.Output<string | undefined>;
     /**
      * Random string generated.
      */
-    public /*out*/ readonly result: pulumi.Output<string>;
+    public /*out*/ readonly result!: pulumi.Output<string>;
     /**
      * (default true) Include special characters in random
      * string. These are '!@#$%&*()-_=+[]{}<>:?'
      */
-    public readonly special: pulumi.Output<boolean | undefined>;
+    public readonly special!: pulumi.Output<boolean | undefined>;
     /**
      * (default true) Include uppercase alphabet characters
      * in random string.
      */
-    public readonly upper: pulumi.Output<boolean | undefined>;
+    public readonly upper!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a RandomString resource with the given unique name, arguments, and options.
@@ -113,7 +113,7 @@ export class RandomString extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RandomStringArgs | RandomStringState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RandomStringState = argsOrState as RandomStringState | undefined;
+            const state = argsOrState as RandomStringState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
             inputs["lower"] = state ? state.lower : undefined;

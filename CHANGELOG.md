@@ -1,5 +1,9 @@
 ## 0.5.3 (Unreleased)
 
+### Improvements
+
+- Updated to v2.1.2 of the upstream Terraform Random provider.
+
 ## 0.5.2 (Released April 22nd, 2019)
 
 ### Improvements

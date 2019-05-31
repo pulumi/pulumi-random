@@ -46,11 +46,11 @@ export class RandomUuid extends pulumi.CustomResource {
      * trigger a new uuid to be generated. See
      * the main provider documentation for more information.
      */
-    public readonly keepers: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The generated uuid presented in string format.
      */
-    public /*out*/ readonly result: pulumi.Output<string>;
+    public /*out*/ readonly result!: pulumi.Output<string>;
 
     /**
      * Create a RandomUuid resource with the given unique name, arguments, and options.
@@ -63,7 +63,7 @@ export class RandomUuid extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RandomUuidArgs | RandomUuidState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RandomUuidState = argsOrState as RandomUuidState | undefined;
+            const state = argsOrState as RandomUuidState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["result"] = state ? state.result : undefined;
         } else {

@@ -47,17 +47,17 @@ export class RandomShuffle extends pulumi.CustomResource {
     /**
      * The list of strings to shuffle.
      */
-    public readonly inputs: pulumi.Output<string[]>;
+    public readonly inputs!: pulumi.Output<string[]>;
     /**
      * Arbitrary map of values that, when changed, will
      * trigger a new id to be generated. See
      * the main provider documentation for more information.
      */
-    public readonly keepers: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * Random permutation of the list of strings given in `input`.
      */
-    public /*out*/ readonly results: pulumi.Output<string[]>;
+    public /*out*/ readonly results!: pulumi.Output<string[]>;
     /**
      * The number of results to return. Defaults to
      * the number of items in the `input` list. If fewer items are requested,
@@ -65,7 +65,7 @@ export class RandomShuffle extends pulumi.CustomResource {
      * items will be repeated in the result but not more frequently than the number
      * of items in the input list.
      */
-    public readonly resultCount: pulumi.Output<number | undefined>;
+    public readonly resultCount!: pulumi.Output<number | undefined>;
     /**
      * Arbitrary string with which to seed the random number
      * generator, in order to produce less-volatile permutations of the list.
@@ -74,7 +74,7 @@ export class RandomShuffle extends pulumi.CustomResource {
      * This argument causes the result to be *less volatile*, but not fixed for
      * all time.
      */
-    public readonly seed: pulumi.Output<string | undefined>;
+    public readonly seed!: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomShuffle resource with the given unique name, arguments, and options.
@@ -87,7 +87,7 @@ export class RandomShuffle extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RandomShuffleArgs | RandomShuffleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RandomShuffleState = argsOrState as RandomShuffleState | undefined;
+            const state = argsOrState as RandomShuffleState | undefined;
             inputs["inputs"] = state ? state.inputs : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["results"] = state ? state.results : undefined;

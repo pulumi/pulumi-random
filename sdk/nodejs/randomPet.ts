@@ -60,19 +60,19 @@ export class RandomPet extends pulumi.CustomResource {
      * trigger a new id to be generated. See
      * the main provider documentation for more information.
      */
-    public readonly keepers: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The length (in words) of the pet name.
      */
-    public readonly length: pulumi.Output<number | undefined>;
+    public readonly length!: pulumi.Output<number | undefined>;
     /**
      * A string to prefix the name with.
      */
-    public readonly prefix: pulumi.Output<string | undefined>;
+    public readonly prefix!: pulumi.Output<string | undefined>;
     /**
      * The character to separate words in the pet name.
      */
-    public readonly separator: pulumi.Output<string | undefined>;
+    public readonly separator!: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomPet resource with the given unique name, arguments, and options.
@@ -85,7 +85,7 @@ export class RandomPet extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RandomPetArgs | RandomPetState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RandomPetState = argsOrState as RandomPetState | undefined;
+            const state = argsOrState as RandomPetState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
             inputs["prefix"] = state ? state.prefix : undefined;

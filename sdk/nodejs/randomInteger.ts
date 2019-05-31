@@ -60,23 +60,23 @@ export class RandomInteger extends pulumi.CustomResource {
      * trigger a new id to be generated. See
      * the main provider documentation for more information.
      */
-    public readonly keepers: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The maximum inclusive value of the range.
      */
-    public readonly max: pulumi.Output<number>;
+    public readonly max!: pulumi.Output<number>;
     /**
      * The minimum inclusive value of the range.
      */
-    public readonly min: pulumi.Output<number>;
+    public readonly min!: pulumi.Output<number>;
     /**
      * (int) The random Integer result.
      */
-    public /*out*/ readonly result: pulumi.Output<number>;
+    public /*out*/ readonly result!: pulumi.Output<number>;
     /**
      * A custom seed to always produce the same value.
      */
-    public readonly seed: pulumi.Output<string | undefined>;
+    public readonly seed!: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomInteger resource with the given unique name, arguments, and options.
@@ -89,7 +89,7 @@ export class RandomInteger extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RandomIntegerArgs | RandomIntegerState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RandomIntegerState = argsOrState as RandomIntegerState | undefined;
+            const state = argsOrState as RandomIntegerState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["max"] = state ? state.max : undefined;
             inputs["min"] = state ? state.min : undefined;
