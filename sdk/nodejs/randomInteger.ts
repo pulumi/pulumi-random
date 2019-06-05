@@ -55,6 +55,20 @@ export class RandomInteger extends pulumi.CustomResource {
         return new RandomInteger(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'random:index/randomInteger:RandomInteger';
+
+    /**
+     * Returns true if the given object is an instance of RandomInteger.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is RandomInteger {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === RandomInteger.__pulumiType;
+    }
+
     /**
      * Arbitrary map of values that, when changed, will
      * trigger a new id to be generated. See
@@ -109,7 +123,7 @@ export class RandomInteger extends pulumi.CustomResource {
             inputs["seed"] = args ? args.seed : undefined;
             inputs["result"] = undefined /*out*/;
         }
-        super("random:index/randomInteger:RandomInteger", name, inputs, opts);
+        super(RandomInteger.__pulumiType, name, inputs, opts);
     }
 }
 

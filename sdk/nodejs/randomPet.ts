@@ -55,6 +55,20 @@ export class RandomPet extends pulumi.CustomResource {
         return new RandomPet(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'random:index/randomPet:RandomPet';
+
+    /**
+     * Returns true if the given object is an instance of RandomPet.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is RandomPet {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === RandomPet.__pulumiType;
+    }
+
     /**
      * Arbitrary map of values that, when changed, will
      * trigger a new id to be generated. See
@@ -97,7 +111,7 @@ export class RandomPet extends pulumi.CustomResource {
             inputs["prefix"] = args ? args.prefix : undefined;
             inputs["separator"] = args ? args.separator : undefined;
         }
-        super("random:index/randomPet:RandomPet", name, inputs, opts);
+        super(RandomPet.__pulumiType, name, inputs, opts);
     }
 }
 

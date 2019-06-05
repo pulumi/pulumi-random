@@ -44,6 +44,20 @@ export class RandomShuffle extends pulumi.CustomResource {
         return new RandomShuffle(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'random:index/randomShuffle:RandomShuffle';
+
+    /**
+     * Returns true if the given object is an instance of RandomShuffle.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is RandomShuffle {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === RandomShuffle.__pulumiType;
+    }
+
     /**
      * The list of strings to shuffle.
      */
@@ -104,7 +118,7 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["seed"] = args ? args.seed : undefined;
             inputs["results"] = undefined /*out*/;
         }
-        super("random:index/randomShuffle:RandomShuffle", name, inputs, opts);
+        super(RandomShuffle.__pulumiType, name, inputs, opts);
     }
 }
 

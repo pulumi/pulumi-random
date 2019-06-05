@@ -40,6 +40,20 @@ export class RandomString extends pulumi.CustomResource {
         return new RandomString(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'random:index/randomString:RandomString';
+
+    /**
+     * Returns true if the given object is an instance of RandomString.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is RandomString {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === RandomString.__pulumiType;
+    }
+
     /**
      * Arbitrary map of values that, when changed, will
      * trigger a new id to be generated. See
@@ -144,7 +158,7 @@ export class RandomString extends pulumi.CustomResource {
             inputs["upper"] = args ? args.upper : undefined;
             inputs["result"] = undefined /*out*/;
         }
-        super("random:index/randomString:RandomString", name, inputs, opts);
+        super(RandomString.__pulumiType, name, inputs, opts);
     }
 }
 

@@ -41,6 +41,20 @@ export class RandomUuid extends pulumi.CustomResource {
         return new RandomUuid(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'random:index/randomUuid:RandomUuid';
+
+    /**
+     * Returns true if the given object is an instance of RandomUuid.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is RandomUuid {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === RandomUuid.__pulumiType;
+    }
+
     /**
      * Arbitrary map of values that, when changed, will
      * trigger a new uuid to be generated. See
@@ -71,7 +85,7 @@ export class RandomUuid extends pulumi.CustomResource {
             inputs["keepers"] = args ? args.keepers : undefined;
             inputs["result"] = undefined /*out*/;
         }
-        super("random:index/randomUuid:RandomUuid", name, inputs, opts);
+        super(RandomUuid.__pulumiType, name, inputs, opts);
     }
 }
 

@@ -58,6 +58,20 @@ export class RandomId extends pulumi.CustomResource {
         return new RandomId(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'random:index/randomId:RandomId';
+
+    /**
+     * Returns true if the given object is an instance of RandomId.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is RandomId {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === RandomId.__pulumiType;
+    }
+
     public /*out*/ readonly b64!: pulumi.Output<string>;
     /**
      * The generated id presented in base64 without additional transformations.
@@ -127,7 +141,7 @@ export class RandomId extends pulumi.CustomResource {
             inputs["dec"] = undefined /*out*/;
             inputs["hex"] = undefined /*out*/;
         }
-        super("random:index/randomId:RandomId", name, inputs, opts);
+        super(RandomId.__pulumiType, name, inputs, opts);
     }
 }
 
