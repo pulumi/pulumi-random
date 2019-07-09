@@ -68,6 +68,8 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

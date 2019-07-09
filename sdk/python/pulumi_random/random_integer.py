@@ -48,6 +48,8 @@ class RandomInteger(pulumi.CustomResource):
         :param pulumi.Input[float] max: The maximum inclusive value of the range.
         :param pulumi.Input[float] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

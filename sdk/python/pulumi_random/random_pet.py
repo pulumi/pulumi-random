@@ -45,6 +45,8 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.Input[float] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

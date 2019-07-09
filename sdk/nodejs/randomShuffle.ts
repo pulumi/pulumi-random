@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  *     availabilityZones: az.results,
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
  */
 export class RandomShuffle extends pulumi.CustomResource {
     /**
@@ -80,14 +82,6 @@ export class RandomShuffle extends pulumi.CustomResource {
      * of items in the input list.
      */
     public readonly resultCount!: pulumi.Output<number | undefined>;
-    /**
-     * Arbitrary string with which to seed the random number
-     * generator, in order to produce less-volatile permutations of the list.
-     * **Important:** Even with an identical seed, it is not guaranteed that the
-     * same permutation will be produced across different versions of Terraform.
-     * This argument causes the result to be *less volatile*, but not fixed for
-     * all time.
-     */
     public readonly seed!: pulumi.Output<string | undefined>;
 
     /**
@@ -148,14 +142,6 @@ export interface RandomShuffleState {
      * of items in the input list.
      */
     readonly resultCount?: pulumi.Input<number>;
-    /**
-     * Arbitrary string with which to seed the random number
-     * generator, in order to produce less-volatile permutations of the list.
-     * **Important:** Even with an identical seed, it is not guaranteed that the
-     * same permutation will be produced across different versions of Terraform.
-     * This argument causes the result to be *less volatile*, but not fixed for
-     * all time.
-     */
     readonly seed?: pulumi.Input<string>;
 }
 
@@ -181,13 +167,5 @@ export interface RandomShuffleArgs {
      * of items in the input list.
      */
     readonly resultCount?: pulumi.Input<number>;
-    /**
-     * Arbitrary string with which to seed the random number
-     * generator, in order to produce less-volatile permutations of the list.
-     * **Important:** Even with an identical seed, it is not guaranteed that the
-     * same permutation will be produced across different versions of Terraform.
-     * This argument causes the result to be *less volatile*, but not fixed for
-     * all time.
-     */
     readonly seed?: pulumi.Input<string>;
 }

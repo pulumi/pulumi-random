@@ -12,6 +12,8 @@ import (
 // characters and optionally special characters.
 // 
 // This resource *does* use a cryptographic random number generator.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
 type RandomString struct {
 	s *pulumi.ResourceState
 }

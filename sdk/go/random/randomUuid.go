@@ -12,6 +12,8 @@ import (
 // 
 // This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
 // for use with services needed a unique string identifier.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.markdown.
 type RandomUuid struct {
 	s *pulumi.ResourceState
 }
