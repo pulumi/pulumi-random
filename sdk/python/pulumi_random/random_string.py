@@ -103,6 +103,8 @@ class RandomString(pulumi.CustomResource):
                string. These are '!@#$%&*()-_=+[]{}<>:?'
         :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
                in random string.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

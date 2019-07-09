@@ -10,6 +10,8 @@ import (
 
 // The resource `random_shuffle` generates a random permutation of a list
 // of strings given as an argument.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
 type RandomShuffle struct {
 	s *pulumi.ResourceState
 }
@@ -95,12 +97,6 @@ func (r *RandomShuffle) ResultCount() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["resultCount"])
 }
 
-// Arbitrary string with which to seed the random number
-// generator, in order to produce less-volatile permutations of the list.
-// **Important:** Even with an identical seed, it is not guaranteed that the
-// same permutation will be produced across different versions of Terraform.
-// This argument causes the result to be *less volatile*, but not fixed for
-// all time.
 func (r *RandomShuffle) Seed() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["seed"])
 }
@@ -121,12 +117,6 @@ type RandomShuffleState struct {
 	// items will be repeated in the result but not more frequently than the number
 	// of items in the input list.
 	ResultCount interface{}
-	// Arbitrary string with which to seed the random number
-	// generator, in order to produce less-volatile permutations of the list.
-	// **Important:** Even with an identical seed, it is not guaranteed that the
-	// same permutation will be produced across different versions of Terraform.
-	// This argument causes the result to be *less volatile*, but not fixed for
-	// all time.
 	Seed interface{}
 }
 
@@ -144,11 +134,5 @@ type RandomShuffleArgs struct {
 	// items will be repeated in the result but not more frequently than the number
 	// of items in the input list.
 	ResultCount interface{}
-	// Arbitrary string with which to seed the random number
-	// generator, in order to produce less-volatile permutations of the list.
-	// **Important:** Even with an identical seed, it is not guaranteed that the
-	// same permutation will be produced across different versions of Terraform.
-	// This argument causes the result to be *less volatile*, but not fixed for
-	// all time.
 	Seed interface{}
 }

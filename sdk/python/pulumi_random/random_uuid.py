@@ -32,6 +32,8 @@ class RandomUuid(pulumi.CustomResource):
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new uuid to be generated. See
                the main provider documentation for more information.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
