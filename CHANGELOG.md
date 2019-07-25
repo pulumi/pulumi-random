@@ -2,8 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-___NULL___
-
+* Update pulumi-terraform to fdafc00b3f
 ---
 
 ## 0.5.6 (2019-07-09)
