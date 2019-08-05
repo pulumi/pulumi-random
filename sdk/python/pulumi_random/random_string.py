@@ -147,6 +147,10 @@ class RandomString(pulumi.CustomResource):
 
         __props__['result'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(RandomString, __self__).__init__(
             'random:index/randomString:RandomString',
             resource_name,

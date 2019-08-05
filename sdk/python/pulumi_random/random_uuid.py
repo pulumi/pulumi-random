@@ -54,6 +54,10 @@ class RandomUuid(pulumi.CustomResource):
 
         __props__['result'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(RandomUuid, __self__).__init__(
             'random:index/randomUuid:RandomUuid',
             resource_name,

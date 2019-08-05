@@ -80,6 +80,10 @@ class RandomInteger(pulumi.CustomResource):
 
         __props__['result'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(RandomInteger, __self__).__init__(
             'random:index/randomInteger:RandomInteger',
             resource_name,

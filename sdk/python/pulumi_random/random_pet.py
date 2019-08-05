@@ -71,6 +71,10 @@ class RandomPet(pulumi.CustomResource):
 
         __props__['separator'] = separator
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(RandomPet, __self__).__init__(
             'random:index/randomPet:RandomPet',
             resource_name,

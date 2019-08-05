@@ -87,6 +87,13 @@ export class RandomUuid extends pulumi.CustomResource {
             inputs["keepers"] = args ? args.keepers : undefined;
             inputs["result"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(RandomUuid.__pulumiType, name, inputs, opts);
     }
 }

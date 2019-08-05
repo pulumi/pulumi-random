@@ -143,6 +143,13 @@ export class RandomId extends pulumi.CustomResource {
             inputs["dec"] = undefined /*out*/;
             inputs["hex"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(RandomId.__pulumiType, name, inputs, opts);
     }
 }
