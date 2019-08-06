@@ -100,6 +100,10 @@ class RandomId(pulumi.CustomResource):
         __props__['dec'] = None
         __props__['hex'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(RandomId, __self__).__init__(
             'random:index/randomId:RandomId',
             resource_name,

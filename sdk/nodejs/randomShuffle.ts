@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     ],
  *     resultCount: 2,
  * });
- * const example = new aws.elasticloadbalancing.LoadBalancer("example", {
+ * const example = new aws.elb.LoadBalancer("example", {
  *     // Place the ELB in any two of the given availability zones, selected
  *     // at random.
  *     availabilityZones: az.results,
@@ -111,6 +111,13 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["resultCount"] = args ? args.resultCount : undefined;
             inputs["seed"] = args ? args.seed : undefined;
             inputs["results"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super(RandomShuffle.__pulumiType, name, inputs, opts);
     }

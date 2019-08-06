@@ -160,6 +160,13 @@ export class RandomString extends pulumi.CustomResource {
             inputs["upper"] = args ? args.upper : undefined;
             inputs["result"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(RandomString.__pulumiType, name, inputs, opts);
     }
 }

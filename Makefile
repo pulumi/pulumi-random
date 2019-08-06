@@ -46,8 +46,8 @@ tfgen::
 
 install_plugins:
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource aws 0.16.7
-	pulumi plugin install resource azure 0.16.7
+	pulumi plugin install resource aws 0.18.26
+	pulumi plugin install resource azure 0.19.4
 
 lint::
 	golangci-lint run

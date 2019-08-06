@@ -113,6 +113,13 @@ export class RandomPet extends pulumi.CustomResource {
             inputs["prefix"] = args ? args.prefix : undefined;
             inputs["separator"] = args ? args.separator : undefined;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(RandomPet.__pulumiType, name, inputs, opts);
     }
 }
