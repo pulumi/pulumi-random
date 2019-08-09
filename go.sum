@@ -238,6 +238,7 @@ github.com/hashicorp/go-plugin v0.0.0-20190322172744-52e1c4730856 h1:FHiCaU46W1W
 github.com/hashicorp/go-plugin v0.0.0-20190322172744-52e1c4730856/go.mod h1:++UyYGoz3o5w9ZzAdZxtQKrWWP+iqPBn3cQptSMzBuY=
 github.com/hashicorp/go-plugin v1.0.1-0.20190430211030-5692942914bb h1:Zg2pmmk0lrLFL85lQGt08bOUBpIBaVs6/psiAyx0c4w=
 github.com/hashicorp/go-plugin v1.0.1-0.20190430211030-5692942914bb/go.mod h1:++UyYGoz3o5w9ZzAdZxtQKrWWP+iqPBn3cQptSMzBuY=
+github.com/hashicorp/go-plugin v1.0.1-0.20190610192547-a1bc61569a26 h1:hRho44SAoNu1CBtn5r8Q9J3rCs4ZverWZ4R+UeeNuWM=
 github.com/hashicorp/go-plugin v1.0.1-0.20190610192547-a1bc61569a26/go.mod h1:++UyYGoz3o5w9ZzAdZxtQKrWWP+iqPBn3cQptSMzBuY=
 github.com/hashicorp/go-retryablehttp v0.5.1/go.mod h1:9B5zBasrRhHXnJnui7y6sL7es7NDiJgTc6Er0maI1Xs=
 github.com/hashicorp/go-retryablehttp v0.5.2/go.mod h1:9B5zBasrRhHXnJnui7y6sL7es7NDiJgTc6Er0maI1Xs=
@@ -534,6 +535,8 @@ github.com/terraform-providers/terraform-provider-random v0.0.0-20190412001523-3
 github.com/terraform-providers/terraform-provider-random v0.0.0-20190412001523-3e67922aa0c6/go.mod h1:9oQ7ZpGm7/JIENxNow5SV4JETM+MrrYgtWm+zmpGljI=
 github.com/terraform-providers/terraform-provider-random v0.0.0-20190430215304-58e0a7183d4f h1:8tQw+JDfDgstli9ykmcA7OEx1wDMtDPAOTrOENyWPc4=
 github.com/terraform-providers/terraform-provider-random v0.0.0-20190430215304-58e0a7183d4f/go.mod h1:0R/StzVdSy55hZ3+iNnRt0HtMWNNUfmWss3HKH21+KA=
+github.com/terraform-providers/terraform-provider-random v0.0.0-20190808172436-0ce299bbf59e h1:KcPplRuOE/lOWSB2gupdeHMso8lsAZ+CAM1HUQY4tok=
+github.com/terraform-providers/terraform-provider-random v0.0.0-20190808172436-0ce299bbf59e/go.mod h1:0R/StzVdSy55hZ3+iNnRt0HtMWNNUfmWss3HKH21+KA=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e h1:T5PdfK/M1xyrHwynxMIVMWLS7f/qHwfslZphxtGnw7s=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e/go.mod h1:XDKHRm5ThF8YJjx001LtgelzsoaEcvnA7lVWz9EeX3g=
 github.com/tidwall/pretty v0.0.0-20190325153808-1166b9ac2b65/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=

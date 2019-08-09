@@ -12,7 +12,7 @@ require (
 	github.com/pulumi/pulumi v0.17.28-0.20190731182900-6804d640fc7c
 	github.com/pulumi/pulumi-terraform v0.18.4-0.20190809001837-9db2fc93cdf5
 	github.com/stretchr/testify v1.3.1-0.20190311161405-34c6fa2dc709
-	github.com/terraform-providers/terraform-provider-random v0.0.0-20190430215304-58e0a7183d4f
+	github.com/terraform-providers/terraform-provider-random v0.0.0-20190808172436-0ce299bbf59e
 	golang.org/x/build v0.0.0-20190314133821-5284462c4bec // indirect
 	gopkg.in/vmihailenco/msgpack.v2 v2.9.1 // indirect
 	labix.org/v2/mgo v0.0.0-20140701140051-000000000287 // indirect
