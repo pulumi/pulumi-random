@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * 
  * ## Example Usage
  * 
- * The following example shows how to generate a random priority between 1 and 99999 for
+ * The following example shows how to generate a random priority between 1 and 50000 for
  * a `awsAlbListenerRule` resource:
  * 
  * ```typescript
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *         // Generate a new integer each time we switch to a new listener ARN
  *         listener_arn: var_listener_arn,
  *     },
- *     max: 99999,
+ *     max: 50000,
  *     min: 1,
  * });
  * const main = new aws.alb.ListenerRule("main", {

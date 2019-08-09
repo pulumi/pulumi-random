@@ -77,6 +77,11 @@ class RandomString(pulumi.CustomResource):
         
         This resource *does* use a cryptographic random number generator.
         
+        Historically this resource's intended usage has been ambiguous as the original example
+        used it in a password. For backwards compatibility it will
+        continue to exist. For unique ids please use random_id, for console and log safe
+        random values please use random_password.
+        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
