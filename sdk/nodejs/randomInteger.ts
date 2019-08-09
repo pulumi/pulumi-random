@@ -5,17 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_integer` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
+ * The resource `random..RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
  * 
  * This resource can be used in conjunction with resources that have
- * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+ * the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
  * 
  * ## Example Usage
  * 
  * The following example shows how to generate a random priority between 1 and 99999 for
- * a `aws_alb_listener_rule` resource:
+ * a `awsAlbListenerRule` resource:
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

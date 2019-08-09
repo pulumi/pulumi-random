@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_string` generates a random permutation of alphanumeric
+ * The resource `random..RandomString` generates a random permutation of alphanumeric
  * characters and optionally special characters.
  * 
  * This resource *does* use a cryptographic random number generator.

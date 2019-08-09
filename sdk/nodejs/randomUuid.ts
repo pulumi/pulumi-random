@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_uuid` generates random uuid string that is intended to be
+ * The resource `random..RandomUuid` generates random uuid string that is intended to be
  * used as unique identifiers for other resources.
  * 
  * This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string

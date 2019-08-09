@@ -8,7 +8,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// The resource `random_string` generates a random permutation of alphanumeric
+// The resource `.RandomString` generates a random permutation of alphanumeric
 // characters and optionally special characters.
 // 
 // This resource *does* use a cryptographic random number generator.

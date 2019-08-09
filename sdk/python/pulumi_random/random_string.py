@@ -70,9 +70,9 @@ class RandomString(pulumi.CustomResource):
     (default true) Include uppercase alphabet characters
     in random string.
     """
-    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None, __props__=None, __name__=None, __opts__=None):
         """
-        The resource `random_string` generates a random permutation of alphanumeric
+        The resource `.RandomString` generates a random permutation of alphanumeric
         characters and optionally special characters.
         
         This resource *does* use a cryptographic random number generator.
@@ -112,52 +112,89 @@ class RandomString(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError('Expected resource options to be a ResourceOptions instance')
-
-        __props__ = dict()
-
-        __props__['keepers'] = keepers
-
-        if length is None:
-            raise TypeError("Missing required property 'length'")
-        __props__['length'] = length
-
-        __props__['lower'] = lower
-
-        __props__['min_lower'] = min_lower
-
-        __props__['min_numeric'] = min_numeric
-
-        __props__['min_special'] = min_special
-
-        __props__['min_upper'] = min_upper
-
-        __props__['number'] = number
-
-        __props__['override_special'] = override_special
-
-        __props__['special'] = special
-
-        __props__['upper'] = upper
-
-        __props__['result'] = None
-
         if opts is None:
             opts = pulumi.ResourceOptions()
+        if not isinstance(opts, pulumi.ResourceOptions):
+            raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = utilities.get_version()
+        if opts.id is None:
+            if __props__ is not None:
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+            __props__ = dict()
+
+            __props__['keepers'] = keepers
+            if length is None:
+                raise TypeError("Missing required property 'length'")
+            __props__['length'] = length
+            __props__['lower'] = lower
+            __props__['min_lower'] = min_lower
+            __props__['min_numeric'] = min_numeric
+            __props__['min_special'] = min_special
+            __props__['min_upper'] = min_upper
+            __props__['number'] = number
+            __props__['override_special'] = override_special
+            __props__['special'] = special
+            __props__['upper'] = upper
+            __props__['result'] = None
         super(RandomString, __self__).__init__(
             'random:index/randomString:RandomString',
             resource_name,
             __props__,
             opts)
 
+    @staticmethod
+    def get(resource_name, id, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, result=None, special=None, upper=None):
+        """
+        Get an existing RandomString resource's state with the given name, id, and optional extra
+        properties used to qualify the lookup.
+        :param str resource_name: The unique name of the resulting resource.
+        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[float] length: The length of the string desired
+        :param pulumi.Input[bool] lower: (default true) Include lowercase alphabet characters
+               in random string.
+        :param pulumi.Input[float] min_lower: (default 0) Minimum number of lowercase alphabet
+               characters in random string.
+        :param pulumi.Input[float] min_numeric: (default 0) Minimum number of numeric characters
+               in random string.
+        :param pulumi.Input[float] min_special: (default 0) Minimum number of special characters
+               in random string.
+        :param pulumi.Input[float] min_upper: (default 0) Minimum number of uppercase alphabet
+               characters in random string.
+        :param pulumi.Input[bool] number: (default true) Include numeric characters in random
+               string.
+        :param pulumi.Input[str] override_special: Supply your own list of special characters to
+               use for string generation.  This overrides characters list in the special
+               argument.  The special argument must still be set to true for any overwritten
+               characters to be used in generation.
+        :param pulumi.Input[str] result: Random string generated.
+        :param pulumi.Input[bool] special: (default true) Include special characters in random
+               string. These are '!@#$%&*()-_=+[]{}<>:?'
+        :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
+               in random string.
 
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
+        """
+        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+
+        __props__ = dict()
+        __props__["keepers"] = keepers
+        __props__["length"] = length
+        __props__["lower"] = lower
+        __props__["min_lower"] = min_lower
+        __props__["min_numeric"] = min_numeric
+        __props__["min_special"] = min_special
+        __props__["min_upper"] = min_upper
+        __props__["number"] = number
+        __props__["override_special"] = override_special
+        __props__["result"] = result
+        __props__["special"] = special
+        __props__["upper"] = upper
+        return RandomString(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

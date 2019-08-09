@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_shuffle` generates a random permutation of a list
+ * The resource `random..RandomShuffle` generates a random permutation of a list
  * of strings given as an argument.
  * 
  * ## Example Usage
