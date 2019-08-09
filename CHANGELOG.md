@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform@9db2fc93cd
-* Upgrade to v2.2.0 of the Random Terraform Provider
+___NULL___
 
 ---
+
+## 0.5.8 (2019-08-09)
+* Upgrade to pulumi-terraform@9db2fc93cd
+* Upgrade to v2.2.0 of the Random Terraform Provider
 
 ## 0.5.7 (2019-08-08)
 * Update to pulumi-terraform@013b95b1c8
