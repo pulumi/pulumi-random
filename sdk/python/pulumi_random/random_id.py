@@ -43,9 +43,9 @@ class RandomId(pulumi.CustomResource):
     string is supplied as-is, meaning it is not guaranteed to be URL-safe or
     base64 encoded.
     """
-    def __init__(__self__, resource_name, opts=None, byte_length=None, keepers=None, prefix=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, byte_length=None, keepers=None, prefix=None, __props__=None, __name__=None, __opts__=None):
         """
-        The resource `random_id` generates random numbers that are intended to be
+        The resource `.RandomId` generates random numbers that are intended to be
         used as unique identifiers for other resources.
         
         This resource *does* use a cryptographic random number generator in order
@@ -77,40 +77,68 @@ class RandomId(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError('Expected resource options to be a ResourceOptions instance')
-
-        __props__ = dict()
-
-        if byte_length is None:
-            raise TypeError("Missing required property 'byte_length'")
-        __props__['byte_length'] = byte_length
-
-        __props__['keepers'] = keepers
-
-        __props__['prefix'] = prefix
-
-        __props__['b64'] = None
-        __props__['b64_std'] = None
-        __props__['b64_url'] = None
-        __props__['dec'] = None
-        __props__['hex'] = None
-
         if opts is None:
             opts = pulumi.ResourceOptions()
+        if not isinstance(opts, pulumi.ResourceOptions):
+            raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = utilities.get_version()
+        if opts.id is None:
+            if __props__ is not None:
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+            __props__ = dict()
+
+            if byte_length is None:
+                raise TypeError("Missing required property 'byte_length'")
+            __props__['byte_length'] = byte_length
+            __props__['keepers'] = keepers
+            __props__['prefix'] = prefix
+            __props__['b64'] = None
+            __props__['b64_std'] = None
+            __props__['b64_url'] = None
+            __props__['dec'] = None
+            __props__['hex'] = None
         super(RandomId, __self__).__init__(
             'random:index/randomId:RandomId',
             resource_name,
             __props__,
             opts)
 
+    @staticmethod
+    def get(resource_name, id, opts=None, b64=None, b64_std=None, b64_url=None, byte_length=None, dec=None, hex=None, keepers=None, prefix=None):
+        """
+        Get an existing RandomId resource's state with the given name, id, and optional extra
+        properties used to qualify the lookup.
+        :param str resource_name: The unique name of the resulting resource.
+        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] b64_std: The generated id presented in base64 without additional transformations.
+        :param pulumi.Input[str] b64_url: The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+        :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
+               minimum value is 1, which produces eight bits of randomness.
+        :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
+        :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
+               string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+               base64 encoded.
 
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.markdown.
+        """
+        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+
+        __props__ = dict()
+        __props__["b64"] = b64
+        __props__["b64_std"] = b64_std
+        __props__["b64_url"] = b64_url
+        __props__["byte_length"] = byte_length
+        __props__["dec"] = dec
+        __props__["hex"] = hex
+        __props__["keepers"] = keepers
+        __props__["prefix"] = prefix
+        return RandomId(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

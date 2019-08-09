@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// The resource `random_uuid` generates random uuid string that is intended to be
+// The resource `.RandomUuid` generates random uuid string that is intended to be
 // used as unique identifiers for other resources.
 // 
 // This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string

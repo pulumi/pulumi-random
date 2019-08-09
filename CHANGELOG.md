@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-___NULL___
+* Upgrade to pulumi-terraform@9db2fc93cd
+* Upgrade to v2.2.0 of the Random Terraform Provider
 
 ---
 

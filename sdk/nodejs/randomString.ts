@@ -5,10 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_string` generates a random permutation of alphanumeric
+ * The resource `random..RandomString` generates a random permutation of alphanumeric
  * characters and optionally special characters.
  * 
  * This resource *does* use a cryptographic random number generator.
+ * 
+ * Historically this resource's intended usage has been ambiguous as the original example
+ * used it in a password. For backwards compatibility it will
+ * continue to exist. For unique ids please use random_id, for console and log safe
+ * random values please use random_password.
  * 
  * ## Example Usage
  * 
@@ -17,13 +22,15 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  * 
- * const password = new random.RandomString("password", {
+ * const random = new random.RandomString("random", {
  *     length: 16,
  *     overrideSpecial: "/@\" ",
  *     special: true,
  * });
- * const example = new aws.rds.Instance("example", {
- *     password: password.result,
+ * const server = new aws.ec2.Instance("server", {
+ *     tags: {
+ *         Deployment: pulumi.interpolate`web-server-${random.result}`,
+ *     },
  * });
  * ```
  *

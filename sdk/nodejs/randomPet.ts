@@ -5,11 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_pet` generates random pet names that are intended to be
+ * The resource `random..RandomPet` generates random pet names that are intended to be
  * used as unique identifiers for other resources.
  * 
  * This resource can be used in conjunction with resources that have
- * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+ * the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
  * 
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const serverInstance = new aws.ec2.Instance("server", {
- *     // Read the AMI id "through" the random_pet resource to ensure that
+ *     // Read the AMI id "through" the random..RandomPet resource to ensure that
  *     // both will change together.
  *     ami: serverRandomPet.keepers.amiId,
  *     tags: {

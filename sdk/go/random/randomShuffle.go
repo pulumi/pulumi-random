@@ -8,7 +8,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// The resource `random_shuffle` generates a random permutation of a list
+// The resource `.RandomShuffle` generates a random permutation of a list
 // of strings given as an argument.
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
