@@ -57,12 +57,13 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-random",
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"random_id":      {Tok: randomResource(randomMod, "RandomId")},
-			"random_pet":     {Tok: randomResource(randomMod, "RandomPet")},
-			"random_shuffle": {Tok: randomResource(randomMod, "RandomShuffle")},
-			"random_string":  {Tok: randomResource(randomMod, "RandomString")},
-			"random_integer": {Tok: randomResource(randomMod, "RandomInteger")},
-			"random_uuid":    {Tok: randomResource(randomMod, "RandomUuid")},
+			"random_id":       {Tok: randomResource(randomMod, "RandomId")},
+			"random_password": {Tok: randomResource(randomMod, "RandomPassword")},
+			"random_pet":      {Tok: randomResource(randomMod, "RandomPet")},
+			"random_shuffle":  {Tok: randomResource(randomMod, "RandomShuffle")},
+			"random_string":   {Tok: randomResource(randomMod, "RandomString")},
+			"random_integer":  {Tok: randomResource(randomMod, "RandomInteger")},
+			"random_uuid":     {Tok: randomResource(randomMod, "RandomUuid")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

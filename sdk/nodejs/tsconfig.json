@@ -17,6 +17,7 @@
         "provider.ts",
         "randomId.ts",
         "randomInteger.ts",
+        "randomPassword.ts",
         "randomPet.ts",
         "randomShuffle.ts",
         "randomString.ts",
