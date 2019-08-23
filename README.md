@@ -10,18 +10,24 @@ how to work with the Pulumi resource lifecycle to accomplish randomness safely a
 
 ## Example
 
-For example, to generate a random string, simply allocate a resource:
+For example, to generate a random password, allocate a `RandomPassword` resource
+and then use its `result` output property (of type `Output<string>`) to pass
+to another resource.
 
 ```typescript
-const random = require("@pulumi/random");
-const password = new random.RandomString("password", {
+import * as pulumi from "@pulumi/pulumi";
+import * as aws from "@pulumi/aws";
+import * as random from "@pulumi/random";
+
+const password = new random.RandomPassword("password", {
     length: 16,
-    special: true,
     overrideSpecial: "/@\" ",
+    special: true,
+});
+const example = new aws.rds.Instance("example", {
+    password: password.result,
 });
 ```
-
-From there we can use its `result` output property, of type `Output<string>`, to pass to another resource.
 
 ## Installing
 
