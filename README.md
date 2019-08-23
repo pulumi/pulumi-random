@@ -10,8 +10,8 @@ how to work with the Pulumi resource lifecycle to accomplish randomness safely a
 
 ## Example
 
-For example, to generate a random password, simply allocate a RandomPassword resource,
-and then we can use its `result` output property, of type `Output<string>`, to pass
+For example, to generate a random password, allocate a `RandomPassword` resource
+and then use its `result` output property (of type `Output<string>`) to pass
 to another resource.
 
 ```typescript
