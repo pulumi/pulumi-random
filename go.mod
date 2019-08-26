@@ -14,7 +14,7 @@ require (
 	github.com/openzipkin/zipkin-go v0.1.6 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.0.0-beta.2
-	github.com/pulumi/pulumi-terraform v0.18.4-0.20190823211354-b84264ecece6
+	github.com/pulumi/pulumi-terraform v0.18.4-0.20190825155700-58c7473d0826
 	github.com/stretchr/testify v1.3.1-0.20190311161405-34c6fa2dc709
 	github.com/terraform-providers/terraform-provider-random v0.0.0-20190808172436-0ce299bbf59e
 	golang.org/x/build v0.0.0-20190314133821-5284462c4bec // indirect
