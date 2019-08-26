@@ -2,9 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-___NULL___
+_(none)_
 
 ---
+
+## 1.0.0-beta.2 (2019-08-26)
+___NULL___
+* Upgrade to pulumi-terraform@58c7473d08
 
 ## 1.0.0-beta.1 (2019-08-13)
 * Add `RandomPassword` which behaves like `RandomString` except the ID value stored in the checkpoint is always "none" instead of the underlying value
