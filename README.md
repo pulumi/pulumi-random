@@ -1,4 +1,9 @@
 [![Build Status](https://travis-ci.com/pulumi/pulumi-random.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-random)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Frandom.svg)](https://npmjs.com/package/@pulumi/random)
+[![Python version](https://badge.fury.io/py/pulumi-random.svg)](https://pypi.org/project/pulumi-random)
+[![GoDoc](https://godoc.org/github.com/pulumi/pulumi-random?status.svg)](https://godoc.org/github.com/pulumi/pulumi-random)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-random/blob/master/LICENSE)
 
 # Random Provider
 
