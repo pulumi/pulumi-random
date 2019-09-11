@@ -8,10 +8,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// The resource `random_string` generates a random permutation of alphanumeric
+// The resource `.RandomString` generates a random permutation of alphanumeric
 // characters and optionally special characters.
 // 
 // This resource *does* use a cryptographic random number generator.
+// 
+// Historically this resource's intended usage has been ambiguous as the original example
+// used it in a password. For backwards compatibility it will
+// continue to exist. For unique ids please use random_id, for console and log safe
+// random values please use random_password.
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
 type RandomString struct {

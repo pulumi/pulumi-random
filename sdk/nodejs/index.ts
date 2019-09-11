@@ -5,6 +5,7 @@
 export * from "./provider";
 export * from "./randomId";
 export * from "./randomInteger";
+export * from "./randomPassword";
 export * from "./randomPet";
 export * from "./randomShuffle";
 export * from "./randomString";

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_shuffle` generates a random permutation of a list
+ * The resource `random..RandomShuffle` generates a random permutation of a list
  * of strings given as an argument.
  * 
  * ## Example Usage
@@ -111,6 +111,13 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["resultCount"] = args ? args.resultCount : undefined;
             inputs["seed"] = args ? args.seed : undefined;
             inputs["results"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super(RandomShuffle.__pulumiType, name, inputs, opts);
     }

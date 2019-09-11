@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .random_id import *
 from .random_integer import *
+from .random_password import *
 from .random_pet import *
 from .random_shuffle import *
 from .random_string import *

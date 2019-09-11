@@ -8,7 +8,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// The resource `random_id` generates random numbers that are intended to be
+// The resource `.RandomId` generates random numbers that are intended to be
 // used as unique identifiers for other resources.
 // 
 // This resource *does* use a cryptographic random number generator in order
@@ -17,7 +17,7 @@ import (
 // type-4 UUID.
 // 
 // This resource can be used in conjunction with resources that have
-// the `create_before_destroy` lifecycle flag set to avoid conflicts with
+// the `createBeforeDestroy` lifecycle flag set to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
 //

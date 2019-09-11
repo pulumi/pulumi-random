@@ -2,9 +2,29 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-___NULL___
+_(none)_
 
 ---
+
+## 1.0.0 (2019-09-03)
+* Use 1.0 version of Pulumi dependency
+
+## 1.0.0-rc.1 (2019-08-28)
+* Upgrade pulumi-terraform to 3f206601e7
+
+## 1.0.0-beta.2 (2019-08-26)
+___NULL___
+* Upgrade to pulumi-terraform@58c7473d08
+
+## 1.0.0-beta.1 (2019-08-13)
+* Add `RandomPassword` which behaves like `RandomString` except the ID value stored in the checkpoint is always "none" instead of the underlying value
+
+## 0.5.8 (2019-08-09)
+* Upgrade to pulumi-terraform@9db2fc93cd
+* Upgrade to v2.2.0 of the Random Terraform Provider
+
+## 0.5.7 (2019-08-08)
+* Update to pulumi-terraform@013b95b1c8
 
 ## 0.5.6 (2019-07-09)
 * Fix detailed diffs with nested computed values.

@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class RandomPet(pulumi.CustomResource):
@@ -27,9 +28,9 @@ class RandomPet(pulumi.CustomResource):
     """
     The character to separate words in the pet name.
     """
-    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, prefix=None, separator=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, prefix=None, separator=None, __props__=None, __name__=None, __opts__=None):
         """
-        The resource `random_pet` generates random pet names that are intended to be
+        The resource `.RandomPet` generates random pet names that are intended to be
         used as unique identifiers for other resources.
         
         This resource can be used in conjunction with resources that have
@@ -54,30 +55,53 @@ class RandomPet(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
+        if opts.version is None:
+            opts.version = utilities.get_version()
+        if opts.id is None:
+            if __props__ is not None:
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+            __props__ = dict()
 
-        __props__ = dict()
-
-        __props__['keepers'] = keepers
-
-        __props__['length'] = length
-
-        __props__['prefix'] = prefix
-
-        __props__['separator'] = separator
-
+            __props__['keepers'] = keepers
+            __props__['length'] = length
+            __props__['prefix'] = prefix
+            __props__['separator'] = separator
         super(RandomPet, __self__).__init__(
             'random:index/randomPet:RandomPet',
             resource_name,
             __props__,
             opts)
 
+    @staticmethod
+    def get(resource_name, id, opts=None, keepers=None, length=None, prefix=None, separator=None):
+        """
+        Get an existing RandomPet resource's state with the given name, id, and optional extra
+        properties used to qualify the lookup.
+        
+        :param str resource_name: The unique name of the resulting resource.
+        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[float] length: The length (in words) of the pet name.
+        :param pulumi.Input[str] prefix: A string to prefix the name with.
+        :param pulumi.Input[str] separator: The character to separate words in the pet name.
 
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
+        """
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
+
+        __props__ = dict()
+        __props__["keepers"] = keepers
+        __props__["length"] = length
+        __props__["prefix"] = prefix
+        __props__["separator"] = separator
+        return RandomPet(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

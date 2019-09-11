@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random_uuid` generates random uuid string that is intended to be
+ * The resource `random..RandomUuid` generates random uuid string that is intended to be
  * used as unique identifiers for other resources.
  * 
  * This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
@@ -86,6 +86,13 @@ export class RandomUuid extends pulumi.CustomResource {
             const args = argsOrState as RandomUuidArgs | undefined;
             inputs["keepers"] = args ? args.keepers : undefined;
             inputs["result"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super(RandomUuid.__pulumiType, name, inputs, opts);
     }

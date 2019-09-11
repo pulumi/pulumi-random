@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class RandomShuffle(pulumi.CustomResource):
@@ -32,9 +33,9 @@ class RandomShuffle(pulumi.CustomResource):
     of items in the input list.
     """
     seed: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, inputs=None, keepers=None, result_count=None, seed=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, inputs=None, keepers=None, result_count=None, seed=None, __props__=None, __name__=None, __opts__=None):
         """
-        The resource `random_shuffle` generates a random permutation of a list
+        The resource `.RandomShuffle` generates a random permutation of a list
         of strings given as an argument.
         
         :param str resource_name: The name of the resource.
@@ -57,34 +58,61 @@ class RandomShuffle(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
+        if opts.version is None:
+            opts.version = utilities.get_version()
+        if opts.id is None:
+            if __props__ is not None:
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+            __props__ = dict()
 
-        __props__ = dict()
-
-        if inputs is None:
-            raise TypeError("Missing required property 'inputs'")
-        __props__['inputs'] = inputs
-
-        __props__['keepers'] = keepers
-
-        __props__['result_count'] = result_count
-
-        __props__['seed'] = seed
-
-        __props__['results'] = None
-
+            if inputs is None:
+                raise TypeError("Missing required property 'inputs'")
+            __props__['inputs'] = inputs
+            __props__['keepers'] = keepers
+            __props__['result_count'] = result_count
+            __props__['seed'] = seed
+            __props__['results'] = None
         super(RandomShuffle, __self__).__init__(
             'random:index/randomShuffle:RandomShuffle',
             resource_name,
             __props__,
             opts)
 
+    @staticmethod
+    def get(resource_name, id, opts=None, inputs=None, keepers=None, results=None, result_count=None, seed=None):
+        """
+        Get an existing RandomShuffle resource's state with the given name, id, and optional extra
+        properties used to qualify the lookup.
+        
+        :param str resource_name: The unique name of the resulting resource.
+        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[list] inputs: The list of strings to shuffle.
+        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[list] results: Random permutation of the list of strings given in `input`.
+        :param pulumi.Input[float] result_count: The number of results to return. Defaults to
+               the number of items in the `input` list. If fewer items are requested,
+               some elements will be excluded from the result. If more items are requested,
+               items will be repeated in the result but not more frequently than the number
+               of items in the input list.
 
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
+        """
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
+
+        __props__ = dict()
+        __props__["inputs"] = inputs
+        __props__["keepers"] = keepers
+        __props__["results"] = results
+        __props__["result_count"] = result_count
+        __props__["seed"] = seed
+        return RandomShuffle(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

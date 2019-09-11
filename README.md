@@ -1,4 +1,9 @@
 [![Build Status](https://travis-ci.com/pulumi/pulumi-random.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-random)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Frandom.svg)](https://npmjs.com/package/@pulumi/random)
+[![Python version](https://badge.fury.io/py/pulumi-random.svg)](https://pypi.org/project/pulumi-random)
+[![GoDoc](https://godoc.org/github.com/pulumi/pulumi-random?status.svg)](https://godoc.org/github.com/pulumi/pulumi-random)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-random/blob/master/LICENSE)
 
 # Random Provider
 
@@ -10,18 +15,24 @@ how to work with the Pulumi resource lifecycle to accomplish randomness safely a
 
 ## Example
 
-For example, to generate a random string, simply allocate a resource:
+For example, to generate a random password, allocate a `RandomPassword` resource
+and then use its `result` output property (of type `Output<string>`) to pass
+to another resource.
 
 ```typescript
-const random = require("@pulumi/random");
-const password = new random.RandomString("password", {
+import * as pulumi from "@pulumi/pulumi";
+import * as aws from "@pulumi/aws";
+import * as random from "@pulumi/random";
+
+const password = new random.RandomPassword("password", {
     length: 16,
-    special: true,
     overrideSpecial: "/@\" ",
+    special: true,
+});
+const example = new aws.rds.Instance("example", {
+    password: password.result,
 });
 ```
-
-From there we can use its `result` output property, of type `Output<string>`, to pass to another resource.
 
 ## Installing
 

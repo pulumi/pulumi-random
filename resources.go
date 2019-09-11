@@ -57,16 +57,17 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-random",
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"random_id":      {Tok: randomResource(randomMod, "RandomId")},
-			"random_pet":     {Tok: randomResource(randomMod, "RandomPet")},
-			"random_shuffle": {Tok: randomResource(randomMod, "RandomShuffle")},
-			"random_string":  {Tok: randomResource(randomMod, "RandomString")},
-			"random_integer": {Tok: randomResource(randomMod, "RandomInteger")},
-			"random_uuid":    {Tok: randomResource(randomMod, "RandomUuid")},
+			"random_id":       {Tok: randomResource(randomMod, "RandomId")},
+			"random_password": {Tok: randomResource(randomMod, "RandomPassword")},
+			"random_pet":      {Tok: randomResource(randomMod, "RandomPet")},
+			"random_shuffle":  {Tok: randomResource(randomMod, "RandomShuffle")},
+			"random_string":   {Tok: randomResource(randomMod, "RandomString")},
+			"random_integer":  {Tok: randomResource(randomMod, "RandomInteger")},
+			"random_uuid":     {Tok: randomResource(randomMod, "RandomUuid")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^0.17.1",
+				"@pulumi/pulumi": "^1.0.0",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^8.0.0", // so we can access strongly typed node definitions.
@@ -74,7 +75,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=0.17.0,<0.18.0",
+				"pulumi": ">=1.0.0,<2.0.0",
 			},
 		},
 	}
