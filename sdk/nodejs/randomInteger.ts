@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     max: 99999,
  *     min: 1,
  * });
- * const main = new aws.applicationloadbalancing.ListenerRule("main", {
+ * const main = new aws.alb.ListenerRule("main", {
  *     actions: [{
  *         targetGroupArn: var_target_group_arn,
  *         type: "forward",

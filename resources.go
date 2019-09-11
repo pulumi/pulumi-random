@@ -69,7 +69,7 @@ func Provider() tfbridge.ProviderInfo {
 				"@pulumi/pulumi": "^0.17.1",
 			},
 			DevDependencies: map[string]string{
-				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
+				"@types/node": "^8.0.0", // so we can access strongly typed node definitions.
 			},
 		},
 		Python: &tfbridge.PythonInfo{
