@@ -10,9 +10,7 @@ on:
   - cron: 0 2 * * 1-5
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
     - name: Set up Go 1.12
       uses: actions/setup-go@v1
