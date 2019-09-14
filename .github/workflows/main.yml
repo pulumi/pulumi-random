@@ -19,7 +19,7 @@ jobs:
       id: go
     - name: Get Pulumi Scripts
       run: |
-        git clone https://github.com/pulumi/scripts ${GOPATH}/src/github.com/pulumi/scripts
+        sudo git clone https://github.com/pulumi/scripts ${GOPATH}/src/github.com/pulumi/scripts
         source ${GOPATH}/src/github.com/pulumi/scripts/ci/prepare-environment.sh
         source ${PULUMI_SCRIPTS}/ci/keep-failed-tests.sh
         source ${PULUMI_SCRIPTS}/ci/install-common-toolchain.sh
