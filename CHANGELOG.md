@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Upgrade to support go1.13
+* Regenerate SDK against tf2pulum 0.6.0
 
 ---
 

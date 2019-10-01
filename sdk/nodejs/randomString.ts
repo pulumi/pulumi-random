@@ -22,14 +22,14 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  * 
- * const random = new random.RandomString("random", {
+ * const randomRandomString = new random.RandomString("random", {
  *     length: 16,
  *     overrideSpecial: "/@\" ",
  *     special: true,
  * });
  * const server = new aws.ec2.Instance("server", {
  *     tags: {
- *         Deployment: pulumi.interpolate`web-server-${random.result}`,
+ *         Deployment: pulumi.interpolate`web-server-${randomRandomString.result}`,
  *     },
  * });
  * ```
