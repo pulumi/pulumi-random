@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to support go1.13
-* Regenerate SDK against tf2pulum 0.6.0
+_(none)_
 
 ---
+
+## 1.1.0 (2019-10-02)
+* Regenerate SDK against tf2pulumi 0.6.0
+* Upgrade to v2.2.1 of the Random Terraform Provider
 
 ## 1.0.0 (2019-09-03)
 * Use 1.0 version of Pulumi dependency
@@ -58,4 +61,3 @@ ___NULL___
 
 ## 0.1.0 (2018-02-02)
 * Initial version of the Random provider
-
