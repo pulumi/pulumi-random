@@ -53,7 +53,7 @@ class RandomString(pulumi.CustomResource):
     override_special: pulumi.Output[str]
     """
     Supply your own list of special characters to
-    use for string generation.  This overrides characters list in the special
+    use for string generation.  This overrides the default character list in the special
     argument.  The special argument must still be set to true for any overwritten
     characters to be used in generation.
     """
@@ -64,7 +64,7 @@ class RandomString(pulumi.CustomResource):
     special: pulumi.Output[bool]
     """
     (default true) Include special characters in random
-    string. These are '!@#$%&*()-_=+[]{}<>:?'
+    string. These are `!@#$%&*()-_=+[]{}<>:?`
     """
     upper: pulumi.Output[bool]
     """
@@ -80,7 +80,7 @@ class RandomString(pulumi.CustomResource):
         
         Historically this resource's intended usage has been ambiguous as the original example
         used it in a password. For backwards compatibility it will
-        continue to exist. For unique ids please use random_id, for console and log safe
+        continue to exist. For unique ids please use random_id, for sensitive
         random values please use random_password.
         
         :param str resource_name: The name of the resource.
@@ -102,11 +102,11 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[bool] number: (default true) Include numeric characters in random
                string.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to
-               use for string generation.  This overrides characters list in the special
+               use for string generation.  This overrides the default character list in the special
                argument.  The special argument must still be set to true for any overwritten
                characters to be used in generation.
         :param pulumi.Input[bool] special: (default true) Include special characters in random
-               string. These are '!@#$%&*()-_=+[]{}<>:?'
+               string. These are `!@#$%&*()-_=+[]{}<>:?`
         :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
                in random string.
 
@@ -175,12 +175,12 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[bool] number: (default true) Include numeric characters in random
                string.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to
-               use for string generation.  This overrides characters list in the special
+               use for string generation.  This overrides the default character list in the special
                argument.  The special argument must still be set to true for any overwritten
                characters to be used in generation.
         :param pulumi.Input[str] result: Random string generated.
         :param pulumi.Input[bool] special: (default true) Include special characters in random
-               string. These are '!@#$%&*()-_=+[]{}<>:?'
+               string. These are `!@#$%&*()-_=+[]{}<>:?`
         :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
                in random string.
 

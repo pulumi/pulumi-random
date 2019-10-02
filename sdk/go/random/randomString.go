@@ -15,7 +15,7 @@ import (
 // 
 // Historically this resource's intended usage has been ambiguous as the original example
 // used it in a password. For backwards compatibility it will
-// continue to exist. For unique ids please use random_id, for console and log safe
+// continue to exist. For unique ids please use random_id, for sensitive
 // random values please use random_password.
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
@@ -148,7 +148,7 @@ func (r *RandomString) Number() *pulumi.BoolOutput {
 }
 
 // Supply your own list of special characters to
-// use for string generation.  This overrides characters list in the special
+// use for string generation.  This overrides the default character list in the special
 // argument.  The special argument must still be set to true for any overwritten
 // characters to be used in generation.
 func (r *RandomString) OverrideSpecial() *pulumi.StringOutput {
@@ -161,7 +161,7 @@ func (r *RandomString) Result() *pulumi.StringOutput {
 }
 
 // (default true) Include special characters in random
-// string. These are '!@#$%&*()-_=+[]{}<>:?'
+// string. These are `!@#$%&*()-_=+[]{}<>:?`
 func (r *RandomString) Special() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["special"])
 }
@@ -199,14 +199,14 @@ type RandomStringState struct {
 	// string.
 	Number interface{}
 	// Supply your own list of special characters to
-	// use for string generation.  This overrides characters list in the special
+	// use for string generation.  This overrides the default character list in the special
 	// argument.  The special argument must still be set to true for any overwritten
 	// characters to be used in generation.
 	OverrideSpecial interface{}
 	// Random string generated.
 	Result interface{}
 	// (default true) Include special characters in random
-	// string. These are '!@#$%&*()-_=+[]{}<>:?'
+	// string. These are `!@#$%&*()-_=+[]{}<>:?`
 	Special interface{}
 	// (default true) Include uppercase alphabet characters
 	// in random string.
@@ -240,12 +240,12 @@ type RandomStringArgs struct {
 	// string.
 	Number interface{}
 	// Supply your own list of special characters to
-	// use for string generation.  This overrides characters list in the special
+	// use for string generation.  This overrides the default character list in the special
 	// argument.  The special argument must still be set to true for any overwritten
 	// characters to be used in generation.
 	OverrideSpecial interface{}
 	// (default true) Include special characters in random
-	// string. These are '!@#$%&*()-_=+[]{}<>:?'
+	// string. These are `!@#$%&*()-_=+[]{}<>:?`
 	Special interface{}
 	// (default true) Include uppercase alphabet characters
 	// in random string.

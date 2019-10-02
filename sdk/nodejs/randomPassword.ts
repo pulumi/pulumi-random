@@ -5,8 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **Note:** Requires random provider version >= 2.2.0
+ * 
  * Identical to random..RandomString with the exception that the
- * result is treated as sensitive and, thus, not displayed in console output.
+ * result is treated as sensitive and, thus, _not_ displayed in console output.
+ * 
+ * > **Note:** All attributes including the generated password will be stored in
+ * the raw state as plain-text. [Read more about sensitive data in
+ * state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
  * This resource *does* use a cryptographic random number generator.
  * 
@@ -19,11 +25,16 @@ import * as utilities from "./utilities";
  * 
  * const password = new random.RandomPassword("password", {
  *     length: 16,
- *     overrideSpecial: "/@\" ",
+ *     overrideSpecial: "_%@",
  *     special: true,
  * });
  * const example = new aws.rds.Instance("example", {
- *     password: password.result,
+ *     allocatedStorage: 64,
+ *     engine: "mysql",
+ *     instanceClass: "db.t3.micro",
+ *     password: "",
+ *     "random_string.password.result": [{}],
+ *     username: "someone",
  * });
  * ```
  *

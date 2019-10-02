@@ -24,8 +24,14 @@ class RandomPassword(pulumi.CustomResource):
     upper: pulumi.Output[bool]
     def __init__(__self__, resource_name, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None, __props__=None, __name__=None, __opts__=None):
         """
+        > **Note:** Requires random provider version >= 2.2.0
+        
         Identical to .RandomString with the exception that the
-        result is treated as sensitive and, thus, not displayed in console output.
+        result is treated as sensitive and, thus, _not_ displayed in console output.
+        
+        > **Note:** All attributes including the generated password will be stored in
+        the raw state as plain-text. [Read more about sensitive data in
+        state](https://www.terraform.io/docs/state/sensitive-data.html).
         
         This resource *does* use a cryptographic random number generator.
         

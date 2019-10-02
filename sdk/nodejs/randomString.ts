@@ -12,25 +12,19 @@ import * as utilities from "./utilities";
  * 
  * Historically this resource's intended usage has been ambiguous as the original example
  * used it in a password. For backwards compatibility it will
- * continue to exist. For unique ids please use random_id, for console and log safe
+ * continue to exist. For unique ids please use random_id, for sensitive
  * random values please use random_password.
  * 
  * ## Example Usage
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  * 
  * const randomRandomString = new random.RandomString("random", {
  *     length: 16,
- *     overrideSpecial: "/@\" ",
+ *     overrideSpecial: "/@£$",
  *     special: true,
- * });
- * const server = new aws.ec2.Instance("server", {
- *     tags: {
- *         Deployment: pulumi.interpolate`web-server-${randomRandomString.result}`,
- *     },
  * });
  * ```
  *
@@ -105,7 +99,7 @@ export class RandomString extends pulumi.CustomResource {
     public readonly number!: pulumi.Output<boolean | undefined>;
     /**
      * Supply your own list of special characters to
-     * use for string generation.  This overrides characters list in the special
+     * use for string generation.  This overrides the default character list in the special
      * argument.  The special argument must still be set to true for any overwritten
      * characters to be used in generation.
      */
@@ -116,7 +110,7 @@ export class RandomString extends pulumi.CustomResource {
     public /*out*/ readonly result!: pulumi.Output<string>;
     /**
      * (default true) Include special characters in random
-     * string. These are '!@#$%&*()-_=+[]{}<>:?'
+     * string. These are `!@#$%&*()-_=+[]{}<>:?`
      */
     public readonly special!: pulumi.Output<boolean | undefined>;
     /**
@@ -224,7 +218,7 @@ export interface RandomStringState {
     readonly number?: pulumi.Input<boolean>;
     /**
      * Supply your own list of special characters to
-     * use for string generation.  This overrides characters list in the special
+     * use for string generation.  This overrides the default character list in the special
      * argument.  The special argument must still be set to true for any overwritten
      * characters to be used in generation.
      */
@@ -235,7 +229,7 @@ export interface RandomStringState {
     readonly result?: pulumi.Input<string>;
     /**
      * (default true) Include special characters in random
-     * string. These are '!@#$%&*()-_=+[]{}<>:?'
+     * string. These are `!@#$%&*()-_=+[]{}<>:?`
      */
     readonly special?: pulumi.Input<boolean>;
     /**
@@ -291,14 +285,14 @@ export interface RandomStringArgs {
     readonly number?: pulumi.Input<boolean>;
     /**
      * Supply your own list of special characters to
-     * use for string generation.  This overrides characters list in the special
+     * use for string generation.  This overrides the default character list in the special
      * argument.  The special argument must still be set to true for any overwritten
      * characters to be used in generation.
      */
     readonly overrideSpecial?: pulumi.Input<string>;
     /**
      * (default true) Include special characters in random
-     * string. These are '!@#$%&*()-_=+[]{}<>:?'
+     * string. These are `!@#$%&*()-_=+[]{}<>:?`
      */
     readonly special?: pulumi.Input<boolean>;
     /**

@@ -14,7 +14,7 @@ PYPI_VERSION    := $(shell scripts/get-py-version)
 TESTPARALLELISM := 4
 
 # Set NOPROXY to true to skip GOPROXY on 'ensure'
-NOPROXY := false
+NOPROXY := true
 
 # NOTE: Since the plugin is published using the nodejs style semver version
 # We set the PLUGIN_VERSION to be the same as the version we use when building
@@ -49,8 +49,8 @@ tfgen::
 
 install_plugins:
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource aws 0.18.26
-	pulumi plugin install resource azure 0.19.4
+	pulumi plugin install resource aws 1.2.1
+	pulumi plugin install resource azure 1.0.0
 
 lint::
 	golangci-lint run
