@@ -7,6 +7,5 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.2.0
 	github.com/pulumi/pulumi-terraform-bridge v1.0.0
-	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-random v0.0.0-20190925210718-83518d96ae4f
 )
