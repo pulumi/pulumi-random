@@ -7,38 +7,39 @@ import (
 	"path"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/pulumi/pulumi/pkg/testing/integration"
 )
 
-func TestExamples(t *testing.T) {
+func TestSimple(t *testing.T) {
+	test := getBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir:           path.Join(getCwd(t), "simple"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func skipIfShort(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipping long-running test in short mode")
+	}
+}
+
+func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
-	if !assert.NoError(t, err, "expected a valid working directory: %v", err) {
-		return
+	if err != nil {
+		t.Error("expected a valid working directory", err)
 	}
 
-	base := integration.ProgramTestOptions{
+	return cwd
+}
+
+func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	return integration.ProgramTestOptions{
+		ExpectRefreshChanges: true,
 		Dependencies: []string{
 			"@pulumi/random",
 		},
 	}
-
-	shortTests := []integration.ProgramTestOptions{
-		base.With(integration.ProgramTestOptions{Dir: path.Join(cwd, "simple")}),
-	}
-
-	longTests := []integration.ProgramTestOptions{}
-
-	tests := shortTests
-	if !testing.Short() {
-		tests = append(tests, longTests...)
-	}
-
-	for _, ex := range tests {
-		example := ex
-		t.Run(example.Dir, func(t *testing.T) {
-			integration.ProgramTest(t, &example)
-		})
-	}
 }
+
