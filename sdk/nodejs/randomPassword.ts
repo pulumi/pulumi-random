@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  * 
- * const password = new random.RandomPassword("password", {
+ * const password = new random.Password("password", {
  *     length: 16,
  *     overrideSpecial: "_%@",
  *     special: true,
