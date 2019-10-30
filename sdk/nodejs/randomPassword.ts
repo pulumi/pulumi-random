@@ -15,28 +15,6 @@ import * as utilities from "./utilities";
  * state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
  * This resource *does* use a cryptographic random number generator.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as random from "@pulumi/random";
- * 
- * const password = new random.RandomPassword("password", {
- *     length: 16,
- *     overrideSpecial: "_%@",
- *     special: true,
- * });
- * const example = new aws.rds.Instance("example", {
- *     allocatedStorage: 64,
- *     engine: "mysql",
- *     instanceClass: "db.t3.micro",
- *     password: "",
- *     "random_string.password.result": [{}],
- *     username: "someone",
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
  */
