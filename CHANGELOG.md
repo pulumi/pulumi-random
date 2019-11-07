@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Add a **preview** .NET SDK
+_(none)_
 
 ---
+
+## 1.2.0 (2019-11-07)
+* Add a **preview** .NET SDK
 
 ## 1.1.0 (2019-10-02)
 * Regenerate SDK against tf2pulumi 0.6.0
