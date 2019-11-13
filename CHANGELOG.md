@@ -2,7 +2,9 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+
+* readme: fix example to create right passwd for RDS
+[#64](https://github.com/pulumi/pulumi-random/pull/64)
 
 ---
 
