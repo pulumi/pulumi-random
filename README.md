@@ -26,7 +26,7 @@ import * as random from "@pulumi/random";
 
 const password = new random.RandomPassword("password", {
     length: 16,
-    overrideSpecial: "/@\" ",
+    overrideSpecial: "_%@",
     special: true,
 });
 const example = new aws.rds.Instance("example", {
