@@ -41,7 +41,7 @@ namespace Pulumi.Random
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RandomUuid(string name, RandomUuidArgs? args = null, CustomResourceOptions? options = null)
-            : base("random:index/randomUuid:RandomUuid", name, args, MakeResourceOptions(options, ""))
+            : base("random:index/randomUuid:RandomUuid", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
