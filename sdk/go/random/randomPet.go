@@ -61,35 +61,35 @@ func GetRandomPet(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomPet) URN() *pulumi.URNOutput {
+func (r *RandomPet) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomPet) ID() *pulumi.IDOutput {
+func (r *RandomPet) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Arbitrary map of values that, when changed, will
 // trigger a new id to be generated. See
 // the main provider documentation for more information.
-func (r *RandomPet) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomPet) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
 // The length (in words) of the pet name.
-func (r *RandomPet) Length() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["length"])
+func (r *RandomPet) Length() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["length"])
 }
 
 // A string to prefix the name with.
-func (r *RandomPet) Prefix() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["prefix"])
+func (r *RandomPet) Prefix() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["prefix"])
 }
 
 // The character to separate words in the pet name.
-func (r *RandomPet) Separator() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["separator"])
+func (r *RandomPet) Separator() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["separator"])
 }
 
 // Input properties used for looking up and filtering RandomPet resources.

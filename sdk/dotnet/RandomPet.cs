@@ -55,7 +55,7 @@ namespace Pulumi.Random
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RandomPet(string name, RandomPetArgs? args = null, CustomResourceOptions? options = null)
-            : base("random:index/randomPet:RandomPet", name, args, MakeResourceOptions(options, ""))
+            : base("random:index/randomPet:RandomPet", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

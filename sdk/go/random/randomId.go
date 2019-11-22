@@ -77,57 +77,57 @@ func GetRandomId(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomId) URN() *pulumi.URNOutput {
+func (r *RandomId) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomId) ID() *pulumi.IDOutput {
+func (r *RandomId) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-func (r *RandomId) B64() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["b64"])
+func (r *RandomId) B64() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["b64"])
 }
 
 // The generated id presented in base64 without additional transformations.
-func (r *RandomId) B64Std() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["b64Std"])
+func (r *RandomId) B64Std() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["b64Std"])
 }
 
 // The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
-func (r *RandomId) B64Url() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["b64Url"])
+func (r *RandomId) B64Url() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["b64Url"])
 }
 
 // The number of random bytes to produce. The
 // minimum value is 1, which produces eight bits of randomness.
-func (r *RandomId) ByteLength() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["byteLength"])
+func (r *RandomId) ByteLength() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["byteLength"])
 }
 
 // The generated id presented in non-padded decimal digits.
-func (r *RandomId) Dec() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["dec"])
+func (r *RandomId) Dec() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["dec"])
 }
 
 // The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-func (r *RandomId) Hex() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["hex"])
+func (r *RandomId) Hex() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["hex"])
 }
 
 // Arbitrary map of values that, when changed, will
 // trigger a new id to be generated. See
 // the main provider documentation for more information.
-func (r *RandomId) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomId) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
 // Arbitrary string to prefix the output value with. This
 // string is supplied as-is, meaning it is not guaranteed to be URL-safe or
 // base64 encoded.
-func (r *RandomId) Prefix() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["prefix"])
+func (r *RandomId) Prefix() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["prefix"])
 }
 
 // Input properties used for looking up and filtering RandomId resources.
