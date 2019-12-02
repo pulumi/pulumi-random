@@ -91,61 +91,61 @@ func GetRandomPassword(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomPassword) URN() *pulumi.URNOutput {
+func (r *RandomPassword) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomPassword) ID() *pulumi.IDOutput {
+func (r *RandomPassword) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-func (r *RandomPassword) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomPassword) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
-func (r *RandomPassword) Length() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["length"])
+func (r *RandomPassword) Length() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["length"])
 }
 
-func (r *RandomPassword) Lower() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["lower"])
+func (r *RandomPassword) Lower() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["lower"])
 }
 
-func (r *RandomPassword) MinLower() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minLower"])
+func (r *RandomPassword) MinLower() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minLower"])
 }
 
-func (r *RandomPassword) MinNumeric() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minNumeric"])
+func (r *RandomPassword) MinNumeric() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minNumeric"])
 }
 
-func (r *RandomPassword) MinSpecial() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minSpecial"])
+func (r *RandomPassword) MinSpecial() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minSpecial"])
 }
 
-func (r *RandomPassword) MinUpper() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minUpper"])
+func (r *RandomPassword) MinUpper() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minUpper"])
 }
 
-func (r *RandomPassword) Number() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["number"])
+func (r *RandomPassword) Number() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["number"])
 }
 
-func (r *RandomPassword) OverrideSpecial() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["overrideSpecial"])
+func (r *RandomPassword) OverrideSpecial() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["overrideSpecial"])
 }
 
-func (r *RandomPassword) Result() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["result"])
+func (r *RandomPassword) Result() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["result"])
 }
 
-func (r *RandomPassword) Special() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["special"])
+func (r *RandomPassword) Special() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["special"])
 }
 
-func (r *RandomPassword) Upper() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["upper"])
+func (r *RandomPassword) Upper() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["upper"])
 }
 
 // Input properties used for looking up and filtering RandomPassword resources.

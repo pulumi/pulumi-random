@@ -69,40 +69,40 @@ func GetRandomInteger(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomInteger) URN() *pulumi.URNOutput {
+func (r *RandomInteger) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomInteger) ID() *pulumi.IDOutput {
+func (r *RandomInteger) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Arbitrary map of values that, when changed, will
 // trigger a new id to be generated. See
 // the main provider documentation for more information.
-func (r *RandomInteger) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomInteger) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
 // The maximum inclusive value of the range.
-func (r *RandomInteger) Max() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["max"])
+func (r *RandomInteger) Max() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["max"])
 }
 
 // The minimum inclusive value of the range.
-func (r *RandomInteger) Min() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["min"])
+func (r *RandomInteger) Min() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["min"])
 }
 
 // (int) The random Integer result.
-func (r *RandomInteger) Result() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["result"])
+func (r *RandomInteger) Result() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["result"])
 }
 
 // A custom seed to always produce the same value.
-func (r *RandomInteger) Seed() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["seed"])
+func (r *RandomInteger) Seed() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["seed"])
 }
 
 // Input properties used for looking up and filtering RandomInteger resources.

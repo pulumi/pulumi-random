@@ -62,30 +62,30 @@ func GetRandomShuffle(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomShuffle) URN() *pulumi.URNOutput {
+func (r *RandomShuffle) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomShuffle) ID() *pulumi.IDOutput {
+func (r *RandomShuffle) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The list of strings to shuffle.
-func (r *RandomShuffle) Inputs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["inputs"])
+func (r *RandomShuffle) Inputs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["inputs"])
 }
 
 // Arbitrary map of values that, when changed, will
 // trigger a new id to be generated. See
 // the main provider documentation for more information.
-func (r *RandomShuffle) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomShuffle) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
 // Random permutation of the list of strings given in `input`.
-func (r *RandomShuffle) Results() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["results"])
+func (r *RandomShuffle) Results() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["results"])
 }
 
 // The number of results to return. Defaults to
@@ -93,12 +93,12 @@ func (r *RandomShuffle) Results() *pulumi.ArrayOutput {
 // some elements will be excluded from the result. If more items are requested,
 // items will be repeated in the result but not more frequently than the number
 // of items in the input list.
-func (r *RandomShuffle) ResultCount() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["resultCount"])
+func (r *RandomShuffle) ResultCount() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["resultCount"])
 }
 
-func (r *RandomShuffle) Seed() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["seed"])
+func (r *RandomShuffle) Seed() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["seed"])
 }
 
 // Input properties used for looking up and filtering RandomShuffle resources.
