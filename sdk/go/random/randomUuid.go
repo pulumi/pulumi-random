@@ -52,25 +52,25 @@ func GetRandomUuid(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomUuid) URN() *pulumi.URNOutput {
+func (r *RandomUuid) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomUuid) ID() *pulumi.IDOutput {
+func (r *RandomUuid) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Arbitrary map of values that, when changed, will
 // trigger a new uuid to be generated. See
 // the main provider documentation for more information.
-func (r *RandomUuid) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomUuid) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
 // The generated uuid presented in string format.
-func (r *RandomUuid) Result() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["result"])
+func (r *RandomUuid) Result() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["result"])
 }
 
 // Input properties used for looking up and filtering RandomUuid resources.

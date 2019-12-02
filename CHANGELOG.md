@@ -10,6 +10,7 @@ _(none)_
 * readme: fix example to create right passwd for RDS
 [#64](https://github.com/pulumi/pulumi-random/pull/64)
 * Upgrade to support go 1.13.x
+* Upgrade to pulumi-terraform-bridge v1.4.3
 
 ## 1.2.0 (2019-11-07)
 * Add a **preview** .NET SDK

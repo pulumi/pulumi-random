@@ -90,86 +90,86 @@ func GetRandomString(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RandomString) URN() *pulumi.URNOutput {
+func (r *RandomString) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RandomString) ID() *pulumi.IDOutput {
+func (r *RandomString) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Arbitrary map of values that, when changed, will
 // trigger a new id to be generated. See
 // the main provider documentation for more information.
-func (r *RandomString) Keepers() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["keepers"])
+func (r *RandomString) Keepers() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["keepers"])
 }
 
 // The length of the string desired
-func (r *RandomString) Length() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["length"])
+func (r *RandomString) Length() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["length"])
 }
 
 // (default true) Include lowercase alphabet characters
 // in random string.
-func (r *RandomString) Lower() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["lower"])
+func (r *RandomString) Lower() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["lower"])
 }
 
 // (default 0) Minimum number of lowercase alphabet
 // characters in random string.
-func (r *RandomString) MinLower() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minLower"])
+func (r *RandomString) MinLower() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minLower"])
 }
 
 // (default 0) Minimum number of numeric characters
 // in random string.
-func (r *RandomString) MinNumeric() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minNumeric"])
+func (r *RandomString) MinNumeric() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minNumeric"])
 }
 
 // (default 0) Minimum number of special characters
 // in random string.
-func (r *RandomString) MinSpecial() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minSpecial"])
+func (r *RandomString) MinSpecial() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minSpecial"])
 }
 
 // (default 0) Minimum number of uppercase alphabet
 // characters in random string.
-func (r *RandomString) MinUpper() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minUpper"])
+func (r *RandomString) MinUpper() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minUpper"])
 }
 
 // (default true) Include numeric characters in random
 // string.
-func (r *RandomString) Number() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["number"])
+func (r *RandomString) Number() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["number"])
 }
 
 // Supply your own list of special characters to
 // use for string generation.  This overrides the default character list in the special
 // argument.  The special argument must still be set to true for any overwritten
 // characters to be used in generation.
-func (r *RandomString) OverrideSpecial() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["overrideSpecial"])
+func (r *RandomString) OverrideSpecial() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["overrideSpecial"])
 }
 
 // Random string generated.
-func (r *RandomString) Result() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["result"])
+func (r *RandomString) Result() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["result"])
 }
 
 // (default true) Include special characters in random
 // string. These are `!@#$%&*()-_=+[]{}<>:?`
-func (r *RandomString) Special() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["special"])
+func (r *RandomString) Special() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["special"])
 }
 
 // (default true) Include uppercase alphabet characters
 // in random string.
-func (r *RandomString) Upper() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["upper"])
+func (r *RandomString) Upper() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["upper"])
 }
 
 // Input properties used for looking up and filtering RandomString resources.
