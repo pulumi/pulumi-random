@@ -2,12 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
 
+---
+
+## 1.3.0 (2019-12-02)
 * readme: fix example to create right passwd for RDS
 [#64](https://github.com/pulumi/pulumi-random/pull/64)
 * Upgrade to support go 1.13.x
-
----
 
 ## 1.2.0 (2019-11-07)
 * Add a **preview** .NET SDK
