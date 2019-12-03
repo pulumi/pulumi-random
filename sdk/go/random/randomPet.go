@@ -17,79 +17,58 @@ import (
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
 type RandomPet struct {
-	s *pulumi.ResourceState
+	pulumi.CustomResourceState
+
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
+	Keepers pulumi.MapOutput `pulumi:"keepers"`
+
+	// The length (in words) of the pet name.
+	Length pulumi.IntOutput `pulumi:"length"`
+
+	// A string to prefix the name with.
+	Prefix pulumi.StringOutput `pulumi:"prefix"`
+
+	// The character to separate words in the pet name.
+	Separator pulumi.StringOutput `pulumi:"separator"`
 }
 
 // NewRandomPet registers a new resource with the given unique name, arguments, and options.
 func NewRandomPet(ctx *pulumi.Context,
-	name string, args *RandomPetArgs, opts ...pulumi.ResourceOpt) (*RandomPet, error) {
-	inputs := make(map[string]interface{})
-	if args == nil {
-		inputs["keepers"] = nil
-		inputs["length"] = nil
-		inputs["prefix"] = nil
-		inputs["separator"] = nil
-	} else {
-		inputs["keepers"] = args.Keepers
-		inputs["length"] = args.Length
-		inputs["prefix"] = args.Prefix
-		inputs["separator"] = args.Separator
+	name string, args *RandomPetArgs, opts ...pulumi.ResourceOption) (*RandomPet, error) {
+	inputs := map[string]pulumi.Input{}
+	if args != nil {
+		if i := args.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := args.Length; i != nil { inputs["length"] = i.ToIntOutput() }
+		if i := args.Prefix; i != nil { inputs["prefix"] = i.ToStringOutput() }
+		if i := args.Separator; i != nil { inputs["separator"] = i.ToStringOutput() }
 	}
-	s, err := ctx.RegisterResource("random:index/randomPet:RandomPet", name, true, inputs, opts...)
+	var resource RandomPet
+	err := ctx.RegisterResource("random:index/randomPet:RandomPet", name, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomPet{s: s}, nil
+	return &resource, nil
 }
 
 // GetRandomPet gets an existing RandomPet resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetRandomPet(ctx *pulumi.Context,
-	name string, id pulumi.ID, state *RandomPetState, opts ...pulumi.ResourceOpt) (*RandomPet, error) {
-	inputs := make(map[string]interface{})
+	name string, id pulumi.IDInput, state *RandomPetState, opts ...pulumi.ResourceOption) (*RandomPet, error) {
+	inputs := map[string]pulumi.Input{}
 	if state != nil {
-		inputs["keepers"] = state.Keepers
-		inputs["length"] = state.Length
-		inputs["prefix"] = state.Prefix
-		inputs["separator"] = state.Separator
+		if i := state.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := state.Length; i != nil { inputs["length"] = i.ToIntOutput() }
+		if i := state.Prefix; i != nil { inputs["prefix"] = i.ToStringOutput() }
+		if i := state.Separator; i != nil { inputs["separator"] = i.ToStringOutput() }
 	}
-	s, err := ctx.ReadResource("random:index/randomPet:RandomPet", name, id, inputs, opts...)
+	var resource RandomPet
+	err := ctx.ReadResource("random:index/randomPet:RandomPet", name, id, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomPet{s: s}, nil
-}
-
-// URN is this resource's unique name assigned by Pulumi.
-func (r *RandomPet) URN() pulumi.URNOutput {
-	return r.s.URN()
-}
-
-// ID is this resource's unique identifier assigned by its provider.
-func (r *RandomPet) ID() pulumi.IDOutput {
-	return r.s.ID()
-}
-
-// Arbitrary map of values that, when changed, will
-// trigger a new id to be generated. See
-// the main provider documentation for more information.
-func (r *RandomPet) Keepers() pulumi.MapOutput {
-	return (pulumi.MapOutput)(r.s.State["keepers"])
-}
-
-// The length (in words) of the pet name.
-func (r *RandomPet) Length() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["length"])
-}
-
-// A string to prefix the name with.
-func (r *RandomPet) Prefix() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["prefix"])
-}
-
-// The character to separate words in the pet name.
-func (r *RandomPet) Separator() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["separator"])
+	return &resource, nil
 }
 
 // Input properties used for looking up and filtering RandomPet resources.
@@ -97,13 +76,13 @@ type RandomPetState struct {
 	// Arbitrary map of values that, when changed, will
 	// trigger a new id to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// The length (in words) of the pet name.
-	Length interface{}
+	Length pulumi.IntInput `pulumi:"length"`
 	// A string to prefix the name with.
-	Prefix interface{}
+	Prefix pulumi.StringInput `pulumi:"prefix"`
 	// The character to separate words in the pet name.
-	Separator interface{}
+	Separator pulumi.StringInput `pulumi:"separator"`
 }
 
 // The set of arguments for constructing a RandomPet resource.
@@ -111,11 +90,11 @@ type RandomPetArgs struct {
 	// Arbitrary map of values that, when changed, will
 	// trigger a new id to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// The length (in words) of the pet name.
-	Length interface{}
+	Length pulumi.IntInput `pulumi:"length"`
 	// A string to prefix the name with.
-	Prefix interface{}
+	Prefix pulumi.StringInput `pulumi:"prefix"`
 	// The character to separate words in the pet name.
-	Separator interface{}
+	Separator pulumi.StringInput `pulumi:"separator"`
 }

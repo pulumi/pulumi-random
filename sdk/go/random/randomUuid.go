@@ -15,62 +15,47 @@ import (
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.markdown.
 type RandomUuid struct {
-	s *pulumi.ResourceState
+	pulumi.CustomResourceState
+
+	// Arbitrary map of values that, when changed, will
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
+	Keepers pulumi.MapOutput `pulumi:"keepers"`
+
+	// The generated uuid presented in string format.
+	Result pulumi.StringOutput `pulumi:"result"`
 }
 
 // NewRandomUuid registers a new resource with the given unique name, arguments, and options.
 func NewRandomUuid(ctx *pulumi.Context,
-	name string, args *RandomUuidArgs, opts ...pulumi.ResourceOpt) (*RandomUuid, error) {
-	inputs := make(map[string]interface{})
-	if args == nil {
-		inputs["keepers"] = nil
-	} else {
-		inputs["keepers"] = args.Keepers
+	name string, args *RandomUuidArgs, opts ...pulumi.ResourceOption) (*RandomUuid, error) {
+	inputs := map[string]pulumi.Input{}
+	if args != nil {
+		if i := args.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
 	}
-	inputs["result"] = nil
-	s, err := ctx.RegisterResource("random:index/randomUuid:RandomUuid", name, true, inputs, opts...)
+	var resource RandomUuid
+	err := ctx.RegisterResource("random:index/randomUuid:RandomUuid", name, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomUuid{s: s}, nil
+	return &resource, nil
 }
 
 // GetRandomUuid gets an existing RandomUuid resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetRandomUuid(ctx *pulumi.Context,
-	name string, id pulumi.ID, state *RandomUuidState, opts ...pulumi.ResourceOpt) (*RandomUuid, error) {
-	inputs := make(map[string]interface{})
+	name string, id pulumi.IDInput, state *RandomUuidState, opts ...pulumi.ResourceOption) (*RandomUuid, error) {
+	inputs := map[string]pulumi.Input{}
 	if state != nil {
-		inputs["keepers"] = state.Keepers
-		inputs["result"] = state.Result
+		if i := state.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := state.Result; i != nil { inputs["result"] = i.ToStringOutput() }
 	}
-	s, err := ctx.ReadResource("random:index/randomUuid:RandomUuid", name, id, inputs, opts...)
+	var resource RandomUuid
+	err := ctx.ReadResource("random:index/randomUuid:RandomUuid", name, id, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomUuid{s: s}, nil
-}
-
-// URN is this resource's unique name assigned by Pulumi.
-func (r *RandomUuid) URN() pulumi.URNOutput {
-	return r.s.URN()
-}
-
-// ID is this resource's unique identifier assigned by its provider.
-func (r *RandomUuid) ID() pulumi.IDOutput {
-	return r.s.ID()
-}
-
-// Arbitrary map of values that, when changed, will
-// trigger a new uuid to be generated. See
-// the main provider documentation for more information.
-func (r *RandomUuid) Keepers() pulumi.MapOutput {
-	return (pulumi.MapOutput)(r.s.State["keepers"])
-}
-
-// The generated uuid presented in string format.
-func (r *RandomUuid) Result() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["result"])
+	return &resource, nil
 }
 
 // Input properties used for looking up and filtering RandomUuid resources.
@@ -78,9 +63,9 @@ type RandomUuidState struct {
 	// Arbitrary map of values that, when changed, will
 	// trigger a new uuid to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// The generated uuid presented in string format.
-	Result interface{}
+	Result pulumi.StringInput `pulumi:"result"`
 }
 
 // The set of arguments for constructing a RandomUuid resource.
@@ -88,5 +73,5 @@ type RandomUuidArgs struct {
 	// Arbitrary map of values that, when changed, will
 	// trigger a new uuid to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 }

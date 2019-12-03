@@ -23,148 +23,115 @@ import (
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.markdown.
 type RandomId struct {
-	s *pulumi.ResourceState
+	pulumi.CustomResourceState
+
+	B64 pulumi.StringOutput `pulumi:"b64"`
+
+	// The generated id presented in base64 without additional transformations.
+	B64Std pulumi.StringOutput `pulumi:"b64Std"`
+
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+	B64Url pulumi.StringOutput `pulumi:"b64Url"`
+
+	// The number of random bytes to produce. The
+	// minimum value is 1, which produces eight bits of randomness.
+	ByteLength pulumi.IntOutput `pulumi:"byteLength"`
+
+	// The generated id presented in non-padded decimal digits.
+	Dec pulumi.StringOutput `pulumi:"dec"`
+
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+	Hex pulumi.StringOutput `pulumi:"hex"`
+
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
+	Keepers pulumi.MapOutput `pulumi:"keepers"`
+
+	// Arbitrary string to prefix the output value with. This
+	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+	// base64 encoded.
+	Prefix pulumi.StringOutput `pulumi:"prefix"`
 }
 
 // NewRandomId registers a new resource with the given unique name, arguments, and options.
 func NewRandomId(ctx *pulumi.Context,
-	name string, args *RandomIdArgs, opts ...pulumi.ResourceOpt) (*RandomId, error) {
+	name string, args *RandomIdArgs, opts ...pulumi.ResourceOption) (*RandomId, error) {
 	if args == nil || args.ByteLength == nil {
 		return nil, errors.New("missing required argument 'ByteLength'")
 	}
-	inputs := make(map[string]interface{})
-	if args == nil {
-		inputs["byteLength"] = nil
-		inputs["keepers"] = nil
-		inputs["prefix"] = nil
-	} else {
-		inputs["byteLength"] = args.ByteLength
-		inputs["keepers"] = args.Keepers
-		inputs["prefix"] = args.Prefix
+	inputs := map[string]pulumi.Input{}
+	if args != nil {
+		if i := args.ByteLength; i != nil { inputs["byteLength"] = i.ToIntOutput() }
+		if i := args.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := args.Prefix; i != nil { inputs["prefix"] = i.ToStringOutput() }
 	}
-	inputs["b64"] = nil
-	inputs["b64Std"] = nil
-	inputs["b64Url"] = nil
-	inputs["dec"] = nil
-	inputs["hex"] = nil
-	s, err := ctx.RegisterResource("random:index/randomId:RandomId", name, true, inputs, opts...)
+	var resource RandomId
+	err := ctx.RegisterResource("random:index/randomId:RandomId", name, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomId{s: s}, nil
+	return &resource, nil
 }
 
 // GetRandomId gets an existing RandomId resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetRandomId(ctx *pulumi.Context,
-	name string, id pulumi.ID, state *RandomIdState, opts ...pulumi.ResourceOpt) (*RandomId, error) {
-	inputs := make(map[string]interface{})
+	name string, id pulumi.IDInput, state *RandomIdState, opts ...pulumi.ResourceOption) (*RandomId, error) {
+	inputs := map[string]pulumi.Input{}
 	if state != nil {
-		inputs["b64"] = state.B64
-		inputs["b64Std"] = state.B64Std
-		inputs["b64Url"] = state.B64Url
-		inputs["byteLength"] = state.ByteLength
-		inputs["dec"] = state.Dec
-		inputs["hex"] = state.Hex
-		inputs["keepers"] = state.Keepers
-		inputs["prefix"] = state.Prefix
+		if i := state.B64; i != nil { inputs["b64"] = i.ToStringOutput() }
+		if i := state.B64Std; i != nil { inputs["b64Std"] = i.ToStringOutput() }
+		if i := state.B64Url; i != nil { inputs["b64Url"] = i.ToStringOutput() }
+		if i := state.ByteLength; i != nil { inputs["byteLength"] = i.ToIntOutput() }
+		if i := state.Dec; i != nil { inputs["dec"] = i.ToStringOutput() }
+		if i := state.Hex; i != nil { inputs["hex"] = i.ToStringOutput() }
+		if i := state.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := state.Prefix; i != nil { inputs["prefix"] = i.ToStringOutput() }
 	}
-	s, err := ctx.ReadResource("random:index/randomId:RandomId", name, id, inputs, opts...)
+	var resource RandomId
+	err := ctx.ReadResource("random:index/randomId:RandomId", name, id, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomId{s: s}, nil
-}
-
-// URN is this resource's unique name assigned by Pulumi.
-func (r *RandomId) URN() pulumi.URNOutput {
-	return r.s.URN()
-}
-
-// ID is this resource's unique identifier assigned by its provider.
-func (r *RandomId) ID() pulumi.IDOutput {
-	return r.s.ID()
-}
-
-func (r *RandomId) B64() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["b64"])
-}
-
-// The generated id presented in base64 without additional transformations.
-func (r *RandomId) B64Std() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["b64Std"])
-}
-
-// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
-func (r *RandomId) B64Url() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["b64Url"])
-}
-
-// The number of random bytes to produce. The
-// minimum value is 1, which produces eight bits of randomness.
-func (r *RandomId) ByteLength() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["byteLength"])
-}
-
-// The generated id presented in non-padded decimal digits.
-func (r *RandomId) Dec() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["dec"])
-}
-
-// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-func (r *RandomId) Hex() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["hex"])
-}
-
-// Arbitrary map of values that, when changed, will
-// trigger a new id to be generated. See
-// the main provider documentation for more information.
-func (r *RandomId) Keepers() pulumi.MapOutput {
-	return (pulumi.MapOutput)(r.s.State["keepers"])
-}
-
-// Arbitrary string to prefix the output value with. This
-// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
-// base64 encoded.
-func (r *RandomId) Prefix() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["prefix"])
+	return &resource, nil
 }
 
 // Input properties used for looking up and filtering RandomId resources.
 type RandomIdState struct {
-	B64 interface{}
+	B64 pulumi.StringInput `pulumi:"b64"`
 	// The generated id presented in base64 without additional transformations.
-	B64Std interface{}
+	B64Std pulumi.StringInput `pulumi:"b64Std"`
 	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
-	B64Url interface{}
+	B64Url pulumi.StringInput `pulumi:"b64Url"`
 	// The number of random bytes to produce. The
 	// minimum value is 1, which produces eight bits of randomness.
-	ByteLength interface{}
+	ByteLength pulumi.IntInput `pulumi:"byteLength"`
 	// The generated id presented in non-padded decimal digits.
-	Dec interface{}
+	Dec pulumi.StringInput `pulumi:"dec"`
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-	Hex interface{}
+	Hex pulumi.StringInput `pulumi:"hex"`
 	// Arbitrary map of values that, when changed, will
 	// trigger a new id to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
 	// base64 encoded.
-	Prefix interface{}
+	Prefix pulumi.StringInput `pulumi:"prefix"`
 }
 
 // The set of arguments for constructing a RandomId resource.
 type RandomIdArgs struct {
 	// The number of random bytes to produce. The
 	// minimum value is 1, which produces eight bits of randomness.
-	ByteLength interface{}
+	ByteLength pulumi.IntInput `pulumi:"byteLength"`
 	// Arbitrary map of values that, when changed, will
 	// trigger a new id to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
 	// base64 encoded.
-	Prefix interface{}
+	Prefix pulumi.StringInput `pulumi:"prefix"`
 }

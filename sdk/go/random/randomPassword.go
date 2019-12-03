@@ -21,160 +21,115 @@ import (
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
 type RandomPassword struct {
-	s *pulumi.ResourceState
+	pulumi.CustomResourceState
+
+	Keepers pulumi.MapOutput `pulumi:"keepers"`
+
+	Length pulumi.IntOutput `pulumi:"length"`
+
+	Lower pulumi.BoolOutput `pulumi:"lower"`
+
+	MinLower pulumi.IntOutput `pulumi:"minLower"`
+
+	MinNumeric pulumi.IntOutput `pulumi:"minNumeric"`
+
+	MinSpecial pulumi.IntOutput `pulumi:"minSpecial"`
+
+	MinUpper pulumi.IntOutput `pulumi:"minUpper"`
+
+	Number pulumi.BoolOutput `pulumi:"number"`
+
+	OverrideSpecial pulumi.StringOutput `pulumi:"overrideSpecial"`
+
+	Result pulumi.StringOutput `pulumi:"result"`
+
+	Special pulumi.BoolOutput `pulumi:"special"`
+
+	Upper pulumi.BoolOutput `pulumi:"upper"`
 }
 
 // NewRandomPassword registers a new resource with the given unique name, arguments, and options.
 func NewRandomPassword(ctx *pulumi.Context,
-	name string, args *RandomPasswordArgs, opts ...pulumi.ResourceOpt) (*RandomPassword, error) {
+	name string, args *RandomPasswordArgs, opts ...pulumi.ResourceOption) (*RandomPassword, error) {
 	if args == nil || args.Length == nil {
 		return nil, errors.New("missing required argument 'Length'")
 	}
-	inputs := make(map[string]interface{})
-	if args == nil {
-		inputs["keepers"] = nil
-		inputs["length"] = nil
-		inputs["lower"] = nil
-		inputs["minLower"] = nil
-		inputs["minNumeric"] = nil
-		inputs["minSpecial"] = nil
-		inputs["minUpper"] = nil
-		inputs["number"] = nil
-		inputs["overrideSpecial"] = nil
-		inputs["special"] = nil
-		inputs["upper"] = nil
-	} else {
-		inputs["keepers"] = args.Keepers
-		inputs["length"] = args.Length
-		inputs["lower"] = args.Lower
-		inputs["minLower"] = args.MinLower
-		inputs["minNumeric"] = args.MinNumeric
-		inputs["minSpecial"] = args.MinSpecial
-		inputs["minUpper"] = args.MinUpper
-		inputs["number"] = args.Number
-		inputs["overrideSpecial"] = args.OverrideSpecial
-		inputs["special"] = args.Special
-		inputs["upper"] = args.Upper
+	inputs := map[string]pulumi.Input{}
+	if args != nil {
+		if i := args.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := args.Length; i != nil { inputs["length"] = i.ToIntOutput() }
+		if i := args.Lower; i != nil { inputs["lower"] = i.ToBoolOutput() }
+		if i := args.MinLower; i != nil { inputs["minLower"] = i.ToIntOutput() }
+		if i := args.MinNumeric; i != nil { inputs["minNumeric"] = i.ToIntOutput() }
+		if i := args.MinSpecial; i != nil { inputs["minSpecial"] = i.ToIntOutput() }
+		if i := args.MinUpper; i != nil { inputs["minUpper"] = i.ToIntOutput() }
+		if i := args.Number; i != nil { inputs["number"] = i.ToBoolOutput() }
+		if i := args.OverrideSpecial; i != nil { inputs["overrideSpecial"] = i.ToStringOutput() }
+		if i := args.Special; i != nil { inputs["special"] = i.ToBoolOutput() }
+		if i := args.Upper; i != nil { inputs["upper"] = i.ToBoolOutput() }
 	}
-	inputs["result"] = nil
-	s, err := ctx.RegisterResource("random:index/randomPassword:RandomPassword", name, true, inputs, opts...)
+	var resource RandomPassword
+	err := ctx.RegisterResource("random:index/randomPassword:RandomPassword", name, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomPassword{s: s}, nil
+	return &resource, nil
 }
 
 // GetRandomPassword gets an existing RandomPassword resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetRandomPassword(ctx *pulumi.Context,
-	name string, id pulumi.ID, state *RandomPasswordState, opts ...pulumi.ResourceOpt) (*RandomPassword, error) {
-	inputs := make(map[string]interface{})
+	name string, id pulumi.IDInput, state *RandomPasswordState, opts ...pulumi.ResourceOption) (*RandomPassword, error) {
+	inputs := map[string]pulumi.Input{}
 	if state != nil {
-		inputs["keepers"] = state.Keepers
-		inputs["length"] = state.Length
-		inputs["lower"] = state.Lower
-		inputs["minLower"] = state.MinLower
-		inputs["minNumeric"] = state.MinNumeric
-		inputs["minSpecial"] = state.MinSpecial
-		inputs["minUpper"] = state.MinUpper
-		inputs["number"] = state.Number
-		inputs["overrideSpecial"] = state.OverrideSpecial
-		inputs["result"] = state.Result
-		inputs["special"] = state.Special
-		inputs["upper"] = state.Upper
+		if i := state.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := state.Length; i != nil { inputs["length"] = i.ToIntOutput() }
+		if i := state.Lower; i != nil { inputs["lower"] = i.ToBoolOutput() }
+		if i := state.MinLower; i != nil { inputs["minLower"] = i.ToIntOutput() }
+		if i := state.MinNumeric; i != nil { inputs["minNumeric"] = i.ToIntOutput() }
+		if i := state.MinSpecial; i != nil { inputs["minSpecial"] = i.ToIntOutput() }
+		if i := state.MinUpper; i != nil { inputs["minUpper"] = i.ToIntOutput() }
+		if i := state.Number; i != nil { inputs["number"] = i.ToBoolOutput() }
+		if i := state.OverrideSpecial; i != nil { inputs["overrideSpecial"] = i.ToStringOutput() }
+		if i := state.Result; i != nil { inputs["result"] = i.ToStringOutput() }
+		if i := state.Special; i != nil { inputs["special"] = i.ToBoolOutput() }
+		if i := state.Upper; i != nil { inputs["upper"] = i.ToBoolOutput() }
 	}
-	s, err := ctx.ReadResource("random:index/randomPassword:RandomPassword", name, id, inputs, opts...)
+	var resource RandomPassword
+	err := ctx.ReadResource("random:index/randomPassword:RandomPassword", name, id, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomPassword{s: s}, nil
-}
-
-// URN is this resource's unique name assigned by Pulumi.
-func (r *RandomPassword) URN() pulumi.URNOutput {
-	return r.s.URN()
-}
-
-// ID is this resource's unique identifier assigned by its provider.
-func (r *RandomPassword) ID() pulumi.IDOutput {
-	return r.s.ID()
-}
-
-func (r *RandomPassword) Keepers() pulumi.MapOutput {
-	return (pulumi.MapOutput)(r.s.State["keepers"])
-}
-
-func (r *RandomPassword) Length() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["length"])
-}
-
-func (r *RandomPassword) Lower() pulumi.BoolOutput {
-	return (pulumi.BoolOutput)(r.s.State["lower"])
-}
-
-func (r *RandomPassword) MinLower() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["minLower"])
-}
-
-func (r *RandomPassword) MinNumeric() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["minNumeric"])
-}
-
-func (r *RandomPassword) MinSpecial() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["minSpecial"])
-}
-
-func (r *RandomPassword) MinUpper() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["minUpper"])
-}
-
-func (r *RandomPassword) Number() pulumi.BoolOutput {
-	return (pulumi.BoolOutput)(r.s.State["number"])
-}
-
-func (r *RandomPassword) OverrideSpecial() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["overrideSpecial"])
-}
-
-func (r *RandomPassword) Result() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["result"])
-}
-
-func (r *RandomPassword) Special() pulumi.BoolOutput {
-	return (pulumi.BoolOutput)(r.s.State["special"])
-}
-
-func (r *RandomPassword) Upper() pulumi.BoolOutput {
-	return (pulumi.BoolOutput)(r.s.State["upper"])
+	return &resource, nil
 }
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type RandomPasswordState struct {
-	Keepers interface{}
-	Length interface{}
-	Lower interface{}
-	MinLower interface{}
-	MinNumeric interface{}
-	MinSpecial interface{}
-	MinUpper interface{}
-	Number interface{}
-	OverrideSpecial interface{}
-	Result interface{}
-	Special interface{}
-	Upper interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
+	Length pulumi.IntInput `pulumi:"length"`
+	Lower pulumi.BoolInput `pulumi:"lower"`
+	MinLower pulumi.IntInput `pulumi:"minLower"`
+	MinNumeric pulumi.IntInput `pulumi:"minNumeric"`
+	MinSpecial pulumi.IntInput `pulumi:"minSpecial"`
+	MinUpper pulumi.IntInput `pulumi:"minUpper"`
+	Number pulumi.BoolInput `pulumi:"number"`
+	OverrideSpecial pulumi.StringInput `pulumi:"overrideSpecial"`
+	Result pulumi.StringInput `pulumi:"result"`
+	Special pulumi.BoolInput `pulumi:"special"`
+	Upper pulumi.BoolInput `pulumi:"upper"`
 }
 
 // The set of arguments for constructing a RandomPassword resource.
 type RandomPasswordArgs struct {
-	Keepers interface{}
-	Length interface{}
-	Lower interface{}
-	MinLower interface{}
-	MinNumeric interface{}
-	MinSpecial interface{}
-	MinUpper interface{}
-	Number interface{}
-	OverrideSpecial interface{}
-	Special interface{}
-	Upper interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
+	Length pulumi.IntInput `pulumi:"length"`
+	Lower pulumi.BoolInput `pulumi:"lower"`
+	MinLower pulumi.IntInput `pulumi:"minLower"`
+	MinNumeric pulumi.IntInput `pulumi:"minNumeric"`
+	MinSpecial pulumi.IntInput `pulumi:"minSpecial"`
+	MinUpper pulumi.IntInput `pulumi:"minUpper"`
+	Number pulumi.BoolInput `pulumi:"number"`
+	OverrideSpecial pulumi.StringInput `pulumi:"overrideSpecial"`
+	Special pulumi.BoolInput `pulumi:"special"`
+	Upper pulumi.BoolInput `pulumi:"upper"`
 }

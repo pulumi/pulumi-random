@@ -17,92 +17,68 @@ import (
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.markdown.
 type RandomInteger struct {
-	s *pulumi.ResourceState
+	pulumi.CustomResourceState
+
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
+	Keepers pulumi.MapOutput `pulumi:"keepers"`
+
+	// The maximum inclusive value of the range.
+	Max pulumi.IntOutput `pulumi:"max"`
+
+	// The minimum inclusive value of the range.
+	Min pulumi.IntOutput `pulumi:"min"`
+
+	// (int) The random Integer result.
+	Result pulumi.IntOutput `pulumi:"result"`
+
+	// A custom seed to always produce the same value.
+	Seed pulumi.StringOutput `pulumi:"seed"`
 }
 
 // NewRandomInteger registers a new resource with the given unique name, arguments, and options.
 func NewRandomInteger(ctx *pulumi.Context,
-	name string, args *RandomIntegerArgs, opts ...pulumi.ResourceOpt) (*RandomInteger, error) {
+	name string, args *RandomIntegerArgs, opts ...pulumi.ResourceOption) (*RandomInteger, error) {
 	if args == nil || args.Max == nil {
 		return nil, errors.New("missing required argument 'Max'")
 	}
 	if args == nil || args.Min == nil {
 		return nil, errors.New("missing required argument 'Min'")
 	}
-	inputs := make(map[string]interface{})
-	if args == nil {
-		inputs["keepers"] = nil
-		inputs["max"] = nil
-		inputs["min"] = nil
-		inputs["seed"] = nil
-	} else {
-		inputs["keepers"] = args.Keepers
-		inputs["max"] = args.Max
-		inputs["min"] = args.Min
-		inputs["seed"] = args.Seed
+	inputs := map[string]pulumi.Input{}
+	if args != nil {
+		if i := args.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := args.Max; i != nil { inputs["max"] = i.ToIntOutput() }
+		if i := args.Min; i != nil { inputs["min"] = i.ToIntOutput() }
+		if i := args.Seed; i != nil { inputs["seed"] = i.ToStringOutput() }
 	}
-	inputs["result"] = nil
-	s, err := ctx.RegisterResource("random:index/randomInteger:RandomInteger", name, true, inputs, opts...)
+	var resource RandomInteger
+	err := ctx.RegisterResource("random:index/randomInteger:RandomInteger", name, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomInteger{s: s}, nil
+	return &resource, nil
 }
 
 // GetRandomInteger gets an existing RandomInteger resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetRandomInteger(ctx *pulumi.Context,
-	name string, id pulumi.ID, state *RandomIntegerState, opts ...pulumi.ResourceOpt) (*RandomInteger, error) {
-	inputs := make(map[string]interface{})
+	name string, id pulumi.IDInput, state *RandomIntegerState, opts ...pulumi.ResourceOption) (*RandomInteger, error) {
+	inputs := map[string]pulumi.Input{}
 	if state != nil {
-		inputs["keepers"] = state.Keepers
-		inputs["max"] = state.Max
-		inputs["min"] = state.Min
-		inputs["result"] = state.Result
-		inputs["seed"] = state.Seed
+		if i := state.Keepers; i != nil { inputs["keepers"] = i.ToMapOutput() }
+		if i := state.Max; i != nil { inputs["max"] = i.ToIntOutput() }
+		if i := state.Min; i != nil { inputs["min"] = i.ToIntOutput() }
+		if i := state.Result; i != nil { inputs["result"] = i.ToIntOutput() }
+		if i := state.Seed; i != nil { inputs["seed"] = i.ToStringOutput() }
 	}
-	s, err := ctx.ReadResource("random:index/randomInteger:RandomInteger", name, id, inputs, opts...)
+	var resource RandomInteger
+	err := ctx.ReadResource("random:index/randomInteger:RandomInteger", name, id, inputs, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &RandomInteger{s: s}, nil
-}
-
-// URN is this resource's unique name assigned by Pulumi.
-func (r *RandomInteger) URN() pulumi.URNOutput {
-	return r.s.URN()
-}
-
-// ID is this resource's unique identifier assigned by its provider.
-func (r *RandomInteger) ID() pulumi.IDOutput {
-	return r.s.ID()
-}
-
-// Arbitrary map of values that, when changed, will
-// trigger a new id to be generated. See
-// the main provider documentation for more information.
-func (r *RandomInteger) Keepers() pulumi.MapOutput {
-	return (pulumi.MapOutput)(r.s.State["keepers"])
-}
-
-// The maximum inclusive value of the range.
-func (r *RandomInteger) Max() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["max"])
-}
-
-// The minimum inclusive value of the range.
-func (r *RandomInteger) Min() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["min"])
-}
-
-// (int) The random Integer result.
-func (r *RandomInteger) Result() pulumi.IntOutput {
-	return (pulumi.IntOutput)(r.s.State["result"])
-}
-
-// A custom seed to always produce the same value.
-func (r *RandomInteger) Seed() pulumi.StringOutput {
-	return (pulumi.StringOutput)(r.s.State["seed"])
+	return &resource, nil
 }
 
 // Input properties used for looking up and filtering RandomInteger resources.
@@ -110,15 +86,15 @@ type RandomIntegerState struct {
 	// Arbitrary map of values that, when changed, will
 	// trigger a new id to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
-	Max interface{}
+	Max pulumi.IntInput `pulumi:"max"`
 	// The minimum inclusive value of the range.
-	Min interface{}
+	Min pulumi.IntInput `pulumi:"min"`
 	// (int) The random Integer result.
-	Result interface{}
+	Result pulumi.IntInput `pulumi:"result"`
 	// A custom seed to always produce the same value.
-	Seed interface{}
+	Seed pulumi.StringInput `pulumi:"seed"`
 }
 
 // The set of arguments for constructing a RandomInteger resource.
@@ -126,11 +102,11 @@ type RandomIntegerArgs struct {
 	// Arbitrary map of values that, when changed, will
 	// trigger a new id to be generated. See
 	// the main provider documentation for more information.
-	Keepers interface{}
+	Keepers pulumi.MapInput `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
-	Max interface{}
+	Max pulumi.IntInput `pulumi:"max"`
 	// The minimum inclusive value of the range.
-	Min interface{}
+	Min pulumi.IntInput `pulumi:"min"`
 	// A custom seed to always produce the same value.
-	Seed interface{}
+	Seed pulumi.StringInput `pulumi:"seed"`
 }
