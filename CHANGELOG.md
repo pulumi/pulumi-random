@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v1.5.2
+_(none)_
 
 ---
+
+## 1.4.0 (2019-12-12)
+* Upgrade to pulumi-terraform-bridge v1.5.2
 
 ## 1.3.0 (2019-12-02)
 * readme: fix example to create right passwd for RDS
