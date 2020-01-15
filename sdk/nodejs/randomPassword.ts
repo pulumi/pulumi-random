@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
  * This resource *does* use a cryptographic random number generator.
- *
+ * 
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
  */
 export class RandomPassword extends pulumi.CustomResource {

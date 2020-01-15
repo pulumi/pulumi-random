@@ -75,14 +75,16 @@ class RandomString(pulumi.CustomResource):
         """
         The resource `.RandomString` generates a random permutation of alphanumeric
         characters and optionally special characters.
-        
+
         This resource *does* use a cryptographic random number generator.
-        
+
         Historically this resource's intended usage has been ambiguous as the original example
         used it in a password. For backwards compatibility it will
         continue to exist. For unique ids please use random_id, for sensitive
         random values please use random_password.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
@@ -109,8 +111,6 @@ class RandomString(pulumi.CustomResource):
                string. These are `!@#$%&*()-_=+[]{}<>:?`
         :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
                in random string.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -154,7 +154,7 @@ class RandomString(pulumi.CustomResource):
         """
         Get an existing RandomString resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -183,12 +183,11 @@ class RandomString(pulumi.CustomResource):
                string. These are `!@#$%&*()-_=+[]{}<>:?`
         :param pulumi.Input[bool] upper: (default true) Include uppercase alphabet characters
                in random string.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["keepers"] = keepers
         __props__["length"] = length
         __props__["lower"] = lower

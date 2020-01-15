@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     location: "Central US",
  * });
  * ```
- *
+ * 
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.markdown.
  */
 export class RandomUuid extends pulumi.CustomResource {

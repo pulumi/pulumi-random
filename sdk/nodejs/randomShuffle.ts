@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     availabilityZones: az.results,
  * });
  * ```
- *
+ * 
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
  */
 export class RandomShuffle extends pulumi.CustomResource {
@@ -71,10 +71,6 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * Random permutation of the list of strings given in `input`.
-     */
-    public /*out*/ readonly results!: pulumi.Output<string[]>;
-    /**
      * The number of results to return. Defaults to
      * the number of items in the `input` list. If fewer items are requested,
      * some elements will be excluded from the result. If more items are requested,
@@ -82,6 +78,10 @@ export class RandomShuffle extends pulumi.CustomResource {
      * of items in the input list.
      */
     public readonly resultCount!: pulumi.Output<number | undefined>;
+    /**
+     * Random permutation of the list of strings given in `input`.
+     */
+    public /*out*/ readonly results!: pulumi.Output<string[]>;
     public readonly seed!: pulumi.Output<string | undefined>;
 
     /**
@@ -98,8 +98,8 @@ export class RandomShuffle extends pulumi.CustomResource {
             const state = argsOrState as RandomShuffleState | undefined;
             inputs["inputs"] = state ? state.inputs : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["results"] = state ? state.results : undefined;
             inputs["resultCount"] = state ? state.resultCount : undefined;
+            inputs["results"] = state ? state.results : undefined;
             inputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomShuffleArgs | undefined;
@@ -138,10 +138,6 @@ export interface RandomShuffleState {
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Random permutation of the list of strings given in `input`.
-     */
-    readonly results?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * The number of results to return. Defaults to
      * the number of items in the `input` list. If fewer items are requested,
      * some elements will be excluded from the result. If more items are requested,
@@ -149,6 +145,10 @@ export interface RandomShuffleState {
      * of items in the input list.
      */
     readonly resultCount?: pulumi.Input<number>;
+    /**
+     * Random permutation of the list of strings given in `input`.
+     */
+    readonly results?: pulumi.Input<pulumi.Input<string>[]>;
     readonly seed?: pulumi.Input<string>;
 }
 

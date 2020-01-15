@@ -31,12 +31,6 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// Random permutation of the list of strings given in `input`.
-        /// </summary>
-        [Output("results")]
-        public Output<ImmutableArray<string>> Results { get; private set; } = null!;
-
-        /// <summary>
         /// The number of results to return. Defaults to
         /// the number of items in the `input` list. If fewer items are requested,
         /// some elements will be excluded from the result. If more items are requested,
@@ -45,6 +39,12 @@ namespace Pulumi.Random
         /// </summary>
         [Output("resultCount")]
         public Output<int?> ResultCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Random permutation of the list of strings given in `input`.
+        /// </summary>
+        [Output("results")]
+        public Output<ImmutableArray<string>> Results { get; private set; } = null!;
 
         [Output("seed")]
         public Output<string?> Seed { get; private set; } = null!;
@@ -167,6 +167,16 @@ namespace Pulumi.Random
             set => _keepers = value;
         }
 
+        /// <summary>
+        /// The number of results to return. Defaults to
+        /// the number of items in the `input` list. If fewer items are requested,
+        /// some elements will be excluded from the result. If more items are requested,
+        /// items will be repeated in the result but not more frequently than the number
+        /// of items in the input list.
+        /// </summary>
+        [Input("resultCount")]
+        public Input<int>? ResultCount { get; set; }
+
         [Input("results")]
         private InputList<string>? _results;
 
@@ -178,16 +188,6 @@ namespace Pulumi.Random
             get => _results ?? (_results = new InputList<string>());
             set => _results = value;
         }
-
-        /// <summary>
-        /// The number of results to return. Defaults to
-        /// the number of items in the `input` list. If fewer items are requested,
-        /// some elements will be excluded from the result. If more items are requested,
-        /// items will be repeated in the result but not more frequently than the number
-        /// of items in the input list.
-        /// </summary>
-        [Input("resultCount")]
-        public Input<int>? ResultCount { get; set; }
 
         [Input("seed")]
         public Input<string>? Seed { get; set; }

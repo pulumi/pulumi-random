@@ -25,20 +25,20 @@ class RandomPassword(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None, __props__=None, __name__=None, __opts__=None):
         """
         > **Note:** Requires random provider version >= 2.2.0
-        
+
         Identical to .RandomString with the exception that the
         result is treated as sensitive and, thus, _not_ displayed in console output.
-        
+
         > **Note:** All attributes including the generated password will be stored in
         the raw state as plain-text. [Read more about sensitive data in
         state](https://www.terraform.io/docs/state/sensitive-data.html).
-        
+
         This resource *does* use a cryptographic random number generator.
-        
-        :param str resource_name: The name of the resource.
-        :param pulumi.ResourceOptions opts: Options for the resource.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
+
+        :param str resource_name: The name of the resource.
+        :param pulumi.ResourceOptions opts: Options for the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,16 +82,15 @@ class RandomPassword(pulumi.CustomResource):
         """
         Get an existing RandomPassword resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["keepers"] = keepers
         __props__["length"] = length
         __props__["lower"] = lower

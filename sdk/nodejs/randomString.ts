@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *     special: true,
  * });
  * ```
- *
+ * 
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.markdown.
  */
 export class RandomString extends pulumi.CustomResource {

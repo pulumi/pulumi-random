@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  * ```
  * 
  * The result of the above will set a random priority.
- *
+ * 
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.markdown.
  */
 export class RandomInteger extends pulumi.CustomResource {
