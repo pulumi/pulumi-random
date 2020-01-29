@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v1.6.4
+_(none)_
 
 ---
+
+## 1.5.0 (2020-01-29)
+* Upgrade to pulumi-terraform-bridge v1.6.4
 
 ## 1.4.0 (2019-12-12)
 * Upgrade to pulumi-terraform-bridge v1.5.2
