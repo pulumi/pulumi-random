@@ -35,12 +35,14 @@ class RandomInteger(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, keepers=None, max=None, min=None, seed=None, __props__=None, __name__=None, __opts__=None):
         """
         The resource `.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
-        
+
         This resource can be used in conjunction with resources that have
         the `create_before_destroy` lifecycle flag set, to avoid conflicts with
         unique names during the brief period where both the old and new resources
         exist concurrently.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
@@ -49,8 +51,6 @@ class RandomInteger(pulumi.CustomResource):
         :param pulumi.Input[float] max: The maximum inclusive value of the range.
         :param pulumi.Input[float] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -89,7 +89,7 @@ class RandomInteger(pulumi.CustomResource):
         """
         Get an existing RandomInteger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -100,12 +100,11 @@ class RandomInteger(pulumi.CustomResource):
         :param pulumi.Input[float] min: The minimum inclusive value of the range.
         :param pulumi.Input[float] result: (int) The random Integer result.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["keepers"] = keepers
         __props__["max"] = max
         __props__["min"] = min

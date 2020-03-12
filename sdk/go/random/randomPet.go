@@ -12,13 +12,13 @@ import (
 
 // The resource `.RandomPet` generates random pet names that are intended to be
 // used as unique identifiers for other resources.
-// 
+//
 // This resource can be used in conjunction with resources that have
 // the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.md.
 type RandomPet struct {
 	pulumi.CustomResourceState
 
