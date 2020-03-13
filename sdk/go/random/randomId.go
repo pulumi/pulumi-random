@@ -13,18 +13,18 @@ import (
 
 // The resource `.RandomId` generates random numbers that are intended to be
 // used as unique identifiers for other resources.
-// 
+//
 // This resource *does* use a cryptographic random number generator in order
 // to minimize the chance of collisions, making the results of this resource
 // when a 16-byte identifier is requested of equivalent uniqueness to a
 // type-4 UUID.
-// 
+//
 // This resource can be used in conjunction with resources that have
 // the `createBeforeDestroy` lifecycle flag set to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.md.
 type RandomId struct {
 	pulumi.CustomResourceState
 

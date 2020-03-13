@@ -12,17 +12,17 @@ import (
 )
 
 // > **Note:** Requires random provider version >= 2.2.0
-// 
+//
 // Identical to .RandomString with the exception that the
 // result is treated as sensitive and, thus, _not_ displayed in console output.
-// 
+//
 // > **Note:** All attributes including the generated password will be stored in
 // the raw state as plain-text. [Read more about sensitive data in
 // state](https://www.terraform.io/docs/state/sensitive-data.html).
-// 
+//
 // This resource *does* use a cryptographic random number generator.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.md.
 type RandomPassword struct {
 	pulumi.CustomResourceState
 

@@ -12,11 +12,11 @@ import (
 
 // The resource `.RandomUuid` generates random uuid string that is intended to be
 // used as unique identifiers for other resources.
-// 
+//
 // This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
 // for use with services needed a unique string identifier.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.md.
 type RandomUuid struct {
 	pulumi.CustomResourceState
 

@@ -48,17 +48,19 @@ class RandomId(pulumi.CustomResource):
         """
         The resource `.RandomId` generates random numbers that are intended to be
         used as unique identifiers for other resources.
-        
+
         This resource *does* use a cryptographic random number generator in order
         to minimize the chance of collisions, making the results of this resource
         when a 16-byte identifier is requested of equivalent uniqueness to a
         type-4 UUID.
-        
+
         This resource can be used in conjunction with resources that have
         the `create_before_destroy` lifecycle flag set to avoid conflicts with
         unique names during the brief period where both the old and new resources
         exist concurrently.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
@@ -69,8 +71,6 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -110,7 +110,7 @@ class RandomId(pulumi.CustomResource):
         """
         Get an existing RandomId resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -126,12 +126,11 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["b64"] = b64
         __props__["b64_std"] = b64_std
         __props__["b64_url"] = b64_url
