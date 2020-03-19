@@ -13,8 +13,8 @@ import (
 
 // The resource `.RandomShuffle` generates a random permutation of a list
 // of strings given as an argument.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.md.
 type RandomShuffle struct {
 	pulumi.CustomResourceState
 
@@ -32,7 +32,7 @@ type RandomShuffle struct {
 	ResultCount pulumi.IntPtrOutput `pulumi:"resultCount"`
 	// Random permutation of the list of strings given in `input`.
 	Results pulumi.StringArrayOutput `pulumi:"results"`
-	Seed pulumi.StringPtrOutput `pulumi:"seed"`
+	Seed    pulumi.StringPtrOutput   `pulumi:"seed"`
 }
 
 // NewRandomShuffle registers a new resource with the given unique name, arguments, and options.
@@ -80,7 +80,7 @@ type randomShuffleState struct {
 	ResultCount *int `pulumi:"resultCount"`
 	// Random permutation of the list of strings given in `input`.
 	Results []string `pulumi:"results"`
-	Seed *string `pulumi:"seed"`
+	Seed    *string  `pulumi:"seed"`
 }
 
 type RandomShuffleState struct {
@@ -98,7 +98,7 @@ type RandomShuffleState struct {
 	ResultCount pulumi.IntPtrInput
 	// Random permutation of the list of strings given in `input`.
 	Results pulumi.StringArrayInput
-	Seed pulumi.StringPtrInput
+	Seed    pulumi.StringPtrInput
 }
 
 func (RandomShuffleState) ElementType() reflect.Type {
@@ -117,8 +117,8 @@ type randomShuffleArgs struct {
 	// some elements will be excluded from the result. If more items are requested,
 	// items will be repeated in the result but not more frequently than the number
 	// of items in the input list.
-	ResultCount *int `pulumi:"resultCount"`
-	Seed *string `pulumi:"seed"`
+	ResultCount *int    `pulumi:"resultCount"`
+	Seed        *string `pulumi:"seed"`
 }
 
 // The set of arguments for constructing a RandomShuffle resource.
@@ -135,10 +135,9 @@ type RandomShuffleArgs struct {
 	// items will be repeated in the result but not more frequently than the number
 	// of items in the input list.
 	ResultCount pulumi.IntPtrInput
-	Seed pulumi.StringPtrInput
+	Seed        pulumi.StringPtrInput
 }
 
 func (RandomShuffleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomShuffleArgs)(nil)).Elem()
 }
-

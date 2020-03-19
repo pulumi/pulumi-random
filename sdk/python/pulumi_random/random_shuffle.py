@@ -20,10 +20,6 @@ class RandomShuffle(pulumi.CustomResource):
     trigger a new id to be generated. See
     the main provider documentation for more information.
     """
-    results: pulumi.Output[list]
-    """
-    Random permutation of the list of strings given in `input`.
-    """
     result_count: pulumi.Output[float]
     """
     The number of results to return. Defaults to
@@ -32,12 +28,18 @@ class RandomShuffle(pulumi.CustomResource):
     items will be repeated in the result but not more frequently than the number
     of items in the input list.
     """
+    results: pulumi.Output[list]
+    """
+    Random permutation of the list of strings given in `input`.
+    """
     seed: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, inputs=None, keepers=None, result_count=None, seed=None, __props__=None, __name__=None, __opts__=None):
         """
         The resource `.RandomShuffle` generates a random permutation of a list
         of strings given as an argument.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] inputs: The list of strings to shuffle.
@@ -49,8 +51,6 @@ class RandomShuffle(pulumi.CustomResource):
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
                of items in the input list.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,11 +83,11 @@ class RandomShuffle(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, inputs=None, keepers=None, results=None, result_count=None, seed=None):
+    def get(resource_name, id, opts=None, inputs=None, keepers=None, result_count=None, results=None, seed=None):
         """
         Get an existing RandomShuffle resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -95,22 +95,21 @@ class RandomShuffle(pulumi.CustomResource):
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated. See
                the main provider documentation for more information.
-        :param pulumi.Input[list] results: Random permutation of the list of strings given in `input`.
         :param pulumi.Input[float] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
                of items in the input list.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.markdown.
+        :param pulumi.Input[list] results: Random permutation of the list of strings given in `input`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["inputs"] = inputs
         __props__["keepers"] = keepers
-        __props__["results"] = results
         __props__["result_count"] = result_count
+        __props__["results"] = results
         __props__["seed"] = seed
         return RandomShuffle(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

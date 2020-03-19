@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  * The result of the above will set the Name of the AWS Instance to
  * `web-server-simple-snake`.
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.md.
  */
 export class RandomPet extends pulumi.CustomResource {
     /**

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * 
  * This resource *does* use a cryptographic random number generator.
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.md.
  */
 export class RandomPassword extends pulumi.CustomResource {
     /**

@@ -32,12 +32,14 @@ class RandomPet(pulumi.CustomResource):
         """
         The resource `.RandomPet` generates random pet names that are intended to be
         used as unique identifiers for other resources.
-        
+
         This resource can be used in conjunction with resources that have
         the `create_before_destroy` lifecycle flag set, to avoid conflicts with
         unique names during the brief period where both the old and new resources
         exist concurrently.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
@@ -46,8 +48,6 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.Input[float] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,7 +81,7 @@ class RandomPet(pulumi.CustomResource):
         """
         Get an existing RandomPet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -91,12 +91,11 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.Input[float] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["keepers"] = keepers
         __props__["length"] = length
         __props__["prefix"] = prefix
