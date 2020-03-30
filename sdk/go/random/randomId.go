@@ -162,4 +162,3 @@ type RandomIdArgs struct {
 func (RandomIdArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomIdArgs)(nil)).Elem()
 }
-

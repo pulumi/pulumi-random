@@ -18,7 +18,6 @@ import (
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/index.html.markdown.
 type Provider struct {
 	pulumi.ProviderResourceState
-
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -45,4 +44,3 @@ type ProviderArgs struct {
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
 }
-
