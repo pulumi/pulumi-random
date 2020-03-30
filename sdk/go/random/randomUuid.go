@@ -95,4 +95,3 @@ type RandomUuidArgs struct {
 func (RandomUuidArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomUuidArgs)(nil)).Elem()
 }
-

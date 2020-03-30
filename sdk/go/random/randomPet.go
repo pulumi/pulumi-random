@@ -121,4 +121,3 @@ type RandomPetArgs struct {
 func (RandomPetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomPetArgs)(nil)).Elem()
 }
-

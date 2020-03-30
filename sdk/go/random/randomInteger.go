@@ -133,4 +133,3 @@ type RandomIntegerArgs struct {
 func (RandomIntegerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomIntegerArgs)(nil)).Elem()
 }
-

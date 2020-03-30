@@ -150,7 +150,7 @@ ensure::
 	$(call STEP_MESSAGE)
 ifeq ($(NOPROXY), true)
 	@echo "cd provider && GO111MODULE=on go mod tidy"; cd provider && GO111MODULE=on go mod tidy
-	@echo "GO111MODULE=on go mod vendor"; GO111MODULE=on go mod vendor		@echo "cd provider && GO111MODULE=on go mod download"; cd provider && GO111MODULE=on go mod download
+	@echo "cd provider && GO111MODULE=on go mod download"; cd provider && GO111MODULE=on go mod download
 	@echo "cd sdk && GO111MODULE=on go mod tidy"; cd sdk && GO111MODULE=on go mod tidy
 	@echo "cd sdk && GO111MODULE=on go mod download"; cd sdk && GO111MODULE=on go mod download
 	@echo "cd examples && GO111MODULE=on go mod tidy"; cd examples && GO111MODULE=on go mod tidy
@@ -159,7 +159,7 @@ ifeq ($(NOPROXY), true)
 	@echo "cd scripts && GO111MODULE=on go mod download"; cd scripts && GO111MODULE=on go mod download
 else
 	@echo "cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy
-	@echo "GO111MODULE=on GOPROXY=$(GOPROXY) go mod vendor"; GO111MODULE=on GOPROXY=$(GOPROXY) go mod vendor		@echo "cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
+	@echo "cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
 	@echo "cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy
 	@echo "cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
 	@echo "cd examples && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd examples && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy

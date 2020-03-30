@@ -30,7 +30,7 @@ NOPROXY := true
 # the provider (e.g. x.y.z-dev-... instead of x.y.zdev...)
 build:: provider tfgen install_plugins
 	cd provider && for LANGUAGE in "nodejs" "python" "go" "dotnet" ; do \
-		$(TFGEN) $$LANGUAGE --overlays overlays/$$LANGUAGE/ --out ${PACKDIR}/$$LANGUAGE/ || exit 3 ; \
+		$(TFGEN) $$LANGUAGE --overlays overlays/$$LANGUAGE/ --out ../${PACKDIR}/$$LANGUAGE/ || exit 3 ; \
 	done
 	cd ${PACKDIR}/nodejs/ && \
 		yarn install && \
@@ -51,12 +51,12 @@ build:: provider tfgen install_plugins
 generate_schema:: tfgen
 	$(TFGEN) schema --out ./provider/cmd/${PROVIDER}
 
-provider::
+provider:: generate_schema
 	go generate ${PROJECT}/provider/cmd/${PROVIDER}
 	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-random/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${PROVIDER}
 
 tfgen::
-	go install -ldflags "-X github.com/pulumi/pulumi-random/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${TFGEN}
+	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-random/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${TFGEN}
 
 install_plugins:
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
@@ -75,6 +75,9 @@ install:: tfgen provider
 		yarn install --offline --production && \
 		(yarn unlink > /dev/null 2>&1 || true) && \
 		yarn link
+	echo "Copying NuGet packages to ${PULUMI_NUGET}"
+	[ ! -e "$(PULUMI_NUGET)" ] || rm -rf "$(PULUMI_NUGET)/*"
+	find . -name '*.nupkg' -exec cp -p {} ${PULUMI_NUGET} \;
 
 test_fast::
 	cd examples && $(GO_TEST_FAST) .
