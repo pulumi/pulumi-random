@@ -38,6 +38,8 @@ class RandomShuffle(pulumi.CustomResource):
         The resource `.RandomShuffle` generates a random permutation of a list
         of strings given as an argument.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.md.
 
         :param str resource_name: The name of the resource.

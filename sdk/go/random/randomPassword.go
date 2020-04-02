@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // > **Note:** Requires random provider version >= 2.2.0
@@ -21,6 +21,8 @@ import (
 // state](https://www.terraform.io/docs/state/sensitive-data.html).
 //
 // This resource *does* use a cryptographic random number generator.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/password.html.md.
 type RandomPassword struct {

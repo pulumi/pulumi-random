@@ -7,7 +7,7 @@ package random
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // The resource `.RandomUuid` generates random uuid string that is intended to be
@@ -15,6 +15,9 @@ import (
 //
 // This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
 // for use with services needed a unique string identifier.
+//
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/uuid.html.md.
 type RandomUuid struct {
