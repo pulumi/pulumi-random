@@ -7,7 +7,7 @@ package random
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // The resource `.RandomPet` generates random pet names that are intended to be
@@ -17,6 +17,8 @@ import (
 // the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.md.
 type RandomPet struct {

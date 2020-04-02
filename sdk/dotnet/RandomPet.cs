@@ -18,6 +18,8 @@ namespace Pulumi.Random
     /// unique names during the brief period where both the old and new resources
     /// exist concurrently.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/pet.html.md.
     /// </summary>
     public partial class RandomPet : Pulumi.CustomResource

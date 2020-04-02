@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * 
  * ## Example Usage
  * 
- * The following example shows how to generate a unique name for an Azure Resource Group.
+ * 
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // The resource `.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
@@ -17,6 +17,8 @@ import (
 // the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.md.
 type RandomInteger struct {

@@ -13,6 +13,8 @@ namespace Pulumi.Random
     /// The resource `random..RandomShuffle` generates a random permutation of a list
     /// of strings given as an argument.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.md.
     /// </summary>
     public partial class RandomShuffle : Pulumi.CustomResource
