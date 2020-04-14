@@ -16,8 +16,6 @@ namespace Pulumi.Random
     /// the `create_before_destroy` lifecycle flag set, to avoid conflicts with
     /// unique names during the brief period where both the old and new resources
     /// exist concurrently.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.md.
     /// </summary>
     public partial class RandomInteger : Pulumi.CustomResource
     {
@@ -62,7 +60,7 @@ namespace Pulumi.Random
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RandomInteger(string name, RandomIntegerArgs args, CustomResourceOptions? options = null)
-            : base("random:index/randomInteger:RandomInteger", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("random:index/randomInteger:RandomInteger", name, args ?? new RandomIntegerArgs(), MakeResourceOptions(options, ""))
         {
         }
 

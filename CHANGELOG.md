@@ -2,9 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to Pulumi v2.0.0-beta.3
+* Upgrade to pulumi-terraform-bridge v2.0.0-beta.1
 
 ---
+
 ## 1.7.0 (2020-03-30)
 * Upgrade to Pulumi v1.13.1
 * Upgrade to pulumi-terraform-bridge v1.8.4
@@ -83,3 +85,4 @@ ___NULL___
 
 ## 0.1.0 (2018-02-02)
 * Initial version of the Random provider
+

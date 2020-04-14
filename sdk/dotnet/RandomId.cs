@@ -22,8 +22,6 @@ namespace Pulumi.Random
     /// the `create_before_destroy` lifecycle flag set to avoid conflicts with
     /// unique names during the brief period where both the old and new resources
     /// exist concurrently.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/id.html.md.
     /// </summary>
     public partial class RandomId : Pulumi.CustomResource
     {
@@ -86,7 +84,7 @@ namespace Pulumi.Random
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RandomId(string name, RandomIdArgs args, CustomResourceOptions? options = null)
-            : base("random:index/randomId:RandomId", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("random:index/randomId:RandomId", name, args ?? new RandomIdArgs(), MakeResourceOptions(options, ""))
         {
         }
 

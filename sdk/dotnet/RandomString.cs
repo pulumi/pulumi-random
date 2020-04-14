@@ -19,8 +19,6 @@ namespace Pulumi.Random
     /// used it in a password. For backwards compatibility it will
     /// continue to exist. For unique ids please use random_id, for sensitive
     /// random values please use random_password.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.md.
     /// </summary>
     public partial class RandomString : Pulumi.CustomResource
     {
@@ -118,7 +116,7 @@ namespace Pulumi.Random
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RandomString(string name, RandomStringArgs args, CustomResourceOptions? options = null)
-            : base("random:index/randomString:RandomString", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("random:index/randomString:RandomString", name, args ?? new RandomStringArgs(), MakeResourceOptions(options, ""))
         {
         }
 

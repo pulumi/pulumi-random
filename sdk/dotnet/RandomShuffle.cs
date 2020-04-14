@@ -12,8 +12,6 @@ namespace Pulumi.Random
     /// <summary>
     /// The resource `random..RandomShuffle` generates a random permutation of a list
     /// of strings given as an argument.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/shuffle.html.md.
     /// </summary>
     public partial class RandomShuffle : Pulumi.CustomResource
     {
@@ -32,12 +30,6 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// Random permutation of the list of strings given in `input`.
-        /// </summary>
-        [Output("results")]
-        public Output<ImmutableArray<string>> Results { get; private set; } = null!;
-
-        /// <summary>
         /// The number of results to return. Defaults to
         /// the number of items in the `input` list. If fewer items are requested,
         /// some elements will be excluded from the result. If more items are requested,
@@ -46,6 +38,12 @@ namespace Pulumi.Random
         /// </summary>
         [Output("resultCount")]
         public Output<int?> ResultCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Random permutation of the list of strings given in `input`.
+        /// </summary>
+        [Output("results")]
+        public Output<ImmutableArray<string>> Results { get; private set; } = null!;
 
         [Output("seed")]
         public Output<string?> Seed { get; private set; } = null!;
@@ -59,7 +57,7 @@ namespace Pulumi.Random
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RandomShuffle(string name, RandomShuffleArgs args, CustomResourceOptions? options = null)
-            : base("random:index/randomShuffle:RandomShuffle", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("random:index/randomShuffle:RandomShuffle", name, args ?? new RandomShuffleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -168,6 +166,16 @@ namespace Pulumi.Random
             set => _keepers = value;
         }
 
+        /// <summary>
+        /// The number of results to return. Defaults to
+        /// the number of items in the `input` list. If fewer items are requested,
+        /// some elements will be excluded from the result. If more items are requested,
+        /// items will be repeated in the result but not more frequently than the number
+        /// of items in the input list.
+        /// </summary>
+        [Input("resultCount")]
+        public Input<int>? ResultCount { get; set; }
+
         [Input("results")]
         private InputList<string>? _results;
 
@@ -179,16 +187,6 @@ namespace Pulumi.Random
             get => _results ?? (_results = new InputList<string>());
             set => _results = value;
         }
-
-        /// <summary>
-        /// The number of results to return. Defaults to
-        /// the number of items in the `input` list. If fewer items are requested,
-        /// some elements will be excluded from the result. If more items are requested,
-        /// items will be repeated in the result but not more frequently than the number
-        /// of items in the input list.
-        /// </summary>
-        [Input("resultCount")]
-        public Input<int>? ResultCount { get; set; }
 
         [Input("seed")]
         public Input<string>? Seed { get; set; }
