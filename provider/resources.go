@@ -66,7 +66,6 @@ func Provider() tfbridge.ProviderInfo {
 			"random_uuid":     {Tok: randomResource(randomMod, "RandomUuid")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			AsyncDataSources: true,
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^2.0.0",
 			},
