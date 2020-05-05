@@ -38,6 +38,24 @@ class RandomPet(pulumi.CustomResource):
         unique names during the brief period where both the old and new resources
         exist concurrently.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        server_random_pet = random.RandomPet("serverRandomPet", keepers={
+            "ami_id": var["ami_id"],
+        })
+        server_instance = aws.ec2.Instance("serverInstance",
+            ami=server_random_pet.keepers["amiId"],
+            tags={
+                "Name": server_random_pet.id.apply(lambda id: f"web-server-{id}"),
+            })
+        ```
 
 
         :param str resource_name: The name of the resource.

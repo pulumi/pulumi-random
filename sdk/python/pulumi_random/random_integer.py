@@ -41,6 +41,29 @@ class RandomInteger(pulumi.CustomResource):
         unique names during the brief period where both the old and new resources
         exist concurrently.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        priority = random.RandomInteger("priority",
+            keepers={
+                "listener_arn": var["listener_arn"],
+            },
+            max=50000,
+            min=1)
+        main = aws.alb.ListenerRule("main",
+            actions=[{
+                "targetGroupArn": var["target_group_arn"],
+                "type": "forward",
+            }],
+            listener_arn=var["listener_arn"],
+            priority=priority.result)
+        ```
 
 
         :param str resource_name: The name of the resource.

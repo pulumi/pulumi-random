@@ -38,6 +38,25 @@ class RandomShuffle(pulumi.CustomResource):
         The resource `.RandomShuffle` generates a random permutation of a list
         of strings given as an argument.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        az = random.RandomShuffle("az",
+            inputs=[
+                "us-west-1a",
+                "us-west-1c",
+                "us-west-1d",
+                "us-west-1e",
+            ],
+            result_count=2)
+        example = aws.elb.LoadBalancer("example", availability_zones=az.results)
+        ```
 
 
         :param str resource_name: The name of the resource.
