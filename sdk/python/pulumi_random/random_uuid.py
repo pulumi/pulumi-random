@@ -29,6 +29,18 @@ class RandomUuid(pulumi.CustomResource):
         for use with services needed a unique string identifier.
 
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_azure as azure
+        import pulumi_random as random
+
+        test_random_uuid = random.RandomUuid("testRandomUuid")
+        test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
+        ```
 
 
         :param str resource_name: The name of the resource.
