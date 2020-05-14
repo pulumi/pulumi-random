@@ -25,6 +25,7 @@ import (
 type RandomId struct {
 	pulumi.CustomResourceState
 
+	// Deprecated: Use b64_url for old behavior, or b64_std for standard base64 encoding
 	B64 pulumi.StringOutput `pulumi:"b64"`
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringOutput `pulumi:"b64Std"`
@@ -78,6 +79,7 @@ func GetRandomId(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomId resources.
 type randomIdState struct {
+	// Deprecated: Use b64_url for old behavior, or b64_std for standard base64 encoding
 	B64 *string `pulumi:"b64"`
 	// The generated id presented in base64 without additional transformations.
 	B64Std *string `pulumi:"b64Std"`
@@ -101,6 +103,7 @@ type randomIdState struct {
 }
 
 type RandomIdState struct {
+	// Deprecated: Use b64_url for old behavior, or b64_std for standard base64 encoding
 	B64 pulumi.StringPtrInput
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringPtrInput
