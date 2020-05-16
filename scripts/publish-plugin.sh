@@ -27,10 +27,42 @@ fi
 # Tar up the plugin
 tar -czf ${PLUGIN_PACKAGE_PATH} -C ${WORK_PATH} .
 
-# Switch back to the default AWS profile for the duration of this script. Since if we were using
-# another profile, we wouldn't be able to assume the upload roles. (Functions defined in
-# scripts repo in ci/configure-aws.sh, sourced from .travis.yml.)
-unset AWS_PROFILE
+# Assume the provided role using the session name and (optional) external ID.
+# Uses the "default" credentials, ignoring AWS_PROFILE if set.
+# Usage: assume_iam_role <role-arn> <session-name> [external-id]
+function assume_iam_role() {
+    local ROLE_ARN=${1}
+    local SESSION_NAME=${2}
+    local EXTERNAL_ID=${3}
+
+    echo "Assuming IAM Role '${ROLE_ARN}"
+    echo "    Session    : ${SESSION_NAME}"
+    echo "    External ID: ${EXTERNAL_ID}"
+
+    local CREDS_JSON="{}"
+    if [ -z ${EXTERNAL_ID} ]; then
+        CREDS_JSON=$(aws sts assume-role \
+                 --profile "default" \
+                 --role-arn "${ROLE_ARN}" \
+                 --role-session-name "${SESSION_NAME}" )
+    else
+        CREDS_JSON=$(aws sts assume-role \
+                 --profile "default" \
+                 --role-arn "${ROLE_ARN}" \
+                 --role-session-name "${SESSION_NAME}" \
+                 --external-id "${EXTERNAL_ID}" )
+    fi
+
+    export AWS_ACCESS_KEY_ID=$(echo ${CREDS_JSON}     | jq ".Credentials.AccessKeyId" --raw-output)
+    export AWS_SECRET_ACCESS_KEY=$(echo ${CREDS_JSON} | jq ".Credentials.SecretAccessKey" --raw-output)
+    export AWS_SECURITY_TOKEN=$(echo ${CREDS_JSON}    | jq ".Credentials.SessionToken" --raw-output)
+}
+
+# Clear the environment variables set after calling assume_iam_role to get back to
+# the initial state. (Using the "default" profile.)
+function unassume_iam_role() {
+    unset {AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_SECURITY_TOKEN}
+}
 
 echo "Uploading ${PLUGIN_PACKAGE_NAME} to s3://rel.pulumi.com..."
 assume_iam_role \
