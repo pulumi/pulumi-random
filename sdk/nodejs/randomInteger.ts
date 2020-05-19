@@ -6,21 +6,21 @@ import * as utilities from "./utilities";
 
 /**
  * The resource `random..RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
- * 
+ *
  * This resource can be used in conjunction with resources that have
  * the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
- * 
+ *
  * const priority = new random.RandomInteger("priority", {
  *     keepers: {
  *         // Generate a new integer each time we switch to a new listener ARN
@@ -38,8 +38,6 @@ import * as utilities from "./utilities";
  *     priority: priority.result,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/integer.html.md.
  */
 export class RandomInteger extends pulumi.CustomResource {
     /**

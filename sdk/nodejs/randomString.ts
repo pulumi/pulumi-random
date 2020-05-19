@@ -7,30 +7,28 @@ import * as utilities from "./utilities";
 /**
  * The resource `random..RandomString` generates a random permutation of alphanumeric
  * characters and optionally special characters.
- * 
+ *
  * This resource *does* use a cryptographic random number generator.
- * 
+ *
  * Historically this resource's intended usage has been ambiguous as the original example
  * used it in a password. For backwards compatibility it will
  * continue to exist. For unique ids please use random_id, for sensitive
  * random values please use random_password.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as random from "@pulumi/random";
- * 
+ *
  * const randomRandomString = new random.RandomString("random", {
  *     length: 16,
  *     overrideSpecial: "/@£$",
  *     special: true,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-random/blob/master/website/docs/r/string.html.md.
  */
 export class RandomString extends pulumi.CustomResource {
     /**
