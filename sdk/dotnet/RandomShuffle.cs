@@ -12,6 +12,39 @@ namespace Pulumi.Random
     /// <summary>
     /// The resource `random..RandomShuffle` generates a random permutation of a list
     /// of strings given as an argument.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var az = new Random.RandomShuffle("az", new Random.RandomShuffleArgs
+    ///         {
+    ///             Inputs = 
+    ///             {
+    ///                 "us-west-1a",
+    ///                 "us-west-1c",
+    ///                 "us-west-1d",
+    ///                 "us-west-1e",
+    ///             },
+    ///             ResultCount = 2,
+    ///         });
+    ///         var example = new Aws.Elb.LoadBalancer("example", new Aws.Elb.LoadBalancerArgs
+    ///         {
+    ///             AvailabilityZones = az.Results,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RandomShuffle : Pulumi.CustomResource
     {

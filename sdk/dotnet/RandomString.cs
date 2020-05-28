@@ -19,6 +19,29 @@ namespace Pulumi.Random
     /// used it in a password. For backwards compatibility it will
     /// continue to exist. For unique ids please use random_id, for sensitive
     /// random values please use random_password.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var random = new Random.RandomString("random", new Random.RandomStringArgs
+    ///         {
+    ///             Length = 16,
+    ///             OverrideSpecial = "/@£$$",
+    ///             Special = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RandomString : Pulumi.CustomResource
     {
