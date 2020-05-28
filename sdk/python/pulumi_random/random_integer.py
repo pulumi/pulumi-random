@@ -58,7 +58,7 @@ class RandomInteger(pulumi.CustomResource):
             min=1)
         main = aws.alb.ListenerRule("main",
             actions=[{
-                "targetGroupArn": var["target_group_arn"],
+                "target_group_arn": var["target_group_arn"],
                 "type": "forward",
             }],
             listener_arn=var["listener_arn"],

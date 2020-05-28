@@ -16,6 +16,46 @@ namespace Pulumi.Random
     /// the `create_before_destroy` lifecycle flag set, to avoid conflicts with
     /// unique names during the brief period where both the old and new resources
     /// exist concurrently.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var priority = new Random.RandomInteger("priority", new Random.RandomIntegerArgs
+    ///         {
+    ///             Keepers = 
+    ///             {
+    ///                 { "listener_arn", @var.Listener_arn },
+    ///             },
+    ///             Max = 50000,
+    ///             Min = 1,
+    ///         });
+    ///         var main = new Aws.Alb.ListenerRule("main", new Aws.Alb.ListenerRuleArgs
+    ///         {
+    ///             Actions = 
+    ///             {
+    ///                 new Aws.Alb.Inputs.ListenerRuleActionArgs
+    ///                 {
+    ///                     TargetGroupArn = @var.Target_group_arn,
+    ///                     Type = "forward",
+    ///                 },
+    ///             },
+    ///             ListenerArn = @var.Listener_arn,
+    ///             Priority = priority.Result,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RandomInteger : Pulumi.CustomResource
     {

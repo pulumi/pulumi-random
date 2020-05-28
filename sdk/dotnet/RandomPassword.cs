@@ -20,6 +20,38 @@ namespace Pulumi.Random
     /// state](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
     /// This resource *does* use a cryptographic random number generator.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var password = new Random.RandomPassword("password", new Random.RandomPasswordArgs
+    ///         {
+    ///             Length = 16,
+    ///             Special = true,
+    ///             OverrideSpecial = "_%@",
+    ///         });
+    ///         var example = new Aws.Rds.Instance("example", new Aws.Rds.InstanceArgs
+    ///         {
+    ///             InstanceClass = "db.t3.micro",
+    ///             AllocatedStorage = 64,
+    ///             Engine = "mysql",
+    ///             Username = "someone",
+    ///             Password = random_string.Password.Result,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RandomPassword : Pulumi.CustomResource
     {
