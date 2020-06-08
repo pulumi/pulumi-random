@@ -50,6 +50,7 @@ export class RandomId extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RandomIdState, opts?: pulumi.CustomResourceOptions): RandomId {
         return new RandomId(name, <any>state, { ...opts, id: id });
@@ -69,6 +70,9 @@ export class RandomId extends pulumi.CustomResource {
         return obj['__pulumiType'] === RandomId.__pulumiType;
     }
 
+    /**
+     * @deprecated Use b64_url for old behavior, or b64_std for standard base64 encoding
+     */
     public /*out*/ readonly b64!: pulumi.Output<string>;
     /**
      * The generated id presented in base64 without additional transformations.
@@ -153,6 +157,9 @@ export class RandomId extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomId resources.
  */
 export interface RandomIdState {
+    /**
+     * @deprecated Use b64_url for old behavior, or b64_std for standard base64 encoding
+     */
     readonly b64?: pulumi.Input<string>;
     /**
      * The generated id presented in base64 without additional transformations.
