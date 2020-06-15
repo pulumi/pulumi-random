@@ -21,3 +21,7 @@ func getCwd(t *testing.T) string {
 
 	return cwd
 }
+
+func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	return integration.ProgramTestOptions{}
+}
