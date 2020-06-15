@@ -4,20 +4,8 @@ package examples
 
 import (
 	"os"
-	"path"
 	"testing"
-
-	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
-
-func TestSimple(t *testing.T) {
-	test := getBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			Dir:           path.Join(getCwd(t), "simple"),
-		})
-
-	integration.ProgramTest(t, &test)
-}
 
 func skipIfShort(t *testing.T) {
 	if testing.Short() {
@@ -32,13 +20,4 @@ func getCwd(t *testing.T) string {
 	}
 
 	return cwd
-}
-
-func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{
-		ExpectRefreshChanges: true,
-		Dependencies: []string{
-			"@pulumi/random",
-		},
-	}
 }
