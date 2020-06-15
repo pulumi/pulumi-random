@@ -5,6 +5,8 @@ package examples
 import (
 	"os"
 	"testing"
+
+	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
 func skipIfShort(t *testing.T) {
