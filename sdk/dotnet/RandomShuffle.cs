@@ -54,8 +54,7 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// trigger a new id to be generated.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -76,6 +75,14 @@ namespace Pulumi.Random
         [Output("results")]
         public Output<ImmutableArray<string>> Results { get; private set; } = null!;
 
+        /// <summary>
+        /// Arbitrary string with which to seed the random number
+        /// generator, in order to produce less-volatile permutations of the list.
+        /// **Important:** Even with an identical seed, it is not guaranteed that the
+        /// same permutation will be produced across different versions of the provider.
+        /// This argument causes the result to be *less volatile*, but not fixed for
+        /// all time.
+        /// </summary>
         [Output("seed")]
         public Output<string?> Seed { get; private set; } = null!;
 
@@ -142,8 +149,7 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// trigger a new id to be generated.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -161,6 +167,14 @@ namespace Pulumi.Random
         [Input("resultCount")]
         public Input<int>? ResultCount { get; set; }
 
+        /// <summary>
+        /// Arbitrary string with which to seed the random number
+        /// generator, in order to produce less-volatile permutations of the list.
+        /// **Important:** Even with an identical seed, it is not guaranteed that the
+        /// same permutation will be produced across different versions of the provider.
+        /// This argument causes the result to be *less volatile*, but not fixed for
+        /// all time.
+        /// </summary>
         [Input("seed")]
         public Input<string>? Seed { get; set; }
 
@@ -188,8 +202,7 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// trigger a new id to be generated.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -219,6 +232,14 @@ namespace Pulumi.Random
             set => _results = value;
         }
 
+        /// <summary>
+        /// Arbitrary string with which to seed the random number
+        /// generator, in order to produce less-volatile permutations of the list.
+        /// **Important:** Even with an identical seed, it is not guaranteed that the
+        /// same permutation will be produced across different versions of the provider.
+        /// This argument causes the result to be *less volatile*, but not fixed for
+        /// all time.
+        /// </summary>
         [Input("seed")]
         public Input<string>? Seed { get; set; }
 

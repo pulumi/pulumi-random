@@ -54,8 +54,7 @@ type RandomShuffle struct {
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayOutput `pulumi:"inputs"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The number of results to return. Defaults to
 	// the number of items in the `input` list. If fewer items are requested,
@@ -65,7 +64,13 @@ type RandomShuffle struct {
 	ResultCount pulumi.IntPtrOutput `pulumi:"resultCount"`
 	// Random permutation of the list of strings given in `input`.
 	Results pulumi.StringArrayOutput `pulumi:"results"`
-	Seed    pulumi.StringPtrOutput   `pulumi:"seed"`
+	// Arbitrary string with which to seed the random number
+	// generator, in order to produce less-volatile permutations of the list.
+	// **Important:** Even with an identical seed, it is not guaranteed that the
+	// same permutation will be produced across different versions of the provider.
+	// This argument causes the result to be *less volatile*, but not fixed for
+	// all time.
+	Seed pulumi.StringPtrOutput `pulumi:"seed"`
 }
 
 // NewRandomShuffle registers a new resource with the given unique name, arguments, and options.
@@ -102,8 +107,7 @@ type randomShuffleState struct {
 	// The list of strings to shuffle.
 	Inputs []string `pulumi:"inputs"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The number of results to return. Defaults to
 	// the number of items in the `input` list. If fewer items are requested,
@@ -113,15 +117,20 @@ type randomShuffleState struct {
 	ResultCount *int `pulumi:"resultCount"`
 	// Random permutation of the list of strings given in `input`.
 	Results []string `pulumi:"results"`
-	Seed    *string  `pulumi:"seed"`
+	// Arbitrary string with which to seed the random number
+	// generator, in order to produce less-volatile permutations of the list.
+	// **Important:** Even with an identical seed, it is not guaranteed that the
+	// same permutation will be produced across different versions of the provider.
+	// This argument causes the result to be *less volatile*, but not fixed for
+	// all time.
+	Seed *string `pulumi:"seed"`
 }
 
 type RandomShuffleState struct {
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayInput
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers pulumi.MapInput
 	// The number of results to return. Defaults to
 	// the number of items in the `input` list. If fewer items are requested,
@@ -131,7 +140,13 @@ type RandomShuffleState struct {
 	ResultCount pulumi.IntPtrInput
 	// Random permutation of the list of strings given in `input`.
 	Results pulumi.StringArrayInput
-	Seed    pulumi.StringPtrInput
+	// Arbitrary string with which to seed the random number
+	// generator, in order to produce less-volatile permutations of the list.
+	// **Important:** Even with an identical seed, it is not guaranteed that the
+	// same permutation will be produced across different versions of the provider.
+	// This argument causes the result to be *less volatile*, but not fixed for
+	// all time.
+	Seed pulumi.StringPtrInput
 }
 
 func (RandomShuffleState) ElementType() reflect.Type {
@@ -142,16 +157,21 @@ type randomShuffleArgs struct {
 	// The list of strings to shuffle.
 	Inputs []string `pulumi:"inputs"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The number of results to return. Defaults to
 	// the number of items in the `input` list. If fewer items are requested,
 	// some elements will be excluded from the result. If more items are requested,
 	// items will be repeated in the result but not more frequently than the number
 	// of items in the input list.
-	ResultCount *int    `pulumi:"resultCount"`
-	Seed        *string `pulumi:"seed"`
+	ResultCount *int `pulumi:"resultCount"`
+	// Arbitrary string with which to seed the random number
+	// generator, in order to produce less-volatile permutations of the list.
+	// **Important:** Even with an identical seed, it is not guaranteed that the
+	// same permutation will be produced across different versions of the provider.
+	// This argument causes the result to be *less volatile*, but not fixed for
+	// all time.
+	Seed *string `pulumi:"seed"`
 }
 
 // The set of arguments for constructing a RandomShuffle resource.
@@ -159,8 +179,7 @@ type RandomShuffleArgs struct {
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayInput
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers pulumi.MapInput
 	// The number of results to return. Defaults to
 	// the number of items in the `input` list. If fewer items are requested,
@@ -168,7 +187,13 @@ type RandomShuffleArgs struct {
 	// items will be repeated in the result but not more frequently than the number
 	// of items in the input list.
 	ResultCount pulumi.IntPtrInput
-	Seed        pulumi.StringPtrInput
+	// Arbitrary string with which to seed the random number
+	// generator, in order to produce less-volatile permutations of the list.
+	// **Important:** Even with an identical seed, it is not guaranteed that the
+	// same permutation will be produced across different versions of the provider.
+	// This argument causes the result to be *less volatile*, but not fixed for
+	// all time.
+	Seed pulumi.StringPtrInput
 }
 
 func (RandomShuffleArgs) ElementType() reflect.Type {

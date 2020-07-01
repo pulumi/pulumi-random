@@ -13,8 +13,7 @@ class RandomUuid(pulumi.CustomResource):
     keepers: pulumi.Output[dict]
     """
     Arbitrary map of values that, when changed, will
-    trigger a new uuid to be generated. See
-    the main provider documentation for more information.
+    trigger a new uuid to be generated.
     """
     result: pulumi.Output[str]
     """
@@ -44,8 +43,7 @@ class RandomUuid(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
+               trigger a new uuid to be generated.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,8 +80,7 @@ class RandomUuid(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
+               trigger a new uuid to be generated.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

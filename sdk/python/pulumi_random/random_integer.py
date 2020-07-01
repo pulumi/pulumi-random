@@ -13,8 +13,7 @@ class RandomInteger(pulumi.CustomResource):
     keepers: pulumi.Output[dict]
     """
     Arbitrary map of values that, when changed, will
-    trigger a new id to be generated. See
-    the main provider documentation for more information.
+    trigger a new id to be generated.
     """
     max: pulumi.Output[float]
     """
@@ -71,8 +70,7 @@ class RandomInteger(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated. See
-               the main provider documentation for more information.
+               trigger a new id to be generated.
         :param pulumi.Input[float] max: The maximum inclusive value of the range.
         :param pulumi.Input[float] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
@@ -119,8 +117,7 @@ class RandomInteger(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated. See
-               the main provider documentation for more information.
+               trigger a new id to be generated.
         :param pulumi.Input[float] max: The maximum inclusive value of the range.
         :param pulumi.Input[float] min: The minimum inclusive value of the range.
         :param pulumi.Input[float] result: (int) The random Integer result.

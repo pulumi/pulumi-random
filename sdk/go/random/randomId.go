@@ -84,8 +84,7 @@ type RandomId struct {
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringOutput `pulumi:"hex"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -138,8 +137,7 @@ type randomIdState struct {
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex *string `pulumi:"hex"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -162,8 +160,7 @@ type RandomIdState struct {
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers pulumi.MapInput
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -180,8 +177,7 @@ type randomIdArgs struct {
 	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength int `pulumi:"byteLength"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -195,8 +191,7 @@ type RandomIdArgs struct {
 	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntInput
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
+	// trigger a new id to be generated.
 	Keepers pulumi.MapInput
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or

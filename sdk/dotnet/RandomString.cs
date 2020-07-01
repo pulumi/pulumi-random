@@ -17,8 +17,8 @@ namespace Pulumi.Random
     /// 
     /// Historically this resource's intended usage has been ambiguous as the original example
     /// used it in a password. For backwards compatibility it will
-    /// continue to exist. For unique ids please use random_id, for sensitive
-    /// random values please use random_password.
+    /// continue to exist. For unique ids please use the `random.RandomId` resource, for sensitive
+    /// random values please use the `random.RandomPassword` resource.
     /// 
     /// ## Example Usage
     /// 
@@ -45,8 +45,7 @@ namespace Pulumi.Random
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// trigger a new id to be generated.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -179,8 +178,7 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// trigger a new id to be generated.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -271,8 +269,7 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// trigger a new id to be generated.
         /// </summary>
         public InputMap<object> Keepers
         {

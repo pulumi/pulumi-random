@@ -65,8 +65,7 @@ export class RandomShuffle extends pulumi.CustomResource {
     public readonly inputs!: pulumi.Output<string[]>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -81,6 +80,14 @@ export class RandomShuffle extends pulumi.CustomResource {
      * Random permutation of the list of strings given in `input`.
      */
     public /*out*/ readonly results!: pulumi.Output<string[]>;
+    /**
+     * Arbitrary string with which to seed the random number
+     * generator, in order to produce less-volatile permutations of the list.
+     * **Important:** Even with an identical seed, it is not guaranteed that the
+     * same permutation will be produced across different versions of the provider.
+     * This argument causes the result to be *less volatile*, but not fixed for
+     * all time.
+     */
     public readonly seed!: pulumi.Output<string | undefined>;
 
     /**
@@ -132,8 +139,7 @@ export interface RandomShuffleState {
     readonly inputs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -148,6 +154,14 @@ export interface RandomShuffleState {
      * Random permutation of the list of strings given in `input`.
      */
     readonly results?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Arbitrary string with which to seed the random number
+     * generator, in order to produce less-volatile permutations of the list.
+     * **Important:** Even with an identical seed, it is not guaranteed that the
+     * same permutation will be produced across different versions of the provider.
+     * This argument causes the result to be *less volatile*, but not fixed for
+     * all time.
+     */
     readonly seed?: pulumi.Input<string>;
 }
 
@@ -161,8 +175,7 @@ export interface RandomShuffleArgs {
     readonly inputs: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -173,5 +186,13 @@ export interface RandomShuffleArgs {
      * of items in the input list.
      */
     readonly resultCount?: pulumi.Input<number>;
+    /**
+     * Arbitrary string with which to seed the random number
+     * generator, in order to produce less-volatile permutations of the list.
+     * **Important:** Even with an identical seed, it is not guaranteed that the
+     * same permutation will be produced across different versions of the provider.
+     * This argument causes the result to be *less volatile*, but not fixed for
+     * all time.
+     */
     readonly seed?: pulumi.Input<string>;
 }
