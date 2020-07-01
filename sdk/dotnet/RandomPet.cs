@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random..RandomPet` generates random pet names that are intended to be
+    /// The resource `random.RandomPet` generates random pet names that are intended to be
     /// used as unique identifiers for other resources.
     /// 
     /// This resource can be used in conjunction with resources that have
@@ -20,7 +20,8 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// The following example shows how to generate a unique pet name for an AWS EC2
+    /// instance that changes each time a new AMI id is selected.
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -50,6 +51,9 @@ namespace Pulumi.Random
     /// 
     /// }
     /// ```
+    /// 
+    /// The result of the above will set the Name of the AWS Instance to
+    /// `web-server-simple-snake`.
     /// </summary>
     public partial class RandomPet : Pulumi.CustomResource
     {

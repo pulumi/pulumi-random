@@ -10,12 +10,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The resource `.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
+// The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
 //
 // This resource can be used in conjunction with resources that have
 // the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
+//
+// ## Example Usage
+//
+// The following example shows how to generate a random priority between 1 and 50000 for
+// a `awsAlbListenerRule` resource:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/alb"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
+// 			Keepers: pulumi.StringMap{
+// 				"listener_arn": pulumi.String(_var.Listener_arn),
+// 			},
+// 			Max: pulumi.Int(50000),
+// 			Min: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
+// 			Actions: alb.ListenerRuleActionArray{
+// 				&alb.ListenerRuleActionArgs{
+// 					TargetGroupArn: pulumi.String(_var.Target_group_arn),
+// 					Type:           pulumi.String("forward"),
+// 				},
+// 			},
+// 			ListenerArn: pulumi.String(_var.Listener_arn),
+// 			Priority:    priority.Result,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// The result of the above will set a random priority.
 type RandomInteger struct {
 	pulumi.CustomResourceState
 

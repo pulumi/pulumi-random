@@ -9,11 +9,41 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The resource `.RandomUuid` generates random uuid string that is intended to be
+// The resource `RandomUuid` generates random uuid string that is intended to be
 // used as unique identifiers for other resources.
 //
 // This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
 // for use with services needed a unique string identifier.
+//
+// ## Example Usage
+//
+// The following example shows how to generate a unique name for an Azure Resource Group.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-azure/sdk/v3/go/azure/core"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := random.NewRandomUuid(ctx, "testRandomUuid", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = core.NewResourceGroup(ctx, "testResourceGroup", &core.ResourceGroupArgs{
+// 			Location: pulumi.String("Central US"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RandomUuid struct {
 	pulumi.CustomResourceState
 
