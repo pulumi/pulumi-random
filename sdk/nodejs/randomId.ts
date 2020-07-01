@@ -98,8 +98,7 @@ export class RandomId extends pulumi.CustomResource {
     public /*out*/ readonly hex!: pulumi.Output<string>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -185,8 +184,7 @@ export interface RandomIdState {
     readonly hex?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -208,8 +206,7 @@ export interface RandomIdArgs {
     readonly byteLength: pulumi.Input<number>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**

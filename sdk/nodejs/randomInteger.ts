@@ -72,8 +72,7 @@ export class RandomInteger extends pulumi.CustomResource {
 
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -141,8 +140,7 @@ export class RandomInteger extends pulumi.CustomResource {
 export interface RandomIntegerState {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -169,8 +167,7 @@ export interface RandomIntegerState {
 export interface RandomIntegerArgs {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * trigger a new id to be generated.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**

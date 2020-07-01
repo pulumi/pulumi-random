@@ -35,8 +35,7 @@ class RandomId(pulumi.CustomResource):
     keepers: pulumi.Output[dict]
     """
     Arbitrary map of values that, when changed, will
-    trigger a new id to be generated. See
-    the main provider documentation for more information.
+    trigger a new id to be generated.
     """
     prefix: pulumi.Output[str]
     """
@@ -86,8 +85,7 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
                minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated. See
-               the main provider documentation for more information.
+               trigger a new id to be generated.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
@@ -141,8 +139,7 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
         :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated. See
-               the main provider documentation for more information.
+               trigger a new id to be generated.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.

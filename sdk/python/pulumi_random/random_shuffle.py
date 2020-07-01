@@ -17,8 +17,7 @@ class RandomShuffle(pulumi.CustomResource):
     keepers: pulumi.Output[dict]
     """
     Arbitrary map of values that, when changed, will
-    trigger a new id to be generated. See
-    the main provider documentation for more information.
+    trigger a new id to be generated.
     """
     result_count: pulumi.Output[float]
     """
@@ -33,6 +32,14 @@ class RandomShuffle(pulumi.CustomResource):
     Random permutation of the list of strings given in `input`.
     """
     seed: pulumi.Output[str]
+    """
+    Arbitrary string with which to seed the random number
+    generator, in order to produce less-volatile permutations of the list.
+    **Important:** Even with an identical seed, it is not guaranteed that the
+    same permutation will be produced across different versions of the provider.
+    This argument causes the result to be *less volatile*, but not fixed for
+    all time.
+    """
     def __init__(__self__, resource_name, opts=None, inputs=None, keepers=None, result_count=None, seed=None, __props__=None, __name__=None, __opts__=None):
         """
         The resource `RandomShuffle` generates a random permutation of a list
@@ -60,13 +67,18 @@ class RandomShuffle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] inputs: The list of strings to shuffle.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated. See
-               the main provider documentation for more information.
+               trigger a new id to be generated.
         :param pulumi.Input[float] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
                of items in the input list.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number
+               generator, in order to produce less-volatile permutations of the list.
+               **Important:** Even with an identical seed, it is not guaranteed that the
+               same permutation will be produced across different versions of the provider.
+               This argument causes the result to be *less volatile*, but not fixed for
+               all time.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -109,14 +121,19 @@ class RandomShuffle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] inputs: The list of strings to shuffle.
         :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated. See
-               the main provider documentation for more information.
+               trigger a new id to be generated.
         :param pulumi.Input[float] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
                of items in the input list.
         :param pulumi.Input[list] results: Random permutation of the list of strings given in `input`.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number
+               generator, in order to produce less-volatile permutations of the list.
+               **Important:** Even with an identical seed, it is not guaranteed that the
+               same permutation will be produced across different versions of the provider.
+               This argument causes the result to be *less volatile*, but not fixed for
+               all time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
