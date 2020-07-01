@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The resource `.RandomId` generates random numbers that are intended to be
+// The resource `RandomId` generates random numbers that are intended to be
 // used as unique identifiers for other resources.
 //
 // This resource *does* use a cryptographic random number generator in order
@@ -22,6 +22,51 @@ import (
 // the `createBeforeDestroy` lifecycle flag set to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
+//
+// ## Example Usage
+//
+// The following example shows how to generate a unique name for an AWS EC2
+// instance that changes each time a new AMI id is selected.
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		serverRandomId, err := random.NewRandomId(ctx, "serverRandomId", &random.RandomIdArgs{
+// 			ByteLength: pulumi.Int(8),
+// 			Keepers: pulumi.StringMap{
+// 				"ami_id": pulumi.String(_var.Ami_id),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
+// 			Ami: pulumi.String(serverRandomId.Keepers.ApplyT(func(keepers map[string]string) (string, error) {
+// 				return keepers.AmiId, nil
+// 			}).(pulumi.StringOutput)),
+// 			Tags: pulumi.StringMap{
+// 				"Name": serverRandomId.Hex.ApplyT(func(hex string) (string, error) {
+// 					return fmt.Sprintf("%v%v", "web-server ", hex), nil
+// 				}).(pulumi.StringOutput),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RandomId struct {
 	pulumi.CustomResourceState
 

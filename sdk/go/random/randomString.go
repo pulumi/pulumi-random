@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The resource `.RandomString` generates a random permutation of alphanumeric
+// The resource `RandomString` generates a random permutation of alphanumeric
 // characters and optionally special characters.
 //
 // This resource *does* use a cryptographic random number generator.
@@ -19,6 +19,33 @@ import (
 // used it in a password. For backwards compatibility it will
 // continue to exist. For unique ids please use random_id, for sensitive
 // random values please use random_password.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := random.NewRandomString(ctx, "random", &random.RandomStringArgs{
+// 			Length:          pulumi.Int(16),
+// 			OverrideSpecial: pulumi.String(fmt.Sprintf("%v%v", "/@£", "$")),
+// 			Special:         pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RandomString struct {
 	pulumi.CustomResourceState
 

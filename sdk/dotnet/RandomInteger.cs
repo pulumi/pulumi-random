@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random..RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
+    /// The resource `random.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
     /// 
     /// This resource can be used in conjunction with resources that have
     /// the `create_before_destroy` lifecycle flag set, to avoid conflicts with
@@ -19,7 +19,8 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// The following example shows how to generate a random priority between 1 and 50000 for
+    /// a `aws_alb_listener_rule` resource:
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -56,6 +57,8 @@ namespace Pulumi.Random
     /// 
     /// }
     /// ```
+    /// 
+    /// The result of the above will set a random priority.
     /// </summary>
     public partial class RandomInteger : Pulumi.CustomResource
     {

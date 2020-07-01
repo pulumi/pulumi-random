@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random..RandomString` generates a random permutation of alphanumeric
+    /// The resource `random.RandomString` generates a random permutation of alphanumeric
     /// characters and optionally special characters.
     /// 
     /// This resource *does* use a cryptographic random number generator.
@@ -21,8 +21,6 @@ namespace Pulumi.Random
     /// random values please use random_password.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -35,7 +33,7 @@ namespace Pulumi.Random
     ///         var random = new Random.RandomString("random", new Random.RandomStringArgs
     ///         {
     ///             Length = 16,
-    ///             OverrideSpecial = "/@£$$",
+    ///             OverrideSpecial = "/@£$",
     ///             Special = true,
     ///         });
     ///     }

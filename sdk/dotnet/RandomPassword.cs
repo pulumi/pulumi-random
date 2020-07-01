@@ -12,7 +12,7 @@ namespace Pulumi.Random
     /// <summary>
     /// &gt; **Note:** Requires random provider version &gt;= 2.2.0
     /// 
-    /// Identical to random..RandomString with the exception that the
+    /// Identical to random.RandomString with the exception that the
     /// result is treated as sensitive and, thus, _not_ displayed in console output.
     /// 
     /// &gt; **Note:** All attributes including the generated password will be stored in
@@ -22,8 +22,6 @@ namespace Pulumi.Random
     /// This resource *does* use a cryptographic random number generator.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

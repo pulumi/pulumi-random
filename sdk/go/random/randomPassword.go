@@ -12,7 +12,7 @@ import (
 
 // > **Note:** Requires random provider version >= 2.2.0
 //
-// Identical to .RandomString with the exception that the
+// Identical to RandomString with the exception that the
 // result is treated as sensitive and, thus, _not_ displayed in console output.
 //
 // > **Note:** All attributes including the generated password will be stored in
@@ -20,6 +20,44 @@ import (
 // state](https://www.terraform.io/docs/state/sensitive-data.html).
 //
 // This resource *does* use a cryptographic random number generator.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/rds"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
+// 			Length:          pulumi.Int(16),
+// 			Special:         pulumi.Bool(true),
+// 			OverrideSpecial: pulumi.String(fmt.Sprintf("%v%v%v", "_", "%", "@")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rds.NewInstance(ctx, "example", &rds.InstanceArgs{
+// 			InstanceClass:    pulumi.String("db.t3.micro"),
+// 			AllocatedStorage: pulumi.Int(64),
+// 			Engine:           pulumi.String("mysql"),
+// 			Username:         pulumi.String("someone"),
+// 			Password:         pulumi.String(random_string.Password.Result),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RandomPassword struct {
 	pulumi.CustomResourceState
 

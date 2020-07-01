@@ -9,13 +9,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The resource `.RandomPet` generates random pet names that are intended to be
+// The resource `RandomPet` generates random pet names that are intended to be
 // used as unique identifiers for other resources.
 //
 // This resource can be used in conjunction with resources that have
 // the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
+//
+// ## Example Usage
+//
+// The following example shows how to generate a unique pet name for an AWS EC2
+// instance that changes each time a new AMI id is selected.
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		serverRandomPet, err := random.NewRandomPet(ctx, "serverRandomPet", &random.RandomPetArgs{
+// 			Keepers: pulumi.StringMap{
+// 				"ami_id": pulumi.String(_var.Ami_id),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
+// 			Ami: pulumi.String(serverRandomPet.Keepers.ApplyT(func(keepers map[string]string) (string, error) {
+// 				return keepers.AmiId, nil
+// 			}).(pulumi.StringOutput)),
+// 			Tags: pulumi.StringMap{
+// 				"Name": serverRandomPet.ID().ApplyT(func(id string) (string, error) {
+// 					return fmt.Sprintf("%v%v", "web-server-", id), nil
+// 				}).(pulumi.StringOutput),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// The result of the above will set the Name of the AWS Instance to
+// `web-server-simple-snake`.
 type RandomPet struct {
 	pulumi.CustomResourceState
 

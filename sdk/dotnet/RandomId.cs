@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random..RandomId` generates random numbers that are intended to be
+    /// The resource `random.RandomId` generates random numbers that are intended to be
     /// used as unique identifiers for other resources.
     /// 
     /// This resource *does* use a cryptographic random number generator in order
@@ -25,7 +25,8 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// The following example shows how to generate a unique name for an AWS EC2
+    /// instance that changes each time a new AMI id is selected.
     /// 
     /// ```csharp
     /// using Pulumi;
