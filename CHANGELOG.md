@@ -6,6 +6,9 @@ _(none)_
 
 ---
 
+## 2.1.4 (2020-07-01)
+* Publish Go examples in SDK
+
 ## 2.1.3 (2020-06-15)
 * Switch to GitHub actions for build
 
