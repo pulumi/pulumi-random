@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     allocatedStorage: 64,
  *     engine: "mysql",
  *     username: "someone",
- *     password: random_string.password.result,
+ *     password: password.result,
  * });
  * ```
  */
