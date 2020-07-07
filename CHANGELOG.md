@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.3.0 of the Random Terraform Provider
+_(none)_
 
 ---
+
+## 2.2.0 (2020-07-07)
+* Upgrade to v2.3.0 of the Random Terraform Provider
 
 ## 2.1.4 (2020-07-01)
 * Publish Go examples in SDK
