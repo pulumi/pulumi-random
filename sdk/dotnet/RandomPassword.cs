@@ -41,7 +41,7 @@ namespace Pulumi.Random
     ///             AllocatedStorage = 64,
     ///             Engine = "mysql",
     ///             Username = "someone",
-    ///             Password = random_string.Password.Result,
+    ///             Password = password.Result,
     ///         });
     ///     }
     /// 

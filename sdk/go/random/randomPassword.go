@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
+// 		password, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
 // 			Length:          pulumi.Int(16),
 // 			Special:         pulumi.Bool(true),
 // 			OverrideSpecial: pulumi.String(fmt.Sprintf("%v%v%v", "_", "%", "@")),
@@ -46,7 +46,7 @@ import (
 // 			AllocatedStorage: pulumi.Int(64),
 // 			Engine:           pulumi.String("mysql"),
 // 			Username:         pulumi.String("someone"),
-// 			Password:         pulumi.String(random_string.Password.Result),
+// 			Password:         password.Result,
 // 		})
 // 		if err != nil {
 // 			return err
