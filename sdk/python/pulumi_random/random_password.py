@@ -5,24 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['RandomPassword']
 
 
 class RandomPassword(pulumi.CustomResource):
-    keepers: pulumi.Output[dict]
-    length: pulumi.Output[float]
-    lower: pulumi.Output[bool]
-    min_lower: pulumi.Output[float]
-    min_numeric: pulumi.Output[float]
-    min_special: pulumi.Output[float]
-    min_upper: pulumi.Output[float]
-    number: pulumi.Output[bool]
-    override_special: pulumi.Output[str]
-    result: pulumi.Output[str]
-    special: pulumi.Output[bool]
-    upper: pulumi.Output[bool]
-    def __init__(__self__, resource_name, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, special=None, upper=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 length: Optional[pulumi.Input[float]] = None,
+                 lower: Optional[pulumi.Input[bool]] = None,
+                 min_lower: Optional[pulumi.Input[float]] = None,
+                 min_numeric: Optional[pulumi.Input[float]] = None,
+                 min_special: Optional[pulumi.Input[float]] = None,
+                 min_upper: Optional[pulumi.Input[float]] = None,
+                 number: Optional[pulumi.Input[bool]] = None,
+                 override_special: Optional[pulumi.Input[str]] = None,
+                 special: Optional[pulumi.Input[bool]] = None,
+                 upper: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Identical to the `RandomString` resource with the exception that the
         result is treated as sensitive and, thus, _not_ displayed in console output.
@@ -65,7 +71,7 @@ class RandomPassword(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -92,13 +98,27 @@ class RandomPassword(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, keepers=None, length=None, lower=None, min_lower=None, min_numeric=None, min_special=None, min_upper=None, number=None, override_special=None, result=None, special=None, upper=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            length: Optional[pulumi.Input[float]] = None,
+            lower: Optional[pulumi.Input[bool]] = None,
+            min_lower: Optional[pulumi.Input[float]] = None,
+            min_numeric: Optional[pulumi.Input[float]] = None,
+            min_special: Optional[pulumi.Input[float]] = None,
+            min_upper: Optional[pulumi.Input[float]] = None,
+            number: Optional[pulumi.Input[bool]] = None,
+            override_special: Optional[pulumi.Input[str]] = None,
+            result: Optional[pulumi.Input[str]] = None,
+            special: Optional[pulumi.Input[bool]] = None,
+            upper: Optional[pulumi.Input[bool]] = None) -> 'RandomPassword':
         """
         Get an existing RandomPassword resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -119,8 +139,69 @@ class RandomPassword(pulumi.CustomResource):
         __props__["upper"] = upper
         return RandomPassword(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "keepers")
+
+    @property
+    @pulumi.getter
+    def length(self) -> float:
+        return pulumi.get(self, "length")
+
+    @property
+    @pulumi.getter
+    def lower(self) -> Optional[bool]:
+        return pulumi.get(self, "lower")
+
+    @property
+    @pulumi.getter(name="minLower")
+    def min_lower(self) -> Optional[float]:
+        return pulumi.get(self, "min_lower")
+
+    @property
+    @pulumi.getter(name="minNumeric")
+    def min_numeric(self) -> Optional[float]:
+        return pulumi.get(self, "min_numeric")
+
+    @property
+    @pulumi.getter(name="minSpecial")
+    def min_special(self) -> Optional[float]:
+        return pulumi.get(self, "min_special")
+
+    @property
+    @pulumi.getter(name="minUpper")
+    def min_upper(self) -> Optional[float]:
+        return pulumi.get(self, "min_upper")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[bool]:
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter(name="overrideSpecial")
+    def override_special(self) -> Optional[str]:
+        return pulumi.get(self, "override_special")
+
+    @property
+    @pulumi.getter
+    def result(self) -> str:
+        return pulumi.get(self, "result")
+
+    @property
+    @pulumi.getter
+    def special(self) -> Optional[bool]:
+        return pulumi.get(self, "special")
+
+    @property
+    @pulumi.getter
+    def upper(self) -> Optional[bool]:
+        return pulumi.get(self, "upper")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

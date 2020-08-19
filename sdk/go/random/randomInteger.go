@@ -34,8 +34,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
-// 			Keepers: pulumi.StringMap{
-// 				"listener_arn": pulumi.String(_var.Listener_arn),
+// 			Keepers: pulumi.AnyMap{
+// 				"listener_arn": pulumi.Any(_var.Listener_arn),
 // 			},
 // 			Max: pulumi.Int(50000),
 // 			Min: pulumi.Int(1),
@@ -46,11 +46,11 @@ import (
 // 		_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
 // 			Actions: alb.ListenerRuleActionArray{
 // 				&alb.ListenerRuleActionArgs{
-// 					TargetGroupArn: pulumi.String(_var.Target_group_arn),
+// 					TargetGroupArn: pulumi.Any(_var.Target_group_arn),
 // 					Type:           pulumi.String("forward"),
 // 				},
 // 			},
-// 			ListenerArn: pulumi.String(_var.Listener_arn),
+// 			ListenerArn: pulumi.Any(_var.Listener_arn),
 // 			Priority:    priority.Result,
 // 		})
 // 		if err != nil {

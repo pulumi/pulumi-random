@@ -5,21 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['RandomUuid']
 
 
 class RandomUuid(pulumi.CustomResource):
-    keepers: pulumi.Output[dict]
-    """
-    Arbitrary map of values that, when changed, will
-    trigger a new uuid to be generated.
-    """
-    result: pulumi.Output[str]
-    """
-    The generated uuid presented in string format.
-    """
-    def __init__(__self__, resource_name, opts=None, keepers=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The resource `RandomUuid` generates random uuid string that is intended to be
         used as unique identifiers for other resources.
@@ -42,7 +41,7 @@ class RandomUuid(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new uuid to be generated.
         """
         if __name__ is not None:
@@ -56,7 +55,7 @@ class RandomUuid(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -71,15 +70,19 @@ class RandomUuid(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, keepers=None, result=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            result: Optional[pulumi.Input[str]] = None) -> 'RandomUuid':
         """
         Get an existing RandomUuid resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new uuid to be generated.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
@@ -91,8 +94,26 @@ class RandomUuid(pulumi.CustomResource):
         __props__["result"] = result
         return RandomUuid(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[Mapping[str, Any]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new uuid to be generated.
+        """
+        return pulumi.get(self, "keepers")
+
+    @property
+    @pulumi.getter
+    def result(self) -> str:
+        """
+        The generated uuid presented in string format.
+        """
+        return pulumi.get(self, "result")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

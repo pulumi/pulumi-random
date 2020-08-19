@@ -5,45 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['RandomId']
 
 
 class RandomId(pulumi.CustomResource):
-    b64: pulumi.Output[str]
-    b64_std: pulumi.Output[str]
-    """
-    The generated id presented in base64 without additional transformations.
-    """
-    b64_url: pulumi.Output[str]
-    """
-    The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
-    """
-    byte_length: pulumi.Output[float]
-    """
-    The number of random bytes to produce. The
-    minimum value is 1, which produces eight bits of randomness.
-    """
-    dec: pulumi.Output[str]
-    """
-    The generated id presented in non-padded decimal digits.
-    """
-    hex: pulumi.Output[str]
-    """
-    The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-    """
-    keepers: pulumi.Output[dict]
-    """
-    Arbitrary map of values that, when changed, will
-    trigger a new id to be generated.
-    """
-    prefix: pulumi.Output[str]
-    """
-    Arbitrary string to prefix the output value with. This
-    string is supplied as-is, meaning it is not guaranteed to be URL-safe or
-    base64 encoded.
-    """
-    def __init__(__self__, resource_name, opts=None, byte_length=None, keepers=None, prefix=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 byte_length: Optional[pulumi.Input[float]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The resource `RandomId` generates random numbers that are intended to be
         used as unique identifiers for other resources.
@@ -84,7 +61,7 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
                minimum value is 1, which produces eight bits of randomness.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -101,7 +78,7 @@ class RandomId(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,13 +101,23 @@ class RandomId(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, b64=None, b64_std=None, b64_url=None, byte_length=None, dec=None, hex=None, keepers=None, prefix=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            b64: Optional[pulumi.Input[str]] = None,
+            b64_std: Optional[pulumi.Input[str]] = None,
+            b64_url: Optional[pulumi.Input[str]] = None,
+            byte_length: Optional[pulumi.Input[float]] = None,
+            dec: Optional[pulumi.Input[str]] = None,
+            hex: Optional[pulumi.Input[str]] = None,
+            keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            prefix: Optional[pulumi.Input[str]] = None) -> 'RandomId':
         """
         Get an existing RandomId resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] b64_std: The generated id presented in base64 without additional transformations.
         :param pulumi.Input[str] b64_url: The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
@@ -138,7 +125,7 @@ class RandomId(pulumi.CustomResource):
                minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
         :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -158,8 +145,74 @@ class RandomId(pulumi.CustomResource):
         __props__["prefix"] = prefix
         return RandomId(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def b64(self) -> str:
+        return pulumi.get(self, "b64")
+
+    @property
+    @pulumi.getter(name="b64Std")
+    def b64_std(self) -> str:
+        """
+        The generated id presented in base64 without additional transformations.
+        """
+        return pulumi.get(self, "b64_std")
+
+    @property
+    @pulumi.getter(name="b64Url")
+    def b64_url(self) -> str:
+        """
+        The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+        """
+        return pulumi.get(self, "b64_url")
+
+    @property
+    @pulumi.getter(name="byteLength")
+    def byte_length(self) -> float:
+        """
+        The number of random bytes to produce. The
+        minimum value is 1, which produces eight bits of randomness.
+        """
+        return pulumi.get(self, "byte_length")
+
+    @property
+    @pulumi.getter
+    def dec(self) -> str:
+        """
+        The generated id presented in non-padded decimal digits.
+        """
+        return pulumi.get(self, "dec")
+
+    @property
+    @pulumi.getter
+    def hex(self) -> str:
+        """
+        The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+        """
+        return pulumi.get(self, "hex")
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[Mapping[str, Any]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated.
+        """
+        return pulumi.get(self, "keepers")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        Arbitrary string to prefix the output value with. This
+        string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+        base64 encoded.
+        """
+        return pulumi.get(self, "prefix")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
