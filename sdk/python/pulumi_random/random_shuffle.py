@@ -5,42 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['RandomShuffle']
 
 
 class RandomShuffle(pulumi.CustomResource):
-    inputs: pulumi.Output[list]
-    """
-    The list of strings to shuffle.
-    """
-    keepers: pulumi.Output[dict]
-    """
-    Arbitrary map of values that, when changed, will
-    trigger a new id to be generated.
-    """
-    result_count: pulumi.Output[float]
-    """
-    The number of results to return. Defaults to
-    the number of items in the `input` list. If fewer items are requested,
-    some elements will be excluded from the result. If more items are requested,
-    items will be repeated in the result but not more frequently than the number
-    of items in the input list.
-    """
-    results: pulumi.Output[list]
-    """
-    Random permutation of the list of strings given in `input`.
-    """
-    seed: pulumi.Output[str]
-    """
-    Arbitrary string with which to seed the random number
-    generator, in order to produce less-volatile permutations of the list.
-    **Important:** Even with an identical seed, it is not guaranteed that the
-    same permutation will be produced across different versions of the provider.
-    This argument causes the result to be *less volatile*, but not fixed for
-    all time.
-    """
-    def __init__(__self__, resource_name, opts=None, inputs=None, keepers=None, result_count=None, seed=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 inputs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 result_count: Optional[pulumi.Input[float]] = None,
+                 seed: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The resource `RandomShuffle` generates a random permutation of a list
         of strings given as an argument.
@@ -65,8 +46,8 @@ class RandomShuffle(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] inputs: The list of strings to shuffle.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+        :param pulumi.Input[List[pulumi.Input[str]]] inputs: The list of strings to shuffle.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
         :param pulumi.Input[float] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
@@ -91,7 +72,7 @@ class RandomShuffle(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -111,23 +92,30 @@ class RandomShuffle(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, inputs=None, keepers=None, result_count=None, results=None, seed=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            inputs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            result_count: Optional[pulumi.Input[float]] = None,
+            results: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            seed: Optional[pulumi.Input[str]] = None) -> 'RandomShuffle':
         """
         Get an existing RandomShuffle resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] inputs: The list of strings to shuffle.
-        :param pulumi.Input[dict] keepers: Arbitrary map of values that, when changed, will
+        :param pulumi.Input[List[pulumi.Input[str]]] inputs: The list of strings to shuffle.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
         :param pulumi.Input[float] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
                of items in the input list.
-        :param pulumi.Input[list] results: Random permutation of the list of strings given in `input`.
+        :param pulumi.Input[List[pulumi.Input[str]]] results: Random permutation of the list of strings given in `input`.
         :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number
                generator, in order to produce less-volatile permutations of the list.
                **Important:** Even with an identical seed, it is not guaranteed that the
@@ -146,8 +134,59 @@ class RandomShuffle(pulumi.CustomResource):
         __props__["seed"] = seed
         return RandomShuffle(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def inputs(self) -> List[str]:
+        """
+        The list of strings to shuffle.
+        """
+        return pulumi.get(self, "inputs")
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[Mapping[str, Any]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated.
+        """
+        return pulumi.get(self, "keepers")
+
+    @property
+    @pulumi.getter(name="resultCount")
+    def result_count(self) -> Optional[float]:
+        """
+        The number of results to return. Defaults to
+        the number of items in the `input` list. If fewer items are requested,
+        some elements will be excluded from the result. If more items are requested,
+        items will be repeated in the result but not more frequently than the number
+        of items in the input list.
+        """
+        return pulumi.get(self, "result_count")
+
+    @property
+    @pulumi.getter
+    def results(self) -> List[str]:
+        """
+        Random permutation of the list of strings given in `input`.
+        """
+        return pulumi.get(self, "results")
+
+    @property
+    @pulumi.getter
+    def seed(self) -> Optional[str]:
+        """
+        Arbitrary string with which to seed the random number
+        generator, in order to produce less-volatile permutations of the list.
+        **Important:** Even with an identical seed, it is not guaranteed that the
+        same permutation will be produced across different versions of the provider.
+        This argument causes the result to be *less volatile*, but not fixed for
+        all time.
+        """
+        return pulumi.get(self, "seed")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
