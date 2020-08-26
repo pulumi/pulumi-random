@@ -13,7 +13,7 @@ __all__ = ['RandomPet']
 
 class RandomPet(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  length: Optional[pulumi.Input[float]] = None,
@@ -122,7 +122,7 @@ class RandomPet(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
         trigger a new id to be generated.
@@ -131,7 +131,7 @@ class RandomPet(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def length(self) -> Optional[float]:
+    def length(self) -> pulumi.Output[Optional[float]]:
         """
         The length (in words) of the pet name.
         """
@@ -139,7 +139,7 @@ class RandomPet(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def prefix(self) -> Optional[str]:
+    def prefix(self) -> pulumi.Output[Optional[str]]:
         """
         A string to prefix the name with.
         """
@@ -147,7 +147,7 @@ class RandomPet(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def separator(self) -> Optional[str]:
+    def separator(self) -> pulumi.Output[Optional[str]]:
         """
         The character to separate words in the pet name.
         """

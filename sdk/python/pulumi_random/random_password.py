@@ -13,7 +13,7 @@ __all__ = ['RandomPassword']
 
 class RandomPassword(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  length: Optional[pulumi.Input[float]] = None,
@@ -141,62 +141,62 @@ class RandomPassword(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "keepers")
 
     @property
     @pulumi.getter
-    def length(self) -> float:
+    def length(self) -> pulumi.Output[float]:
         return pulumi.get(self, "length")
 
     @property
     @pulumi.getter
-    def lower(self) -> Optional[bool]:
+    def lower(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "lower")
 
     @property
     @pulumi.getter(name="minLower")
-    def min_lower(self) -> Optional[float]:
+    def min_lower(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "min_lower")
 
     @property
     @pulumi.getter(name="minNumeric")
-    def min_numeric(self) -> Optional[float]:
+    def min_numeric(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "min_numeric")
 
     @property
     @pulumi.getter(name="minSpecial")
-    def min_special(self) -> Optional[float]:
+    def min_special(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "min_special")
 
     @property
     @pulumi.getter(name="minUpper")
-    def min_upper(self) -> Optional[float]:
+    def min_upper(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "min_upper")
 
     @property
     @pulumi.getter
-    def number(self) -> Optional[bool]:
+    def number(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "number")
 
     @property
     @pulumi.getter(name="overrideSpecial")
-    def override_special(self) -> Optional[str]:
+    def override_special(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "override_special")
 
     @property
     @pulumi.getter
-    def result(self) -> str:
+    def result(self) -> pulumi.Output[str]:
         return pulumi.get(self, "result")
 
     @property
     @pulumi.getter
-    def special(self) -> Optional[bool]:
+    def special(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "special")
 
     @property
     @pulumi.getter
-    def upper(self) -> Optional[bool]:
+    def upper(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "upper")
 
     def translate_output_property(self, prop):

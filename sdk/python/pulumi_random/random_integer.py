@@ -13,7 +13,7 @@ __all__ = ['RandomInteger']
 
 class RandomInteger(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  max: Optional[pulumi.Input[float]] = None,
@@ -133,7 +133,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
         trigger a new id to be generated.
@@ -142,7 +142,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def max(self) -> float:
+    def max(self) -> pulumi.Output[float]:
         """
         The maximum inclusive value of the range.
         """
@@ -150,7 +150,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def min(self) -> float:
+    def min(self) -> pulumi.Output[float]:
         """
         The minimum inclusive value of the range.
         """
@@ -158,7 +158,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def result(self) -> float:
+    def result(self) -> pulumi.Output[float]:
         """
         (int) The random Integer result.
         """
@@ -166,7 +166,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def seed(self) -> Optional[str]:
+    def seed(self) -> pulumi.Output[Optional[str]]:
         """
         A custom seed to always produce the same value.
         """
