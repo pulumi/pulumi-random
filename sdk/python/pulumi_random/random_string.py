@@ -13,7 +13,7 @@ __all__ = ['RandomString']
 
 class RandomString(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  length: Optional[pulumi.Input[float]] = None,
@@ -183,7 +183,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
         trigger a new id to be generated.
@@ -192,7 +192,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def length(self) -> float:
+    def length(self) -> pulumi.Output[float]:
         """
         The length of the string desired
         """
@@ -200,7 +200,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def lower(self) -> Optional[bool]:
+    def lower(self) -> pulumi.Output[Optional[bool]]:
         """
         (default true) Include lowercase alphabet characters
         in random string.
@@ -209,7 +209,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minLower")
-    def min_lower(self) -> Optional[float]:
+    def min_lower(self) -> pulumi.Output[Optional[float]]:
         """
         (default 0) Minimum number of lowercase alphabet
         characters in random string.
@@ -218,7 +218,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minNumeric")
-    def min_numeric(self) -> Optional[float]:
+    def min_numeric(self) -> pulumi.Output[Optional[float]]:
         """
         (default 0) Minimum number of numeric characters
         in random string.
@@ -227,7 +227,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minSpecial")
-    def min_special(self) -> Optional[float]:
+    def min_special(self) -> pulumi.Output[Optional[float]]:
         """
         (default 0) Minimum number of special characters
         in random string.
@@ -236,7 +236,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minUpper")
-    def min_upper(self) -> Optional[float]:
+    def min_upper(self) -> pulumi.Output[Optional[float]]:
         """
         (default 0) Minimum number of uppercase alphabet
         characters in random string.
@@ -245,7 +245,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def number(self) -> Optional[bool]:
+    def number(self) -> pulumi.Output[Optional[bool]]:
         """
         (default true) Include numeric characters in random
         string.
@@ -254,7 +254,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="overrideSpecial")
-    def override_special(self) -> Optional[str]:
+    def override_special(self) -> pulumi.Output[Optional[str]]:
         """
         Supply your own list of special characters to
         use for string generation.  This overrides the default character list in the special
@@ -265,7 +265,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def result(self) -> str:
+    def result(self) -> pulumi.Output[str]:
         """
         Random string generated.
         """
@@ -273,7 +273,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def special(self) -> Optional[bool]:
+    def special(self) -> pulumi.Output[Optional[bool]]:
         """
         (default true) Include special characters in random
         string. These are `!@#$%&*()-_=+[]{}<>:?`
@@ -282,7 +282,7 @@ class RandomString(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def upper(self) -> Optional[bool]:
+    def upper(self) -> pulumi.Output[Optional[bool]]:
         """
         (default true) Include uppercase alphabet characters
         in random string.

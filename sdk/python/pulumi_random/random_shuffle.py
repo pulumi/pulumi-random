@@ -13,7 +13,7 @@ __all__ = ['RandomShuffle']
 
 class RandomShuffle(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  inputs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -136,7 +136,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def inputs(self) -> List[str]:
+    def inputs(self) -> pulumi.Output[List[str]]:
         """
         The list of strings to shuffle.
         """
@@ -144,7 +144,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
         trigger a new id to be generated.
@@ -153,7 +153,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="resultCount")
-    def result_count(self) -> Optional[float]:
+    def result_count(self) -> pulumi.Output[Optional[float]]:
         """
         The number of results to return. Defaults to
         the number of items in the `input` list. If fewer items are requested,
@@ -165,7 +165,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def results(self) -> List[str]:
+    def results(self) -> pulumi.Output[List[str]]:
         """
         Random permutation of the list of strings given in `input`.
         """
@@ -173,7 +173,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def seed(self) -> Optional[str]:
+    def seed(self) -> pulumi.Output[Optional[str]]:
         """
         Arbitrary string with which to seed the random number
         generator, in order to produce less-volatile permutations of the list.

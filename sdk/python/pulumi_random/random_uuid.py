@@ -13,7 +13,7 @@ __all__ = ['RandomUuid']
 
 class RandomUuid(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  __props__=None,
@@ -96,7 +96,7 @@ class RandomUuid(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
         trigger a new uuid to be generated.
@@ -105,7 +105,7 @@ class RandomUuid(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def result(self) -> str:
+    def result(self) -> pulumi.Output[str]:
         """
         The generated uuid presented in string format.
         """

@@ -13,7 +13,7 @@ __all__ = ['RandomId']
 
 class RandomId(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  byte_length: Optional[pulumi.Input[float]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -147,12 +147,12 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def b64(self) -> str:
+    def b64(self) -> pulumi.Output[str]:
         return pulumi.get(self, "b64")
 
     @property
     @pulumi.getter(name="b64Std")
-    def b64_std(self) -> str:
+    def b64_std(self) -> pulumi.Output[str]:
         """
         The generated id presented in base64 without additional transformations.
         """
@@ -160,7 +160,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="b64Url")
-    def b64_url(self) -> str:
+    def b64_url(self) -> pulumi.Output[str]:
         """
         The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
         """
@@ -168,7 +168,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="byteLength")
-    def byte_length(self) -> float:
+    def byte_length(self) -> pulumi.Output[float]:
         """
         The number of random bytes to produce. The
         minimum value is 1, which produces eight bits of randomness.
@@ -177,7 +177,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def dec(self) -> str:
+    def dec(self) -> pulumi.Output[str]:
         """
         The generated id presented in non-padded decimal digits.
         """
@@ -185,7 +185,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def hex(self) -> str:
+    def hex(self) -> pulumi.Output[str]:
         """
         The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         """
@@ -193,7 +193,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[Mapping[str, Any]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
         trigger a new id to be generated.
@@ -202,7 +202,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def prefix(self) -> Optional[str]:
+    def prefix(self) -> pulumi.Output[Optional[str]]:
         """
         Arbitrary string to prefix the output value with. This
         string is supplied as-is, meaning it is not guaranteed to be URL-safe or
