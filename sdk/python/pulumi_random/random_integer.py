@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['RandomInteger']
@@ -16,8 +16,8 @@ class RandomInteger(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 max: Optional[pulumi.Input[float]] = None,
-                 min: Optional[pulumi.Input[float]] = None,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None,
                  seed: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -61,8 +61,8 @@ class RandomInteger(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
-        :param pulumi.Input[float] max: The maximum inclusive value of the range.
-        :param pulumi.Input[float] min: The minimum inclusive value of the range.
+        :param pulumi.Input[int] max: The maximum inclusive value of the range.
+        :param pulumi.Input[int] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         if __name__ is not None:
@@ -102,9 +102,9 @@ class RandomInteger(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            max: Optional[pulumi.Input[float]] = None,
-            min: Optional[pulumi.Input[float]] = None,
-            result: Optional[pulumi.Input[float]] = None,
+            max: Optional[pulumi.Input[int]] = None,
+            min: Optional[pulumi.Input[int]] = None,
+            result: Optional[pulumi.Input[int]] = None,
             seed: Optional[pulumi.Input[str]] = None) -> 'RandomInteger':
         """
         Get an existing RandomInteger resource's state with the given name, id, and optional extra
@@ -115,9 +115,9 @@ class RandomInteger(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
-        :param pulumi.Input[float] max: The maximum inclusive value of the range.
-        :param pulumi.Input[float] min: The minimum inclusive value of the range.
-        :param pulumi.Input[float] result: (int) The random Integer result.
+        :param pulumi.Input[int] max: The maximum inclusive value of the range.
+        :param pulumi.Input[int] min: The minimum inclusive value of the range.
+        :param pulumi.Input[int] result: (int) The random Integer result.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -142,7 +142,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def max(self) -> pulumi.Output[float]:
+    def max(self) -> pulumi.Output[int]:
         """
         The maximum inclusive value of the range.
         """
@@ -150,7 +150,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def min(self) -> pulumi.Output[float]:
+    def min(self) -> pulumi.Output[int]:
         """
         The minimum inclusive value of the range.
         """
@@ -158,7 +158,7 @@ class RandomInteger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def result(self) -> pulumi.Output[float]:
+    def result(self) -> pulumi.Output[int]:
         """
         (int) The random Integer result.
         """
