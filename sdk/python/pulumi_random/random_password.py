@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['RandomPassword']
@@ -16,12 +16,12 @@ class RandomPassword(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 length: Optional[pulumi.Input[float]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
                  lower: Optional[pulumi.Input[bool]] = None,
-                 min_lower: Optional[pulumi.Input[float]] = None,
-                 min_numeric: Optional[pulumi.Input[float]] = None,
-                 min_special: Optional[pulumi.Input[float]] = None,
-                 min_upper: Optional[pulumi.Input[float]] = None,
+                 min_lower: Optional[pulumi.Input[int]] = None,
+                 min_numeric: Optional[pulumi.Input[int]] = None,
+                 min_special: Optional[pulumi.Input[int]] = None,
+                 min_upper: Optional[pulumi.Input[int]] = None,
                  number: Optional[pulumi.Input[bool]] = None,
                  override_special: Optional[pulumi.Input[str]] = None,
                  special: Optional[pulumi.Input[bool]] = None,
@@ -102,12 +102,12 @@ class RandomPassword(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            length: Optional[pulumi.Input[float]] = None,
+            length: Optional[pulumi.Input[int]] = None,
             lower: Optional[pulumi.Input[bool]] = None,
-            min_lower: Optional[pulumi.Input[float]] = None,
-            min_numeric: Optional[pulumi.Input[float]] = None,
-            min_special: Optional[pulumi.Input[float]] = None,
-            min_upper: Optional[pulumi.Input[float]] = None,
+            min_lower: Optional[pulumi.Input[int]] = None,
+            min_numeric: Optional[pulumi.Input[int]] = None,
+            min_special: Optional[pulumi.Input[int]] = None,
+            min_upper: Optional[pulumi.Input[int]] = None,
             number: Optional[pulumi.Input[bool]] = None,
             override_special: Optional[pulumi.Input[str]] = None,
             result: Optional[pulumi.Input[str]] = None,
@@ -146,7 +146,7 @@ class RandomPassword(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def length(self) -> pulumi.Output[float]:
+    def length(self) -> pulumi.Output[int]:
         return pulumi.get(self, "length")
 
     @property
@@ -156,22 +156,22 @@ class RandomPassword(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minLower")
-    def min_lower(self) -> pulumi.Output[Optional[float]]:
+    def min_lower(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "min_lower")
 
     @property
     @pulumi.getter(name="minNumeric")
-    def min_numeric(self) -> pulumi.Output[Optional[float]]:
+    def min_numeric(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "min_numeric")
 
     @property
     @pulumi.getter(name="minSpecial")
-    def min_special(self) -> pulumi.Output[Optional[float]]:
+    def min_special(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "min_special")
 
     @property
     @pulumi.getter(name="minUpper")
-    def min_upper(self) -> pulumi.Output[Optional[float]]:
+    def min_upper(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "min_upper")
 
     @property

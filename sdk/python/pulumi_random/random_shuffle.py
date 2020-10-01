@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['RandomShuffle']
@@ -15,9 +15,9 @@ class RandomShuffle(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inputs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 inputs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 result_count: Optional[pulumi.Input[float]] = None,
+                 result_count: Optional[pulumi.Input[int]] = None,
                  seed: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -46,10 +46,10 @@ class RandomShuffle(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] inputs: The list of strings to shuffle.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
-        :param pulumi.Input[float] result_count: The number of results to return. Defaults to
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
@@ -95,10 +95,10 @@ class RandomShuffle(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            inputs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            inputs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            result_count: Optional[pulumi.Input[float]] = None,
-            results: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            result_count: Optional[pulumi.Input[int]] = None,
+            results: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             seed: Optional[pulumi.Input[str]] = None) -> 'RandomShuffle':
         """
         Get an existing RandomShuffle resource's state with the given name, id, and optional extra
@@ -107,15 +107,15 @@ class RandomShuffle(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] inputs: The list of strings to shuffle.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
-        :param pulumi.Input[float] result_count: The number of results to return. Defaults to
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
                the number of items in the `input` list. If fewer items are requested,
                some elements will be excluded from the result. If more items are requested,
                items will be repeated in the result but not more frequently than the number
                of items in the input list.
-        :param pulumi.Input[List[pulumi.Input[str]]] results: Random permutation of the list of strings given in `input`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] results: Random permutation of the list of strings given in `input`.
         :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number
                generator, in order to produce less-volatile permutations of the list.
                **Important:** Even with an identical seed, it is not guaranteed that the
@@ -136,7 +136,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def inputs(self) -> pulumi.Output[List[str]]:
+    def inputs(self) -> pulumi.Output[Sequence[str]]:
         """
         The list of strings to shuffle.
         """
@@ -153,7 +153,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="resultCount")
-    def result_count(self) -> pulumi.Output[Optional[float]]:
+    def result_count(self) -> pulumi.Output[Optional[int]]:
         """
         The number of results to return. Defaults to
         the number of items in the `input` list. If fewer items are requested,
@@ -165,7 +165,7 @@ class RandomShuffle(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def results(self) -> pulumi.Output[List[str]]:
+    def results(self) -> pulumi.Output[Sequence[str]]:
         """
         Random permutation of the list of strings given in `input`.
         """

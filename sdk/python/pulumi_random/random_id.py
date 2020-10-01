@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['RandomId']
@@ -15,7 +15,7 @@ class RandomId(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 byte_length: Optional[pulumi.Input[float]] = None,
+                 byte_length: Optional[pulumi.Input[int]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -59,7 +59,7 @@ class RandomId(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
+        :param pulumi.Input[int] byte_length: The number of random bytes to produce. The
                minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
                trigger a new id to be generated.
@@ -107,7 +107,7 @@ class RandomId(pulumi.CustomResource):
             b64: Optional[pulumi.Input[str]] = None,
             b64_std: Optional[pulumi.Input[str]] = None,
             b64_url: Optional[pulumi.Input[str]] = None,
-            byte_length: Optional[pulumi.Input[float]] = None,
+            byte_length: Optional[pulumi.Input[int]] = None,
             dec: Optional[pulumi.Input[str]] = None,
             hex: Optional[pulumi.Input[str]] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -121,7 +121,7 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] b64_std: The generated id presented in base64 without additional transformations.
         :param pulumi.Input[str] b64_url: The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
-        :param pulumi.Input[float] byte_length: The number of random bytes to produce. The
+        :param pulumi.Input[int] byte_length: The number of random bytes to produce. The
                minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
         :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
@@ -168,7 +168,7 @@ class RandomId(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="byteLength")
-    def byte_length(self) -> pulumi.Output[float]:
+    def byte_length(self) -> pulumi.Output[int]:
         """
         The number of random bytes to produce. The
         minimum value is 1, which produces eight bits of randomness.
