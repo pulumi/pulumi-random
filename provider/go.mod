@@ -4,8 +4,8 @@ go 1.14
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk v1.11.0
-	github.com/pulumi/pulumi-terraform-bridge/v2 v2.8.0
-	github.com/pulumi/pulumi/sdk/v2 v2.10.0
+	github.com/pulumi/pulumi-terraform-bridge/v2 v2.10.2
+	github.com/pulumi/pulumi/sdk/v2 v2.10.2
 	github.com/terraform-providers/terraform-provider-random v0.0.0-20190925210718-83518d96ae4f
 )
 

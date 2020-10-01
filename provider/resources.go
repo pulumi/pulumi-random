@@ -19,6 +19,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-random/random"
 )
@@ -49,7 +50,7 @@ func randomResource(mod string, res string) tokens.Type {
 // Provider returns additional overlaid schema and metadata associated with the random package.
 func Provider() tfbridge.ProviderInfo {
 	return tfbridge.ProviderInfo{
-		P:           random.Provider().(*schema.Provider),
+		P:           shimv1.NewProvider(random.Provider().(*schema.Provider)),
 		Name:        "random",
 		Description: "A Pulumi package to safely use randomness in Pulumi programs.",
 		Keywords:    []string{"pulumi", "random"},
