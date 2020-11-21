@@ -4,6 +4,7 @@
 package random
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -43,6 +44,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
+//
+// ```sh
+//  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
 // ```
 type RandomUuid struct {
 	pulumi.CustomResourceState
@@ -116,4 +125,43 @@ type RandomUuidArgs struct {
 
 func (RandomUuidArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomUuidArgs)(nil)).Elem()
+}
+
+type RandomUuidInput interface {
+	pulumi.Input
+
+	ToRandomUuidOutput() RandomUuidOutput
+	ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput
+}
+
+func (RandomUuid) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomUuid)(nil)).Elem()
+}
+
+func (i RandomUuid) ToRandomUuidOutput() RandomUuidOutput {
+	return i.ToRandomUuidOutputWithContext(context.Background())
+}
+
+func (i RandomUuid) ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidOutput)
+}
+
+type RandomUuidOutput struct {
+	*pulumi.OutputState
+}
+
+func (RandomUuidOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomUuidOutput)(nil)).Elem()
+}
+
+func (o RandomUuidOutput) ToRandomUuidOutput() RandomUuidOutput {
+	return o
+}
+
+func (o RandomUuidOutput) ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RandomUuidOutput{})
 }

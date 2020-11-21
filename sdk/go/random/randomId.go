@@ -4,6 +4,7 @@
 package random
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,20 @@ import (
 // the `createBeforeDestroy` lifecycle flag set to avoid conflicts with
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
+//
+// ## Import
+//
+// Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
+//
+// ```sh
+//  $ pulumi import random:index/randomId:RandomId server p-9hUg
+// ```
+//
+//  Example with prefix (prefix is separated by a `,`)
+//
+// ```sh
+//  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
+// ```
 type RandomId struct {
 	pulumi.CustomResourceState
 
@@ -156,4 +171,43 @@ type RandomIdArgs struct {
 
 func (RandomIdArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomIdArgs)(nil)).Elem()
+}
+
+type RandomIdInput interface {
+	pulumi.Input
+
+	ToRandomIdOutput() RandomIdOutput
+	ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput
+}
+
+func (RandomId) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomId)(nil)).Elem()
+}
+
+func (i RandomId) ToRandomIdOutput() RandomIdOutput {
+	return i.ToRandomIdOutputWithContext(context.Background())
+}
+
+func (i RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIdOutput)
+}
+
+type RandomIdOutput struct {
+	*pulumi.OutputState
+}
+
+func (RandomIdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomIdOutput)(nil)).Elem()
+}
+
+func (o RandomIdOutput) ToRandomIdOutput() RandomIdOutput {
+	return o
+}
+
+func (o RandomIdOutput) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RandomIdOutput{})
 }

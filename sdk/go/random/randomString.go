@@ -4,6 +4,7 @@
 package random
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,6 +46,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Strings can be imported by just specifying the value of the string
+//
+// ```sh
+//  $ pulumi import random:index/randomString:RandomString test test
 // ```
 type RandomString struct {
 	pulumi.CustomResourceState
@@ -276,4 +285,43 @@ type RandomStringArgs struct {
 
 func (RandomStringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomStringArgs)(nil)).Elem()
+}
+
+type RandomStringInput interface {
+	pulumi.Input
+
+	ToRandomStringOutput() RandomStringOutput
+	ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput
+}
+
+func (RandomString) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomString)(nil)).Elem()
+}
+
+func (i RandomString) ToRandomStringOutput() RandomStringOutput {
+	return i.ToRandomStringOutputWithContext(context.Background())
+}
+
+func (i RandomString) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomStringOutput)
+}
+
+type RandomStringOutput struct {
+	*pulumi.OutputState
+}
+
+func (RandomStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomStringOutput)(nil)).Elem()
+}
+
+func (o RandomStringOutput) ToRandomStringOutput() RandomStringOutput {
+	return o
+}
+
+func (o RandomStringOutput) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RandomStringOutput{})
 }

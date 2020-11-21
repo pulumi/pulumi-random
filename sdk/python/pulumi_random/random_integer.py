@@ -57,6 +57,14 @@ class RandomInteger(pulumi.CustomResource):
 
         The result of the above will set a random priority.
 
+        ## Import
+
+        Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
+
+        ```sh
+         $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
