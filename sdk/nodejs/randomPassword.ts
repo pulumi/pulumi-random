@@ -33,6 +33,14 @@ import * as utilities from "./utilities";
  *     password: password.result,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Random Password can be imported by specifying the value of the string
+ *
+ * ```sh
+ *  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
+ * ```
  */
 export class RandomPassword extends pulumi.CustomResource {
     /**

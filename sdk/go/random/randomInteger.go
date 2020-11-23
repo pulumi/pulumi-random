@@ -4,6 +4,7 @@
 package random
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -62,6 +63,14 @@ import (
 // ```
 //
 // The result of the above will set a random priority.
+//
+// ## Import
+//
+// Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
+//
+// ```sh
+//  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
+// ```
 type RandomInteger struct {
 	pulumi.CustomResourceState
 
@@ -170,4 +179,43 @@ type RandomIntegerArgs struct {
 
 func (RandomIntegerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomIntegerArgs)(nil)).Elem()
+}
+
+type RandomIntegerInput interface {
+	pulumi.Input
+
+	ToRandomIntegerOutput() RandomIntegerOutput
+	ToRandomIntegerOutputWithContext(ctx context.Context) RandomIntegerOutput
+}
+
+func (RandomInteger) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomInteger)(nil)).Elem()
+}
+
+func (i RandomInteger) ToRandomIntegerOutput() RandomIntegerOutput {
+	return i.ToRandomIntegerOutputWithContext(context.Background())
+}
+
+func (i RandomInteger) ToRandomIntegerOutputWithContext(ctx context.Context) RandomIntegerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerOutput)
+}
+
+type RandomIntegerOutput struct {
+	*pulumi.OutputState
+}
+
+func (RandomIntegerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomIntegerOutput)(nil)).Elem()
+}
+
+func (o RandomIntegerOutput) ToRandomIntegerOutput() RandomIntegerOutput {
+	return o
+}
+
+func (o RandomIntegerOutput) ToRandomIntegerOutputWithContext(ctx context.Context) RandomIntegerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RandomIntegerOutput{})
 }

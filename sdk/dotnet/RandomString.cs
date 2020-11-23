@@ -40,6 +40,14 @@ namespace Pulumi.Random
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Strings can be imported by just specifying the value of the string
+    /// 
+    /// ```sh
+    ///  $ pulumi import random:index/randomString:RandomString test test
+    /// ```
     /// </summary>
     public partial class RandomString : Pulumi.CustomResource
     {
