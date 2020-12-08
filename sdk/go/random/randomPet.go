@@ -37,6 +37,7 @@ func NewRandomPet(ctx *pulumi.Context,
 	if args == nil {
 		args = &RandomPetArgs{}
 	}
+
 	var resource RandomPet
 	err := ctx.RegisterResource("random:index/randomPet:RandomPet", name, args, &resource, opts...)
 	if err != nil {

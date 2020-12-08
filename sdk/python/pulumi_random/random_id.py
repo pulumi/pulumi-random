@@ -98,7 +98,7 @@ class RandomId(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if byte_length is None:
+            if byte_length is None and not opts.urn:
                 raise TypeError("Missing required property 'byte_length'")
             __props__['byte_length'] = byte_length
             __props__['keepers'] = keepers

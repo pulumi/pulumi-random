@@ -65,11 +65,12 @@ type RandomId struct {
 // NewRandomId registers a new resource with the given unique name, arguments, and options.
 func NewRandomId(ctx *pulumi.Context,
 	name string, args *RandomIdArgs, opts ...pulumi.ResourceOption) (*RandomId, error) {
-	if args == nil || args.ByteLength == nil {
-		return nil, errors.New("missing required argument 'ByteLength'")
-	}
 	if args == nil {
-		args = &RandomIdArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ByteLength == nil {
+		return nil, errors.New("invalid value for required argument 'ByteLength'")
 	}
 	var resource RandomId
 	err := ctx.RegisterResource("random:index/randomId:RandomId", name, args, &resource, opts...)

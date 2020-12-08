@@ -84,11 +84,12 @@ type RandomPassword struct {
 // NewRandomPassword registers a new resource with the given unique name, arguments, and options.
 func NewRandomPassword(ctx *pulumi.Context,
 	name string, args *RandomPasswordArgs, opts ...pulumi.ResourceOption) (*RandomPassword, error) {
-	if args == nil || args.Length == nil {
-		return nil, errors.New("missing required argument 'Length'")
-	}
 	if args == nil {
-		args = &RandomPasswordArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Length == nil {
+		return nil, errors.New("invalid value for required argument 'Length'")
 	}
 	var resource RandomPassword
 	err := ctx.RegisterResource("random:index/randomPassword:RandomPassword", name, args, &resource, opts...)

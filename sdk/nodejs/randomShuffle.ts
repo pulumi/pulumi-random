@@ -109,7 +109,7 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomShuffleArgs | undefined;
-            if (!args || args.inputs === undefined) {
+            if ((!args || args.inputs === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'inputs'");
             }
             inputs["inputs"] = args ? args.inputs : undefined;
