@@ -69,6 +69,7 @@ func NewRandomUuid(ctx *pulumi.Context,
 	if args == nil {
 		args = &RandomUuidArgs{}
 	}
+
 	var resource RandomUuid
 	err := ctx.RegisterResource("random:index/randomUuid:RandomUuid", name, args, &resource, opts...)
 	if err != nil {

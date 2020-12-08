@@ -119,10 +119,10 @@ export class RandomInteger extends pulumi.CustomResource {
             inputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomIntegerArgs | undefined;
-            if (!args || args.max === undefined) {
+            if ((!args || args.max === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'max'");
             }
-            if (!args || args.min === undefined) {
+            if ((!args || args.min === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'min'");
             }
             inputs["keepers"] = args ? args.keepers : undefined;

@@ -144,7 +144,7 @@ export class RandomId extends pulumi.CustomResource {
             inputs["prefix"] = state ? state.prefix : undefined;
         } else {
             const args = argsOrState as RandomIdArgs | undefined;
-            if (!args || args.byteLength === undefined) {
+            if ((!args || args.byteLength === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'byteLength'");
             }
             inputs["byteLength"] = args ? args.byteLength : undefined;

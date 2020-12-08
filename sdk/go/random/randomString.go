@@ -99,11 +99,12 @@ type RandomString struct {
 // NewRandomString registers a new resource with the given unique name, arguments, and options.
 func NewRandomString(ctx *pulumi.Context,
 	name string, args *RandomStringArgs, opts ...pulumi.ResourceOption) (*RandomString, error) {
-	if args == nil || args.Length == nil {
-		return nil, errors.New("missing required argument 'Length'")
-	}
 	if args == nil {
-		args = &RandomStringArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Length == nil {
+		return nil, errors.New("invalid value for required argument 'Length'")
 	}
 	var resource RandomString
 	err := ctx.RegisterResource("random:index/randomString:RandomString", name, args, &resource, opts...)

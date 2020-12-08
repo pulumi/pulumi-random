@@ -91,10 +91,10 @@ class RandomInteger(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['keepers'] = keepers
-            if max is None:
+            if max is None and not opts.urn:
                 raise TypeError("Missing required property 'max'")
             __props__['max'] = max
-            if min is None:
+            if min is None and not opts.urn:
                 raise TypeError("Missing required property 'min'")
             __props__['min'] = min
             __props__['seed'] = seed

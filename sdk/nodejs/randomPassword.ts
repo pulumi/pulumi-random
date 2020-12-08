@@ -109,7 +109,7 @@ export class RandomPassword extends pulumi.CustomResource {
             inputs["upper"] = state ? state.upper : undefined;
         } else {
             const args = argsOrState as RandomPasswordArgs | undefined;
-            if (!args || args.length === undefined) {
+            if ((!args || args.length === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'length'");
             }
             inputs["keepers"] = args ? args.keepers : undefined;

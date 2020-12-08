@@ -11,3 +11,59 @@ from .random_pet import *
 from .random_shuffle import *
 from .random_string import *
 from .random_uuid import *
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "random:index/randomId:RandomId":
+                return RandomId(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "random:index/randomInteger:RandomInteger":
+                return RandomInteger(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "random:index/randomPassword:RandomPassword":
+                return RandomPassword(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "random:index/randomPet:RandomPet":
+                return RandomPet(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "random:index/randomShuffle:RandomShuffle":
+                return RandomShuffle(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "random:index/randomString:RandomString":
+                return RandomString(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "random:index/randomUuid:RandomUuid":
+                return RandomUuid(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("random", "index/randomId", _module_instance)
+    pulumi.runtime.register_resource_module("random", "index/randomInteger", _module_instance)
+    pulumi.runtime.register_resource_module("random", "index/randomPassword", _module_instance)
+    pulumi.runtime.register_resource_module("random", "index/randomPet", _module_instance)
+    pulumi.runtime.register_resource_module("random", "index/randomShuffle", _module_instance)
+    pulumi.runtime.register_resource_module("random", "index/randomString", _module_instance)
+    pulumi.runtime.register_resource_module("random", "index/randomUuid", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:random":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("random", Package())
+
+_register_module()
