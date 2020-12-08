@@ -6,7 +6,6 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.11.0
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.15.3
 	github.com/pulumi/pulumi/sdk/v2 v2.15.1-0.20201202214525-260620430c4c
-	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/terraform-providers/terraform-provider-random v0.0.0-20190925210718-83518d96ae4f
 )
 
