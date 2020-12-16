@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v2.16.0 of pulumi-terraform-bridge
+    * Preserve unknowns during provider preview
 
 ---
 
@@ -134,4 +135,3 @@ ___NULL___
 
 ## 0.1.0 (2018-02-02)
 * Initial version of the Random provider
-
