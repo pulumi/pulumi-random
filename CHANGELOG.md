@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 2.5.0 (2020-12-16)
 * Upgrade to v2.16.0 of pulumi-terraform-bridge
     * Preserve unknowns during provider preview
 * Upgrade NodeJS and Python versions to use Pulumi >= v2.15.0
-
----
 
 ## 2.4.4 (2020-12-08)
 * Upgrade to pulumi-terraform-bridge v2.15.3
