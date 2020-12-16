@@ -4,6 +4,7 @@ CHANGELOG
 ## HEAD (Unreleased)
 * Upgrade to v2.15.2 of pulumi-terraform-bridg
     * Preserve unknowns during provider preview
+* Upgrade NodeJS and Python versions to use Pulumi >= v2.15.0
 
 ---
 
