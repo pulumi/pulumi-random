@@ -21,7 +21,8 @@ type RandomPet struct {
 	pulumi.CustomResourceState
 
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The length (in words) of the pet name.
 	Length pulumi.IntPtrOutput `pulumi:"length"`
@@ -61,7 +62,8 @@ func GetRandomPet(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RandomPet resources.
 type randomPetState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length (in words) of the pet name.
 	Length *int `pulumi:"length"`
@@ -73,7 +75,8 @@ type randomPetState struct {
 
 type RandomPetState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length (in words) of the pet name.
 	Length pulumi.IntPtrInput
@@ -89,7 +92,8 @@ func (RandomPetState) ElementType() reflect.Type {
 
 type randomPetArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length (in words) of the pet name.
 	Length *int `pulumi:"length"`
@@ -102,7 +106,8 @@ type randomPetArgs struct {
 // The set of arguments for constructing a RandomPet resource.
 type RandomPetArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length (in words) of the pet name.
 	Length pulumi.IntPtrInput

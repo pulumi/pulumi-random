@@ -65,7 +65,8 @@ export class RandomShuffle extends pulumi.CustomResource {
     public readonly inputs!: pulumi.Output<string[]>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -81,12 +82,9 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public /*out*/ readonly results!: pulumi.Output<string[]>;
     /**
-     * Arbitrary string with which to seed the random number
-     * generator, in order to produce less-volatile permutations of the list.
-     * **Important:** Even with an identical seed, it is not guaranteed that the
-     * same permutation will be produced across different versions of the provider.
-     * This argument causes the result to be *less volatile*, but not fixed for
-     * all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
      */
     public readonly seed!: pulumi.Output<string | undefined>;
 
@@ -139,7 +137,8 @@ export interface RandomShuffleState {
     readonly inputs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -155,12 +154,9 @@ export interface RandomShuffleState {
      */
     readonly results?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary string with which to seed the random number
-     * generator, in order to produce less-volatile permutations of the list.
-     * **Important:** Even with an identical seed, it is not guaranteed that the
-     * same permutation will be produced across different versions of the provider.
-     * This argument causes the result to be *less volatile*, but not fixed for
-     * all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
      */
     readonly seed?: pulumi.Input<string>;
 }
@@ -175,7 +171,8 @@ export interface RandomShuffleArgs {
     readonly inputs: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -187,12 +184,9 @@ export interface RandomShuffleArgs {
      */
     readonly resultCount?: pulumi.Input<number>;
     /**
-     * Arbitrary string with which to seed the random number
-     * generator, in order to produce less-volatile permutations of the list.
-     * **Important:** Even with an identical seed, it is not guaranteed that the
-     * same permutation will be produced across different versions of the provider.
-     * This argument causes the result to be *less volatile*, but not fixed for
-     * all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
      */
     readonly seed?: pulumi.Input<string>;
 }

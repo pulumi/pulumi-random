@@ -76,7 +76,8 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[int] byte_length: The number of random bytes to produce. The
                minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated.
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
@@ -103,7 +104,6 @@ class RandomId(pulumi.CustomResource):
             __props__['byte_length'] = byte_length
             __props__['keepers'] = keepers
             __props__['prefix'] = prefix
-            __props__['b64'] = None
             __props__['b64_std'] = None
             __props__['b64_url'] = None
             __props__['dec'] = None
@@ -118,7 +118,6 @@ class RandomId(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            b64: Optional[pulumi.Input[str]] = None,
             b64_std: Optional[pulumi.Input[str]] = None,
             b64_url: Optional[pulumi.Input[str]] = None,
             byte_length: Optional[pulumi.Input[int]] = None,
@@ -140,7 +139,8 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
         :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated.
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
@@ -149,7 +149,6 @@ class RandomId(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__["b64"] = b64
         __props__["b64_std"] = b64_std
         __props__["b64_url"] = b64_url
         __props__["byte_length"] = byte_length
@@ -158,11 +157,6 @@ class RandomId(pulumi.CustomResource):
         __props__["keepers"] = keepers
         __props__["prefix"] = prefix
         return RandomId(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def b64(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "b64")
 
     @property
     @pulumi.getter(name="b64Std")
@@ -210,7 +204,8 @@ class RandomId(pulumi.CustomResource):
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
-        trigger a new id to be generated.
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 

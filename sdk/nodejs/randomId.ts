@@ -86,10 +86,6 @@ export class RandomId extends pulumi.CustomResource {
     }
 
     /**
-     * @deprecated Use b64_url for old behavior, or b64_std for standard base64 encoding
-     */
-    public /*out*/ readonly b64!: pulumi.Output<string>;
-    /**
      * The generated id presented in base64 without additional transformations.
      */
     public /*out*/ readonly b64Std!: pulumi.Output<string>;
@@ -112,7 +108,8 @@ export class RandomId extends pulumi.CustomResource {
     public /*out*/ readonly hex!: pulumi.Output<string>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -134,7 +131,6 @@ export class RandomId extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as RandomIdState | undefined;
-            inputs["b64"] = state ? state.b64 : undefined;
             inputs["b64Std"] = state ? state.b64Std : undefined;
             inputs["b64Url"] = state ? state.b64Url : undefined;
             inputs["byteLength"] = state ? state.byteLength : undefined;
@@ -150,7 +146,6 @@ export class RandomId extends pulumi.CustomResource {
             inputs["byteLength"] = args ? args.byteLength : undefined;
             inputs["keepers"] = args ? args.keepers : undefined;
             inputs["prefix"] = args ? args.prefix : undefined;
-            inputs["b64"] = undefined /*out*/;
             inputs["b64Std"] = undefined /*out*/;
             inputs["b64Url"] = undefined /*out*/;
             inputs["dec"] = undefined /*out*/;
@@ -171,10 +166,6 @@ export class RandomId extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomId resources.
  */
 export interface RandomIdState {
-    /**
-     * @deprecated Use b64_url for old behavior, or b64_std for standard base64 encoding
-     */
-    readonly b64?: pulumi.Input<string>;
     /**
      * The generated id presented in base64 without additional transformations.
      */
@@ -198,7 +189,8 @@ export interface RandomIdState {
     readonly hex?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -220,7 +212,8 @@ export interface RandomIdArgs {
     readonly byteLength: pulumi.Input<number>;
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**

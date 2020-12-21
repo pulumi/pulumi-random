@@ -5,11 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Identical to the `random.RandomString` resource with the exception that the
+ * > **Note:** Requires random provider version >= 2.2.0
+ *
+ * Identical to random.RandomString with the exception that the
  * result is treated as sensitive and, thus, _not_ displayed in console output.
  *
  * > **Note:** All attributes including the generated password will be stored in
- * the raw state as plain-text.
+ * the raw state as plain-text. [Read more about sensitive data in
+ * state](https://www.terraform.io/docs/state/sensitive-data.html).
  *
  * This resource *does* use a cryptographic random number generator.
  *
@@ -70,17 +73,56 @@ export class RandomPassword extends pulumi.CustomResource {
         return obj['__pulumiType'] === RandomPassword.__pulumiType;
     }
 
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
+     */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * The length of the string desired.
+     */
     public readonly length!: pulumi.Output<number>;
+    /**
+     * Include lowercase alphabet characters in the result.
+     */
     public readonly lower!: pulumi.Output<boolean | undefined>;
+    /**
+     * Minimum number of lowercase alphabet characters in the result.
+     */
     public readonly minLower!: pulumi.Output<number | undefined>;
+    /**
+     * Minimum number of numeric characters in the result.
+     */
     public readonly minNumeric!: pulumi.Output<number | undefined>;
+    /**
+     * Minimum number of special characters in the result.
+     */
     public readonly minSpecial!: pulumi.Output<number | undefined>;
+    /**
+     * Minimum number of uppercase alphabet characters in the result.
+     */
     public readonly minUpper!: pulumi.Output<number | undefined>;
+    /**
+     * Include numeric characters in the result.
+     */
     public readonly number!: pulumi.Output<boolean | undefined>;
+    /**
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
+     */
     public readonly overrideSpecial!: pulumi.Output<string | undefined>;
+    /**
+     * The generated random string.
+     */
     public /*out*/ readonly result!: pulumi.Output<string>;
+    /**
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+     */
     public readonly special!: pulumi.Output<boolean | undefined>;
+    /**
+     * Include uppercase alphabet characters in the result.
+     */
     public readonly upper!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -140,17 +182,56 @@ export class RandomPassword extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomPassword resources.
  */
 export interface RandomPasswordState {
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
+     */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The length of the string desired.
+     */
     readonly length?: pulumi.Input<number>;
+    /**
+     * Include lowercase alphabet characters in the result.
+     */
     readonly lower?: pulumi.Input<boolean>;
+    /**
+     * Minimum number of lowercase alphabet characters in the result.
+     */
     readonly minLower?: pulumi.Input<number>;
+    /**
+     * Minimum number of numeric characters in the result.
+     */
     readonly minNumeric?: pulumi.Input<number>;
+    /**
+     * Minimum number of special characters in the result.
+     */
     readonly minSpecial?: pulumi.Input<number>;
+    /**
+     * Minimum number of uppercase alphabet characters in the result.
+     */
     readonly minUpper?: pulumi.Input<number>;
+    /**
+     * Include numeric characters in the result.
+     */
     readonly number?: pulumi.Input<boolean>;
+    /**
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
+     */
     readonly overrideSpecial?: pulumi.Input<string>;
+    /**
+     * The generated random string.
+     */
     readonly result?: pulumi.Input<string>;
+    /**
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+     */
     readonly special?: pulumi.Input<boolean>;
+    /**
+     * Include uppercase alphabet characters in the result.
+     */
     readonly upper?: pulumi.Input<boolean>;
 }
 
@@ -158,15 +239,51 @@ export interface RandomPasswordState {
  * The set of arguments for constructing a RandomPassword resource.
  */
 export interface RandomPasswordArgs {
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
+     */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The length of the string desired.
+     */
     readonly length: pulumi.Input<number>;
+    /**
+     * Include lowercase alphabet characters in the result.
+     */
     readonly lower?: pulumi.Input<boolean>;
+    /**
+     * Minimum number of lowercase alphabet characters in the result.
+     */
     readonly minLower?: pulumi.Input<number>;
+    /**
+     * Minimum number of numeric characters in the result.
+     */
     readonly minNumeric?: pulumi.Input<number>;
+    /**
+     * Minimum number of special characters in the result.
+     */
     readonly minSpecial?: pulumi.Input<number>;
+    /**
+     * Minimum number of uppercase alphabet characters in the result.
+     */
     readonly minUpper?: pulumi.Input<number>;
+    /**
+     * Include numeric characters in the result.
+     */
     readonly number?: pulumi.Input<boolean>;
+    /**
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
+     */
     readonly overrideSpecial?: pulumi.Input<string>;
+    /**
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+     */
     readonly special?: pulumi.Input<boolean>;
+    /**
+     * Include uppercase alphabet characters in the result.
+     */
     readonly upper?: pulumi.Input<boolean>;
 }

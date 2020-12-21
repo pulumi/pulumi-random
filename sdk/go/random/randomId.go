@@ -40,8 +40,6 @@ import (
 type RandomId struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: Use b64_url for old behavior, or b64_std for standard base64 encoding
-	B64 pulumi.StringOutput `pulumi:"b64"`
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringOutput `pulumi:"b64Std"`
 	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
@@ -54,7 +52,8 @@ type RandomId struct {
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringOutput `pulumi:"hex"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -94,8 +93,6 @@ func GetRandomId(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomId resources.
 type randomIdState struct {
-	// Deprecated: Use b64_url for old behavior, or b64_std for standard base64 encoding
-	B64 *string `pulumi:"b64"`
 	// The generated id presented in base64 without additional transformations.
 	B64Std *string `pulumi:"b64Std"`
 	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
@@ -108,7 +105,8 @@ type randomIdState struct {
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex *string `pulumi:"hex"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -117,8 +115,6 @@ type randomIdState struct {
 }
 
 type RandomIdState struct {
-	// Deprecated: Use b64_url for old behavior, or b64_std for standard base64 encoding
-	B64 pulumi.StringPtrInput
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringPtrInput
 	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
@@ -131,7 +127,8 @@ type RandomIdState struct {
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -148,7 +145,8 @@ type randomIdArgs struct {
 	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength int `pulumi:"byteLength"`
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
@@ -162,7 +160,8 @@ type RandomIdArgs struct {
 	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntInput
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// Arbitrary string to prefix the output value with. This
 	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or

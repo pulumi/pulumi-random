@@ -75,7 +75,8 @@ type RandomInteger struct {
 	pulumi.CustomResourceState
 
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max pulumi.IntOutput `pulumi:"max"`
@@ -123,7 +124,8 @@ func GetRandomInteger(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RandomInteger resources.
 type randomIntegerState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max *int `pulumi:"max"`
@@ -137,7 +139,8 @@ type randomIntegerState struct {
 
 type RandomIntegerState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The maximum inclusive value of the range.
 	Max pulumi.IntPtrInput
@@ -155,7 +158,8 @@ func (RandomIntegerState) ElementType() reflect.Type {
 
 type randomIntegerArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max int `pulumi:"max"`
@@ -168,7 +172,8 @@ type randomIntegerArgs struct {
 // The set of arguments for constructing a RandomInteger resource.
 type RandomIntegerArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The maximum inclusive value of the range.
 	Max pulumi.IntInput

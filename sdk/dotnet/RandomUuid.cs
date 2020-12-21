@@ -53,7 +53,8 @@ namespace Pulumi.Random
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new uuid to be generated.
+        /// trigger a new uuid to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -115,7 +116,8 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new uuid to be generated.
+        /// trigger a new uuid to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -135,7 +137,8 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new uuid to be generated.
+        /// trigger a new uuid to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
