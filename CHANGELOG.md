@@ -2,7 +2,9 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v3.0.0 of the Random Terraform Provider  
+  **PLEASE NOTE:**  
+  * `random.randomId` has had `b64` removed as it was previously deprecated.
 
 ---
 

@@ -37,8 +37,8 @@ class RandomString(pulumi.CustomResource):
 
         Historically this resource's intended usage has been ambiguous as the original example
         used it in a password. For backwards compatibility it will
-        continue to exist. For unique ids please use the `RandomId` resource, for sensitive
-        random values please use the `RandomPassword` resource.
+        continue to exist. For unique ids please use random_id, for sensitive
+        random values please use random_password.
 
         ## Example Usage
 
@@ -63,7 +63,8 @@ class RandomString(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated.
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] length: The length of the string desired
         :param pulumi.Input[bool] lower: (default true) Include lowercase alphabet characters
                in random string.
@@ -147,7 +148,8 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated.
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] length: The length of the string desired
         :param pulumi.Input[bool] lower: (default true) Include lowercase alphabet characters
                in random string.
@@ -194,7 +196,8 @@ class RandomString(pulumi.CustomResource):
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
-        trigger a new id to be generated.
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 

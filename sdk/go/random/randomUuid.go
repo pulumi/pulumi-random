@@ -57,7 +57,8 @@ type RandomUuid struct {
 	pulumi.CustomResourceState
 
 	// Arbitrary map of values that, when changed, will
-	// trigger a new uuid to be generated.
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The generated uuid presented in string format.
 	Result pulumi.StringOutput `pulumi:"result"`
@@ -93,7 +94,8 @@ func GetRandomUuid(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RandomUuid resources.
 type randomUuidState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new uuid to be generated.
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The generated uuid presented in string format.
 	Result *string `pulumi:"result"`
@@ -101,7 +103,8 @@ type randomUuidState struct {
 
 type RandomUuidState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new uuid to be generated.
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The generated uuid presented in string format.
 	Result pulumi.StringPtrInput
@@ -113,14 +116,16 @@ func (RandomUuidState) ElementType() reflect.Type {
 
 type randomUuidArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new uuid to be generated.
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 }
 
 // The set of arguments for constructing a RandomUuid resource.
 type RandomUuidArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new uuid to be generated.
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 }
 

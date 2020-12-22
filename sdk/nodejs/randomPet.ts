@@ -70,7 +70,8 @@ export class RandomPet extends pulumi.CustomResource {
 
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -126,7 +127,8 @@ export class RandomPet extends pulumi.CustomResource {
 export interface RandomPetState {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -149,7 +151,8 @@ export interface RandomPetState {
 export interface RandomPetArgs {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**

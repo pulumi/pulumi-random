@@ -18,8 +18,8 @@ import (
 //
 // Historically this resource's intended usage has been ambiguous as the original example
 // used it in a password. For backwards compatibility it will
-// continue to exist. For unique ids please use the `RandomId` resource, for sensitive
-// random values please use the `RandomPassword` resource.
+// continue to exist. For unique ids please use random_id, for sensitive
+// random values please use random_password.
 //
 // ## Example Usage
 //
@@ -59,7 +59,8 @@ type RandomString struct {
 	pulumi.CustomResourceState
 
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The length of the string desired
 	Length pulumi.IntOutput `pulumi:"length"`
@@ -129,7 +130,8 @@ func GetRandomString(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RandomString resources.
 type randomStringState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length of the string desired
 	Length *int `pulumi:"length"`
@@ -168,7 +170,8 @@ type randomStringState struct {
 
 type RandomStringState struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length of the string desired
 	Length pulumi.IntPtrInput
@@ -211,7 +214,8 @@ func (RandomStringState) ElementType() reflect.Type {
 
 type randomStringArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length of the string desired
 	Length int `pulumi:"length"`
@@ -249,7 +253,8 @@ type randomStringArgs struct {
 // The set of arguments for constructing a RandomString resource.
 type RandomStringArgs struct {
 	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated.
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length of the string desired
 	Length pulumi.IntInput

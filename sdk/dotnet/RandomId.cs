@@ -74,9 +74,6 @@ namespace Pulumi.Random
     /// </summary>
     public partial class RandomId : Pulumi.CustomResource
     {
-        [Output("b64")]
-        public Output<string> B64 { get; private set; } = null!;
-
         /// <summary>
         /// The generated id presented in base64 without additional transformations.
         /// </summary>
@@ -110,7 +107,8 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated.
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -181,7 +179,8 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated.
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -204,9 +203,6 @@ namespace Pulumi.Random
 
     public sealed class RandomIdState : Pulumi.ResourceArgs
     {
-        [Input("b64")]
-        public Input<string>? B64 { get; set; }
-
         /// <summary>
         /// The generated id presented in base64 without additional transformations.
         /// </summary>
@@ -243,7 +239,8 @@ namespace Pulumi.Random
 
         /// <summary>
         /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated.
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {

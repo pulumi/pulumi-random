@@ -57,7 +57,8 @@ class RandomPet(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated.
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
@@ -105,7 +106,8 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new id to be generated.
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
@@ -125,7 +127,8 @@ class RandomPet(pulumi.CustomResource):
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Arbitrary map of values that, when changed, will
-        trigger a new id to be generated.
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 

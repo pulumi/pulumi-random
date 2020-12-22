@@ -12,8 +12,8 @@ import * as utilities from "./utilities";
  *
  * Historically this resource's intended usage has been ambiguous as the original example
  * used it in a password. For backwards compatibility it will
- * continue to exist. For unique ids please use the `random.RandomId` resource, for sensitive
- * random values please use the `random.RandomPassword` resource.
+ * continue to exist. For unique ids please use random_id, for sensitive
+ * random values please use random_password.
  *
  * ## Example Usage
  *
@@ -66,7 +66,8 @@ export class RandomString extends pulumi.CustomResource {
 
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -184,7 +185,8 @@ export class RandomString extends pulumi.CustomResource {
 export interface RandomStringState {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -250,7 +252,8 @@ export interface RandomStringState {
 export interface RandomStringArgs {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated.
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**

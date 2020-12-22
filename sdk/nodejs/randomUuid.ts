@@ -64,7 +64,8 @@ export class RandomUuid extends pulumi.CustomResource {
 
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated.
+     * trigger a new uuid to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -108,7 +109,8 @@ export class RandomUuid extends pulumi.CustomResource {
 export interface RandomUuidState {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated.
+     * trigger a new uuid to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -123,7 +125,8 @@ export interface RandomUuidState {
 export interface RandomUuidArgs {
     /**
      * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated.
+     * trigger a new uuid to be generated. See
+     * the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
 }
