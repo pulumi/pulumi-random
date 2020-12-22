@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 3.0.0 (2020-12-22)
 * Upgrade to v3.0.0 of the Random Terraform Provider  
   **PLEASE NOTE:**  
   * `random.randomId` has had `b64` removed as it was previously deprecated.
-
----
 
 ## 2.5.0 (2020-12-16)
 * Upgrade to v2.16.0 of pulumi-terraform-bridge
