@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-random/provider/v2
+module github.com/pulumi/pulumi-random/provider/v3
 
 go 1.15
 

@@ -29,7 +29,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
