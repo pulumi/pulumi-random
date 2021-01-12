@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.0.1 of the Random Terraform Provider
+_(none)_
 
 ---
+
+## 3.0.1 (2021-01-12)
+* Upgrade to v3.0.1 of the Random Terraform Provider
 
 ## 3.0.0 (2020-12-22)
 * Upgrade to v3.0.0 of the Random Terraform Provider  
