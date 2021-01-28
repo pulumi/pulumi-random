@@ -49,6 +49,7 @@ namespace Pulumi.Random
     ///  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
     /// ```
     /// </summary>
+    [RandomResourceType("random:index/randomUuid:RandomUuid")]
     public partial class RandomUuid : Pulumi.CustomResource
     {
         /// <summary>

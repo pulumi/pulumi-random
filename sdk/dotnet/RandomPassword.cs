@@ -59,6 +59,7 @@ namespace Pulumi.Random
     ///  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
     /// ```
     /// </summary>
+    [RandomResourceType("random:index/randomPassword:RandomPassword")]
     public partial class RandomPassword : Pulumi.CustomResource
     {
         /// <summary>

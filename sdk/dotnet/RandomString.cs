@@ -49,6 +49,7 @@ namespace Pulumi.Random
     ///  $ pulumi import random:index/randomString:RandomString test test
     /// ```
     /// </summary>
+    [RandomResourceType("random:index/randomString:RandomString")]
     public partial class RandomString : Pulumi.CustomResource
     {
         /// <summary>

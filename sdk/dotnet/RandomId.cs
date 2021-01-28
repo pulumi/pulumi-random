@@ -72,6 +72,7 @@ namespace Pulumi.Random
     ///  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
     /// ```
     /// </summary>
+    [RandomResourceType("random:index/randomId:RandomId")]
     public partial class RandomId : Pulumi.CustomResource
     {
         /// <summary>

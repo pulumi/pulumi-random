@@ -55,6 +55,7 @@ namespace Pulumi.Random
     /// The result of the above will set the Name of the AWS Instance to
     /// `web-server-simple-snake`.
     /// </summary>
+    [RandomResourceType("random:index/randomPet:RandomPet")]
     public partial class RandomPet : Pulumi.CustomResource
     {
         /// <summary>

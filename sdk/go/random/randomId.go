@@ -180,15 +180,15 @@ type RandomIdInput interface {
 	ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput
 }
 
-func (RandomId) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomId)(nil)).Elem()
+func (*RandomId) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomId)(nil))
 }
 
-func (i RandomId) ToRandomIdOutput() RandomIdOutput {
+func (i *RandomId) ToRandomIdOutput() RandomIdOutput {
 	return i.ToRandomIdOutputWithContext(context.Background())
 }
 
-func (i RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput {
+func (i *RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdOutput)
 }
 
@@ -197,7 +197,7 @@ type RandomIdOutput struct {
 }
 
 func (RandomIdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomIdOutput)(nil)).Elem()
+	return reflect.TypeOf((*RandomId)(nil))
 }
 
 func (o RandomIdOutput) ToRandomIdOutput() RandomIdOutput {

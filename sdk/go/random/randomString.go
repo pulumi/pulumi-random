@@ -29,7 +29,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random"
+// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -300,15 +300,15 @@ type RandomStringInput interface {
 	ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput
 }
 
-func (RandomString) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomString)(nil)).Elem()
+func (*RandomString) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomString)(nil))
 }
 
-func (i RandomString) ToRandomStringOutput() RandomStringOutput {
+func (i *RandomString) ToRandomStringOutput() RandomStringOutput {
 	return i.ToRandomStringOutputWithContext(context.Background())
 }
 
-func (i RandomString) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
+func (i *RandomString) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringOutput)
 }
 
@@ -317,7 +317,7 @@ type RandomStringOutput struct {
 }
 
 func (RandomStringOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomStringOutput)(nil)).Elem()
+	return reflect.TypeOf((*RandomString)(nil))
 }
 
 func (o RandomStringOutput) ToRandomStringOutput() RandomStringOutput {

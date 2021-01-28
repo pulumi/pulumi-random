@@ -128,15 +128,15 @@ type RandomPetInput interface {
 	ToRandomPetOutputWithContext(ctx context.Context) RandomPetOutput
 }
 
-func (RandomPet) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomPet)(nil)).Elem()
+func (*RandomPet) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomPet)(nil))
 }
 
-func (i RandomPet) ToRandomPetOutput() RandomPetOutput {
+func (i *RandomPet) ToRandomPetOutput() RandomPetOutput {
 	return i.ToRandomPetOutputWithContext(context.Background())
 }
 
-func (i RandomPet) ToRandomPetOutputWithContext(ctx context.Context) RandomPetOutput {
+func (i *RandomPet) ToRandomPetOutputWithContext(ctx context.Context) RandomPetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPetOutput)
 }
 
@@ -145,7 +145,7 @@ type RandomPetOutput struct {
 }
 
 func (RandomPetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomPetOutput)(nil)).Elem()
+	return reflect.TypeOf((*RandomPet)(nil))
 }
 
 func (o RandomPetOutput) ToRandomPetOutput() RandomPetOutput {
