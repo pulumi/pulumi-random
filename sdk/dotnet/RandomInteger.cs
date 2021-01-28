@@ -68,6 +68,7 @@ namespace Pulumi.Random
     ///  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
     /// ```
     /// </summary>
+    [RandomResourceType("random:index/randomInteger:RandomInteger")]
     public partial class RandomInteger : Pulumi.CustomResource
     {
         /// <summary>

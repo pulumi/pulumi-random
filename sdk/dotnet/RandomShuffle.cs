@@ -44,6 +44,7 @@ namespace Pulumi.Random
     /// }
     /// ```
     /// </summary>
+    [RandomResourceType("random:index/randomShuffle:RandomShuffle")]
     public partial class RandomShuffle : Pulumi.CustomResource
     {
         /// <summary>

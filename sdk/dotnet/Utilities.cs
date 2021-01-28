@@ -77,4 +77,11 @@ namespace Pulumi.Random
             }
         }
     }
+
+    internal sealed class RandomResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public RandomResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
+        }
+    }
 }

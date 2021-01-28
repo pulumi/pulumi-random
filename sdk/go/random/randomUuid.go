@@ -25,7 +25,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-azure/sdk/v3/go/azure/core"
-// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random"
+// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -140,15 +140,15 @@ type RandomUuidInput interface {
 	ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput
 }
 
-func (RandomUuid) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomUuid)(nil)).Elem()
+func (*RandomUuid) ElementType() reflect.Type {
+	return reflect.TypeOf((*RandomUuid)(nil))
 }
 
-func (i RandomUuid) ToRandomUuidOutput() RandomUuidOutput {
+func (i *RandomUuid) ToRandomUuidOutput() RandomUuidOutput {
 	return i.ToRandomUuidOutputWithContext(context.Background())
 }
 
-func (i RandomUuid) ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput {
+func (i *RandomUuid) ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidOutput)
 }
 
@@ -157,7 +157,7 @@ type RandomUuidOutput struct {
 }
 
 func (RandomUuidOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomUuidOutput)(nil)).Elem()
+	return reflect.TypeOf((*RandomUuid)(nil))
 }
 
 func (o RandomUuidOutput) ToRandomUuidOutput() RandomUuidOutput {
