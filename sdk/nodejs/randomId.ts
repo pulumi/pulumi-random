@@ -129,7 +129,8 @@ export class RandomId extends pulumi.CustomResource {
     constructor(name: string, args: RandomIdArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomIdArgs | RandomIdState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RandomIdState | undefined;
             inputs["b64Std"] = state ? state.b64Std : undefined;
             inputs["b64Url"] = state ? state.b64Url : undefined;
@@ -140,7 +141,7 @@ export class RandomId extends pulumi.CustomResource {
             inputs["prefix"] = state ? state.prefix : undefined;
         } else {
             const args = argsOrState as RandomIdArgs | undefined;
-            if ((!args || args.byteLength === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.byteLength === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'byteLength'");
             }
             inputs["byteLength"] = args ? args.byteLength : undefined;
@@ -151,12 +152,8 @@ export class RandomId extends pulumi.CustomResource {
             inputs["dec"] = undefined /*out*/;
             inputs["hex"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RandomId.__pulumiType, name, inputs, opts);
     }

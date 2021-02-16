@@ -97,7 +97,8 @@ export class RandomPet extends pulumi.CustomResource {
     constructor(name: string, args?: RandomPetArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomPetArgs | RandomPetState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RandomPetState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
@@ -110,12 +111,8 @@ export class RandomPet extends pulumi.CustomResource {
             inputs["prefix"] = args ? args.prefix : undefined;
             inputs["separator"] = args ? args.separator : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RandomPet.__pulumiType, name, inputs, opts);
     }

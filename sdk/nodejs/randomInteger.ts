@@ -111,7 +111,8 @@ export class RandomInteger extends pulumi.CustomResource {
     constructor(name: string, args: RandomIntegerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomIntegerArgs | RandomIntegerState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RandomIntegerState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["max"] = state ? state.max : undefined;
@@ -120,10 +121,10 @@ export class RandomInteger extends pulumi.CustomResource {
             inputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomIntegerArgs | undefined;
-            if ((!args || args.max === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.max === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'max'");
             }
-            if ((!args || args.min === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.min === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'min'");
             }
             inputs["keepers"] = args ? args.keepers : undefined;
@@ -132,12 +133,8 @@ export class RandomInteger extends pulumi.CustomResource {
             inputs["seed"] = args ? args.seed : undefined;
             inputs["result"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RandomInteger.__pulumiType, name, inputs, opts);
     }
