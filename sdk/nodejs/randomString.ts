@@ -136,7 +136,8 @@ export class RandomString extends pulumi.CustomResource {
     constructor(name: string, args: RandomStringArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomStringArgs | RandomStringState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RandomStringState | undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
@@ -152,7 +153,7 @@ export class RandomString extends pulumi.CustomResource {
             inputs["upper"] = state ? state.upper : undefined;
         } else {
             const args = argsOrState as RandomStringArgs | undefined;
-            if ((!args || args.length === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.length === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'length'");
             }
             inputs["keepers"] = args ? args.keepers : undefined;
@@ -168,12 +169,8 @@ export class RandomString extends pulumi.CustomResource {
             inputs["upper"] = args ? args.upper : undefined;
             inputs["result"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RandomString.__pulumiType, name, inputs, opts);
     }

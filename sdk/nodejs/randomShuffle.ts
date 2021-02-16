@@ -98,7 +98,8 @@ export class RandomShuffle extends pulumi.CustomResource {
     constructor(name: string, args: RandomShuffleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomShuffleArgs | RandomShuffleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RandomShuffleState | undefined;
             inputs["inputs"] = state ? state.inputs : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
@@ -107,7 +108,7 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomShuffleArgs | undefined;
-            if ((!args || args.inputs === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.inputs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'inputs'");
             }
             inputs["inputs"] = args ? args.inputs : undefined;
@@ -116,12 +117,8 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["seed"] = args ? args.seed : undefined;
             inputs["results"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RandomShuffle.__pulumiType, name, inputs, opts);
     }

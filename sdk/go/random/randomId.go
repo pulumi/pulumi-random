@@ -192,6 +192,85 @@ func (i *RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutp
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdOutput)
 }
 
+func (i *RandomId) ToRandomIdPtrOutput() RandomIdPtrOutput {
+	return i.ToRandomIdPtrOutputWithContext(context.Background())
+}
+
+func (i *RandomId) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIdPtrOutput)
+}
+
+type RandomIdPtrInput interface {
+	pulumi.Input
+
+	ToRandomIdPtrOutput() RandomIdPtrOutput
+	ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput
+}
+
+type randomIdPtrType RandomIdArgs
+
+func (*randomIdPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RandomId)(nil))
+}
+
+func (i *randomIdPtrType) ToRandomIdPtrOutput() RandomIdPtrOutput {
+	return i.ToRandomIdPtrOutputWithContext(context.Background())
+}
+
+func (i *randomIdPtrType) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIdPtrOutput)
+}
+
+// RandomIdArrayInput is an input type that accepts RandomIdArray and RandomIdArrayOutput values.
+// You can construct a concrete instance of `RandomIdArrayInput` via:
+//
+//          RandomIdArray{ RandomIdArgs{...} }
+type RandomIdArrayInput interface {
+	pulumi.Input
+
+	ToRandomIdArrayOutput() RandomIdArrayOutput
+	ToRandomIdArrayOutputWithContext(context.Context) RandomIdArrayOutput
+}
+
+type RandomIdArray []RandomIdInput
+
+func (RandomIdArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*RandomId)(nil))
+}
+
+func (i RandomIdArray) ToRandomIdArrayOutput() RandomIdArrayOutput {
+	return i.ToRandomIdArrayOutputWithContext(context.Background())
+}
+
+func (i RandomIdArray) ToRandomIdArrayOutputWithContext(ctx context.Context) RandomIdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIdArrayOutput)
+}
+
+// RandomIdMapInput is an input type that accepts RandomIdMap and RandomIdMapOutput values.
+// You can construct a concrete instance of `RandomIdMapInput` via:
+//
+//          RandomIdMap{ "key": RandomIdArgs{...} }
+type RandomIdMapInput interface {
+	pulumi.Input
+
+	ToRandomIdMapOutput() RandomIdMapOutput
+	ToRandomIdMapOutputWithContext(context.Context) RandomIdMapOutput
+}
+
+type RandomIdMap map[string]RandomIdInput
+
+func (RandomIdMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*RandomId)(nil))
+}
+
+func (i RandomIdMap) ToRandomIdMapOutput() RandomIdMapOutput {
+	return i.ToRandomIdMapOutputWithContext(context.Background())
+}
+
+func (i RandomIdMap) ToRandomIdMapOutputWithContext(ctx context.Context) RandomIdMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIdMapOutput)
+}
+
 type RandomIdOutput struct {
 	*pulumi.OutputState
 }
@@ -208,6 +287,75 @@ func (o RandomIdOutput) ToRandomIdOutputWithContext(ctx context.Context) RandomI
 	return o
 }
 
+func (o RandomIdOutput) ToRandomIdPtrOutput() RandomIdPtrOutput {
+	return o.ToRandomIdPtrOutputWithContext(context.Background())
+}
+
+func (o RandomIdOutput) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
+	return o.ApplyT(func(v RandomId) *RandomId {
+		return &v
+	}).(RandomIdPtrOutput)
+}
+
+type RandomIdPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RandomIdPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RandomId)(nil))
+}
+
+func (o RandomIdPtrOutput) ToRandomIdPtrOutput() RandomIdPtrOutput {
+	return o
+}
+
+func (o RandomIdPtrOutput) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
+	return o
+}
+
+type RandomIdArrayOutput struct{ *pulumi.OutputState }
+
+func (RandomIdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RandomId)(nil))
+}
+
+func (o RandomIdArrayOutput) ToRandomIdArrayOutput() RandomIdArrayOutput {
+	return o
+}
+
+func (o RandomIdArrayOutput) ToRandomIdArrayOutputWithContext(ctx context.Context) RandomIdArrayOutput {
+	return o
+}
+
+func (o RandomIdArrayOutput) Index(i pulumi.IntInput) RandomIdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomId {
+		return vs[0].([]RandomId)[vs[1].(int)]
+	}).(RandomIdOutput)
+}
+
+type RandomIdMapOutput struct{ *pulumi.OutputState }
+
+func (RandomIdMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RandomId)(nil))
+}
+
+func (o RandomIdMapOutput) ToRandomIdMapOutput() RandomIdMapOutput {
+	return o
+}
+
+func (o RandomIdMapOutput) ToRandomIdMapOutputWithContext(ctx context.Context) RandomIdMapOutput {
+	return o
+}
+
+func (o RandomIdMapOutput) MapIndex(k pulumi.StringInput) RandomIdOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomId {
+		return vs[0].(map[string]RandomId)[vs[1].(string)]
+	}).(RandomIdOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(RandomIdOutput{})
+	pulumi.RegisterOutputType(RandomIdPtrOutput{})
+	pulumi.RegisterOutputType(RandomIdArrayOutput{})
+	pulumi.RegisterOutputType(RandomIdMapOutput{})
 }

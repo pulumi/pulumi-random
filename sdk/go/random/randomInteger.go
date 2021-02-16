@@ -28,7 +28,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/alb"
-// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random/"
+// 	"github.com/pulumi/pulumi-random/sdk/v3/go/random"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -206,6 +206,85 @@ func (i *RandomInteger) ToRandomIntegerOutputWithContext(ctx context.Context) Ra
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerOutput)
 }
 
+func (i *RandomInteger) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
+	return i.ToRandomIntegerPtrOutputWithContext(context.Background())
+}
+
+func (i *RandomInteger) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerPtrOutput)
+}
+
+type RandomIntegerPtrInput interface {
+	pulumi.Input
+
+	ToRandomIntegerPtrOutput() RandomIntegerPtrOutput
+	ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput
+}
+
+type randomIntegerPtrType RandomIntegerArgs
+
+func (*randomIntegerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RandomInteger)(nil))
+}
+
+func (i *randomIntegerPtrType) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
+	return i.ToRandomIntegerPtrOutputWithContext(context.Background())
+}
+
+func (i *randomIntegerPtrType) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerPtrOutput)
+}
+
+// RandomIntegerArrayInput is an input type that accepts RandomIntegerArray and RandomIntegerArrayOutput values.
+// You can construct a concrete instance of `RandomIntegerArrayInput` via:
+//
+//          RandomIntegerArray{ RandomIntegerArgs{...} }
+type RandomIntegerArrayInput interface {
+	pulumi.Input
+
+	ToRandomIntegerArrayOutput() RandomIntegerArrayOutput
+	ToRandomIntegerArrayOutputWithContext(context.Context) RandomIntegerArrayOutput
+}
+
+type RandomIntegerArray []RandomIntegerInput
+
+func (RandomIntegerArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*RandomInteger)(nil))
+}
+
+func (i RandomIntegerArray) ToRandomIntegerArrayOutput() RandomIntegerArrayOutput {
+	return i.ToRandomIntegerArrayOutputWithContext(context.Background())
+}
+
+func (i RandomIntegerArray) ToRandomIntegerArrayOutputWithContext(ctx context.Context) RandomIntegerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerArrayOutput)
+}
+
+// RandomIntegerMapInput is an input type that accepts RandomIntegerMap and RandomIntegerMapOutput values.
+// You can construct a concrete instance of `RandomIntegerMapInput` via:
+//
+//          RandomIntegerMap{ "key": RandomIntegerArgs{...} }
+type RandomIntegerMapInput interface {
+	pulumi.Input
+
+	ToRandomIntegerMapOutput() RandomIntegerMapOutput
+	ToRandomIntegerMapOutputWithContext(context.Context) RandomIntegerMapOutput
+}
+
+type RandomIntegerMap map[string]RandomIntegerInput
+
+func (RandomIntegerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*RandomInteger)(nil))
+}
+
+func (i RandomIntegerMap) ToRandomIntegerMapOutput() RandomIntegerMapOutput {
+	return i.ToRandomIntegerMapOutputWithContext(context.Background())
+}
+
+func (i RandomIntegerMap) ToRandomIntegerMapOutputWithContext(ctx context.Context) RandomIntegerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerMapOutput)
+}
+
 type RandomIntegerOutput struct {
 	*pulumi.OutputState
 }
@@ -222,6 +301,75 @@ func (o RandomIntegerOutput) ToRandomIntegerOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o RandomIntegerOutput) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
+	return o.ToRandomIntegerPtrOutputWithContext(context.Background())
+}
+
+func (o RandomIntegerOutput) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
+	return o.ApplyT(func(v RandomInteger) *RandomInteger {
+		return &v
+	}).(RandomIntegerPtrOutput)
+}
+
+type RandomIntegerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RandomIntegerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RandomInteger)(nil))
+}
+
+func (o RandomIntegerPtrOutput) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
+	return o
+}
+
+func (o RandomIntegerPtrOutput) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
+	return o
+}
+
+type RandomIntegerArrayOutput struct{ *pulumi.OutputState }
+
+func (RandomIntegerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RandomInteger)(nil))
+}
+
+func (o RandomIntegerArrayOutput) ToRandomIntegerArrayOutput() RandomIntegerArrayOutput {
+	return o
+}
+
+func (o RandomIntegerArrayOutput) ToRandomIntegerArrayOutputWithContext(ctx context.Context) RandomIntegerArrayOutput {
+	return o
+}
+
+func (o RandomIntegerArrayOutput) Index(i pulumi.IntInput) RandomIntegerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomInteger {
+		return vs[0].([]RandomInteger)[vs[1].(int)]
+	}).(RandomIntegerOutput)
+}
+
+type RandomIntegerMapOutput struct{ *pulumi.OutputState }
+
+func (RandomIntegerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RandomInteger)(nil))
+}
+
+func (o RandomIntegerMapOutput) ToRandomIntegerMapOutput() RandomIntegerMapOutput {
+	return o
+}
+
+func (o RandomIntegerMapOutput) ToRandomIntegerMapOutputWithContext(ctx context.Context) RandomIntegerMapOutput {
+	return o
+}
+
+func (o RandomIntegerMapOutput) MapIndex(k pulumi.StringInput) RandomIntegerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomInteger {
+		return vs[0].(map[string]RandomInteger)[vs[1].(string)]
+	}).(RandomIntegerOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(RandomIntegerOutput{})
+	pulumi.RegisterOutputType(RandomIntegerPtrOutput{})
+	pulumi.RegisterOutputType(RandomIntegerArrayOutput{})
+	pulumi.RegisterOutputType(RandomIntegerMapOutput{})
 }
