@@ -17,6 +17,9 @@ jobs:
     needs: prerequisites
     runs-on: ubuntu-latest
     steps:
+    - if: github.ref == 'refs/heads/feature-3.0'
+      run:
+        echo "VERSION_PREFIX=4.0.0" >> $GITHUB_ENV
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Checkout Scripts Repo
@@ -170,6 +173,9 @@ jobs:
     name: prerequisites
     runs-on: ubuntu-latest
     steps:
+    - if: github.ref == 'refs/heads/feature-3.0'
+      run:
+        echo "VERSION_PREFIX=4.0.0" >> $GITHUB_ENV
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Checkout Scripts Repo
@@ -214,6 +220,9 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+    - if: github.ref == 'refs/heads/feature-3.0'
+      run:
+        echo "VERSION_PREFIX=4.0.0" >> $GITHUB_ENV
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Unshallow clone for tags
@@ -256,6 +265,9 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
+    - if: github.ref == 'refs/heads/feature-3.0'
+      run:
+        echo "VERSION_PREFIX=4.0.0" >> $GITHUB_ENV
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Checkout Scripts Repo
@@ -325,6 +337,9 @@ jobs:
     needs: build_sdk
     runs-on: ubuntu-latest
     steps:
+    - if: github.ref == 'refs/heads/feature-3.0'
+      run:
+        echo "VERSION_PREFIX=4.0.0" >> $GITHUB_ENV
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Checkout Scripts Repo
@@ -416,6 +431,7 @@ name: master
   push:
     branches:
     - master
+    - "feature-**"
     paths-ignore:
     - CHANGELOG.md
     tags-ignore:
