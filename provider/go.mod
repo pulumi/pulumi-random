@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0-20210325101119-03683ad99004
-	github.com/pulumi/pulumi/sdk/v3 v3.0.0-20210324220902-b543e235f01d
+	github.com/pulumi/pulumi/sdk/v3 v3.0.0-beta.1
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
 
