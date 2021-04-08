@@ -126,14 +126,10 @@ jobs:
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
         repo: pulumi/pulumictl
-    - name: Retrieve Pulumi CLI Version
-      run: |
-        echo "::set-output name=CLI_VERSION::$(curl -sSL http://registry.npmjs.org/-/package/@pulumi/pulumi/dist-tags | jq -r .\"feature-3.0\")"
-      id: version
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
       with:
-        pulumi-version: ${{ steps.version.outputs.CLI_VERSION }}
+        pulumi-version: 3.0.0-beta.1
     - name: Run golangci
       run: make lint_provider
     - if: failure() && github.event_name == 'push'
@@ -168,14 +164,10 @@ jobs:
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
         repo: pulumi/pulumictl
-    - name: Retrieve Pulumi CLI Version
-      run: |
-        echo "::set-output name=CLI_VERSION::$(curl -sSL http://registry.npmjs.org/-/package/@pulumi/pulumi/dist-tags | jq -r .\"feature-3.0\")"
-      id: version
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
       with:
-        pulumi-version: ${{ steps.version.outputs.CLI_VERSION }}
+        pulumi-version: 3.0.0-beta.1
     - name: Run golangci
       run: cd sdk/go/random && golangci-lint run -c ../../../.golangci.yml
     - if: failure() && github.event_name == 'push'
