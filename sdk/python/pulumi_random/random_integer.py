@@ -6,7 +6,11 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+<<<<<<< HEAD
 from . import _utilities, _tables
+=======
+from . import _utilities
+>>>>>>> 287f5cf (Upgrade to Pulumi v3.0.0-beta.2)
 
 __all__ = ['RandomIntegerArgs', 'RandomInteger']
 
@@ -82,6 +86,101 @@ class RandomIntegerArgs:
     @seed.setter
     def seed(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "seed", value)
+<<<<<<< HEAD
+=======
+
+
+@pulumi.input_type
+class _RandomIntegerState:
+    def __init__(__self__, *,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None,
+                 result: Optional[pulumi.Input[int]] = None,
+                 seed: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering RandomInteger resources.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] max: The maximum inclusive value of the range.
+        :param pulumi.Input[int] min: The minimum inclusive value of the range.
+        :param pulumi.Input[int] result: (int) The random Integer result.
+        :param pulumi.Input[str] seed: A custom seed to always produce the same value.
+        """
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+        if result is not None:
+            pulumi.set(__self__, "result", result)
+        if seed is not None:
+            pulumi.set(__self__, "seed", seed)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum inclusive value of the range.
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum inclusive value of the range.
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+    @property
+    @pulumi.getter
+    def result(self) -> Optional[pulumi.Input[int]]:
+        """
+        (int) The random Integer result.
+        """
+        return pulumi.get(self, "result")
+
+    @result.setter
+    def result(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "result", value)
+
+    @property
+    @pulumi.getter
+    def seed(self) -> Optional[pulumi.Input[str]]:
+        """
+        A custom seed to always produce the same value.
+        """
+        return pulumi.get(self, "seed")
+
+    @seed.setter
+    def seed(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "seed", value)
+>>>>>>> 287f5cf (Upgrade to Pulumi v3.0.0-beta.2)
 
 
 class RandomInteger(pulumi.CustomResource):
@@ -234,17 +333,17 @@ class RandomInteger(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RandomIntegerArgs.__new__(RandomIntegerArgs)
 
-            __props__['keepers'] = keepers
+            __props__.__dict__["keepers"] = keepers
             if max is None and not opts.urn:
                 raise TypeError("Missing required property 'max'")
-            __props__['max'] = max
+            __props__.__dict__["max"] = max
             if min is None and not opts.urn:
                 raise TypeError("Missing required property 'min'")
-            __props__['min'] = min
-            __props__['seed'] = seed
-            __props__['result'] = None
+            __props__.__dict__["min"] = min
+            __props__.__dict__["seed"] = seed
+            __props__.__dict__["result"] = None
         super(RandomInteger, __self__).__init__(
             'random:index/randomInteger:RandomInteger',
             resource_name,
@@ -277,13 +376,13 @@ class RandomInteger(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RandomIntegerState.__new__(_RandomIntegerState)
 
-        __props__["keepers"] = keepers
-        __props__["max"] = max
-        __props__["min"] = min
-        __props__["result"] = result
-        __props__["seed"] = seed
+        __props__.__dict__["keepers"] = keepers
+        __props__.__dict__["max"] = max
+        __props__.__dict__["min"] = min
+        __props__.__dict__["result"] = result
+        __props__.__dict__["seed"] = seed
         return RandomInteger(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -327,10 +426,4 @@ class RandomInteger(pulumi.CustomResource):
         A custom seed to always produce the same value.
         """
         return pulumi.get(self, "seed")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -6,7 +6,11 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+<<<<<<< HEAD
 from . import _utilities, _tables
+=======
+from . import _utilities
+>>>>>>> 287f5cf (Upgrade to Pulumi v3.0.0-beta.2)
 
 __all__ = ['RandomPetArgs', 'RandomPet']
 
@@ -84,6 +88,85 @@ class RandomPetArgs:
     @separator.setter
     def separator(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "separator", value)
+<<<<<<< HEAD
+=======
+
+
+@pulumi.input_type
+class _RandomPetState:
+    def __init__(__self__, *,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 separator: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering RandomPet resources.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] length: The length (in words) of the pet name.
+        :param pulumi.Input[str] prefix: A string to prefix the name with.
+        :param pulumi.Input[str] separator: The character to separate words in the pet name.
+        """
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+        if length is not None:
+            pulumi.set(__self__, "length", length)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if separator is not None:
+            pulumi.set(__self__, "separator", separator)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
+
+    @property
+    @pulumi.getter
+    def length(self) -> Optional[pulumi.Input[int]]:
+        """
+        The length (in words) of the pet name.
+        """
+        return pulumi.get(self, "length")
+
+    @length.setter
+    def length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "length", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string to prefix the name with.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def separator(self) -> Optional[pulumi.Input[str]]:
+        """
+        The character to separate words in the pet name.
+        """
+        return pulumi.get(self, "separator")
+
+    @separator.setter
+    def separator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "separator", value)
+>>>>>>> 287f5cf (Upgrade to Pulumi v3.0.0-beta.2)
 
 
 class RandomPet(pulumi.CustomResource):
@@ -214,12 +297,12 @@ class RandomPet(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RandomPetArgs.__new__(RandomPetArgs)
 
-            __props__['keepers'] = keepers
-            __props__['length'] = length
-            __props__['prefix'] = prefix
-            __props__['separator'] = separator
+            __props__.__dict__["keepers"] = keepers
+            __props__.__dict__["length"] = length
+            __props__.__dict__["prefix"] = prefix
+            __props__.__dict__["separator"] = separator
         super(RandomPet, __self__).__init__(
             'random:index/randomPet:RandomPet',
             resource_name,
@@ -250,12 +333,12 @@ class RandomPet(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RandomPetState.__new__(_RandomPetState)
 
-        __props__["keepers"] = keepers
-        __props__["length"] = length
-        __props__["prefix"] = prefix
-        __props__["separator"] = separator
+        __props__.__dict__["keepers"] = keepers
+        __props__.__dict__["length"] = length
+        __props__.__dict__["prefix"] = prefix
+        __props__.__dict__["separator"] = separator
         return RandomPet(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -291,10 +374,4 @@ class RandomPet(pulumi.CustomResource):
         The character to separate words in the pet name.
         """
         return pulumi.get(self, "separator")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
