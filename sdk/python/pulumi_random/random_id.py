@@ -5,13 +5,78 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['RandomId']
+__all__ = ['RandomIdArgs', 'RandomId']
+
+@pulumi.input_type
+class RandomIdArgs:
+    def __init__(__self__, *,
+                 byte_length: pulumi.Input[int],
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a RandomId resource.
+        :param pulumi.Input[int] byte_length: The number of random bytes to produce. The
+               minimum value is 1, which produces eight bits of randomness.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
+               string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+               base64 encoded.
+        """
+        pulumi.set(__self__, "byte_length", byte_length)
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter(name="byteLength")
+    def byte_length(self) -> pulumi.Input[int]:
+        """
+        The number of random bytes to produce. The
+        minimum value is 1, which produces eight bits of randomness.
+        """
+        return pulumi.get(self, "byte_length")
+
+    @byte_length.setter
+    def byte_length(self, value: pulumi.Input[int]):
+        pulumi.set(self, "byte_length", value)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary string to prefix the output value with. This
+        string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+        base64 encoded.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
 
 
 class RandomId(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -82,6 +147,83 @@ class RandomId(pulumi.CustomResource):
                string is supplied as-is, meaning it is not guaranteed to be URL-safe or
                base64 encoded.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: RandomIdArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The resource `RandomId` generates random numbers that are intended to be
+        used as unique identifiers for other resources.
+
+        This resource *does* use a cryptographic random number generator in order
+        to minimize the chance of collisions, making the results of this resource
+        when a 16-byte identifier is requested of equivalent uniqueness to a
+        type-4 UUID.
+
+        This resource can be used in conjunction with resources that have
+        the `create_before_destroy` lifecycle flag set to avoid conflicts with
+        unique names during the brief period where both the old and new resources
+        exist concurrently.
+
+        ## Example Usage
+
+        The following example shows how to generate a unique name for an AWS EC2
+        instance that changes each time a new AMI id is selected.
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        server_random_id = random.RandomId("serverRandomId",
+            byte_length=8,
+            keepers={
+                "ami_id": var["ami_id"],
+            })
+        server_instance = aws.ec2.Instance("serverInstance",
+            ami=server_random_id.keepers["amiId"],
+            tags={
+                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
+            })
+        ```
+
+        ## Import
+
+        Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
+
+        ```sh
+         $ pulumi import random:index/randomId:RandomId server p-9hUg
+        ```
+
+         Example with prefix (prefix is separated by a `,`)
+
+        ```sh
+         $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param RandomIdArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(RandomIdArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 byte_length: Optional[pulumi.Input[int]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

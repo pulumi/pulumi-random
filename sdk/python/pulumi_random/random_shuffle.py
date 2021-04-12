@@ -5,13 +5,100 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['RandomShuffle']
+__all__ = ['RandomShuffleArgs', 'RandomShuffle']
+
+@pulumi.input_type
+class RandomShuffleArgs:
+    def __init__(__self__, *,
+                 inputs: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 result_count: Optional[pulumi.Input[int]] = None,
+                 seed: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a RandomShuffle resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
+               the number of items in the `input` list. If fewer items are requested,
+               some elements will be excluded from the result. If more items are requested,
+               items will be repeated in the result but not more frequently than the number
+               of items in the input list.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+               list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+               different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+        """
+        pulumi.set(__self__, "inputs", inputs)
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+        if result_count is not None:
+            pulumi.set(__self__, "result_count", result_count)
+        if seed is not None:
+            pulumi.set(__self__, "seed", seed)
+
+    @property
+    @pulumi.getter
+    def inputs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The list of strings to shuffle.
+        """
+        return pulumi.get(self, "inputs")
+
+    @inputs.setter
+    def inputs(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "inputs", value)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
+
+    @property
+    @pulumi.getter(name="resultCount")
+    def result_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of results to return. Defaults to
+        the number of items in the `input` list. If fewer items are requested,
+        some elements will be excluded from the result. If more items are requested,
+        items will be repeated in the result but not more frequently than the number
+        of items in the input list.
+        """
+        return pulumi.get(self, "result_count")
+
+    @result_count.setter
+    def result_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "result_count", value)
+
+    @property
+    @pulumi.getter
+    def seed(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+        list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+        different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+        """
+        return pulumi.get(self, "seed")
+
+    @seed.setter
+    def seed(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "seed", value)
 
 
 class RandomShuffle(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -59,6 +146,56 @@ class RandomShuffle(pulumi.CustomResource):
                list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
                different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: RandomShuffleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The resource `RandomShuffle` generates a random permutation of a list
+        of strings given as an argument.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        az = random.RandomShuffle("az",
+            inputs=[
+                "us-west-1a",
+                "us-west-1c",
+                "us-west-1d",
+                "us-west-1e",
+            ],
+            result_count=2)
+        example = aws.elb.LoadBalancer("example", availability_zones=az.results)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param RandomShuffleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(RandomShuffleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 inputs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 result_count: Optional[pulumi.Input[int]] = None,
+                 seed: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

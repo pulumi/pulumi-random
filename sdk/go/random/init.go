@@ -21,23 +21,24 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "random:index/randomId:RandomId":
-		r, err = NewRandomId(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomId{}
 	case "random:index/randomInteger:RandomInteger":
-		r, err = NewRandomInteger(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomInteger{}
 	case "random:index/randomPassword:RandomPassword":
-		r, err = NewRandomPassword(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomPassword{}
 	case "random:index/randomPet:RandomPet":
-		r, err = NewRandomPet(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomPet{}
 	case "random:index/randomShuffle:RandomShuffle":
-		r, err = NewRandomShuffle(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomShuffle{}
 	case "random:index/randomString:RandomString":
-		r, err = NewRandomString(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomString{}
 	case "random:index/randomUuid:RandomUuid":
-		r, err = NewRandomUuid(ctx, name, nil, pulumi.URN_(urn))
+		r = &RandomUuid{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -54,7 +55,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {
