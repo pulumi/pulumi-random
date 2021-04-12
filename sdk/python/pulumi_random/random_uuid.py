@@ -5,13 +5,41 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['RandomUuid']
+__all__ = ['RandomUuidArgs', 'RandomUuid']
+
+@pulumi.input_type
+class RandomUuidArgs:
+    def __init__(__self__, *,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        The set of arguments for constructing a RandomUuid resource.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new uuid to be generated. See
+               the main provider documentation for more information.
+        """
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new uuid to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
 
 
 class RandomUuid(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -53,6 +81,59 @@ class RandomUuid(pulumi.CustomResource):
                trigger a new uuid to be generated. See
                the main provider documentation for more information.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[RandomUuidArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The resource `RandomUuid` generates random uuid string that is intended to be
+        used as unique identifiers for other resources.
+
+        This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
+        for use with services needed a unique string identifier.
+
+        ## Example Usage
+
+        The following example shows how to generate a unique name for an Azure Resource Group.
+
+        ```python
+        import pulumi
+        import pulumi_azure as azure
+        import pulumi_random as random
+
+        test_random_uuid = random.RandomUuid("testRandomUuid")
+        test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
+        ```
+
+        ## Import
+
+        Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
+
+        ```sh
+         $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param RandomUuidArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(RandomUuidArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
