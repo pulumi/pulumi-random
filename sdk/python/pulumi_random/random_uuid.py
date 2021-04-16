@@ -6,11 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-<<<<<<< HEAD
-from . import _utilities, _tables
-=======
 from . import _utilities
->>>>>>> 287f5cf (Upgrade to Pulumi v3.0.0-beta.2)
 
 __all__ = ['RandomUuidArgs', 'RandomUuid']
 
@@ -40,8 +36,6 @@ class RandomUuidArgs:
     @keepers.setter
     def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "keepers", value)
-<<<<<<< HEAD
-=======
 
 
 @pulumi.input_type
@@ -86,7 +80,6 @@ class _RandomUuidState:
     @result.setter
     def result(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "result", value)
->>>>>>> 287f5cf (Upgrade to Pulumi v3.0.0-beta.2)
 
 
 class RandomUuid(pulumi.CustomResource):
@@ -95,9 +88,7 @@ class RandomUuid(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         The resource `RandomUuid` generates random uuid string that is intended to be
         used as unique identifiers for other resources.
@@ -182,15 +173,7 @@ class RandomUuid(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
