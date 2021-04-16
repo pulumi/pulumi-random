@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['RandomUuidArgs', 'RandomUuid']
 
@@ -38,15 +38,57 @@ class RandomUuidArgs:
         pulumi.set(self, "keepers", value)
 
 
+@pulumi.input_type
+class _RandomUuidState:
+    def __init__(__self__, *,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 result: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering RandomUuid resources.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new uuid to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[str] result: The generated uuid presented in string format.
+        """
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+        if result is not None:
+            pulumi.set(__self__, "result", result)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new uuid to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
+
+    @property
+    @pulumi.getter
+    def result(self) -> Optional[pulumi.Input[str]]:
+        """
+        The generated uuid presented in string format.
+        """
+        return pulumi.get(self, "result")
+
+    @result.setter
+    def result(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "result", value)
+
+
 class RandomUuid(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         The resource `RandomUuid` generates random uuid string that is intended to be
         used as unique identifiers for other resources.
@@ -131,15 +173,7 @@ class RandomUuid(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -149,10 +183,10 @@ class RandomUuid(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RandomUuidArgs.__new__(RandomUuidArgs)
 
-            __props__['keepers'] = keepers
-            __props__['result'] = None
+            __props__.__dict__["keepers"] = keepers
+            __props__.__dict__["result"] = None
         super(RandomUuid, __self__).__init__(
             'random:index/randomUuid:RandomUuid',
             resource_name,
@@ -179,10 +213,10 @@ class RandomUuid(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RandomUuidState.__new__(_RandomUuidState)
 
-        __props__["keepers"] = keepers
-        __props__["result"] = result
+        __props__.__dict__["keepers"] = keepers
+        __props__.__dict__["result"] = result
         return RandomUuid(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -202,10 +236,4 @@ class RandomUuid(pulumi.CustomResource):
         The generated uuid presented in string format.
         """
         return pulumi.get(self, "result")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

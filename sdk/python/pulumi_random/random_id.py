@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['RandomIdArgs', 'RandomId']
 
@@ -75,6 +75,136 @@ class RandomIdArgs:
         pulumi.set(self, "prefix", value)
 
 
+@pulumi.input_type
+class _RandomIdState:
+    def __init__(__self__, *,
+                 b64_std: Optional[pulumi.Input[str]] = None,
+                 b64_url: Optional[pulumi.Input[str]] = None,
+                 byte_length: Optional[pulumi.Input[int]] = None,
+                 dec: Optional[pulumi.Input[str]] = None,
+                 hex: Optional[pulumi.Input[str]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering RandomId resources.
+        :param pulumi.Input[str] b64_std: The generated id presented in base64 without additional transformations.
+        :param pulumi.Input[str] b64_url: The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+        :param pulumi.Input[int] byte_length: The number of random bytes to produce. The
+               minimum value is 1, which produces eight bits of randomness.
+        :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
+        :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This
+               string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+               base64 encoded.
+        """
+        if b64_std is not None:
+            pulumi.set(__self__, "b64_std", b64_std)
+        if b64_url is not None:
+            pulumi.set(__self__, "b64_url", b64_url)
+        if byte_length is not None:
+            pulumi.set(__self__, "byte_length", byte_length)
+        if dec is not None:
+            pulumi.set(__self__, "dec", dec)
+        if hex is not None:
+            pulumi.set(__self__, "hex", hex)
+        if keepers is not None:
+            pulumi.set(__self__, "keepers", keepers)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter(name="b64Std")
+    def b64_std(self) -> Optional[pulumi.Input[str]]:
+        """
+        The generated id presented in base64 without additional transformations.
+        """
+        return pulumi.get(self, "b64_std")
+
+    @b64_std.setter
+    def b64_std(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "b64_std", value)
+
+    @property
+    @pulumi.getter(name="b64Url")
+    def b64_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+        """
+        return pulumi.get(self, "b64_url")
+
+    @b64_url.setter
+    def b64_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "b64_url", value)
+
+    @property
+    @pulumi.getter(name="byteLength")
+    def byte_length(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of random bytes to produce. The
+        minimum value is 1, which produces eight bits of randomness.
+        """
+        return pulumi.get(self, "byte_length")
+
+    @byte_length.setter
+    def byte_length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "byte_length", value)
+
+    @property
+    @pulumi.getter
+    def dec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The generated id presented in non-padded decimal digits.
+        """
+        return pulumi.get(self, "dec")
+
+    @dec.setter
+    def dec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dec", value)
+
+    @property
+    @pulumi.getter
+    def hex(self) -> Optional[pulumi.Input[str]]:
+        """
+        The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+        """
+        return pulumi.get(self, "hex")
+
+    @hex.setter
+    def hex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hex", value)
+
+    @property
+    @pulumi.getter
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
+        """
+        return pulumi.get(self, "keepers")
+
+    @keepers.setter
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "keepers", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary string to prefix the output value with. This
+        string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+        base64 encoded.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+
 class RandomId(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -83,9 +213,7 @@ class RandomId(pulumi.CustomResource):
                  byte_length: Optional[pulumi.Input[int]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         The resource `RandomId` generates random numbers that are intended to be
         used as unique identifiers for other resources.
@@ -221,15 +349,7 @@ class RandomId(pulumi.CustomResource):
                  byte_length: Optional[pulumi.Input[int]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -239,17 +359,17 @@ class RandomId(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RandomIdArgs.__new__(RandomIdArgs)
 
             if byte_length is None and not opts.urn:
                 raise TypeError("Missing required property 'byte_length'")
-            __props__['byte_length'] = byte_length
-            __props__['keepers'] = keepers
-            __props__['prefix'] = prefix
-            __props__['b64_std'] = None
-            __props__['b64_url'] = None
-            __props__['dec'] = None
-            __props__['hex'] = None
+            __props__.__dict__["byte_length"] = byte_length
+            __props__.__dict__["keepers"] = keepers
+            __props__.__dict__["prefix"] = prefix
+            __props__.__dict__["b64_std"] = None
+            __props__.__dict__["b64_url"] = None
+            __props__.__dict__["dec"] = None
+            __props__.__dict__["hex"] = None
         super(RandomId, __self__).__init__(
             'random:index/randomId:RandomId',
             resource_name,
@@ -289,15 +409,15 @@ class RandomId(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RandomIdState.__new__(_RandomIdState)
 
-        __props__["b64_std"] = b64_std
-        __props__["b64_url"] = b64_url
-        __props__["byte_length"] = byte_length
-        __props__["dec"] = dec
-        __props__["hex"] = hex
-        __props__["keepers"] = keepers
-        __props__["prefix"] = prefix
+        __props__.__dict__["b64_std"] = b64_std
+        __props__.__dict__["b64_url"] = b64_url
+        __props__.__dict__["byte_length"] = byte_length
+        __props__.__dict__["dec"] = dec
+        __props__.__dict__["hex"] = hex
+        __props__.__dict__["keepers"] = keepers
+        __props__.__dict__["prefix"] = prefix
         return RandomId(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -360,10 +480,4 @@ class RandomId(pulumi.CustomResource):
         base64 encoded.
         """
         return pulumi.get(self, "prefix")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
