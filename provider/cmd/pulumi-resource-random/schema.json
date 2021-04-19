@@ -765,7 +765,7 @@
                 "random": "Random"
             },
             "packageReferences": {
-                "Pulumi": "3.*-*",
+                "Pulumi": "3.*",
                 "System.Collections.Immutable": "1.6.0"
             }
         },
@@ -776,10 +776,10 @@
         "nodejs": {
             "compatibility": "tfbridge20",
             "dependencies": {
-                "@pulumi/pulumi": "^3.0.0-rc.1"
+                "@pulumi/pulumi": "^3.0.0"
             },
             "devDependencies": {
-                "@types/node": "^8.0.0"
+                "@types/node": "^10.0.0"
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package to safely use randomness in Pulumi programs.",
@@ -791,7 +791,7 @@
             "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-random)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-random` repo](https://github.com/pulumi/pulumi-random/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-random` repo](https://github.com/terraform-providers/terraform-provider-random/issues).",
             "requires": {
-                "pulumi": "\u003e=3.0.0rc1,\u003c4.0.0"
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }

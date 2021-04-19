@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Depend on Pulumi 3.0, which includes improvements to Python resource arguments and key translation, Go SDK performance,
-  Node SDK performance, general availability of Automation API, and more.
+_(none)_
 
 ---
+
+## 4.0.0 (2021-04-19)
+* Depend on Pulumi 3.0, which includes improvements to Python resource arguments and key translation, Go SDK performance,
+  Node SDK performance, general availability of Automation API, and more.
 
 ## 3.2.0 (2021-04-12)
 * Upgrade to pulumi-terraform-bridge v2.23.0
