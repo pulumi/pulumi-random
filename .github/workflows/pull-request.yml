@@ -196,6 +196,10 @@ jobs:
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
         repo: pulumi/pulumictl
+    - name: Install Schema Tools
+      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      with:
+        repo: mikhailshilkov/schema-tools
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
       with:
@@ -203,6 +207,14 @@ jobs:
     - run: pulumi version
     - name: Build tfgen & provider binaries
       run: make provider
+    - name: Check Schema is Valid
+      id: schema-check
+      run: echo '::set-output name=details::$(schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json)'
+    - name: Comment on PR with Details of Schema Check
+      uses: thollander/actions-comment-pull-request@1.0.1
+      with:
+        message: ${{ steps.schema-check.outputs.details }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
         }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
