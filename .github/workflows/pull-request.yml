@@ -208,12 +208,14 @@ jobs:
     - name: Build tfgen & provider binaries
       run: make provider
     - name: Check Schema is Valid
-      id: schema-check
-      run: echo "::set-output name=details::$(schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json)"
+      run: |
+        echo 'SCHEMA_CHANGES<<EOF' >> $GITHUB_ENV
+        schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
     - name: Comment on PR with Details of Schema Check
       uses: thollander/actions-comment-pull-request@1.0.1
       with:
-        message: ${{ steps.schema-check.outputs.details }}
+        message: ${{ env.SCHEMA_CHANGES }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
