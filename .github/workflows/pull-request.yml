@@ -209,7 +209,7 @@ jobs:
       run: make provider
     - name: Check Schema is Valid
       id: schema-check
-      run: echo '::set-output name=details::$(schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json)'
+      run: echo "::set-output name=details::$(schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json)"
     - name: Comment on PR with Details of Schema Check
       uses: thollander/actions-comment-pull-request@1.0.1
       with:
