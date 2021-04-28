@@ -66,7 +66,7 @@ func Provider() tfbridge.ProviderInfo {
 			"random_shuffle":  {Tok: randomResource(randomMod, "RandomShuffle")},
 			"random_string":   {Tok: randomResource(randomMod, "RandomString")},
 			"random_integer":  {Tok: randomResource(randomMod, "RandomInteger")},
-			"random_uuid":     {Tok: randomResource(randomMod, "RandomUuid")},
+			//"random_uuid":     {Tok: randomResource(randomMod, "RandomUuid")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
