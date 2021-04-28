@@ -215,7 +215,10 @@ jobs:
     - name: Comment on PR with Details of Schema Check
       uses: thollander/actions-comment-pull-request@1.0.1
       with:
-        message: ${{ env.SCHEMA_CHANGES }}
+        message: |
+          ### Does the PR have any schema changes?
+
+          ${{ env.SCHEMA_CHANGES }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
