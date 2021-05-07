@@ -10,14 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// &gt; **Note:** Requires random provider version &gt;= 2.2.0
-    /// 
-    /// Identical to random.RandomString with the exception that the
-    /// result is treated as sensitive and, thus, _not_ displayed in console output.
-    /// 
-    /// &gt; **Note:** All attributes including the generated password will be stored in
-    /// the raw state as plain-text. [Read more about sensitive data in
-    /// state](https://www.terraform.io/docs/state/sensitive-data.html).
+    /// Identical to random.RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.
     /// 
     /// This resource *does* use a cryptographic random number generator.
     /// 
@@ -53,7 +46,7 @@ namespace Pulumi.Random
     /// 
     /// ## Import
     /// 
-    /// Random Password can be imported by specifying the value of the string
+    /// # Random Password can be imported by specifying the value of the string
     /// 
     /// ```sh
     ///  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
@@ -63,8 +56,13 @@ namespace Pulumi.Random
     public partial class RandomPassword : Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-        /// documentation](../index.html) for more information.
+        /// A static value used internally by the provider, this should not be referenced in configurations.
+        /// </summary>
+        [Output("id")]
+        public Output<string> Id { get; private set; } = null!;
+
+        /// <summary>
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -112,9 +110,7 @@ namespace Pulumi.Random
         public Output<bool?> Number { get; private set; } = null!;
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation. This overrides the default character list in
-        /// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-        /// generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Output("overrideSpecial")]
         public Output<string?> OverrideSpecial { get; private set; } = null!;
@@ -187,8 +183,7 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-        /// documentation](../index.html) for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -239,9 +234,7 @@ namespace Pulumi.Random
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation. This overrides the default character list in
-        /// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-        /// generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
@@ -265,12 +258,17 @@ namespace Pulumi.Random
 
     public sealed class RandomPasswordState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A static value used internally by the provider, this should not be referenced in configurations.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("keepers")]
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-        /// documentation](../index.html) for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -321,9 +319,7 @@ namespace Pulumi.Random
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation. This overrides the default character list in
-        /// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-        /// generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
