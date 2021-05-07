@@ -10,15 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random.RandomString` generates a random permutation of alphanumeric
-    /// characters and optionally special characters.
+    /// The resource `random.RandomString` generates a random permutation of alphanumeric characters and optionally special characters.
     /// 
     /// This resource *does* use a cryptographic random number generator.
     /// 
-    /// Historically this resource's intended usage has been ambiguous as the original example
-    /// used it in a password. For backwards compatibility it will
-    /// continue to exist. For unique ids please use random_id, for sensitive
-    /// random values please use random_password.
+    /// Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
     /// 
     /// ## Example Usage
     /// 
@@ -43,7 +39,7 @@ namespace Pulumi.Random
     /// 
     /// ## Import
     /// 
-    /// Strings can be imported by just specifying the value of the string
+    /// # Strings can be imported by just specifying the value of the string
     /// 
     /// ```sh
     ///  $ pulumi import random:index/randomString:RandomString test test
@@ -53,86 +49,79 @@ namespace Pulumi.Random
     public partial class RandomString : Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// The generated random string.
+        /// </summary>
+        [Output("id")]
+        public Output<string> Id { get; private set; } = null!;
+
+        /// <summary>
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length of the string desired
+        /// The length of the string desired.
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
 
         /// <summary>
-        /// (default true) Include lowercase alphabet characters
-        /// in random string.
+        /// Include lowercase alphabet characters in the result.
         /// </summary>
         [Output("lower")]
         public Output<bool?> Lower { get; private set; } = null!;
 
         /// <summary>
-        /// (default 0) Minimum number of lowercase alphabet
-        /// characters in random string.
+        /// Minimum number of lowercase alphabet characters in the result.
         /// </summary>
         [Output("minLower")]
         public Output<int?> MinLower { get; private set; } = null!;
 
         /// <summary>
-        /// (default 0) Minimum number of numeric characters
-        /// in random string.
+        /// Minimum number of numeric characters in the result.
         /// </summary>
         [Output("minNumeric")]
         public Output<int?> MinNumeric { get; private set; } = null!;
 
         /// <summary>
-        /// (default 0) Minimum number of special characters
-        /// in random string.
+        /// Minimum number of special characters in the result.
         /// </summary>
         [Output("minSpecial")]
         public Output<int?> MinSpecial { get; private set; } = null!;
 
         /// <summary>
-        /// (default 0) Minimum number of uppercase alphabet
-        /// characters in random string.
+        /// Minimum number of uppercase alphabet characters in the result.
         /// </summary>
         [Output("minUpper")]
         public Output<int?> MinUpper { get; private set; } = null!;
 
         /// <summary>
-        /// (default true) Include numeric characters in random
-        /// string.
+        /// Include numeric characters in the result.
         /// </summary>
         [Output("number")]
         public Output<bool?> Number { get; private set; } = null!;
 
         /// <summary>
-        /// Supply your own list of special characters to
-        /// use for string generation.  This overrides the default character list in the special
-        /// argument.  The special argument must still be set to true for any overwritten
-        /// characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Output("overrideSpecial")]
         public Output<string?> OverrideSpecial { get; private set; } = null!;
 
         /// <summary>
-        /// Random string generated.
+        /// The generated random string.
         /// </summary>
         [Output("result")]
         public Output<string> Result { get; private set; } = null!;
 
         /// <summary>
-        /// (default true) Include special characters in random
-        /// string. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
         /// </summary>
         [Output("special")]
         public Output<bool?> Special { get; private set; } = null!;
 
         /// <summary>
-        /// (default true) Include uppercase alphabet characters
-        /// in random string.
+        /// Include uppercase alphabet characters in the result.
         /// </summary>
         [Output("upper")]
         public Output<bool?> Upper { get; private set; } = null!;
@@ -187,9 +176,7 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -198,72 +185,61 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired
+        /// The length of the string desired.
         /// </summary>
         [Input("length", required: true)]
         public Input<int> Length { get; set; } = null!;
 
         /// <summary>
-        /// (default true) Include lowercase alphabet characters
-        /// in random string.
+        /// Include lowercase alphabet characters in the result.
         /// </summary>
         [Input("lower")]
         public Input<bool>? Lower { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of lowercase alphabet
-        /// characters in random string.
+        /// Minimum number of lowercase alphabet characters in the result.
         /// </summary>
         [Input("minLower")]
         public Input<int>? MinLower { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of numeric characters
-        /// in random string.
+        /// Minimum number of numeric characters in the result.
         /// </summary>
         [Input("minNumeric")]
         public Input<int>? MinNumeric { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of special characters
-        /// in random string.
+        /// Minimum number of special characters in the result.
         /// </summary>
         [Input("minSpecial")]
         public Input<int>? MinSpecial { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of uppercase alphabet
-        /// characters in random string.
+        /// Minimum number of uppercase alphabet characters in the result.
         /// </summary>
         [Input("minUpper")]
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// (default true) Include numeric characters in random
-        /// string.
+        /// Include numeric characters in the result.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to
-        /// use for string generation.  This overrides the default character list in the special
-        /// argument.  The special argument must still be set to true for any overwritten
-        /// characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
 
         /// <summary>
-        /// (default true) Include special characters in random
-        /// string. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
 
         /// <summary>
-        /// (default true) Include uppercase alphabet characters
-        /// in random string.
+        /// Include uppercase alphabet characters in the result.
         /// </summary>
         [Input("upper")]
         public Input<bool>? Upper { get; set; }
@@ -275,13 +251,17 @@ namespace Pulumi.Random
 
     public sealed class RandomStringState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The generated random string.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("keepers")]
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -290,78 +270,67 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired
+        /// The length of the string desired.
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
 
         /// <summary>
-        /// (default true) Include lowercase alphabet characters
-        /// in random string.
+        /// Include lowercase alphabet characters in the result.
         /// </summary>
         [Input("lower")]
         public Input<bool>? Lower { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of lowercase alphabet
-        /// characters in random string.
+        /// Minimum number of lowercase alphabet characters in the result.
         /// </summary>
         [Input("minLower")]
         public Input<int>? MinLower { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of numeric characters
-        /// in random string.
+        /// Minimum number of numeric characters in the result.
         /// </summary>
         [Input("minNumeric")]
         public Input<int>? MinNumeric { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of special characters
-        /// in random string.
+        /// Minimum number of special characters in the result.
         /// </summary>
         [Input("minSpecial")]
         public Input<int>? MinSpecial { get; set; }
 
         /// <summary>
-        /// (default 0) Minimum number of uppercase alphabet
-        /// characters in random string.
+        /// Minimum number of uppercase alphabet characters in the result.
         /// </summary>
         [Input("minUpper")]
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// (default true) Include numeric characters in random
-        /// string.
+        /// Include numeric characters in the result.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to
-        /// use for string generation.  This overrides the default character list in the special
-        /// argument.  The special argument must still be set to true for any overwritten
-        /// characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
 
         /// <summary>
-        /// Random string generated.
+        /// The generated random string.
         /// </summary>
         [Input("result")]
         public Input<string>? Result { get; set; }
 
         /// <summary>
-        /// (default true) Include special characters in random
-        /// string. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
 
         /// <summary>
-        /// (default true) Include uppercase alphabet characters
-        /// in random string.
+        /// Include uppercase alphabet characters in the result.
         /// </summary>
         [Input("upper")]
         public Input<bool>? Upper { get; set; }

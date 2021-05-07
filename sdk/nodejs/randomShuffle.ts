@@ -5,8 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random.RandomShuffle` generates a random permutation of a list
- * of strings given as an argument.
+ * The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.
  *
  * ## Example Usage
  *
@@ -60,21 +59,19 @@ export class RandomShuffle extends pulumi.CustomResource {
     }
 
     /**
+     * A static value used internally by Terraform, this should not be referenced in configurations.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
      * The list of strings to shuffle.
      */
     public readonly inputs!: pulumi.Output<string[]>;
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The number of results to return. Defaults to
-     * the number of items in the `input` list. If fewer items are requested,
-     * some elements will be excluded from the result. If more items are requested,
-     * items will be repeated in the result but not more frequently than the number
-     * of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      */
     public readonly resultCount!: pulumi.Output<number | undefined>;
     /**
@@ -82,9 +79,7 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public /*out*/ readonly results!: pulumi.Output<string[]>;
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      */
     public readonly seed!: pulumi.Output<string | undefined>;
 
@@ -101,6 +96,7 @@ export class RandomShuffle extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomShuffleState | undefined;
+            inputs["id"] = state ? state.id : undefined;
             inputs["inputs"] = state ? state.inputs : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["resultCount"] = state ? state.resultCount : undefined;
@@ -115,6 +111,7 @@ export class RandomShuffle extends pulumi.CustomResource {
             inputs["keepers"] = args ? args.keepers : undefined;
             inputs["resultCount"] = args ? args.resultCount : undefined;
             inputs["seed"] = args ? args.seed : undefined;
+            inputs["id"] = undefined /*out*/;
             inputs["results"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -129,21 +126,19 @@ export class RandomShuffle extends pulumi.CustomResource {
  */
 export interface RandomShuffleState {
     /**
+     * A static value used internally by Terraform, this should not be referenced in configurations.
+     */
+    readonly id?: pulumi.Input<string>;
+    /**
      * The list of strings to shuffle.
      */
     readonly inputs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The number of results to return. Defaults to
-     * the number of items in the `input` list. If fewer items are requested,
-     * some elements will be excluded from the result. If more items are requested,
-     * items will be repeated in the result but not more frequently than the number
-     * of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      */
     readonly resultCount?: pulumi.Input<number>;
     /**
@@ -151,9 +146,7 @@ export interface RandomShuffleState {
      */
     readonly results?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      */
     readonly seed?: pulumi.Input<string>;
 }
@@ -167,23 +160,15 @@ export interface RandomShuffleArgs {
      */
     readonly inputs: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The number of results to return. Defaults to
-     * the number of items in the `input` list. If fewer items are requested,
-     * some elements will be excluded from the result. If more items are requested,
-     * items will be repeated in the result but not more frequently than the number
-     * of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      */
     readonly resultCount?: pulumi.Input<number>;
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      */
     readonly seed?: pulumi.Input<string>;
 }

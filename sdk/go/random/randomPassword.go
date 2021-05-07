@@ -11,14 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// > **Note:** Requires random provider version >= 2.2.0
-//
-// Identical to RandomString with the exception that the
-// result is treated as sensitive and, thus, _not_ displayed in console output.
-//
-// > **Note:** All attributes including the generated password will be stored in
-// the raw state as plain-text. [Read more about sensitive data in
-// state](https://www.terraform.io/docs/state/sensitive-data.html).
+// Identical to RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.
 //
 // This resource *does* use a cryptographic random number generator.
 //
@@ -30,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/rds"
+// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/rds"
 // 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -62,7 +55,7 @@ import (
 //
 // ## Import
 //
-// Random Password can be imported by specifying the value of the string
+// # Random Password can be imported by specifying the value of the string
 //
 // ```sh
 //  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
@@ -70,8 +63,9 @@ import (
 type RandomPassword struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// A static value used internally by the provider, this should not be referenced in configurations.
+	Id pulumi.StringOutput `pulumi:"id"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The length of the string desired.
 	Length pulumi.IntOutput `pulumi:"length"`
@@ -87,9 +81,7 @@ type RandomPassword struct {
 	MinUpper pulumi.IntPtrOutput `pulumi:"minUpper"`
 	// Include numeric characters in the result.
 	Number pulumi.BoolPtrOutput `pulumi:"number"`
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result pulumi.StringOutput `pulumi:"result"`
@@ -131,8 +123,9 @@ func GetRandomPassword(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type randomPasswordState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// A static value used internally by the provider, this should not be referenced in configurations.
+	Id *string `pulumi:"id"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length of the string desired.
 	Length *int `pulumi:"length"`
@@ -148,9 +141,7 @@ type randomPasswordState struct {
 	MinUpper *int `pulumi:"minUpper"`
 	// Include numeric characters in the result.
 	Number *bool `pulumi:"number"`
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result *string `pulumi:"result"`
@@ -161,8 +152,9 @@ type randomPasswordState struct {
 }
 
 type RandomPasswordState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// A static value used internally by the provider, this should not be referenced in configurations.
+	Id pulumi.StringPtrInput
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length of the string desired.
 	Length pulumi.IntPtrInput
@@ -178,9 +170,7 @@ type RandomPasswordState struct {
 	MinUpper pulumi.IntPtrInput
 	// Include numeric characters in the result.
 	Number pulumi.BoolPtrInput
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
 	// The generated random string.
 	Result pulumi.StringPtrInput
@@ -195,8 +185,7 @@ func (RandomPasswordState) ElementType() reflect.Type {
 }
 
 type randomPasswordArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length of the string desired.
 	Length int `pulumi:"length"`
@@ -212,9 +201,7 @@ type randomPasswordArgs struct {
 	MinUpper *int `pulumi:"minUpper"`
 	// Include numeric characters in the result.
 	Number *bool `pulumi:"number"`
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
 	Special *bool `pulumi:"special"`
@@ -224,8 +211,7 @@ type randomPasswordArgs struct {
 
 // The set of arguments for constructing a RandomPassword resource.
 type RandomPasswordArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length of the string desired.
 	Length pulumi.IntInput
@@ -241,9 +227,7 @@ type RandomPasswordArgs struct {
 	MinUpper pulumi.IntPtrInput
 	// Include numeric characters in the result.
 	Number pulumi.BoolPtrInput
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
 	Special pulumi.BoolPtrInput

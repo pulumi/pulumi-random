@@ -20,38 +20,37 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * The following example shows how to generate a unique name for an AWS EC2
- * instance that changes each time a new AMI id is selected.
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  *
- * const serverRandomId = new random.RandomId("server", {
- *     byteLength: 8,
+ * // The following example shows how to generate a unique name for an AWS EC2
+ * // instance that changes each time a new AMI id is selected.
+ * const serverRandomId = new random.RandomId("serverRandomId", {
  *     keepers: {
- *         // Generate a new id each time we switch to a new AMI id
- *         ami_id: var_ami_id,
+ *         ami_id: _var.ami_id,
  *     },
+ *     byteLength: 8,
  * });
- * const serverInstance = new aws.ec2.Instance("server", {
- *     ami: serverRandomId.keepers.apply(keepers => keepers.amiId),
+ * const serverInstance = new aws.ec2.Instance("serverInstance", {
  *     tags: {
  *         Name: pulumi.interpolate`web-server ${serverRandomId.hex}`,
  *     },
+ *     ami: serverRandomId.keepers.amiId,
  * });
+ * // ... (other aws_instance arguments) ...
  * ```
  *
  * ## Import
  *
- * Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
+ * # Random IDs can be imported using the b64_url with an optional prefix. This # can be used to replace a config value with a value interpolated from the # random provider without experiencing diffs. # Example with no prefix
  *
  * ```sh
  *  $ pulumi import random:index/randomId:RandomId server p-9hUg
  * ```
  *
- *  Example with prefix (prefix is separated by a `,`)
+ * # Example with prefix (prefix is separated by a ,)
  *
  * ```sh
  *  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
@@ -94,8 +93,7 @@ export class RandomId extends pulumi.CustomResource {
      */
     public /*out*/ readonly b64Url!: pulumi.Output<string>;
     /**
-     * The number of random bytes to produce. The
-     * minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
      */
     public readonly byteLength!: pulumi.Output<number>;
     /**
@@ -107,15 +105,15 @@ export class RandomId extends pulumi.CustomResource {
      */
     public /*out*/ readonly hex!: pulumi.Output<string>;
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * The generated id presented in base64 without additional transformations or prefix.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * Arbitrary string to prefix the output value with. This
-     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
-     * base64 encoded.
+     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      */
     public readonly prefix!: pulumi.Output<string | undefined>;
 
@@ -137,6 +135,7 @@ export class RandomId extends pulumi.CustomResource {
             inputs["byteLength"] = state ? state.byteLength : undefined;
             inputs["dec"] = state ? state.dec : undefined;
             inputs["hex"] = state ? state.hex : undefined;
+            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["prefix"] = state ? state.prefix : undefined;
         } else {
@@ -151,6 +150,7 @@ export class RandomId extends pulumi.CustomResource {
             inputs["b64Url"] = undefined /*out*/;
             inputs["dec"] = undefined /*out*/;
             inputs["hex"] = undefined /*out*/;
+            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -172,8 +172,7 @@ export interface RandomIdState {
      */
     readonly b64Url?: pulumi.Input<string>;
     /**
-     * The number of random bytes to produce. The
-     * minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
      */
     readonly byteLength?: pulumi.Input<number>;
     /**
@@ -185,15 +184,15 @@ export interface RandomIdState {
      */
     readonly hex?: pulumi.Input<string>;
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * The generated id presented in base64 without additional transformations or prefix.
+     */
+    readonly id?: pulumi.Input<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Arbitrary string to prefix the output value with. This
-     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
-     * base64 encoded.
+     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      */
     readonly prefix?: pulumi.Input<string>;
 }
@@ -203,20 +202,15 @@ export interface RandomIdState {
  */
 export interface RandomIdArgs {
     /**
-     * The number of random bytes to produce. The
-     * minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
      */
     readonly byteLength: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     readonly keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Arbitrary string to prefix the output value with. This
-     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
-     * base64 encoded.
+     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      */
     readonly prefix?: pulumi.Input<string>;
 }
