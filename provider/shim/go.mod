@@ -7,4 +7,4 @@ require (
 	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20210112153945-304bbf724bde
 )
 
-replace github.com/terraform-providers/terraform-provider-random => github.com/pulumi/terraform-provider-random v1.3.2-0.20210507121008-090cf85be344
+replace github.com/terraform-providers/terraform-provider-random => github.com/pulumi/terraform-provider-random v1.3.2-0.20210512110019-3feaba7fd924

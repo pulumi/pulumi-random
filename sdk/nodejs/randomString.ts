@@ -61,10 +61,6 @@ export class RandomString extends pulumi.CustomResource {
     }
 
     /**
-     * The generated random string.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -126,7 +122,6 @@ export class RandomString extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomStringState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
             inputs["lower"] = state ? state.lower : undefined;
@@ -155,7 +150,6 @@ export class RandomString extends pulumi.CustomResource {
             inputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
             inputs["special"] = args ? args.special : undefined;
             inputs["upper"] = args ? args.upper : undefined;
-            inputs["id"] = undefined /*out*/;
             inputs["result"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -169,10 +163,6 @@ export class RandomString extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomString resources.
  */
 export interface RandomStringState {
-    /**
-     * The generated random string.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */

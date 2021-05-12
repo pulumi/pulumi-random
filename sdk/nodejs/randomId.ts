@@ -105,10 +105,6 @@ export class RandomId extends pulumi.CustomResource {
      */
     public /*out*/ readonly hex!: pulumi.Output<string>;
     /**
-     * The generated id presented in base64 without additional transformations or prefix.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -135,7 +131,6 @@ export class RandomId extends pulumi.CustomResource {
             inputs["byteLength"] = state ? state.byteLength : undefined;
             inputs["dec"] = state ? state.dec : undefined;
             inputs["hex"] = state ? state.hex : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["prefix"] = state ? state.prefix : undefined;
         } else {
@@ -150,7 +145,6 @@ export class RandomId extends pulumi.CustomResource {
             inputs["b64Url"] = undefined /*out*/;
             inputs["dec"] = undefined /*out*/;
             inputs["hex"] = undefined /*out*/;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -183,10 +177,6 @@ export interface RandomIdState {
      * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      */
     readonly hex?: pulumi.Input<string>;
-    /**
-     * The generated id presented in base64 without additional transformations or prefix.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */

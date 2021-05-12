@@ -196,7 +196,6 @@ class RandomStringArgs:
 @pulumi.input_type
 class _RandomStringState:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  length: Optional[pulumi.Input[int]] = None,
                  lower: Optional[pulumi.Input[bool]] = None,
@@ -211,7 +210,6 @@ class _RandomStringState:
                  upper: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering RandomString resources.
-        :param pulumi.Input[str] id: The generated random string.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] length: The length of the string desired.
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result.
@@ -225,8 +223,6 @@ class _RandomStringState:
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result.
         """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
         if length is not None:
@@ -251,18 +247,6 @@ class _RandomStringState:
             pulumi.set(__self__, "special", special)
         if upper is not None:
             pulumi.set(__self__, "upper", upper)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The generated random string.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -551,7 +535,6 @@ class RandomString(pulumi.CustomResource):
             __props__.__dict__["override_special"] = override_special
             __props__.__dict__["special"] = special
             __props__.__dict__["upper"] = upper
-            __props__.__dict__["id"] = None
             __props__.__dict__["result"] = None
         super(RandomString, __self__).__init__(
             'random:index/randomString:RandomString',
@@ -563,7 +546,6 @@ class RandomString(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            id: Optional[pulumi.Input[str]] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             length: Optional[pulumi.Input[int]] = None,
             lower: Optional[pulumi.Input[bool]] = None,
@@ -583,7 +565,6 @@ class RandomString(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] id: The generated random string.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] length: The length of the string desired.
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result.
@@ -601,7 +582,6 @@ class RandomString(pulumi.CustomResource):
 
         __props__ = _RandomStringState.__new__(_RandomStringState)
 
-        __props__.__dict__["id"] = id
         __props__.__dict__["keepers"] = keepers
         __props__.__dict__["length"] = length
         __props__.__dict__["lower"] = lower
@@ -615,14 +595,6 @@ class RandomString(pulumi.CustomResource):
         __props__.__dict__["special"] = special
         __props__.__dict__["upper"] = upper
         return RandomString(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The generated random string.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

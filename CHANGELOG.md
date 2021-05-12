@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Removal of extra `id` parameters from the schema
 
 ---
 

@@ -51,8 +51,6 @@ import (
 type RandomShuffle struct {
 	pulumi.CustomResourceState
 
-	// A static value used internally by Terraform, this should not be referenced in configurations.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayOutput `pulumi:"inputs"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -97,8 +95,6 @@ func GetRandomShuffle(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomShuffle resources.
 type randomShuffleState struct {
-	// A static value used internally by Terraform, this should not be referenced in configurations.
-	Id *string `pulumi:"id"`
 	// The list of strings to shuffle.
 	Inputs []string `pulumi:"inputs"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -112,8 +108,6 @@ type randomShuffleState struct {
 }
 
 type RandomShuffleState struct {
-	// A static value used internally by Terraform, this should not be referenced in configurations.
-	Id pulumi.StringPtrInput
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.

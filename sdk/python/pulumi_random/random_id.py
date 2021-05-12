@@ -73,7 +73,6 @@ class _RandomIdState:
                  byte_length: Optional[pulumi.Input[int]] = None,
                  dec: Optional[pulumi.Input[str]] = None,
                  hex: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  prefix: Optional[pulumi.Input[str]] = None):
         """
@@ -83,7 +82,6 @@ class _RandomIdState:
         :param pulumi.Input[int] byte_length: The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
         :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-        :param pulumi.Input[str] id: The generated id presented in base64 without additional transformations or prefix.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
         """
@@ -97,8 +95,6 @@ class _RandomIdState:
             pulumi.set(__self__, "dec", dec)
         if hex is not None:
             pulumi.set(__self__, "hex", hex)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
         if prefix is not None:
@@ -163,18 +159,6 @@ class _RandomIdState:
     @hex.setter
     def hex(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "hex", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The generated id presented in base64 without additional transformations or prefix.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -361,7 +345,6 @@ class RandomId(pulumi.CustomResource):
             __props__.__dict__["b64_url"] = None
             __props__.__dict__["dec"] = None
             __props__.__dict__["hex"] = None
-            __props__.__dict__["id"] = None
         super(RandomId, __self__).__init__(
             'random:index/randomId:RandomId',
             resource_name,
@@ -377,7 +360,6 @@ class RandomId(pulumi.CustomResource):
             byte_length: Optional[pulumi.Input[int]] = None,
             dec: Optional[pulumi.Input[str]] = None,
             hex: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             prefix: Optional[pulumi.Input[str]] = None) -> 'RandomId':
         """
@@ -392,7 +374,6 @@ class RandomId(pulumi.CustomResource):
         :param pulumi.Input[int] byte_length: The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[str] dec: The generated id presented in non-padded decimal digits.
         :param pulumi.Input[str] hex: The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
-        :param pulumi.Input[str] id: The generated id presented in base64 without additional transformations or prefix.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
         """
@@ -405,7 +386,6 @@ class RandomId(pulumi.CustomResource):
         __props__.__dict__["byte_length"] = byte_length
         __props__.__dict__["dec"] = dec
         __props__.__dict__["hex"] = hex
-        __props__.__dict__["id"] = id
         __props__.__dict__["keepers"] = keepers
         __props__.__dict__["prefix"] = prefix
         return RandomId(resource_name, opts=opts, __props__=__props__)
@@ -449,14 +429,6 @@ class RandomId(pulumi.CustomResource):
         The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         """
         return pulumi.get(self, "hex")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The generated id presented in base64 without additional transformations or prefix.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

@@ -16,8 +16,6 @@ import (
 type RandomPet struct {
 	pulumi.CustomResourceState
 
-	// The random pet name
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The length (in words) of the pet name.
@@ -57,8 +55,6 @@ func GetRandomPet(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPet resources.
 type randomPetState struct {
-	// The random pet name
-	Id *string `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length (in words) of the pet name.
@@ -70,8 +66,6 @@ type randomPetState struct {
 }
 
 type RandomPetState struct {
-	// The random pet name
-	Id pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length (in words) of the pet name.

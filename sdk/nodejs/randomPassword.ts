@@ -67,10 +67,6 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
-     * A static value used internally by the provider, this should not be referenced in configurations.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -132,7 +128,6 @@ export class RandomPassword extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPasswordState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
             inputs["lower"] = state ? state.lower : undefined;
@@ -161,7 +156,6 @@ export class RandomPassword extends pulumi.CustomResource {
             inputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
             inputs["special"] = args ? args.special : undefined;
             inputs["upper"] = args ? args.upper : undefined;
-            inputs["id"] = undefined /*out*/;
             inputs["result"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -175,10 +169,6 @@ export class RandomPassword extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomPassword resources.
  */
 export interface RandomPasswordState {
-    /**
-     * A static value used internally by the provider, this should not be referenced in configurations.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */

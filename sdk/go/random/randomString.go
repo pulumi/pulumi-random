@@ -54,8 +54,6 @@ import (
 type RandomString struct {
 	pulumi.CustomResourceState
 
-	// The generated random string.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The length of the string desired.
@@ -114,8 +112,6 @@ func GetRandomString(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomString resources.
 type randomStringState struct {
-	// The generated random string.
-	Id *string `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length of the string desired.
@@ -143,8 +139,6 @@ type randomStringState struct {
 }
 
 type RandomStringState struct {
-	// The generated random string.
-	Id pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length of the string desired.
