@@ -56,12 +56,6 @@ namespace Pulumi.Random
     public partial class RandomPassword : Pulumi.CustomResource
     {
         /// <summary>
-        /// A static value used internally by the provider, this should not be referenced in configurations.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
-        /// <summary>
         /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
@@ -258,12 +252,6 @@ namespace Pulumi.Random
 
     public sealed class RandomPasswordState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// A static value used internally by the provider, this should not be referenced in configurations.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("keepers")]
         private InputMap<object>? _keepers;
 

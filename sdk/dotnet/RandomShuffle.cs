@@ -47,12 +47,6 @@ namespace Pulumi.Random
     public partial class RandomShuffle : Pulumi.CustomResource
     {
         /// <summary>
-        /// A static value used internally by Terraform, this should not be referenced in configurations.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
-        /// <summary>
         /// The list of strings to shuffle.
         /// </summary>
         [Output("inputs")]
@@ -171,12 +165,6 @@ namespace Pulumi.Random
 
     public sealed class RandomShuffleState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// A static value used internally by Terraform, this should not be referenced in configurations.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("inputs")]
         private InputList<string>? _inputs;
 

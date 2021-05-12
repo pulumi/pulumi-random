@@ -59,10 +59,6 @@ export class RandomUuid extends pulumi.CustomResource {
     }
 
     /**
-     * The generated uuid presented in string format.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -84,13 +80,11 @@ export class RandomUuid extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomUuidState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["result"] = state ? state.result : undefined;
         } else {
             const args = argsOrState as RandomUuidArgs | undefined;
             inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["id"] = undefined /*out*/;
             inputs["result"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -104,10 +98,6 @@ export class RandomUuid extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomUuid resources.
  */
 export interface RandomUuidState {
-    /**
-     * The generated uuid presented in string format.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */

@@ -742,6 +742,8 @@ github.com/pulumi/terraform-provider-random v1.3.2-0.20210507120318-73c8952588ca
 github.com/pulumi/terraform-provider-random v1.3.2-0.20210507120318-73c8952588ca/go.mod h1:+NWkKv0GbKsTICPcq6qHUVz/AmbzekFkLxPPL6x5/MY=
 github.com/pulumi/terraform-provider-random v1.3.2-0.20210507121008-090cf85be344 h1:TB5edNAQytFygIB8RV5i3A2U0wOfytZZM5fUmlXH2/o=
 github.com/pulumi/terraform-provider-random v1.3.2-0.20210507121008-090cf85be344/go.mod h1:+NWkKv0GbKsTICPcq6qHUVz/AmbzekFkLxPPL6x5/MY=
+github.com/pulumi/terraform-provider-random v1.3.2-0.20210512110019-3feaba7fd924 h1:1zkAZfnRh2Q4OsWCQ1QMNtlDYxx6mTvXwnTuNE5YuEI=
+github.com/pulumi/terraform-provider-random v1.3.2-0.20210512110019-3feaba7fd924/go.mod h1:+NWkKv0GbKsTICPcq6qHUVz/AmbzekFkLxPPL6x5/MY=
 github.com/rjeczalik/notify v0.9.2 h1:MiTWrPj55mNDHEiIX5YUSKefw/+lCQVoAFmD6oQm5w8=
 github.com/rjeczalik/notify v0.9.2/go.mod h1:aErll2f0sUX9PXZnVNyeiObbmTlk5jnMoCa4QEjJeqM=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af h1:gu+uRPtBe88sKxUCEXRoeCvVG90TJmwhiqRpvdhQFng=

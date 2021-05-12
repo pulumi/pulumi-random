@@ -50,8 +50,6 @@ type RandomId struct {
 	Dec pulumi.StringOutput `pulumi:"dec"`
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringOutput `pulumi:"hex"`
-	// The generated id presented in base64 without additional transformations or prefix.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
@@ -100,8 +98,6 @@ type randomIdState struct {
 	Dec *string `pulumi:"dec"`
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex *string `pulumi:"hex"`
-	// The generated id presented in base64 without additional transformations or prefix.
-	Id *string `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
@@ -119,8 +115,6 @@ type RandomIdState struct {
 	Dec pulumi.StringPtrInput
 	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringPtrInput
-	// The generated id presented in base64 without additional transformations or prefix.
-	Id pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.

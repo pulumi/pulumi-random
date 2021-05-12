@@ -52,8 +52,6 @@ import (
 type RandomUuid struct {
 	pulumi.CustomResourceState
 
-	// The generated uuid presented in string format.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The generated uuid presented in string format.
@@ -89,8 +87,6 @@ func GetRandomUuid(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomUuid resources.
 type randomUuidState struct {
-	// The generated uuid presented in string format.
-	Id *string `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The generated uuid presented in string format.
@@ -98,8 +94,6 @@ type randomUuidState struct {
 }
 
 type RandomUuidState struct {
-	// The generated uuid presented in string format.
-	Id pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The generated uuid presented in string format.

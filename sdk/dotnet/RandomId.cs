@@ -106,12 +106,6 @@ namespace Pulumi.Random
         public Output<string> Hex { get; private set; } = null!;
 
         /// <summary>
-        /// The generated id presented in base64 without additional transformations or prefix.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
-        /// <summary>
         /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
@@ -229,12 +223,6 @@ namespace Pulumi.Random
         /// </summary>
         [Input("hex")]
         public Input<string>? Hex { get; set; }
-
-        /// <summary>
-        /// The generated id presented in base64 without additional transformations or prefix.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         [Input("keepers")]
         private InputMap<object>? _keepers;

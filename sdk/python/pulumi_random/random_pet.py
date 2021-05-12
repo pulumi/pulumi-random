@@ -85,21 +85,17 @@ class RandomPetArgs:
 @pulumi.input_type
 class _RandomPetState:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  length: Optional[pulumi.Input[int]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  separator: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RandomPet resources.
-        :param pulumi.Input[str] id: The random pet name
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name.
         """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
         if length is not None:
@@ -108,18 +104,6 @@ class _RandomPetState:
             pulumi.set(__self__, "prefix", prefix)
         if separator is not None:
             pulumi.set(__self__, "separator", separator)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The random pet name
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -280,7 +264,6 @@ class RandomPet(pulumi.CustomResource):
             __props__.__dict__["length"] = length
             __props__.__dict__["prefix"] = prefix
             __props__.__dict__["separator"] = separator
-            __props__.__dict__["id"] = None
         super(RandomPet, __self__).__init__(
             'random:index/randomPet:RandomPet',
             resource_name,
@@ -291,7 +274,6 @@ class RandomPet(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            id: Optional[pulumi.Input[str]] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             length: Optional[pulumi.Input[int]] = None,
             prefix: Optional[pulumi.Input[str]] = None,
@@ -303,7 +285,6 @@ class RandomPet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] id: The random pet name
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] length: The length (in words) of the pet name.
         :param pulumi.Input[str] prefix: A string to prefix the name with.
@@ -313,20 +294,11 @@ class RandomPet(pulumi.CustomResource):
 
         __props__ = _RandomPetState.__new__(_RandomPetState)
 
-        __props__.__dict__["id"] = id
         __props__.__dict__["keepers"] = keepers
         __props__.__dict__["length"] = length
         __props__.__dict__["prefix"] = prefix
         __props__.__dict__["separator"] = separator
         return RandomPet(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The random pet name
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

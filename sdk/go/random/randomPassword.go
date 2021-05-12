@@ -63,8 +63,6 @@ import (
 type RandomPassword struct {
 	pulumi.CustomResourceState
 
-	// A static value used internally by the provider, this should not be referenced in configurations.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The length of the string desired.
@@ -123,8 +121,6 @@ func GetRandomPassword(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type randomPasswordState struct {
-	// A static value used internally by the provider, this should not be referenced in configurations.
-	Id *string `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The length of the string desired.
@@ -152,8 +148,6 @@ type randomPasswordState struct {
 }
 
 type RandomPasswordState struct {
-	// A static value used internally by the provider, this should not be referenced in configurations.
-	Id pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The length of the string desired.

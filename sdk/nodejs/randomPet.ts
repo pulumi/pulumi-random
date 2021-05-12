@@ -60,10 +60,6 @@ export class RandomPet extends pulumi.CustomResource {
     }
 
     /**
-     * The random pet name
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -93,7 +89,6 @@ export class RandomPet extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPetState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["length"] = state ? state.length : undefined;
             inputs["prefix"] = state ? state.prefix : undefined;
@@ -104,7 +99,6 @@ export class RandomPet extends pulumi.CustomResource {
             inputs["length"] = args ? args.length : undefined;
             inputs["prefix"] = args ? args.prefix : undefined;
             inputs["separator"] = args ? args.separator : undefined;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -117,10 +111,6 @@ export class RandomPet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomPet resources.
  */
 export interface RandomPetState {
-    /**
-     * The random pet name
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */

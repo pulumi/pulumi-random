@@ -73,10 +73,6 @@ export class RandomInteger extends pulumi.CustomResource {
     }
 
     /**
-     * The string representation of the integer result.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -110,7 +106,6 @@ export class RandomInteger extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomIntegerState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["keepers"] = state ? state.keepers : undefined;
             inputs["max"] = state ? state.max : undefined;
             inputs["min"] = state ? state.min : undefined;
@@ -128,7 +123,6 @@ export class RandomInteger extends pulumi.CustomResource {
             inputs["max"] = args ? args.max : undefined;
             inputs["min"] = args ? args.min : undefined;
             inputs["seed"] = args ? args.seed : undefined;
-            inputs["id"] = undefined /*out*/;
             inputs["result"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -142,10 +136,6 @@ export class RandomInteger extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomInteger resources.
  */
 export interface RandomIntegerState {
-    /**
-     * The string representation of the integer result.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */

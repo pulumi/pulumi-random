@@ -83,7 +83,6 @@ class RandomIntegerArgs:
 @pulumi.input_type
 class _RandomIntegerState:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  max: Optional[pulumi.Input[int]] = None,
                  min: Optional[pulumi.Input[int]] = None,
@@ -91,15 +90,12 @@ class _RandomIntegerState:
                  seed: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RandomInteger resources.
-        :param pulumi.Input[str] id: The string representation of the integer result.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
         :param pulumi.Input[int] result: The random integer result.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
         if max is not None:
@@ -110,18 +106,6 @@ class _RandomIntegerState:
             pulumi.set(__self__, "result", result)
         if seed is not None:
             pulumi.set(__self__, "seed", seed)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The string representation of the integer result.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -322,7 +306,6 @@ class RandomInteger(pulumi.CustomResource):
                 raise TypeError("Missing required property 'min'")
             __props__.__dict__["min"] = min
             __props__.__dict__["seed"] = seed
-            __props__.__dict__["id"] = None
             __props__.__dict__["result"] = None
         super(RandomInteger, __self__).__init__(
             'random:index/randomInteger:RandomInteger',
@@ -334,7 +317,6 @@ class RandomInteger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            id: Optional[pulumi.Input[str]] = None,
             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             max: Optional[pulumi.Input[int]] = None,
             min: Optional[pulumi.Input[int]] = None,
@@ -347,7 +329,6 @@ class RandomInteger(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] id: The string representation of the integer result.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
@@ -358,21 +339,12 @@ class RandomInteger(pulumi.CustomResource):
 
         __props__ = _RandomIntegerState.__new__(_RandomIntegerState)
 
-        __props__.__dict__["id"] = id
         __props__.__dict__["keepers"] = keepers
         __props__.__dict__["max"] = max
         __props__.__dict__["min"] = min
         __props__.__dict__["result"] = result
         __props__.__dict__["seed"] = seed
         return RandomInteger(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The string representation of the integer result.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
