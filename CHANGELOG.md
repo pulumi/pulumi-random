@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Removal of extra `id` parameters from the schema
+_(none)_
 
 ---
+
+## 4.1.1 (2021-05-12)
+* Removal of extra `id` parameters from the schema
 
 ## 4.1.0 (2021-05-12)
 * Upgrade to v3.1.0 of the Random Terraform Provider
