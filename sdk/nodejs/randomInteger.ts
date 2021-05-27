@@ -139,23 +139,23 @@ export interface RandomIntegerState {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    readonly keepers?: pulumi.Input<{[key: string]: any}>;
+    keepers?: pulumi.Input<{[key: string]: any}>;
     /**
      * The maximum inclusive value of the range.
      */
-    readonly max?: pulumi.Input<number>;
+    max?: pulumi.Input<number>;
     /**
      * The minimum inclusive value of the range.
      */
-    readonly min?: pulumi.Input<number>;
+    min?: pulumi.Input<number>;
     /**
      * The random integer result.
      */
-    readonly result?: pulumi.Input<number>;
+    result?: pulumi.Input<number>;
     /**
      * A custom seed to always produce the same value.
      */
-    readonly seed?: pulumi.Input<string>;
+    seed?: pulumi.Input<string>;
 }
 
 /**
@@ -165,17 +165,17 @@ export interface RandomIntegerArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    readonly keepers?: pulumi.Input<{[key: string]: any}>;
+    keepers?: pulumi.Input<{[key: string]: any}>;
     /**
      * The maximum inclusive value of the range.
      */
-    readonly max: pulumi.Input<number>;
+    max: pulumi.Input<number>;
     /**
      * The minimum inclusive value of the range.
      */
-    readonly min: pulumi.Input<number>;
+    min: pulumi.Input<number>;
     /**
      * A custom seed to always produce the same value.
      */
-    readonly seed?: pulumi.Input<string>;
+    seed?: pulumi.Input<string>;
 }
