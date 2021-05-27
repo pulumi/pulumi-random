@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.2.1 of the pulumi-terraform-bridge
+_(none)_
 
 ---
+
+## 4.2.0 (2021-05-27)
+* Upgrade to v3.2.1 of the pulumi-terraform-bridge
 
 ## 4.1.1 (2021-05-12)
 * Removal of extra `id` parameters from the schema
