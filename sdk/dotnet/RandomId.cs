@@ -50,7 +50,7 @@ namespace Pulumi.Random
     ///             {
     ///                 { "Name", serverRandomId.Hex.Apply(hex =&gt; $"web-server {hex}") },
     ///             },
-    ///             Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers.AmiId),
+    ///             Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///         });
     ///         // ... (other aws_instance arguments) ...
     ///     }

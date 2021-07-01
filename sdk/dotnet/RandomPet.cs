@@ -41,7 +41,7 @@ namespace Pulumi.Random
     ///             {
     ///                 { "Name", serverRandomPet.Id.Apply(id =&gt; $"web-server-{id}") },
     ///             },
-    ///             Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers.AmiId),
+    ///             Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///         });
     ///         // ... (other aws_instance arguments) ...
     ///     }
