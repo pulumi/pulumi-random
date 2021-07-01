@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     tags: {
  *         Name: pulumi.interpolate`web-server ${serverRandomId.hex}`,
  *     },
- *     ami: serverRandomId.keepers.amiId,
+ *     ami: serverRandomId.keepers.apply(keepers => keepers?.amiId),
  * });
  * // ... (other aws_instance arguments) ...
  * ```
