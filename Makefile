@@ -24,7 +24,7 @@ only_build:: build
 
 tfgen:: install_plugins
 	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
-	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
+	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER} --coverageOutputDir $(WORKING_DIR)/bin/coverage-data
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
 provider:: tfgen install_plugins # build the provider binary
