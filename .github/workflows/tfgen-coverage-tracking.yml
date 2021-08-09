@@ -180,11 +180,12 @@ jobs:
         - 14.x
         pythonversion:
         - "3.7"
-name: master
+name: tfgen-coverage-tracking
 "on":
   push:
     branches:
     - master
+    - t-vova/coverage-experiment  # TODO: Remove before merging
     paths-ignore:
     - CHANGELOG.md
     tags-ignore:
