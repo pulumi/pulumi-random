@@ -1,0 +1,193 @@
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+  PROVIDER: random
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  PULUMI_API: https://api.pulumi-staging.io
+  PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  TRAVIS_OS_NAME: linux
+  COVERAGE_EXPORT_DIR: ./bin/coverage
+jobs:
+  generate_coverage_data:
+    name: generate_coverage_data
+    needs: prerequisites
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v2
+      with:
+        path: ci-scripts
+        repository: pulumi/scripts
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{matrix.goversion}}
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      with:
+        repo: pulumi/pulumictl
+    - name: Install Pulumi CLI
+      uses: pulumi/action-install-pulumi-cli@v1
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{matrix.nodeversion}}
+        registry-url: https://registry.npmjs.org
+    - name: Setup DotNet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{matrix.dotnetversion}}
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{matrix.pythonversion}}
+    - name: Download provider + tfgen binaries
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ env.PROVIDER }}-provider.tar.gz
+        path: ${{ github.workspace }}/bin
+    - name: Untar provider binaries
+      run: |-
+        tar -zxf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace}}/bin
+        find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print -exec chmod +x {} \;
+    - name: Install plugins
+      run: make install_plugins
+    - name: Update path
+      run: echo "${{ github.workspace }}/bin" >> $GITHUB_PATH
+    - name: Generate Coverage Data
+      run: make build_tfgen
+    - if: failure() && github.event_name == 'push'
+      name: Notify Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        author_name: Failure in building generating coverage data
+        fields: repo,commit,author,action
+        status: ${{ job.status }}
+    strategy:
+      fail-fast: true
+      matrix:
+        dotnetversion:
+        - 3.1.301
+        goversion:
+        - 1.16.x
+        language:
+        - nodejs
+        - python
+        - dotnet
+        - go
+        nodeversion:
+        - 14.x
+        pythonversion:
+        - "3.7"
+  upload_coverage_data:
+    name: upload_coverage_data
+    needs: generate_coverage_data
+    runs-on: ubuntu-latest
+    steps:
+    - name: Obtaining current date
+      run: currDateTime=$(date +"%Y-%m-%d_%H-%M-%S")
+    - name: Creating new summary name
+      run: newSummaryName="summary_${currDateTime}.json"
+    - name: Setting up URI of S3 bucket to upload to
+      run: s3BucketName="tfgen-coverage-results-36b7864"
+    - name: Setting up S3 key name
+      run: s3KeyName="summaries/${newSummaryName}"
+    - name: Setting up full URL of S3 bucket
+      run: s3FullURI="s3://${s3BucketName}/${s3KeyName}"
+    - name: Renaming summary file
+      run: mv $COVERAGE_EXPORT_DIR/summary.json $COVERAGE_EXPORT_DIR/$newSummaryName
+      with:
+        COVERAGE_EXPORT_DIR: ./bin/coverage
+    - name: Uploading results to AWS
+      run: aws s3 cp $MainDir/data/coverage/$newSummaryName $s3FullURI --acl bucket-owner-full-control
+  prerequisites:
+    name: prerequisites
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v2
+      with:
+        path: ci-scripts
+        repository: pulumi/scripts
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{matrix.goversion}}
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      with:
+        repo: pulumi/pulumictl
+    - name: Install Pulumi CLI
+      uses: pulumi/action-install-pulumi-cli@v1
+    - if: github.event_name == 'pull_request'
+      name: Install Schema Tools
+      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      with:
+        repo: mikhailshilkov/schema-tools
+    - name: Build tfgen & provider binaries
+      run: make provider
+    - if: github.event_name == 'pull_request'
+      name: Check Schema is Valid
+      run: |-
+        echo 'SCHEMA_CHANGES<<EOF' >> $GITHUB_ENV
+        schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+    - if: github.event_name == 'pull_request'
+      name: Comment on PR with Details of Schema Check
+      uses: thollander/actions-comment-pull-request@1.0.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        message: |
+          ### Does the PR have any schema changes?
+
+          ${{ env.SCHEMA_CHANGES }}
+    - name: Tar provider binaries
+      run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
+        }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
+        }}
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.PROVIDER }}-provider.tar.gz
+        path: ${{ github.workspace }}/bin/provider.tar.gz
+    - if: failure() && github.event_name == 'push'
+      name: Notify Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        author_name: Failure in building provider prerequisites
+        fields: repo,commit,author,action
+        status: ${{ job.status }}
+    strategy:
+      fail-fast: true
+      matrix:
+        dotnetversion:
+        - 3.1.301
+        goversion:
+        - 1.16.x
+        nodeversion:
+        - 14.x
+        pythonversion:
+        - "3.7"
+name: master
+"on":
+  push:
+    branches:
+    - master
+    paths-ignore:
+    - CHANGELOG.md
+    tags-ignore:
+    - v*
+    - sdk/*
+    - '**'
