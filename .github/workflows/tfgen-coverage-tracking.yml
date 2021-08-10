@@ -185,9 +185,21 @@ jobs:
         pythonversion:
         - "3.7"
 name: tfgen-coverage-tracking
-on:
+"on":
+  check_suite:
+    types:
+    - completed
   pull_request:
-    branches:
-    - master
-    - t-vova/coverage-tracking  # TODO: Remove before merging
-    
+    types:
+    - labeled
+    - unlabeled
+    - synchronize
+    - opened
+    - edited
+    - ready_for_review
+    - reopened
+    - unlocked
+  pull_request_review:
+    types:
+    - submitted
+  status: {}
