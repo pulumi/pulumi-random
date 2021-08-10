@@ -185,7 +185,7 @@ jobs:
         pythonversion:
         - "3.7"
 name: tfgen-coverage-tracking
-"on":
+on:
   pull_request:
     branches:
     - master
