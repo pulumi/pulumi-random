@@ -62,8 +62,12 @@ jobs:
       run: make install_plugins
     - name: Update path
       run: echo "${{ github.workspace }}/bin" >> $GITHUB_PATH
+    - name: Print COD
+      run: echo $COVERAGE_OUTPUT_DIR
+      with:
+        COVERAGE_EXPORT_DIR: ./bin/coverage
     - name: Generate Coverage Data
-      run: make build_tfgen
+      run: make tfgen
     - if: failure() && github.event_name == 'push'
       name: Notify Slack
       uses: 8398a7/action-slack@v3
@@ -182,10 +186,10 @@ jobs:
         - "3.7"
 name: tfgen-coverage-tracking
 "on":
-  push:
+  pull_request:
     branches:
     - master
-    - t-vova/coverage-experiment  # TODO: Remove before merging
+    - t-vova/coverage-tracking  # TODO: Remove before merging
     paths-ignore:
     - CHANGELOG.md
     tags-ignore:
