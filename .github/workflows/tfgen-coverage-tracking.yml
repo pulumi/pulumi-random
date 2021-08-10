@@ -6,8 +6,6 @@ name: Manual workflow
 # or API.
 on:
   pull_request:
-    branches:
-    - master
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
