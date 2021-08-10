@@ -190,9 +190,4 @@ on:
     branches:
     - master
     - t-vova/coverage-tracking  # TODO: Remove before merging
-    paths-ignore:
-    - CHANGELOG.md
-    tags-ignore:
-    - v*
-    - sdk/*
-    - '**'
+    
