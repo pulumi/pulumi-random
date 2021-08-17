@@ -10,6 +10,7 @@ env:
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TRAVIS_OS_NAME: linux
+  COVERAGE_OUTPUT_DIR: ./bin/coverage
 jobs:
   build_sdk:
     name: build_sdk
@@ -462,6 +463,42 @@ jobs:
         - 14.x
         pythonversion:
         - "3.7"
+  generate_coverage_data:
+    name: generate_coverage_data
+    needs: prerequisites
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+    - name: Generate Coverage Data
+      run: |
+        echo "Coverage output directory: $COVERAGE_OUTPUT_DIR"
+        make tfgen
+  upload_coverage_data:
+    name: upload_coverage_data
+    needs: generate_coverage_data
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+    - name: Obtain current date & S3 address
+      run: |
+        currDateTime=$(date +"%Y-%m-%d_%H-%M-%S")
+        newSummaryName="summary_${currDateTime}.json"
+        s3BucketName="tfgen-coverage-results-36b7864"
+        s3KeyName="summaries/${newSummaryName}"
+        s3FullURI="s3://${s3BucketName}/${s3KeyName}"
+    - name: Rename summary file
+      run: mv $COVERAGE_OUTPUT_DIR/summary.json $COVERAGE_OUTPUT_DIR/$newSummaryName
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-region: ${{ env.AWS_REGION }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-duration-seconds: 3600
+        role-session-name: arm2pulumiCvg@githubActions
+        role-to-assume: ${{ secrets.AWS_CI_ROLE_ARN }}
+    - name: Upload results to AWS
+      run: aws s3 cp $MainDir/data/coverage/$newSummaryName $s3FullURI --acl bucket-owner-full-control
 name: master
 "on":
   push:
