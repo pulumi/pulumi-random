@@ -478,16 +478,19 @@ jobs:
     needs: generate_coverage_data
     runs-on: ubuntu-latest
     continue-on-error: true
+    env: 
+      currDateTime: date
+      newSummaryName: summary
+      s3BucketName: tfgen-coverage-results-1234567
+      s3KeyName: key-name
+      s3FullURI: url
     steps:
     - name: Obtain current date & S3 address
       run: |
         currDateTime=$(date +"%Y-%m-%d_%H-%M-%S")
-        newSummaryName="summary_${currDateTime}.json"
-        s3BucketName="tfgen-coverage-results-36b7864"
+        newSummaryName="${PROVIDER}_summary_${currDateTime}.json"
         s3KeyName="summaries/${newSummaryName}"
         s3FullURI="s3://${s3BucketName}/${s3KeyName}"
-    - name: Rename summary file
-      run: mv $COVERAGE_OUTPUT_DIR/summary.json $COVERAGE_OUTPUT_DIR/$newSummaryName
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -495,10 +498,10 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         role-duration-seconds: 3600
-        role-session-name: arm2pulumiCvg@githubActions
+        role-session-name: pulumi-${PROVIDER}Cvg@githubActions
         role-to-assume: ${{ secrets.AWS_CI_ROLE_ARN }}
-    - name: Upload results to AWS
-      run: aws s3 cp $MainDir/data/coverage/$newSummaryName $s3FullURI --acl bucket-owner-full-control
+    - name: Rename and upload results to AWS
+      run: aws s3 cp ${COVERAGE_OUTPUT_DIR}/summary.json ${s3FullURI}/${newSummaryName} --acl bucket-owner-full-control
 name: master
 "on":
   push:
