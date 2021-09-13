@@ -210,7 +210,7 @@ type RandomIdArrayInput interface {
 type RandomIdArray []RandomIdInput
 
 func (RandomIdArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomId)(nil))
+	return reflect.TypeOf((*[]*RandomId)(nil)).Elem()
 }
 
 func (i RandomIdArray) ToRandomIdArrayOutput() RandomIdArrayOutput {
@@ -235,7 +235,7 @@ type RandomIdMapInput interface {
 type RandomIdMap map[string]RandomIdInput
 
 func (RandomIdMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomId)(nil))
+	return reflect.TypeOf((*map[string]*RandomId)(nil)).Elem()
 }
 
 func (i RandomIdMap) ToRandomIdMapOutput() RandomIdMapOutput {
@@ -246,9 +246,7 @@ func (i RandomIdMap) ToRandomIdMapOutputWithContext(ctx context.Context) RandomI
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdMapOutput)
 }
 
-type RandomIdOutput struct {
-	*pulumi.OutputState
-}
+type RandomIdOutput struct{ *pulumi.OutputState }
 
 func (RandomIdOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomId)(nil))
@@ -267,14 +265,12 @@ func (o RandomIdOutput) ToRandomIdPtrOutput() RandomIdPtrOutput {
 }
 
 func (o RandomIdOutput) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
-	return o.ApplyT(func(v RandomId) *RandomId {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomId) *RandomId {
 		return &v
 	}).(RandomIdPtrOutput)
 }
 
-type RandomIdPtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomIdPtrOutput struct{ *pulumi.OutputState }
 
 func (RandomIdPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomId)(nil))
@@ -286,6 +282,16 @@ func (o RandomIdPtrOutput) ToRandomIdPtrOutput() RandomIdPtrOutput {
 
 func (o RandomIdPtrOutput) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
 	return o
+}
+
+func (o RandomIdPtrOutput) Elem() RandomIdOutput {
+	return o.ApplyT(func(v *RandomId) RandomId {
+		if v != nil {
+			return *v
+		}
+		var ret RandomId
+		return ret
+	}).(RandomIdOutput)
 }
 
 type RandomIdArrayOutput struct{ *pulumi.OutputState }

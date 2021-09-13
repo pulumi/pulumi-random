@@ -181,7 +181,7 @@ type RandomUuidArrayInput interface {
 type RandomUuidArray []RandomUuidInput
 
 func (RandomUuidArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomUuid)(nil))
+	return reflect.TypeOf((*[]*RandomUuid)(nil)).Elem()
 }
 
 func (i RandomUuidArray) ToRandomUuidArrayOutput() RandomUuidArrayOutput {
@@ -206,7 +206,7 @@ type RandomUuidMapInput interface {
 type RandomUuidMap map[string]RandomUuidInput
 
 func (RandomUuidMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomUuid)(nil))
+	return reflect.TypeOf((*map[string]*RandomUuid)(nil)).Elem()
 }
 
 func (i RandomUuidMap) ToRandomUuidMapOutput() RandomUuidMapOutput {
@@ -217,9 +217,7 @@ func (i RandomUuidMap) ToRandomUuidMapOutputWithContext(ctx context.Context) Ran
 	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidMapOutput)
 }
 
-type RandomUuidOutput struct {
-	*pulumi.OutputState
-}
+type RandomUuidOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomUuid)(nil))
@@ -238,14 +236,12 @@ func (o RandomUuidOutput) ToRandomUuidPtrOutput() RandomUuidPtrOutput {
 }
 
 func (o RandomUuidOutput) ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput {
-	return o.ApplyT(func(v RandomUuid) *RandomUuid {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomUuid) *RandomUuid {
 		return &v
 	}).(RandomUuidPtrOutput)
 }
 
-type RandomUuidPtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomUuidPtrOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomUuid)(nil))
@@ -257,6 +253,16 @@ func (o RandomUuidPtrOutput) ToRandomUuidPtrOutput() RandomUuidPtrOutput {
 
 func (o RandomUuidPtrOutput) ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput {
 	return o
+}
+
+func (o RandomUuidPtrOutput) Elem() RandomUuidOutput {
+	return o.ApplyT(func(v *RandomUuid) RandomUuid {
+		if v != nil {
+			return *v
+		}
+		var ret RandomUuid
+		return ret
+	}).(RandomUuidOutput)
 }
 
 type RandomUuidArrayOutput struct{ *pulumi.OutputState }

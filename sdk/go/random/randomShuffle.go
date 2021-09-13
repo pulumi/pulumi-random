@@ -213,7 +213,7 @@ type RandomShuffleArrayInput interface {
 type RandomShuffleArray []RandomShuffleInput
 
 func (RandomShuffleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomShuffle)(nil))
+	return reflect.TypeOf((*[]*RandomShuffle)(nil)).Elem()
 }
 
 func (i RandomShuffleArray) ToRandomShuffleArrayOutput() RandomShuffleArrayOutput {
@@ -238,7 +238,7 @@ type RandomShuffleMapInput interface {
 type RandomShuffleMap map[string]RandomShuffleInput
 
 func (RandomShuffleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomShuffle)(nil))
+	return reflect.TypeOf((*map[string]*RandomShuffle)(nil)).Elem()
 }
 
 func (i RandomShuffleMap) ToRandomShuffleMapOutput() RandomShuffleMapOutput {
@@ -249,9 +249,7 @@ func (i RandomShuffleMap) ToRandomShuffleMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RandomShuffleMapOutput)
 }
 
-type RandomShuffleOutput struct {
-	*pulumi.OutputState
-}
+type RandomShuffleOutput struct{ *pulumi.OutputState }
 
 func (RandomShuffleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomShuffle)(nil))
@@ -270,14 +268,12 @@ func (o RandomShuffleOutput) ToRandomShufflePtrOutput() RandomShufflePtrOutput {
 }
 
 func (o RandomShuffleOutput) ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput {
-	return o.ApplyT(func(v RandomShuffle) *RandomShuffle {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomShuffle) *RandomShuffle {
 		return &v
 	}).(RandomShufflePtrOutput)
 }
 
-type RandomShufflePtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomShufflePtrOutput struct{ *pulumi.OutputState }
 
 func (RandomShufflePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomShuffle)(nil))
@@ -289,6 +285,16 @@ func (o RandomShufflePtrOutput) ToRandomShufflePtrOutput() RandomShufflePtrOutpu
 
 func (o RandomShufflePtrOutput) ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput {
 	return o
+}
+
+func (o RandomShufflePtrOutput) Elem() RandomShuffleOutput {
+	return o.ApplyT(func(v *RandomShuffle) RandomShuffle {
+		if v != nil {
+			return *v
+		}
+		var ret RandomShuffle
+		return ret
+	}).(RandomShuffleOutput)
 }
 
 type RandomShuffleArrayOutput struct{ *pulumi.OutputState }

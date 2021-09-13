@@ -286,7 +286,7 @@ type RandomStringArrayInput interface {
 type RandomStringArray []RandomStringInput
 
 func (RandomStringArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomString)(nil))
+	return reflect.TypeOf((*[]*RandomString)(nil)).Elem()
 }
 
 func (i RandomStringArray) ToRandomStringArrayOutput() RandomStringArrayOutput {
@@ -311,7 +311,7 @@ type RandomStringMapInput interface {
 type RandomStringMap map[string]RandomStringInput
 
 func (RandomStringMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomString)(nil))
+	return reflect.TypeOf((*map[string]*RandomString)(nil)).Elem()
 }
 
 func (i RandomStringMap) ToRandomStringMapOutput() RandomStringMapOutput {
@@ -322,9 +322,7 @@ func (i RandomStringMap) ToRandomStringMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringMapOutput)
 }
 
-type RandomStringOutput struct {
-	*pulumi.OutputState
-}
+type RandomStringOutput struct{ *pulumi.OutputState }
 
 func (RandomStringOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomString)(nil))
@@ -343,14 +341,12 @@ func (o RandomStringOutput) ToRandomStringPtrOutput() RandomStringPtrOutput {
 }
 
 func (o RandomStringOutput) ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput {
-	return o.ApplyT(func(v RandomString) *RandomString {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomString) *RandomString {
 		return &v
 	}).(RandomStringPtrOutput)
 }
 
-type RandomStringPtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomStringPtrOutput struct{ *pulumi.OutputState }
 
 func (RandomStringPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomString)(nil))
@@ -362,6 +358,16 @@ func (o RandomStringPtrOutput) ToRandomStringPtrOutput() RandomStringPtrOutput {
 
 func (o RandomStringPtrOutput) ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput {
 	return o
+}
+
+func (o RandomStringPtrOutput) Elem() RandomStringOutput {
+	return o.ApplyT(func(v *RandomString) RandomString {
+		if v != nil {
+			return *v
+		}
+		var ret RandomString
+		return ret
+	}).(RandomStringOutput)
 }
 
 type RandomStringArrayOutput struct{ *pulumi.OutputState }

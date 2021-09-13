@@ -295,7 +295,7 @@ type RandomPasswordArrayInput interface {
 type RandomPasswordArray []RandomPasswordInput
 
 func (RandomPasswordArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomPassword)(nil))
+	return reflect.TypeOf((*[]*RandomPassword)(nil)).Elem()
 }
 
 func (i RandomPasswordArray) ToRandomPasswordArrayOutput() RandomPasswordArrayOutput {
@@ -320,7 +320,7 @@ type RandomPasswordMapInput interface {
 type RandomPasswordMap map[string]RandomPasswordInput
 
 func (RandomPasswordMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomPassword)(nil))
+	return reflect.TypeOf((*map[string]*RandomPassword)(nil)).Elem()
 }
 
 func (i RandomPasswordMap) ToRandomPasswordMapOutput() RandomPasswordMapOutput {
@@ -331,9 +331,7 @@ func (i RandomPasswordMap) ToRandomPasswordMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPasswordMapOutput)
 }
 
-type RandomPasswordOutput struct {
-	*pulumi.OutputState
-}
+type RandomPasswordOutput struct{ *pulumi.OutputState }
 
 func (RandomPasswordOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomPassword)(nil))
@@ -352,14 +350,12 @@ func (o RandomPasswordOutput) ToRandomPasswordPtrOutput() RandomPasswordPtrOutpu
 }
 
 func (o RandomPasswordOutput) ToRandomPasswordPtrOutputWithContext(ctx context.Context) RandomPasswordPtrOutput {
-	return o.ApplyT(func(v RandomPassword) *RandomPassword {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomPassword) *RandomPassword {
 		return &v
 	}).(RandomPasswordPtrOutput)
 }
 
-type RandomPasswordPtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomPasswordPtrOutput struct{ *pulumi.OutputState }
 
 func (RandomPasswordPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomPassword)(nil))
@@ -371,6 +367,16 @@ func (o RandomPasswordPtrOutput) ToRandomPasswordPtrOutput() RandomPasswordPtrOu
 
 func (o RandomPasswordPtrOutput) ToRandomPasswordPtrOutputWithContext(ctx context.Context) RandomPasswordPtrOutput {
 	return o
+}
+
+func (o RandomPasswordPtrOutput) Elem() RandomPasswordOutput {
+	return o.ApplyT(func(v *RandomPassword) RandomPassword {
+		if v != nil {
+			return *v
+		}
+		var ret RandomPassword
+		return ret
+	}).(RandomPasswordOutput)
 }
 
 type RandomPasswordArrayOutput struct{ *pulumi.OutputState }
