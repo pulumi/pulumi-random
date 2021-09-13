@@ -231,7 +231,7 @@ type RandomIntegerArrayInput interface {
 type RandomIntegerArray []RandomIntegerInput
 
 func (RandomIntegerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomInteger)(nil))
+	return reflect.TypeOf((*[]*RandomInteger)(nil)).Elem()
 }
 
 func (i RandomIntegerArray) ToRandomIntegerArrayOutput() RandomIntegerArrayOutput {
@@ -256,7 +256,7 @@ type RandomIntegerMapInput interface {
 type RandomIntegerMap map[string]RandomIntegerInput
 
 func (RandomIntegerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomInteger)(nil))
+	return reflect.TypeOf((*map[string]*RandomInteger)(nil)).Elem()
 }
 
 func (i RandomIntegerMap) ToRandomIntegerMapOutput() RandomIntegerMapOutput {
@@ -267,9 +267,7 @@ func (i RandomIntegerMap) ToRandomIntegerMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerMapOutput)
 }
 
-type RandomIntegerOutput struct {
-	*pulumi.OutputState
-}
+type RandomIntegerOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomInteger)(nil))
@@ -288,14 +286,12 @@ func (o RandomIntegerOutput) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
 }
 
 func (o RandomIntegerOutput) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
-	return o.ApplyT(func(v RandomInteger) *RandomInteger {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomInteger) *RandomInteger {
 		return &v
 	}).(RandomIntegerPtrOutput)
 }
 
-type RandomIntegerPtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomIntegerPtrOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomInteger)(nil))
@@ -307,6 +303,16 @@ func (o RandomIntegerPtrOutput) ToRandomIntegerPtrOutput() RandomIntegerPtrOutpu
 
 func (o RandomIntegerPtrOutput) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
 	return o
+}
+
+func (o RandomIntegerPtrOutput) Elem() RandomIntegerOutput {
+	return o.ApplyT(func(v *RandomInteger) RandomInteger {
+		if v != nil {
+			return *v
+		}
+		var ret RandomInteger
+		return ret
+	}).(RandomIntegerOutput)
 }
 
 type RandomIntegerArrayOutput struct{ *pulumi.OutputState }

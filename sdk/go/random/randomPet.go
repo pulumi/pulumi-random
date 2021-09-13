@@ -169,7 +169,7 @@ type RandomPetArrayInput interface {
 type RandomPetArray []RandomPetInput
 
 func (RandomPetArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RandomPet)(nil))
+	return reflect.TypeOf((*[]*RandomPet)(nil)).Elem()
 }
 
 func (i RandomPetArray) ToRandomPetArrayOutput() RandomPetArrayOutput {
@@ -194,7 +194,7 @@ type RandomPetMapInput interface {
 type RandomPetMap map[string]RandomPetInput
 
 func (RandomPetMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RandomPet)(nil))
+	return reflect.TypeOf((*map[string]*RandomPet)(nil)).Elem()
 }
 
 func (i RandomPetMap) ToRandomPetMapOutput() RandomPetMapOutput {
@@ -205,9 +205,7 @@ func (i RandomPetMap) ToRandomPetMapOutputWithContext(ctx context.Context) Rando
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPetMapOutput)
 }
 
-type RandomPetOutput struct {
-	*pulumi.OutputState
-}
+type RandomPetOutput struct{ *pulumi.OutputState }
 
 func (RandomPetOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RandomPet)(nil))
@@ -226,14 +224,12 @@ func (o RandomPetOutput) ToRandomPetPtrOutput() RandomPetPtrOutput {
 }
 
 func (o RandomPetOutput) ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput {
-	return o.ApplyT(func(v RandomPet) *RandomPet {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomPet) *RandomPet {
 		return &v
 	}).(RandomPetPtrOutput)
 }
 
-type RandomPetPtrOutput struct {
-	*pulumi.OutputState
-}
+type RandomPetPtrOutput struct{ *pulumi.OutputState }
 
 func (RandomPetPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RandomPet)(nil))
@@ -245,6 +241,16 @@ func (o RandomPetPtrOutput) ToRandomPetPtrOutput() RandomPetPtrOutput {
 
 func (o RandomPetPtrOutput) ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput {
 	return o
+}
+
+func (o RandomPetPtrOutput) Elem() RandomPetOutput {
+	return o.ApplyT(func(v *RandomPet) RandomPet {
+		if v != nil {
+			return *v
+		}
+		var ret RandomPet
+		return ret
+	}).(RandomPetOutput)
 }
 
 type RandomPetArrayOutput struct{ *pulumi.OutputState }
