@@ -104,6 +104,8 @@ jobs:
     needs: prerequisites
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
     - name: Echo Coverage Output Dir
       run: 'echo "Coverage output directory: $COVERAGE_OUTPUT_DIR"'
     - name: Generate Coverage Data
