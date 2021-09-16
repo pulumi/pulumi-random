@@ -6,7 +6,7 @@
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-random/sdk/v4/go)](https://pkg.go.dev/github.com/pulumi/pulumi-random/sdk/v4/go)
 [![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-random/blob/master/LICENSE)
 
-# Random Provider
+# Random Provider Updated for Fork
 
 The random provider allows the safe use of randomness in a Pulumi program. This allows you to generate resource
 properties, such as names, that contain randomness in a way that works with Pulumi's goal state oriented approach.
