@@ -14,7 +14,7 @@ TESTPARALLELISM := 10
 
 WORKING_DIR     := $(shell pwd)
 
-export PULUMI_MAJOR_VERSION = 4
+export PULUMI_MAJOR_VERSION := $(shell pulumictl get version)
 
 .PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python
 
