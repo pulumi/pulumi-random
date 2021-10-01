@@ -20,9 +20,17 @@ class RandomShuffleArgs:
         """
         The set of arguments for constructing a RandomShuffle resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
-        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
+               the number of items in the `input` list. If fewer items are requested,
+               some elements will be excluded from the result. If more items are requested,
+               items will be repeated in the result but not more frequently than the number
+               of items in the input list.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+               list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+               different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         pulumi.set(__self__, "inputs", inputs)
         if keepers is not None:
@@ -48,7 +56,9 @@ class RandomShuffleArgs:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -60,7 +70,11 @@ class RandomShuffleArgs:
     @pulumi.getter(name="resultCount")
     def result_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        The number of results to return. Defaults to
+        the number of items in the `input` list. If fewer items are requested,
+        some elements will be excluded from the result. If more items are requested,
+        items will be repeated in the result but not more frequently than the number
+        of items in the input list.
         """
         return pulumi.get(self, "result_count")
 
@@ -72,7 +86,9 @@ class RandomShuffleArgs:
     @pulumi.getter
     def seed(self) -> Optional[pulumi.Input[str]]:
         """
-        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+        list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+        different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         return pulumi.get(self, "seed")
 
@@ -92,10 +108,18 @@ class _RandomShuffleState:
         """
         Input properties used for looking up and filtering RandomShuffle resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
+               the number of items in the `input` list. If fewer items are requested,
+               some elements will be excluded from the result. If more items are requested,
+               items will be repeated in the result but not more frequently than the number
+               of items in the input list.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] results: Random permutation of the list of strings given in `input`.
-        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+               list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+               different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         if inputs is not None:
             pulumi.set(__self__, "inputs", inputs)
@@ -124,7 +148,9 @@ class _RandomShuffleState:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -136,7 +162,11 @@ class _RandomShuffleState:
     @pulumi.getter(name="resultCount")
     def result_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        The number of results to return. Defaults to
+        the number of items in the `input` list. If fewer items are requested,
+        some elements will be excluded from the result. If more items are requested,
+        items will be repeated in the result but not more frequently than the number
+        of items in the input list.
         """
         return pulumi.get(self, "result_count")
 
@@ -160,7 +190,9 @@ class _RandomShuffleState:
     @pulumi.getter
     def seed(self) -> Optional[pulumi.Input[str]]:
         """
-        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+        list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+        different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         return pulumi.get(self, "seed")
 
@@ -180,7 +212,8 @@ class RandomShuffle(pulumi.CustomResource):
                  seed: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The resource `RandomShuffle` generates a random permutation of a list of strings given as an argument.
+        The resource `RandomShuffle` generates a random permutation of a list
+        of strings given as an argument.
 
         ## Example Usage
 
@@ -203,9 +236,17 @@ class RandomShuffle(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
-        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
+               the number of items in the `input` list. If fewer items are requested,
+               some elements will be excluded from the result. If more items are requested,
+               items will be repeated in the result but not more frequently than the number
+               of items in the input list.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+               list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+               different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         ...
     @overload
@@ -214,7 +255,8 @@ class RandomShuffle(pulumi.CustomResource):
                  args: RandomShuffleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The resource `RandomShuffle` generates a random permutation of a list of strings given as an argument.
+        The resource `RandomShuffle` generates a random permutation of a list
+        of strings given as an argument.
 
         ## Example Usage
 
@@ -295,10 +337,18 @@ class RandomShuffle(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inputs: The list of strings to shuffle.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
+        :param pulumi.Input[int] result_count: The number of results to return. Defaults to
+               the number of items in the `input` list. If fewer items are requested,
+               some elements will be excluded from the result. If more items are requested,
+               items will be repeated in the result but not more frequently than the number
+               of items in the input list.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] results: Random permutation of the list of strings given in `input`.
-        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+               list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+               different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -323,7 +373,9 @@ class RandomShuffle(pulumi.CustomResource):
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -331,7 +383,11 @@ class RandomShuffle(pulumi.CustomResource):
     @pulumi.getter(name="resultCount")
     def result_count(self) -> pulumi.Output[Optional[int]]:
         """
-        The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        The number of results to return. Defaults to
+        the number of items in the `input` list. If fewer items are requested,
+        some elements will be excluded from the result. If more items are requested,
+        items will be repeated in the result but not more frequently than the number
+        of items in the input list.
         """
         return pulumi.get(self, "result_count")
 
@@ -347,7 +403,9 @@ class RandomShuffle(pulumi.CustomResource):
     @pulumi.getter
     def seed(self) -> pulumi.Output[Optional[str]]:
         """
-        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+        Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+        list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+        different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
         """
         return pulumi.get(self, "seed")
 

@@ -16,6 +16,7 @@ package random
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"unicode"
 
@@ -51,6 +52,14 @@ func randomResource(mod string, res string) tokens.Type {
 
 // Provider returns additional overlaid schema and metadata associated with the random package.
 func Provider() tfbridge.ProviderInfo {
+	var majorVersion string
+	pulumiMajorVersion := os.Getenv("PULUMI_MAJOR_VERSION")
+	if pulumiMajorVersion != "" {
+		majorVersion = tfbridge.GetModuleMajorVersion(pulumiMajorVersion)
+	} else {
+		majorVersion = tfbridge.GetModuleMajorVersion(version.Version)
+	}
+
 	return tfbridge.ProviderInfo{
 		P:           shimv2.NewProvider(shim.NewProvider()),
 		Name:        "random",
@@ -84,7 +93,7 @@ func Provider() tfbridge.ProviderInfo {
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
 				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", randomPkg),
-				tfbridge.GetModuleMajorVersion(version.Version),
+				majorVersion,
 				"go",
 				randomPkg,
 			),

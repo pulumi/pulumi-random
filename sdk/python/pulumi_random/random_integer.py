@@ -21,7 +21,9 @@ class RandomIntegerArgs:
         The set of arguments for constructing a RandomInteger resource.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         pulumi.set(__self__, "max", max)
@@ -59,7 +61,9 @@ class RandomIntegerArgs:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -90,10 +94,12 @@ class _RandomIntegerState:
                  seed: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RandomInteger resources.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
-        :param pulumi.Input[int] result: The random integer result.
+        :param pulumi.Input[int] result: (int) The random Integer result.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         if keepers is not None:
@@ -111,7 +117,9 @@ class _RandomIntegerState:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -147,7 +155,7 @@ class _RandomIntegerState:
     @pulumi.getter
     def result(self) -> Optional[pulumi.Input[int]]:
         """
-        The random integer result.
+        (int) The random Integer result.
         """
         return pulumi.get(self, "result")
 
@@ -181,36 +189,41 @@ class RandomInteger(pulumi.CustomResource):
         """
         The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
 
-        This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+        This resource can be used in conjunction with resources that have
+        the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+        unique names during the brief period where both the old and new resources
+        exist concurrently.
 
         ## Example Usage
+
+        The following example shows how to generate a random priority between 1 and 50000 for
+        a `aws_alb_listener_rule` resource:
 
         ```python
         import pulumi
         import pulumi_aws as aws
         import pulumi_random as random
 
-        # The following example shows how to generate a random priority
-        # between 1 and 50000 for a aws_alb_listener_rule resource:
         priority = random.RandomInteger("priority",
-            min=1,
-            max=50000,
             keepers={
                 "listener_arn": var["listener_arn"],
-            })
+            },
+            max=50000,
+            min=1)
         main = aws.alb.ListenerRule("main",
-            listener_arn=var["listener_arn"],
-            priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
-                type="forward",
                 target_group_arn=var["target_group_arn"],
-            )])
-        # ... (other aws_alb_listener_rule arguments) ...
+                type="forward",
+            )],
+            listener_arn=var["listener_arn"],
+            priority=priority.result)
         ```
+
+        The result of the above will set a random priority.
 
         ## Import
 
-        # Random integers can be imported using the result, min, and max, with an # optional seed. This can be used to replace a config value with a value # interpolated from the random provider without experiencing diffs. # Example (values are separated by a ,)
+        Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
 
         ```sh
          $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
@@ -218,7 +231,9 @@ class RandomInteger(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
@@ -232,36 +247,41 @@ class RandomInteger(pulumi.CustomResource):
         """
         The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
 
-        This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+        This resource can be used in conjunction with resources that have
+        the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+        unique names during the brief period where both the old and new resources
+        exist concurrently.
 
         ## Example Usage
+
+        The following example shows how to generate a random priority between 1 and 50000 for
+        a `aws_alb_listener_rule` resource:
 
         ```python
         import pulumi
         import pulumi_aws as aws
         import pulumi_random as random
 
-        # The following example shows how to generate a random priority
-        # between 1 and 50000 for a aws_alb_listener_rule resource:
         priority = random.RandomInteger("priority",
-            min=1,
-            max=50000,
             keepers={
                 "listener_arn": var["listener_arn"],
-            })
+            },
+            max=50000,
+            min=1)
         main = aws.alb.ListenerRule("main",
-            listener_arn=var["listener_arn"],
-            priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
-                type="forward",
                 target_group_arn=var["target_group_arn"],
-            )])
-        # ... (other aws_alb_listener_rule arguments) ...
+                type="forward",
+            )],
+            listener_arn=var["listener_arn"],
+            priority=priority.result)
         ```
+
+        The result of the above will set a random priority.
 
         ## Import
 
-        # Random integers can be imported using the result, min, and max, with an # optional seed. This can be used to replace a config value with a value # interpolated from the random provider without experiencing diffs. # Example (values are separated by a ,)
+        Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
 
         ```sh
          $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
@@ -329,10 +349,12 @@ class RandomInteger(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
+               trigger a new id to be generated. See
+               the main provider documentation for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
-        :param pulumi.Input[int] result: The random integer result.
+        :param pulumi.Input[int] result: (int) The random Integer result.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -350,7 +372,9 @@ class RandomInteger(pulumi.CustomResource):
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will
+        trigger a new id to be generated. See
+        the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -374,7 +398,7 @@ class RandomInteger(pulumi.CustomResource):
     @pulumi.getter
     def result(self) -> pulumi.Output[int]:
         """
-        The random integer result.
+        (int) The random Integer result.
         """
         return pulumi.get(self, "result")
 

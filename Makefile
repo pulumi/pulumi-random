@@ -14,6 +14,8 @@ TESTPARALLELISM := 10
 
 WORKING_DIR     := $(shell pwd)
 
+export PULUMI_MAJOR_VERSION = 4
+
 .PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python
 
 development:: install_plugins provider lint_provider build_sdks install_sdks
@@ -23,7 +25,7 @@ build:: install_plugins provider build_sdks install_sdks
 only_build:: build
 
 tfgen:: install_plugins
-	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
+	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
@@ -39,7 +41,7 @@ build_nodejs:: # build the node sdk
         yarn install && \
         yarn run tsc && \
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
-    	sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
 
 build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
 build_python:: # build the python sdk
@@ -72,8 +74,8 @@ cleanup:: # cleans up the temporary directory
 
 help::
 	@grep '^[^.#]\+:\s\+.*#' Makefile | \
- 	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
- 	expand -t20
+	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
+	expand -t20
 
 clean::
 	rm -rf sdk/{dotnet,nodejs,go,python}

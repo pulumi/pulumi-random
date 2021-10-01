@@ -10,18 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The resource `RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
+// The resource `RandomUuid` generates random uuid string that is intended to be
+// used as unique identifiers for other resources.
 //
-// This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
+// This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
+// for use with services needed a unique string identifier.
 //
 // ## Example Usage
+//
+// The following example shows how to generate a unique name for an Azure Resource Group.
 //
 // ```go
 // package main
 //
 // import (
 // 	"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/core"
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+// 	"github.com/pulumi/pulumi-random/sdk/go/random"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -44,7 +48,7 @@ import (
 //
 // ## Import
 //
-// # Random UUID's can be imported. This can be used to replace a config # value with a value interpolated from the random provider without # experiencing diffs.
+// Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
 //
 // ```sh
 //  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -52,7 +56,9 @@ import (
 type RandomUuid struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The generated uuid presented in string format.
 	Result pulumi.StringOutput `pulumi:"result"`
@@ -87,14 +93,18 @@ func GetRandomUuid(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomUuid resources.
 type randomUuidState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The generated uuid presented in string format.
 	Result *string `pulumi:"result"`
 }
 
 type RandomUuidState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The generated uuid presented in string format.
 	Result pulumi.StringPtrInput
@@ -105,13 +115,17 @@ func (RandomUuidState) ElementType() reflect.Type {
 }
 
 type randomUuidArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 }
 
 // The set of arguments for constructing a RandomUuid resource.
 type RandomUuidArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new uuid to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 }
 

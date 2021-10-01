@@ -27,4 +27,4 @@ The integration tests do try to clean up after themselves by deleting everything
 created, but in the event of bugs or test failures you may need to go into the AWS Console
 and delete resources yourself.
 
-Once you have set `AWS_REGION` and configured your AWS credentials, `make test_all` will run all integration tests.
+Once you have set `AWS_REGION` and configured your AWS credentials, `make test` will run all integration tests.

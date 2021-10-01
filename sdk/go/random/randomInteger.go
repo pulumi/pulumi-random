@@ -13,40 +13,46 @@ import (
 
 // The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
 //
-// This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+// This resource can be used in conjunction with resources that have
+// the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
+// unique names during the brief period where both the old and new resources
+// exist concurrently.
 //
 // ## Example Usage
+//
+// The following example shows how to generate a random priority between 1 and 50000 for
+// a `awsAlbListenerRule` resource:
 //
 // ```go
 // package main
 //
 // import (
 // 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/alb"
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+// 	"github.com/pulumi/pulumi-random/sdk/go/random"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
-// 			Min: pulumi.Int(1),
-// 			Max: pulumi.Int(50000),
 // 			Keepers: pulumi.AnyMap{
 // 				"listener_arn": pulumi.Any(_var.Listener_arn),
 // 			},
+// 			Max: pulumi.Int(50000),
+// 			Min: pulumi.Int(1),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
-// 			ListenerArn: pulumi.Any(_var.Listener_arn),
-// 			Priority:    priority.Result,
 // 			Actions: alb.ListenerRuleActionArray{
 // 				&alb.ListenerRuleActionArgs{
-// 					Type:           pulumi.String("forward"),
 // 					TargetGroupArn: pulumi.Any(_var.Target_group_arn),
+// 					Type:           pulumi.String("forward"),
 // 				},
 // 			},
+// 			ListenerArn: pulumi.Any(_var.Listener_arn),
+// 			Priority:    priority.Result,
 // 		})
 // 		if err != nil {
 // 			return err
@@ -56,9 +62,11 @@ import (
 // }
 // ```
 //
+// The result of the above will set a random priority.
+//
 // ## Import
 //
-// # Random integers can be imported using the result, min, and max, with an # optional seed. This can be used to replace a config value with a value # interpolated from the random provider without experiencing diffs. # Example (values are separated by a ,)
+// Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
 //
 // ```sh
 //  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
@@ -66,13 +74,15 @@ import (
 type RandomInteger struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max pulumi.IntOutput `pulumi:"max"`
 	// The minimum inclusive value of the range.
 	Min pulumi.IntOutput `pulumi:"min"`
-	// The random integer result.
+	// (int) The random Integer result.
 	Result pulumi.IntOutput `pulumi:"result"`
 	// A custom seed to always produce the same value.
 	Seed pulumi.StringPtrOutput `pulumi:"seed"`
@@ -113,26 +123,30 @@ func GetRandomInteger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomInteger resources.
 type randomIntegerState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max *int `pulumi:"max"`
 	// The minimum inclusive value of the range.
 	Min *int `pulumi:"min"`
-	// The random integer result.
+	// (int) The random Integer result.
 	Result *int `pulumi:"result"`
 	// A custom seed to always produce the same value.
 	Seed *string `pulumi:"seed"`
 }
 
 type RandomIntegerState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The maximum inclusive value of the range.
 	Max pulumi.IntPtrInput
 	// The minimum inclusive value of the range.
 	Min pulumi.IntPtrInput
-	// The random integer result.
+	// (int) The random Integer result.
 	Result pulumi.IntPtrInput
 	// A custom seed to always produce the same value.
 	Seed pulumi.StringPtrInput
@@ -143,7 +157,9 @@ func (RandomIntegerState) ElementType() reflect.Type {
 }
 
 type randomIntegerArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max int `pulumi:"max"`
@@ -155,7 +171,9 @@ type randomIntegerArgs struct {
 
 // The set of arguments for constructing a RandomInteger resource.
 type RandomIntegerArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
 	// The maximum inclusive value of the range.
 	Max pulumi.IntInput

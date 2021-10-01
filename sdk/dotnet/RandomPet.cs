@@ -10,11 +10,18 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random.RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
+    /// The resource `random.RandomPet` generates random pet names that are intended to be
+    /// used as unique identifiers for other resources.
     /// 
-    /// This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+    /// This resource can be used in conjunction with resources that have
+    /// the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+    /// unique names during the brief period where both the old and new resources
+    /// exist concurrently.
     /// 
     /// ## Example Usage
+    /// 
+    /// The following example shows how to generate a unique pet name for an AWS EC2
+    /// instance that changes each time a new AMI id is selected.
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -25,9 +32,6 @@ namespace Pulumi.Random
     /// {
     ///     public MyStack()
     ///     {
-    ///         // The following example shows how to generate a unique pet name
-    ///         // for an AWS EC2 instance that changes each time a new AMI id is
-    ///         // selected.
     ///         var serverRandomPet = new Random.RandomPet("serverRandomPet", new Random.RandomPetArgs
     ///         {
     ///             Keepers = 
@@ -37,23 +41,27 @@ namespace Pulumi.Random
     ///         });
     ///         var serverInstance = new Aws.Ec2.Instance("serverInstance", new Aws.Ec2.InstanceArgs
     ///         {
+    ///             Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///             Tags = 
     ///             {
     ///                 { "Name", serverRandomPet.Id.Apply(id =&gt; $"web-server-{id}") },
     ///             },
-    ///             Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///         });
-    ///         // ... (other aws_instance arguments) ...
     ///     }
     /// 
     /// }
     /// ```
+    /// 
+    /// The result of the above will set the Name of the AWS Instance to
+    /// `web-server-simple-snake`.
     /// </summary>
     [RandomResourceType("random:index/randomPet:RandomPet")]
     public partial class RandomPet : Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -126,7 +134,9 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -163,7 +173,9 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {

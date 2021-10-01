@@ -5,7 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Identical to random.RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.
+ * > **Note:** Requires random provider version >= 2.2.0
+ *
+ * Identical to random.RandomString with the exception that the
+ * result is treated as sensitive and, thus, _not_ displayed in console output.
+ *
+ * > **Note:** All attributes including the generated password will be stored in
+ * the raw state as plain-text. [Read more about sensitive data in
+ * state](https://www.terraform.io/docs/state/sensitive-data.html).
  *
  * This resource *does* use a cryptographic random number generator.
  *
@@ -32,7 +39,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * # Random Password can be imported by specifying the value of the string
+ * Random Password can be imported by specifying the value of the string
  *
  * ```sh
  *  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
@@ -67,7 +74,8 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -99,7 +107,9 @@ export class RandomPassword extends pulumi.CustomResource {
      */
     public readonly number!: pulumi.Output<boolean | undefined>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
      */
     public readonly overrideSpecial!: pulumi.Output<string | undefined>;
     /**
@@ -170,7 +180,8 @@ export class RandomPassword extends pulumi.CustomResource {
  */
 export interface RandomPasswordState {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -202,7 +213,9 @@ export interface RandomPasswordState {
      */
     number?: pulumi.Input<boolean>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
@@ -224,7 +237,8 @@ export interface RandomPasswordState {
  */
 export interface RandomPasswordArgs {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -256,7 +270,9 @@ export interface RandomPasswordArgs {
      */
     number?: pulumi.Input<boolean>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
