@@ -2,8 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.7.0 of pulumi-terraform-bridge
-* Upgrade to v3.12.0 of pulumi/sdk
+* Upgrade to v3.9.0 of the pulumi-terraform-bridge. This includes a change to emit input type registrations.
 
 ---
 
