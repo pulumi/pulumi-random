@@ -145,6 +145,10 @@ jobs:
         aws s3 cp ${{ env.COVERAGE_OUTPUT_DIR }}/summary.json ${s3FullURI} --acl bucket-owner-full-control
     - name: Summarize Provider Coverage Results
       run: cat ${{ env.COVERAGE_OUTPUT_DIR }}/shortSummary.txt
+    strategy:
+      matrix:
+        goversion:
+          - 1.16.x
   lint:
     container: golangci/golangci-lint:latest
     name: lint
