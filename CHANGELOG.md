@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.9.0 of the pulumi-terraform-bridge. This includes a change to emit input type registrations.
+_(none)_
 
 ---
+
+## 4.3.0 (2021-10-08)
+* Upgrade to v3.9.0 of the pulumi-terraform-bridge. This includes a change to emit input type registrations.
 
 ## 4.2.0 (2021-05-27)
 * Upgrade to v3.2.1 of the pulumi-terraform-bridge
