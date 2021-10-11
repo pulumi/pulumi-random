@@ -6,6 +6,9 @@ _(none)_
 
 ---
 
+## 4.3.1 (2021-10-11)
+* Ensuring sdk dependency on pulumi/pulumi is 3.14.0
+
 ## 4.3.0 (2021-10-08)
 * Upgrade to v3.9.0 of the pulumi-terraform-bridge. This includes a change to emit input type registrations.
 
