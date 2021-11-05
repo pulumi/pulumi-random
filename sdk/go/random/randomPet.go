@@ -294,6 +294,10 @@ func (o RandomPetMapOutput) MapIndex(k pulumi.StringInput) RandomPetOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetInput)(nil)).Elem(), &RandomPet{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetPtrInput)(nil)).Elem(), &RandomPet{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetArrayInput)(nil)).Elem(), RandomPetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetMapInput)(nil)).Elem(), RandomPetMap{})
 	pulumi.RegisterOutputType(RandomPetOutput{})
 	pulumi.RegisterOutputType(RandomPetPtrOutput{})
 	pulumi.RegisterOutputType(RandomPetArrayOutput{})
