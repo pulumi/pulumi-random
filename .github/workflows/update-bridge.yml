@@ -1,5 +1,4 @@
 env:
-  COVERAGE_OUTPUT_DIR: ${{ secrets.COVERAGE_OUTPUT_DIR }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -35,7 +34,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1
+      uses: pulumi/action-install-pulumi-cli@v2
     - name: Setup DotNet
       uses: actions/setup-dotnet@v1
       with:
