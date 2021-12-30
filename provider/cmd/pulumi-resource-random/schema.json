@@ -3,12 +3,14 @@
     "description": "A Pulumi package to safely use randomness in Pulumi programs.",
     "keywords": [
         "pulumi",
-        "random"
+        "random",
+        "catgegory/utility"
     ],
     "homepage": "https://pulumi.io",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`random` Terraform Provider](https://github.com/terraform-providers/terraform-provider-random).",
     "repository": "https://github.com/pulumi/pulumi-random",
+    "publisher": "Pulumi",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
@@ -769,6 +771,7 @@
             }
         },
         "go": {
+            "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumi/pulumi-random/sdk/v4/go/random"
         },

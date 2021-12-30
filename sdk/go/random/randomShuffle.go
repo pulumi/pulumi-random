@@ -159,7 +159,7 @@ type RandomShuffleInput interface {
 }
 
 func (*RandomShuffle) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomShuffle)(nil))
+	return reflect.TypeOf((**RandomShuffle)(nil)).Elem()
 }
 
 func (i *RandomShuffle) ToRandomShuffleOutput() RandomShuffleOutput {
@@ -168,35 +168,6 @@ func (i *RandomShuffle) ToRandomShuffleOutput() RandomShuffleOutput {
 
 func (i *RandomShuffle) ToRandomShuffleOutputWithContext(ctx context.Context) RandomShuffleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomShuffleOutput)
-}
-
-func (i *RandomShuffle) ToRandomShufflePtrOutput() RandomShufflePtrOutput {
-	return i.ToRandomShufflePtrOutputWithContext(context.Background())
-}
-
-func (i *RandomShuffle) ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomShufflePtrOutput)
-}
-
-type RandomShufflePtrInput interface {
-	pulumi.Input
-
-	ToRandomShufflePtrOutput() RandomShufflePtrOutput
-	ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput
-}
-
-type randomShufflePtrType RandomShuffleArgs
-
-func (*randomShufflePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomShuffle)(nil))
-}
-
-func (i *randomShufflePtrType) ToRandomShufflePtrOutput() RandomShufflePtrOutput {
-	return i.ToRandomShufflePtrOutputWithContext(context.Background())
-}
-
-func (i *randomShufflePtrType) ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomShufflePtrOutput)
 }
 
 // RandomShuffleArrayInput is an input type that accepts RandomShuffleArray and RandomShuffleArrayOutput values.
@@ -252,7 +223,7 @@ func (i RandomShuffleMap) ToRandomShuffleMapOutputWithContext(ctx context.Contex
 type RandomShuffleOutput struct{ *pulumi.OutputState }
 
 func (RandomShuffleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomShuffle)(nil))
+	return reflect.TypeOf((**RandomShuffle)(nil)).Elem()
 }
 
 func (o RandomShuffleOutput) ToRandomShuffleOutput() RandomShuffleOutput {
@@ -263,44 +234,10 @@ func (o RandomShuffleOutput) ToRandomShuffleOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RandomShuffleOutput) ToRandomShufflePtrOutput() RandomShufflePtrOutput {
-	return o.ToRandomShufflePtrOutputWithContext(context.Background())
-}
-
-func (o RandomShuffleOutput) ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomShuffle) *RandomShuffle {
-		return &v
-	}).(RandomShufflePtrOutput)
-}
-
-type RandomShufflePtrOutput struct{ *pulumi.OutputState }
-
-func (RandomShufflePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomShuffle)(nil))
-}
-
-func (o RandomShufflePtrOutput) ToRandomShufflePtrOutput() RandomShufflePtrOutput {
-	return o
-}
-
-func (o RandomShufflePtrOutput) ToRandomShufflePtrOutputWithContext(ctx context.Context) RandomShufflePtrOutput {
-	return o
-}
-
-func (o RandomShufflePtrOutput) Elem() RandomShuffleOutput {
-	return o.ApplyT(func(v *RandomShuffle) RandomShuffle {
-		if v != nil {
-			return *v
-		}
-		var ret RandomShuffle
-		return ret
-	}).(RandomShuffleOutput)
-}
-
 type RandomShuffleArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomShuffleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RandomShuffle)(nil))
+	return reflect.TypeOf((*[]*RandomShuffle)(nil)).Elem()
 }
 
 func (o RandomShuffleArrayOutput) ToRandomShuffleArrayOutput() RandomShuffleArrayOutput {
@@ -312,15 +249,15 @@ func (o RandomShuffleArrayOutput) ToRandomShuffleArrayOutputWithContext(ctx cont
 }
 
 func (o RandomShuffleArrayOutput) Index(i pulumi.IntInput) RandomShuffleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomShuffle {
-		return vs[0].([]RandomShuffle)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomShuffle {
+		return vs[0].([]*RandomShuffle)[vs[1].(int)]
 	}).(RandomShuffleOutput)
 }
 
 type RandomShuffleMapOutput struct{ *pulumi.OutputState }
 
 func (RandomShuffleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RandomShuffle)(nil))
+	return reflect.TypeOf((*map[string]*RandomShuffle)(nil)).Elem()
 }
 
 func (o RandomShuffleMapOutput) ToRandomShuffleMapOutput() RandomShuffleMapOutput {
@@ -332,18 +269,16 @@ func (o RandomShuffleMapOutput) ToRandomShuffleMapOutputWithContext(ctx context.
 }
 
 func (o RandomShuffleMapOutput) MapIndex(k pulumi.StringInput) RandomShuffleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomShuffle {
-		return vs[0].(map[string]RandomShuffle)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RandomShuffle {
+		return vs[0].(map[string]*RandomShuffle)[vs[1].(string)]
 	}).(RandomShuffleOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomShuffleInput)(nil)).Elem(), &RandomShuffle{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RandomShufflePtrInput)(nil)).Elem(), &RandomShuffle{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomShuffleArrayInput)(nil)).Elem(), RandomShuffleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomShuffleMapInput)(nil)).Elem(), RandomShuffleMap{})
 	pulumi.RegisterOutputType(RandomShuffleOutput{})
-	pulumi.RegisterOutputType(RandomShufflePtrOutput{})
 	pulumi.RegisterOutputType(RandomShuffleArrayOutput{})
 	pulumi.RegisterOutputType(RandomShuffleMapOutput{})
 }

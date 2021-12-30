@@ -4,7 +4,8 @@
     "description": "A Pulumi package to safely use randomness in Pulumi programs.",
     "keywords": [
         "pulumi",
-        "random"
+        "random",
+        "catgegory/utility"
     ],
     "homepage": "https://pulumi.io",
     "repository": "https://github.com/pulumi/pulumi-random",

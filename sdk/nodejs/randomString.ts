@@ -118,44 +118,44 @@ export class RandomString extends pulumi.CustomResource {
      */
     constructor(name: string, args: RandomStringArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomStringArgs | RandomStringState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomStringState | undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["length"] = state ? state.length : undefined;
-            inputs["lower"] = state ? state.lower : undefined;
-            inputs["minLower"] = state ? state.minLower : undefined;
-            inputs["minNumeric"] = state ? state.minNumeric : undefined;
-            inputs["minSpecial"] = state ? state.minSpecial : undefined;
-            inputs["minUpper"] = state ? state.minUpper : undefined;
-            inputs["number"] = state ? state.number : undefined;
-            inputs["overrideSpecial"] = state ? state.overrideSpecial : undefined;
-            inputs["result"] = state ? state.result : undefined;
-            inputs["special"] = state ? state.special : undefined;
-            inputs["upper"] = state ? state.upper : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["length"] = state ? state.length : undefined;
+            resourceInputs["lower"] = state ? state.lower : undefined;
+            resourceInputs["minLower"] = state ? state.minLower : undefined;
+            resourceInputs["minNumeric"] = state ? state.minNumeric : undefined;
+            resourceInputs["minSpecial"] = state ? state.minSpecial : undefined;
+            resourceInputs["minUpper"] = state ? state.minUpper : undefined;
+            resourceInputs["number"] = state ? state.number : undefined;
+            resourceInputs["overrideSpecial"] = state ? state.overrideSpecial : undefined;
+            resourceInputs["result"] = state ? state.result : undefined;
+            resourceInputs["special"] = state ? state.special : undefined;
+            resourceInputs["upper"] = state ? state.upper : undefined;
         } else {
             const args = argsOrState as RandomStringArgs | undefined;
             if ((!args || args.length === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'length'");
             }
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["length"] = args ? args.length : undefined;
-            inputs["lower"] = args ? args.lower : undefined;
-            inputs["minLower"] = args ? args.minLower : undefined;
-            inputs["minNumeric"] = args ? args.minNumeric : undefined;
-            inputs["minSpecial"] = args ? args.minSpecial : undefined;
-            inputs["minUpper"] = args ? args.minUpper : undefined;
-            inputs["number"] = args ? args.number : undefined;
-            inputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
-            inputs["special"] = args ? args.special : undefined;
-            inputs["upper"] = args ? args.upper : undefined;
-            inputs["result"] = undefined /*out*/;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["length"] = args ? args.length : undefined;
+            resourceInputs["lower"] = args ? args.lower : undefined;
+            resourceInputs["minLower"] = args ? args.minLower : undefined;
+            resourceInputs["minNumeric"] = args ? args.minNumeric : undefined;
+            resourceInputs["minSpecial"] = args ? args.minSpecial : undefined;
+            resourceInputs["minUpper"] = args ? args.minUpper : undefined;
+            resourceInputs["number"] = args ? args.number : undefined;
+            resourceInputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
+            resourceInputs["special"] = args ? args.special : undefined;
+            resourceInputs["upper"] = args ? args.upper : undefined;
+            resourceInputs["result"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(RandomString.__pulumiType, name, inputs, opts);
+        super(RandomString.__pulumiType, name, resourceInputs, opts);
     }
 }
 

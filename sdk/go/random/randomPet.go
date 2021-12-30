@@ -115,7 +115,7 @@ type RandomPetInput interface {
 }
 
 func (*RandomPet) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomPet)(nil))
+	return reflect.TypeOf((**RandomPet)(nil)).Elem()
 }
 
 func (i *RandomPet) ToRandomPetOutput() RandomPetOutput {
@@ -124,35 +124,6 @@ func (i *RandomPet) ToRandomPetOutput() RandomPetOutput {
 
 func (i *RandomPet) ToRandomPetOutputWithContext(ctx context.Context) RandomPetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPetOutput)
-}
-
-func (i *RandomPet) ToRandomPetPtrOutput() RandomPetPtrOutput {
-	return i.ToRandomPetPtrOutputWithContext(context.Background())
-}
-
-func (i *RandomPet) ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomPetPtrOutput)
-}
-
-type RandomPetPtrInput interface {
-	pulumi.Input
-
-	ToRandomPetPtrOutput() RandomPetPtrOutput
-	ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput
-}
-
-type randomPetPtrType RandomPetArgs
-
-func (*randomPetPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomPet)(nil))
-}
-
-func (i *randomPetPtrType) ToRandomPetPtrOutput() RandomPetPtrOutput {
-	return i.ToRandomPetPtrOutputWithContext(context.Background())
-}
-
-func (i *randomPetPtrType) ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomPetPtrOutput)
 }
 
 // RandomPetArrayInput is an input type that accepts RandomPetArray and RandomPetArrayOutput values.
@@ -208,7 +179,7 @@ func (i RandomPetMap) ToRandomPetMapOutputWithContext(ctx context.Context) Rando
 type RandomPetOutput struct{ *pulumi.OutputState }
 
 func (RandomPetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomPet)(nil))
+	return reflect.TypeOf((**RandomPet)(nil)).Elem()
 }
 
 func (o RandomPetOutput) ToRandomPetOutput() RandomPetOutput {
@@ -219,44 +190,10 @@ func (o RandomPetOutput) ToRandomPetOutputWithContext(ctx context.Context) Rando
 	return o
 }
 
-func (o RandomPetOutput) ToRandomPetPtrOutput() RandomPetPtrOutput {
-	return o.ToRandomPetPtrOutputWithContext(context.Background())
-}
-
-func (o RandomPetOutput) ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomPet) *RandomPet {
-		return &v
-	}).(RandomPetPtrOutput)
-}
-
-type RandomPetPtrOutput struct{ *pulumi.OutputState }
-
-func (RandomPetPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomPet)(nil))
-}
-
-func (o RandomPetPtrOutput) ToRandomPetPtrOutput() RandomPetPtrOutput {
-	return o
-}
-
-func (o RandomPetPtrOutput) ToRandomPetPtrOutputWithContext(ctx context.Context) RandomPetPtrOutput {
-	return o
-}
-
-func (o RandomPetPtrOutput) Elem() RandomPetOutput {
-	return o.ApplyT(func(v *RandomPet) RandomPet {
-		if v != nil {
-			return *v
-		}
-		var ret RandomPet
-		return ret
-	}).(RandomPetOutput)
-}
-
 type RandomPetArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomPetArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RandomPet)(nil))
+	return reflect.TypeOf((*[]*RandomPet)(nil)).Elem()
 }
 
 func (o RandomPetArrayOutput) ToRandomPetArrayOutput() RandomPetArrayOutput {
@@ -268,15 +205,15 @@ func (o RandomPetArrayOutput) ToRandomPetArrayOutputWithContext(ctx context.Cont
 }
 
 func (o RandomPetArrayOutput) Index(i pulumi.IntInput) RandomPetOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomPet {
-		return vs[0].([]RandomPet)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomPet {
+		return vs[0].([]*RandomPet)[vs[1].(int)]
 	}).(RandomPetOutput)
 }
 
 type RandomPetMapOutput struct{ *pulumi.OutputState }
 
 func (RandomPetMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RandomPet)(nil))
+	return reflect.TypeOf((*map[string]*RandomPet)(nil)).Elem()
 }
 
 func (o RandomPetMapOutput) ToRandomPetMapOutput() RandomPetMapOutput {
@@ -288,18 +225,16 @@ func (o RandomPetMapOutput) ToRandomPetMapOutputWithContext(ctx context.Context)
 }
 
 func (o RandomPetMapOutput) MapIndex(k pulumi.StringInput) RandomPetOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomPet {
-		return vs[0].(map[string]RandomPet)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RandomPet {
+		return vs[0].(map[string]*RandomPet)[vs[1].(string)]
 	}).(RandomPetOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetInput)(nil)).Elem(), &RandomPet{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetPtrInput)(nil)).Elem(), &RandomPet{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetArrayInput)(nil)).Elem(), RandomPetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomPetMapInput)(nil)).Elem(), RandomPetMap{})
 	pulumi.RegisterOutputType(RandomPetOutput{})
-	pulumi.RegisterOutputType(RandomPetPtrOutput{})
 	pulumi.RegisterOutputType(RandomPetArrayOutput{})
 	pulumi.RegisterOutputType(RandomPetMapOutput{})
 }

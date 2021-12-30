@@ -45,7 +45,7 @@ setup(name='pulumi_random',
       cmdclass={
           'install': InstallPluginCommand,
       },
-      keywords='pulumi random',
+      keywords='pulumi random catgegory/utility',
       url='https://pulumi.io',
       project_urls={
           'Repository': 'https://github.com/pulumi/pulumi-random'
@@ -55,6 +55,7 @@ setup(name='pulumi_random',
       package_data={
           'pulumi_random': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

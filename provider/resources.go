@@ -55,9 +55,10 @@ func Provider() tfbridge.ProviderInfo {
 		P:           shimv2.NewProvider(shim.NewProvider()),
 		Name:        "random",
 		Description: "A Pulumi package to safely use randomness in Pulumi programs.",
-		Keywords:    []string{"pulumi", "random"},
+		Keywords:    []string{"pulumi", "random", "catgegory/utility"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
+		Publisher:   "Pulumi",
 		Repository:  "https://github.com/pulumi/pulumi-random",
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"random_id":       {Tok: randomResource(randomMod, "RandomId")},
