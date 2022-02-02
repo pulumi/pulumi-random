@@ -55,6 +55,7 @@ setup(name='pulumi_random',
       package_data={
           'pulumi_random': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

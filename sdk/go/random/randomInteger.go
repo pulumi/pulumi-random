@@ -177,7 +177,7 @@ type RandomIntegerInput interface {
 }
 
 func (*RandomInteger) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomInteger)(nil))
+	return reflect.TypeOf((**RandomInteger)(nil)).Elem()
 }
 
 func (i *RandomInteger) ToRandomIntegerOutput() RandomIntegerOutput {
@@ -186,35 +186,6 @@ func (i *RandomInteger) ToRandomIntegerOutput() RandomIntegerOutput {
 
 func (i *RandomInteger) ToRandomIntegerOutputWithContext(ctx context.Context) RandomIntegerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerOutput)
-}
-
-func (i *RandomInteger) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
-	return i.ToRandomIntegerPtrOutputWithContext(context.Background())
-}
-
-func (i *RandomInteger) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerPtrOutput)
-}
-
-type RandomIntegerPtrInput interface {
-	pulumi.Input
-
-	ToRandomIntegerPtrOutput() RandomIntegerPtrOutput
-	ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput
-}
-
-type randomIntegerPtrType RandomIntegerArgs
-
-func (*randomIntegerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomInteger)(nil))
-}
-
-func (i *randomIntegerPtrType) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
-	return i.ToRandomIntegerPtrOutputWithContext(context.Background())
-}
-
-func (i *randomIntegerPtrType) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerPtrOutput)
 }
 
 // RandomIntegerArrayInput is an input type that accepts RandomIntegerArray and RandomIntegerArrayOutput values.
@@ -270,7 +241,7 @@ func (i RandomIntegerMap) ToRandomIntegerMapOutputWithContext(ctx context.Contex
 type RandomIntegerOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomInteger)(nil))
+	return reflect.TypeOf((**RandomInteger)(nil)).Elem()
 }
 
 func (o RandomIntegerOutput) ToRandomIntegerOutput() RandomIntegerOutput {
@@ -281,44 +252,10 @@ func (o RandomIntegerOutput) ToRandomIntegerOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RandomIntegerOutput) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
-	return o.ToRandomIntegerPtrOutputWithContext(context.Background())
-}
-
-func (o RandomIntegerOutput) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomInteger) *RandomInteger {
-		return &v
-	}).(RandomIntegerPtrOutput)
-}
-
-type RandomIntegerPtrOutput struct{ *pulumi.OutputState }
-
-func (RandomIntegerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomInteger)(nil))
-}
-
-func (o RandomIntegerPtrOutput) ToRandomIntegerPtrOutput() RandomIntegerPtrOutput {
-	return o
-}
-
-func (o RandomIntegerPtrOutput) ToRandomIntegerPtrOutputWithContext(ctx context.Context) RandomIntegerPtrOutput {
-	return o
-}
-
-func (o RandomIntegerPtrOutput) Elem() RandomIntegerOutput {
-	return o.ApplyT(func(v *RandomInteger) RandomInteger {
-		if v != nil {
-			return *v
-		}
-		var ret RandomInteger
-		return ret
-	}).(RandomIntegerOutput)
-}
-
 type RandomIntegerArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RandomInteger)(nil))
+	return reflect.TypeOf((*[]*RandomInteger)(nil)).Elem()
 }
 
 func (o RandomIntegerArrayOutput) ToRandomIntegerArrayOutput() RandomIntegerArrayOutput {
@@ -330,15 +267,15 @@ func (o RandomIntegerArrayOutput) ToRandomIntegerArrayOutputWithContext(ctx cont
 }
 
 func (o RandomIntegerArrayOutput) Index(i pulumi.IntInput) RandomIntegerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomInteger {
-		return vs[0].([]RandomInteger)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomInteger {
+		return vs[0].([]*RandomInteger)[vs[1].(int)]
 	}).(RandomIntegerOutput)
 }
 
 type RandomIntegerMapOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RandomInteger)(nil))
+	return reflect.TypeOf((*map[string]*RandomInteger)(nil)).Elem()
 }
 
 func (o RandomIntegerMapOutput) ToRandomIntegerMapOutput() RandomIntegerMapOutput {
@@ -350,18 +287,16 @@ func (o RandomIntegerMapOutput) ToRandomIntegerMapOutputWithContext(ctx context.
 }
 
 func (o RandomIntegerMapOutput) MapIndex(k pulumi.StringInput) RandomIntegerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomInteger {
-		return vs[0].(map[string]RandomInteger)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RandomInteger {
+		return vs[0].(map[string]*RandomInteger)[vs[1].(string)]
 	}).(RandomIntegerOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomIntegerInput)(nil)).Elem(), &RandomInteger{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RandomIntegerPtrInput)(nil)).Elem(), &RandomInteger{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomIntegerArrayInput)(nil)).Elem(), RandomIntegerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomIntegerMapInput)(nil)).Elem(), RandomIntegerMap{})
 	pulumi.RegisterOutputType(RandomIntegerOutput{})
-	pulumi.RegisterOutputType(RandomIntegerPtrOutput{})
 	pulumi.RegisterOutputType(RandomIntegerArrayOutput{})
 	pulumi.RegisterOutputType(RandomIntegerMapOutput{})
 }

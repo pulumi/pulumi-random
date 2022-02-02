@@ -85,25 +85,23 @@ export class RandomPet extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RandomPetArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomPetArgs | RandomPetState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPetState | undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["length"] = state ? state.length : undefined;
-            inputs["prefix"] = state ? state.prefix : undefined;
-            inputs["separator"] = state ? state.separator : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["length"] = state ? state.length : undefined;
+            resourceInputs["prefix"] = state ? state.prefix : undefined;
+            resourceInputs["separator"] = state ? state.separator : undefined;
         } else {
             const args = argsOrState as RandomPetArgs | undefined;
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["length"] = args ? args.length : undefined;
-            inputs["prefix"] = args ? args.prefix : undefined;
-            inputs["separator"] = args ? args.separator : undefined;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["length"] = args ? args.length : undefined;
+            resourceInputs["prefix"] = args ? args.prefix : undefined;
+            resourceInputs["separator"] = args ? args.separator : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RandomPet.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RandomPet.__pulumiType, name, resourceInputs, opts);
     }
 }
 

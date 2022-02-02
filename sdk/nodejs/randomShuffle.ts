@@ -88,30 +88,28 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     constructor(name: string, args: RandomShuffleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomShuffleArgs | RandomShuffleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomShuffleState | undefined;
-            inputs["inputs"] = state ? state.inputs : undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["resultCount"] = state ? state.resultCount : undefined;
-            inputs["results"] = state ? state.results : undefined;
-            inputs["seed"] = state ? state.seed : undefined;
+            resourceInputs["inputs"] = state ? state.inputs : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["resultCount"] = state ? state.resultCount : undefined;
+            resourceInputs["results"] = state ? state.results : undefined;
+            resourceInputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomShuffleArgs | undefined;
             if ((!args || args.inputs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'inputs'");
             }
-            inputs["inputs"] = args ? args.inputs : undefined;
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["resultCount"] = args ? args.resultCount : undefined;
-            inputs["seed"] = args ? args.seed : undefined;
-            inputs["results"] = undefined /*out*/;
+            resourceInputs["inputs"] = args ? args.inputs : undefined;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["resultCount"] = args ? args.resultCount : undefined;
+            resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["results"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RandomShuffle.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RandomShuffle.__pulumiType, name, resourceInputs, opts);
     }
 }
 

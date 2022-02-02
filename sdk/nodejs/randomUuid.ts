@@ -76,21 +76,19 @@ export class RandomUuid extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RandomUuidArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomUuidArgs | RandomUuidState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomUuidState | undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["result"] = state ? state.result : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["result"] = state ? state.result : undefined;
         } else {
             const args = argsOrState as RandomUuidArgs | undefined;
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["result"] = undefined /*out*/;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["result"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RandomUuid.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RandomUuid.__pulumiType, name, resourceInputs, opts);
     }
 }
 

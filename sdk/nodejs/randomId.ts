@@ -122,34 +122,32 @@ export class RandomId extends pulumi.CustomResource {
      */
     constructor(name: string, args: RandomIdArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomIdArgs | RandomIdState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomIdState | undefined;
-            inputs["b64Std"] = state ? state.b64Std : undefined;
-            inputs["b64Url"] = state ? state.b64Url : undefined;
-            inputs["byteLength"] = state ? state.byteLength : undefined;
-            inputs["dec"] = state ? state.dec : undefined;
-            inputs["hex"] = state ? state.hex : undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["prefix"] = state ? state.prefix : undefined;
+            resourceInputs["b64Std"] = state ? state.b64Std : undefined;
+            resourceInputs["b64Url"] = state ? state.b64Url : undefined;
+            resourceInputs["byteLength"] = state ? state.byteLength : undefined;
+            resourceInputs["dec"] = state ? state.dec : undefined;
+            resourceInputs["hex"] = state ? state.hex : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["prefix"] = state ? state.prefix : undefined;
         } else {
             const args = argsOrState as RandomIdArgs | undefined;
             if ((!args || args.byteLength === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'byteLength'");
             }
-            inputs["byteLength"] = args ? args.byteLength : undefined;
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["prefix"] = args ? args.prefix : undefined;
-            inputs["b64Std"] = undefined /*out*/;
-            inputs["b64Url"] = undefined /*out*/;
-            inputs["dec"] = undefined /*out*/;
-            inputs["hex"] = undefined /*out*/;
+            resourceInputs["byteLength"] = args ? args.byteLength : undefined;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["prefix"] = args ? args.prefix : undefined;
+            resourceInputs["b64Std"] = undefined /*out*/;
+            resourceInputs["b64Url"] = undefined /*out*/;
+            resourceInputs["dec"] = undefined /*out*/;
+            resourceInputs["hex"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RandomId.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RandomId.__pulumiType, name, resourceInputs, opts);
     }
 }
 
