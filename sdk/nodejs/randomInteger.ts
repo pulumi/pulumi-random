@@ -102,15 +102,15 @@ export class RandomInteger extends pulumi.CustomResource {
      */
     constructor(name: string, args: RandomIntegerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomIntegerArgs | RandomIntegerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomIntegerState | undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["max"] = state ? state.max : undefined;
-            inputs["min"] = state ? state.min : undefined;
-            inputs["result"] = state ? state.result : undefined;
-            inputs["seed"] = state ? state.seed : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["max"] = state ? state.max : undefined;
+            resourceInputs["min"] = state ? state.min : undefined;
+            resourceInputs["result"] = state ? state.result : undefined;
+            resourceInputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomIntegerArgs | undefined;
             if ((!args || args.max === undefined) && !opts.urn) {
@@ -119,16 +119,14 @@ export class RandomInteger extends pulumi.CustomResource {
             if ((!args || args.min === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'min'");
             }
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["max"] = args ? args.max : undefined;
-            inputs["min"] = args ? args.min : undefined;
-            inputs["seed"] = args ? args.seed : undefined;
-            inputs["result"] = undefined /*out*/;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["max"] = args ? args.max : undefined;
+            resourceInputs["min"] = args ? args.min : undefined;
+            resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["result"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RandomInteger.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RandomInteger.__pulumiType, name, resourceInputs, opts);
     }
 }
 

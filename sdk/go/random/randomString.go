@@ -232,7 +232,7 @@ type RandomStringInput interface {
 }
 
 func (*RandomString) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomString)(nil))
+	return reflect.TypeOf((**RandomString)(nil)).Elem()
 }
 
 func (i *RandomString) ToRandomStringOutput() RandomStringOutput {
@@ -241,35 +241,6 @@ func (i *RandomString) ToRandomStringOutput() RandomStringOutput {
 
 func (i *RandomString) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringOutput)
-}
-
-func (i *RandomString) ToRandomStringPtrOutput() RandomStringPtrOutput {
-	return i.ToRandomStringPtrOutputWithContext(context.Background())
-}
-
-func (i *RandomString) ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomStringPtrOutput)
-}
-
-type RandomStringPtrInput interface {
-	pulumi.Input
-
-	ToRandomStringPtrOutput() RandomStringPtrOutput
-	ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput
-}
-
-type randomStringPtrType RandomStringArgs
-
-func (*randomStringPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomString)(nil))
-}
-
-func (i *randomStringPtrType) ToRandomStringPtrOutput() RandomStringPtrOutput {
-	return i.ToRandomStringPtrOutputWithContext(context.Background())
-}
-
-func (i *randomStringPtrType) ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomStringPtrOutput)
 }
 
 // RandomStringArrayInput is an input type that accepts RandomStringArray and RandomStringArrayOutput values.
@@ -325,7 +296,7 @@ func (i RandomStringMap) ToRandomStringMapOutputWithContext(ctx context.Context)
 type RandomStringOutput struct{ *pulumi.OutputState }
 
 func (RandomStringOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomString)(nil))
+	return reflect.TypeOf((**RandomString)(nil)).Elem()
 }
 
 func (o RandomStringOutput) ToRandomStringOutput() RandomStringOutput {
@@ -336,44 +307,10 @@ func (o RandomStringOutput) ToRandomStringOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o RandomStringOutput) ToRandomStringPtrOutput() RandomStringPtrOutput {
-	return o.ToRandomStringPtrOutputWithContext(context.Background())
-}
-
-func (o RandomStringOutput) ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomString) *RandomString {
-		return &v
-	}).(RandomStringPtrOutput)
-}
-
-type RandomStringPtrOutput struct{ *pulumi.OutputState }
-
-func (RandomStringPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomString)(nil))
-}
-
-func (o RandomStringPtrOutput) ToRandomStringPtrOutput() RandomStringPtrOutput {
-	return o
-}
-
-func (o RandomStringPtrOutput) ToRandomStringPtrOutputWithContext(ctx context.Context) RandomStringPtrOutput {
-	return o
-}
-
-func (o RandomStringPtrOutput) Elem() RandomStringOutput {
-	return o.ApplyT(func(v *RandomString) RandomString {
-		if v != nil {
-			return *v
-		}
-		var ret RandomString
-		return ret
-	}).(RandomStringOutput)
-}
-
 type RandomStringArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomStringArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RandomString)(nil))
+	return reflect.TypeOf((*[]*RandomString)(nil)).Elem()
 }
 
 func (o RandomStringArrayOutput) ToRandomStringArrayOutput() RandomStringArrayOutput {
@@ -385,15 +322,15 @@ func (o RandomStringArrayOutput) ToRandomStringArrayOutputWithContext(ctx contex
 }
 
 func (o RandomStringArrayOutput) Index(i pulumi.IntInput) RandomStringOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomString {
-		return vs[0].([]RandomString)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomString {
+		return vs[0].([]*RandomString)[vs[1].(int)]
 	}).(RandomStringOutput)
 }
 
 type RandomStringMapOutput struct{ *pulumi.OutputState }
 
 func (RandomStringMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RandomString)(nil))
+	return reflect.TypeOf((*map[string]*RandomString)(nil)).Elem()
 }
 
 func (o RandomStringMapOutput) ToRandomStringMapOutput() RandomStringMapOutput {
@@ -405,18 +342,16 @@ func (o RandomStringMapOutput) ToRandomStringMapOutputWithContext(ctx context.Co
 }
 
 func (o RandomStringMapOutput) MapIndex(k pulumi.StringInput) RandomStringOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomString {
-		return vs[0].(map[string]RandomString)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RandomString {
+		return vs[0].(map[string]*RandomString)[vs[1].(string)]
 	}).(RandomStringOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomStringInput)(nil)).Elem(), &RandomString{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RandomStringPtrInput)(nil)).Elem(), &RandomString{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomStringArrayInput)(nil)).Elem(), RandomStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomStringMapInput)(nil)).Elem(), RandomStringMap{})
 	pulumi.RegisterOutputType(RandomStringOutput{})
-	pulumi.RegisterOutputType(RandomStringPtrOutput{})
 	pulumi.RegisterOutputType(RandomStringArrayOutput{})
 	pulumi.RegisterOutputType(RandomStringMapOutput{})
 }
