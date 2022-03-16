@@ -66,8 +66,6 @@ import (
 type RandomInteger struct {
 	pulumi.CustomResourceState
 
-	// The string representation of the integer result.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
@@ -116,8 +114,6 @@ func GetRandomInteger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomInteger resources.
 type randomIntegerState struct {
-	// The string representation of the integer result.
-	Id *string `pulumi:"id"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
@@ -132,8 +128,6 @@ type randomIntegerState struct {
 }
 
 type RandomIntegerState struct {
-	// The string representation of the integer result.
-	Id pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput

@@ -214,8 +214,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/posener/complete v1.1.1/go.mod h1:em0nMJCgc9GFtwrmVmEMR/ZL6WyhyjMBndrE9hABlRI=
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
-github.com/pulumi/terraform-provider-random v1.3.2-0.20220316225410-3d6ef325a2c3 h1:J/kIqxR2iMv9iq4lHQrP49WZmrAAWonoFltQZCPfE80=
-github.com/pulumi/terraform-provider-random v1.3.2-0.20220316225410-3d6ef325a2c3/go.mod h1:kRW1kEG3tntfIIYeOKdzl+bmiVpNR+IR+wSo2UNZ0sE=
+github.com/pulumi/terraform-provider-random v1.3.2-0.20220316235043-737bd750bc23 h1:0qATIk3+WEB3gi8gDs+Wjf0e/nzEM4bnd9j1axds9RY=
+github.com/pulumi/terraform-provider-random v1.3.2-0.20220316235043-737bd750bc23/go.mod h1:kRW1kEG3tntfIIYeOKdzl+bmiVpNR+IR+wSo2UNZ0sE=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/russross/blackfriday v1.6.0/go.mod h1:ti0ldHuxg49ri4ksnFxlkCfN+hvslNlmVHqNRXXJNAY=
 github.com/sebdah/goldie v1.0.0/go.mod h1:jXP4hmWywNEwZzhMuv2ccnqTSFpuq8iyQhtQdkkZBH4=

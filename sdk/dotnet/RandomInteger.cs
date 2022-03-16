@@ -67,12 +67,6 @@ namespace Pulumi.Random
     public partial class RandomInteger : Pulumi.CustomResource
     {
         /// <summary>
-        /// The string representation of the integer result.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
-        /// <summary>
         /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
         /// documentation](../index.html) for more information.
         /// </summary>
@@ -187,12 +181,6 @@ namespace Pulumi.Random
 
     public sealed class RandomIntegerState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The string representation of the integer result.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("keepers")]
         private InputMap<object>? _keepers;
 
