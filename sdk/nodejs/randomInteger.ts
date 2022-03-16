@@ -73,7 +73,12 @@ export class RandomInteger extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * The string representation of the integer result.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -106,6 +111,7 @@ export class RandomInteger extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomIntegerState | undefined;
+            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["max"] = state ? state.max : undefined;
             resourceInputs["min"] = state ? state.min : undefined;
@@ -123,6 +129,7 @@ export class RandomInteger extends pulumi.CustomResource {
             resourceInputs["max"] = args ? args.max : undefined;
             resourceInputs["min"] = args ? args.min : undefined;
             resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -135,7 +142,12 @@ export class RandomInteger extends pulumi.CustomResource {
  */
 export interface RandomIntegerState {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * The string representation of the integer result.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -161,7 +173,8 @@ export interface RandomIntegerState {
  */
 export interface RandomIntegerArgs {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**

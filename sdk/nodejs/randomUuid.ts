@@ -59,7 +59,12 @@ export class RandomUuid extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * The generated uuid presented in string format.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -80,11 +85,13 @@ export class RandomUuid extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomUuidState | undefined;
+            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["result"] = state ? state.result : undefined;
         } else {
             const args = argsOrState as RandomUuidArgs | undefined;
             resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -97,7 +104,12 @@ export class RandomUuid extends pulumi.CustomResource {
  */
 export interface RandomUuidState {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * The generated uuid presented in string format.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -111,7 +123,8 @@ export interface RandomUuidState {
  */
 export interface RandomUuidArgs {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
 }

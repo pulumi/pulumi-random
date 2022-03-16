@@ -66,7 +66,10 @@ import (
 type RandomInteger struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// The string representation of the integer result.
+	Id pulumi.StringOutput `pulumi:"id"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max pulumi.IntOutput `pulumi:"max"`
@@ -113,7 +116,10 @@ func GetRandomInteger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomInteger resources.
 type randomIntegerState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// The string representation of the integer result.
+	Id *string `pulumi:"id"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max *int `pulumi:"max"`
@@ -126,7 +132,10 @@ type randomIntegerState struct {
 }
 
 type RandomIntegerState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// The string representation of the integer result.
+	Id pulumi.StringPtrInput
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
 	// The maximum inclusive value of the range.
 	Max pulumi.IntPtrInput
@@ -143,7 +152,8 @@ func (RandomIntegerState) ElementType() reflect.Type {
 }
 
 type randomIntegerArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The maximum inclusive value of the range.
 	Max int `pulumi:"max"`
@@ -155,7 +165,8 @@ type randomIntegerArgs struct {
 
 // The set of arguments for constructing a RandomInteger resource.
 type RandomIntegerArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
 	// The maximum inclusive value of the range.
 	Max pulumi.IntInput

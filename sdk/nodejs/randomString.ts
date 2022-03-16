@@ -61,7 +61,12 @@ export class RandomString extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * The generated random string.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -69,31 +74,33 @@ export class RandomString extends pulumi.CustomResource {
      */
     public readonly length!: pulumi.Output<number>;
     /**
-     * Include lowercase alphabet characters in the result.
+     * Include lowercase alphabet characters in the result. Default value is `true`.
      */
     public readonly lower!: pulumi.Output<boolean | undefined>;
     /**
-     * Minimum number of lowercase alphabet characters in the result.
+     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
      */
     public readonly minLower!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of numeric characters in the result.
+     * Minimum number of numeric characters in the result. Default value is `0`.
      */
     public readonly minNumeric!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of special characters in the result.
+     * Minimum number of special characters in the result. Default value is `0`.
      */
     public readonly minSpecial!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of uppercase alphabet characters in the result.
+     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
      */
     public readonly minUpper!: pulumi.Output<number | undefined>;
     /**
-     * Include numeric characters in the result.
+     * Include numeric characters in the result. Default value is `true`.
      */
     public readonly number!: pulumi.Output<boolean | undefined>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
      */
     public readonly overrideSpecial!: pulumi.Output<string | undefined>;
     /**
@@ -101,11 +108,11 @@ export class RandomString extends pulumi.CustomResource {
      */
     public /*out*/ readonly result!: pulumi.Output<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
     public readonly special!: pulumi.Output<boolean | undefined>;
     /**
-     * Include uppercase alphabet characters in the result.
+     * Include uppercase alphabet characters in the result. Default value is `true`.
      */
     public readonly upper!: pulumi.Output<boolean | undefined>;
 
@@ -122,6 +129,7 @@ export class RandomString extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomStringState | undefined;
+            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["length"] = state ? state.length : undefined;
             resourceInputs["lower"] = state ? state.lower : undefined;
@@ -150,6 +158,7 @@ export class RandomString extends pulumi.CustomResource {
             resourceInputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
             resourceInputs["special"] = args ? args.special : undefined;
             resourceInputs["upper"] = args ? args.upper : undefined;
+            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -162,7 +171,12 @@ export class RandomString extends pulumi.CustomResource {
  */
 export interface RandomStringState {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * The generated random string.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -170,31 +184,33 @@ export interface RandomStringState {
      */
     length?: pulumi.Input<number>;
     /**
-     * Include lowercase alphabet characters in the result.
+     * Include lowercase alphabet characters in the result. Default value is `true`.
      */
     lower?: pulumi.Input<boolean>;
     /**
-     * Minimum number of lowercase alphabet characters in the result.
+     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
      */
     minLower?: pulumi.Input<number>;
     /**
-     * Minimum number of numeric characters in the result.
+     * Minimum number of numeric characters in the result. Default value is `0`.
      */
     minNumeric?: pulumi.Input<number>;
     /**
-     * Minimum number of special characters in the result.
+     * Minimum number of special characters in the result. Default value is `0`.
      */
     minSpecial?: pulumi.Input<number>;
     /**
-     * Minimum number of uppercase alphabet characters in the result.
+     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
      */
     minUpper?: pulumi.Input<number>;
     /**
-     * Include numeric characters in the result.
+     * Include numeric characters in the result. Default value is `true`.
      */
     number?: pulumi.Input<boolean>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
@@ -202,11 +218,11 @@ export interface RandomStringState {
      */
     result?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
     special?: pulumi.Input<boolean>;
     /**
-     * Include uppercase alphabet characters in the result.
+     * Include uppercase alphabet characters in the result. Default value is `true`.
      */
     upper?: pulumi.Input<boolean>;
 }
@@ -216,7 +232,8 @@ export interface RandomStringState {
  */
 export interface RandomStringArgs {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -224,39 +241,41 @@ export interface RandomStringArgs {
      */
     length: pulumi.Input<number>;
     /**
-     * Include lowercase alphabet characters in the result.
+     * Include lowercase alphabet characters in the result. Default value is `true`.
      */
     lower?: pulumi.Input<boolean>;
     /**
-     * Minimum number of lowercase alphabet characters in the result.
+     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
      */
     minLower?: pulumi.Input<number>;
     /**
-     * Minimum number of numeric characters in the result.
+     * Minimum number of numeric characters in the result. Default value is `0`.
      */
     minNumeric?: pulumi.Input<number>;
     /**
-     * Minimum number of special characters in the result.
+     * Minimum number of special characters in the result. Default value is `0`.
      */
     minSpecial?: pulumi.Input<number>;
     /**
-     * Minimum number of uppercase alphabet characters in the result.
+     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
      */
     minUpper?: pulumi.Input<number>;
     /**
-     * Include numeric characters in the result.
+     * Include numeric characters in the result. Default value is `true`.
      */
     number?: pulumi.Input<boolean>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for string generation. This overrides the default character list in
+     * the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+     * generation.
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
     special?: pulumi.Input<boolean>;
     /**
-     * Include uppercase alphabet characters in the result.
+     * Include uppercase alphabet characters in the result. Default value is `true`.
      */
     upper?: pulumi.Input<boolean>;
 }

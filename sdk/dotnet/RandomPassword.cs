@@ -10,10 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// Identical to random.RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.
-    /// 
-    /// This resource *does* use a cryptographic random number generator.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -29,7 +25,7 @@ namespace Pulumi.Random
     ///         {
     ///             Length = 16,
     ///             Special = true,
-    ///             OverrideSpecial = "_%@",
+    ///             OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
     ///         });
     ///         var example = new Aws.Rds.Instance("example", new Aws.Rds.InstanceArgs
     ///         {
@@ -56,7 +52,14 @@ namespace Pulumi.Random
     public partial class RandomPassword : Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// A static value used internally by Terraform, this should not be referenced in configurations.
+        /// </summary>
+        [Output("id")]
+        public Output<string> Id { get; private set; } = null!;
+
+        /// <summary>
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        /// documentation](../index.html) for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -68,43 +71,45 @@ namespace Pulumi.Random
         public Output<int> Length { get; private set; } = null!;
 
         /// <summary>
-        /// Include lowercase alphabet characters in the result.
+        /// Include lowercase alphabet characters in the result. Default value is `true`.
         /// </summary>
         [Output("lower")]
         public Output<bool?> Lower { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum number of lowercase alphabet characters in the result.
+        /// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         /// </summary>
         [Output("minLower")]
         public Output<int?> MinLower { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum number of numeric characters in the result.
+        /// Minimum number of numeric characters in the result. Default value is `0`.
         /// </summary>
         [Output("minNumeric")]
         public Output<int?> MinNumeric { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum number of special characters in the result.
+        /// Minimum number of special characters in the result. Default value is `0`.
         /// </summary>
         [Output("minSpecial")]
         public Output<int?> MinSpecial { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum number of uppercase alphabet characters in the result.
+        /// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         /// </summary>
         [Output("minUpper")]
         public Output<int?> MinUpper { get; private set; } = null!;
 
         /// <summary>
-        /// Include numeric characters in the result.
+        /// Include numeric characters in the result. Default value is `true`.
         /// </summary>
         [Output("number")]
         public Output<bool?> Number { get; private set; } = null!;
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation. This overrides the default character list in
+        /// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+        /// generation.
         /// </summary>
         [Output("overrideSpecial")]
         public Output<string?> OverrideSpecial { get; private set; } = null!;
@@ -116,13 +121,13 @@ namespace Pulumi.Random
         public Output<string> Result { get; private set; } = null!;
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Output("special")]
         public Output<bool?> Special { get; private set; } = null!;
 
         /// <summary>
-        /// Include uppercase alphabet characters in the result.
+        /// Include uppercase alphabet characters in the result. Default value is `true`.
         /// </summary>
         [Output("upper")]
         public Output<bool?> Upper { get; private set; } = null!;
@@ -177,7 +182,8 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        /// documentation](../index.html) for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -192,55 +198,57 @@ namespace Pulumi.Random
         public Input<int> Length { get; set; } = null!;
 
         /// <summary>
-        /// Include lowercase alphabet characters in the result.
+        /// Include lowercase alphabet characters in the result. Default value is `true`.
         /// </summary>
         [Input("lower")]
         public Input<bool>? Lower { get; set; }
 
         /// <summary>
-        /// Minimum number of lowercase alphabet characters in the result.
+        /// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         /// </summary>
         [Input("minLower")]
         public Input<int>? MinLower { get; set; }
 
         /// <summary>
-        /// Minimum number of numeric characters in the result.
+        /// Minimum number of numeric characters in the result. Default value is `0`.
         /// </summary>
         [Input("minNumeric")]
         public Input<int>? MinNumeric { get; set; }
 
         /// <summary>
-        /// Minimum number of special characters in the result.
+        /// Minimum number of special characters in the result. Default value is `0`.
         /// </summary>
         [Input("minSpecial")]
         public Input<int>? MinSpecial { get; set; }
 
         /// <summary>
-        /// Minimum number of uppercase alphabet characters in the result.
+        /// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         /// </summary>
         [Input("minUpper")]
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result.
+        /// Include numeric characters in the result. Default value is `true`.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation. This overrides the default character list in
+        /// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+        /// generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
 
         /// <summary>
-        /// Include uppercase alphabet characters in the result.
+        /// Include uppercase alphabet characters in the result. Default value is `true`.
         /// </summary>
         [Input("upper")]
         public Input<bool>? Upper { get; set; }
@@ -252,11 +260,18 @@ namespace Pulumi.Random
 
     public sealed class RandomPasswordState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A static value used internally by Terraform, this should not be referenced in configurations.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("keepers")]
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        /// documentation](../index.html) for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -271,43 +286,45 @@ namespace Pulumi.Random
         public Input<int>? Length { get; set; }
 
         /// <summary>
-        /// Include lowercase alphabet characters in the result.
+        /// Include lowercase alphabet characters in the result. Default value is `true`.
         /// </summary>
         [Input("lower")]
         public Input<bool>? Lower { get; set; }
 
         /// <summary>
-        /// Minimum number of lowercase alphabet characters in the result.
+        /// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         /// </summary>
         [Input("minLower")]
         public Input<int>? MinLower { get; set; }
 
         /// <summary>
-        /// Minimum number of numeric characters in the result.
+        /// Minimum number of numeric characters in the result. Default value is `0`.
         /// </summary>
         [Input("minNumeric")]
         public Input<int>? MinNumeric { get; set; }
 
         /// <summary>
-        /// Minimum number of special characters in the result.
+        /// Minimum number of special characters in the result. Default value is `0`.
         /// </summary>
         [Input("minSpecial")]
         public Input<int>? MinSpecial { get; set; }
 
         /// <summary>
-        /// Minimum number of uppercase alphabet characters in the result.
+        /// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         /// </summary>
         [Input("minUpper")]
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result.
+        /// Include numeric characters in the result. Default value is `true`.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation. This overrides the default character list in
+        /// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+        /// generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
@@ -319,13 +336,13 @@ namespace Pulumi.Random
         public Input<string>? Result { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
 
         /// <summary>
-        /// Include uppercase alphabet characters in the result.
+        /// Include uppercase alphabet characters in the result. Default value is `true`.
         /// </summary>
         [Input("upper")]
         public Input<bool>? Upper { get; set; }
