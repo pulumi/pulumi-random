@@ -16,7 +16,8 @@ class RandomUuidArgs:
                  keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         """
         The set of arguments for constructing a RandomUuid resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         """
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
@@ -25,7 +26,8 @@ class RandomUuidArgs:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -41,7 +43,8 @@ class _RandomUuidState:
                  result: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RandomUuid resources.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
         if keepers is not None:
@@ -53,7 +56,8 @@ class _RandomUuidState:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -107,7 +111,8 @@ class RandomUuid(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         """
         ...
     @overload
@@ -188,7 +193,8 @@ class RandomUuid(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -203,7 +209,8 @@ class RandomUuid(pulumi.CustomResource):
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
