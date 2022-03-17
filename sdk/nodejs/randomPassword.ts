@@ -63,10 +63,6 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
-     * A static value used internally by Terraform, this should not be referenced in configurations.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
      */
@@ -131,7 +127,6 @@ export class RandomPassword extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPasswordState | undefined;
-            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["length"] = state ? state.length : undefined;
             resourceInputs["lower"] = state ? state.lower : undefined;
@@ -160,7 +155,6 @@ export class RandomPassword extends pulumi.CustomResource {
             resourceInputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
             resourceInputs["special"] = args ? args.special : undefined;
             resourceInputs["upper"] = args ? args.upper : undefined;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -172,10 +166,6 @@ export class RandomPassword extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomPassword resources.
  */
 export interface RandomPasswordState {
-    /**
-     * A static value used internally by Terraform, this should not be referenced in configurations.
-     */
-    id?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
