@@ -11,6 +11,6 @@ require (
 replace (
 	github.com/hashicorp/terraform-exec => github.com/hashicorp/terraform-exec v0.15.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20201218231525-9cca98608a5e
-	github.com/terraform-providers/terraform-provider-random => github.com/pulumi/terraform-provider-random v1.3.2-0.20220316235043-737bd750bc23
+	github.com/terraform-providers/terraform-provider-random => github.com/pulumi/terraform-provider-random v1.3.2-0.20220317001213-b9c99f5126e9
 	github.com/terraform-providers/terraform-provider-random/shim => ./shim
 )

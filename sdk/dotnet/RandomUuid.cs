@@ -49,12 +49,6 @@ namespace Pulumi.Random
     public partial class RandomUuid : Pulumi.CustomResource
     {
         /// <summary>
-        /// The generated uuid presented in string format.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
-        /// <summary>
         /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
         /// documentation](../index.html) for more information.
         /// </summary>
@@ -133,12 +127,6 @@ namespace Pulumi.Random
 
     public sealed class RandomUuidState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The generated uuid presented in string format.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("keepers")]
         private InputMap<object>? _keepers;
 

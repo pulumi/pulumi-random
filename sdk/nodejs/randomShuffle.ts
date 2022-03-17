@@ -59,10 +59,6 @@ export class RandomShuffle extends pulumi.CustomResource {
     }
 
     /**
-     * A static value used internally by Terraform, this should not be referenced in configurations.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * The list of strings to shuffle.
      */
     public readonly inputs!: pulumi.Output<string[]>;
@@ -101,7 +97,6 @@ export class RandomShuffle extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomShuffleState | undefined;
-            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["inputs"] = state ? state.inputs : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["resultCount"] = state ? state.resultCount : undefined;
@@ -116,7 +111,6 @@ export class RandomShuffle extends pulumi.CustomResource {
             resourceInputs["keepers"] = args ? args.keepers : undefined;
             resourceInputs["resultCount"] = args ? args.resultCount : undefined;
             resourceInputs["seed"] = args ? args.seed : undefined;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["results"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -128,10 +122,6 @@ export class RandomShuffle extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomShuffle resources.
  */
 export interface RandomShuffleState {
-    /**
-     * A static value used internally by Terraform, this should not be referenced in configurations.
-     */
-    id?: pulumi.Input<string>;
     /**
      * The list of strings to shuffle.
      */
