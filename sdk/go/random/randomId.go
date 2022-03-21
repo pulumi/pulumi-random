@@ -42,17 +42,21 @@ type RandomId struct {
 
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringOutput `pulumi:"b64Std"`
-	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
+	// characters `_` and `-`.
 	B64Url pulumi.StringOutput `pulumi:"b64Url"`
 	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntOutput `pulumi:"byteLength"`
 	// The generated id presented in non-padded decimal digits.
 	Dec pulumi.StringOutput `pulumi:"dec"`
-	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
+	// length.
 	Hex pulumi.StringOutput `pulumi:"hex"`
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
+	// URL-safe or base64 encoded.
 	Prefix pulumi.StringPtrOutput `pulumi:"prefix"`
 }
 
@@ -90,34 +94,42 @@ func GetRandomId(ctx *pulumi.Context,
 type randomIdState struct {
 	// The generated id presented in base64 without additional transformations.
 	B64Std *string `pulumi:"b64Std"`
-	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
+	// characters `_` and `-`.
 	B64Url *string `pulumi:"b64Url"`
 	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
 	ByteLength *int `pulumi:"byteLength"`
 	// The generated id presented in non-padded decimal digits.
 	Dec *string `pulumi:"dec"`
-	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
+	// length.
 	Hex *string `pulumi:"hex"`
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
+	// URL-safe or base64 encoded.
 	Prefix *string `pulumi:"prefix"`
 }
 
 type RandomIdState struct {
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringPtrInput
-	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
+	// characters `_` and `-`.
 	B64Url pulumi.StringPtrInput
 	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntPtrInput
 	// The generated id presented in non-padded decimal digits.
 	Dec pulumi.StringPtrInput
-	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
+	// length.
 	Hex pulumi.StringPtrInput
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
+	// URL-safe or base64 encoded.
 	Prefix pulumi.StringPtrInput
 }
 
@@ -128,9 +140,11 @@ func (RandomIdState) ElementType() reflect.Type {
 type randomIdArgs struct {
 	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
 	ByteLength int `pulumi:"byteLength"`
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
+	// URL-safe or base64 encoded.
 	Prefix *string `pulumi:"prefix"`
 }
 
@@ -138,9 +152,11 @@ type randomIdArgs struct {
 type RandomIdArgs struct {
 	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntInput
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
+	// URL-safe or base64 encoded.
 	Prefix pulumi.StringPtrInput
 }
 
@@ -156,7 +172,7 @@ type RandomIdInput interface {
 }
 
 func (*RandomId) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomId)(nil))
+	return reflect.TypeOf((**RandomId)(nil)).Elem()
 }
 
 func (i *RandomId) ToRandomIdOutput() RandomIdOutput {
@@ -165,35 +181,6 @@ func (i *RandomId) ToRandomIdOutput() RandomIdOutput {
 
 func (i *RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdOutput)
-}
-
-func (i *RandomId) ToRandomIdPtrOutput() RandomIdPtrOutput {
-	return i.ToRandomIdPtrOutputWithContext(context.Background())
-}
-
-func (i *RandomId) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomIdPtrOutput)
-}
-
-type RandomIdPtrInput interface {
-	pulumi.Input
-
-	ToRandomIdPtrOutput() RandomIdPtrOutput
-	ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput
-}
-
-type randomIdPtrType RandomIdArgs
-
-func (*randomIdPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomId)(nil))
-}
-
-func (i *randomIdPtrType) ToRandomIdPtrOutput() RandomIdPtrOutput {
-	return i.ToRandomIdPtrOutputWithContext(context.Background())
-}
-
-func (i *randomIdPtrType) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomIdPtrOutput)
 }
 
 // RandomIdArrayInput is an input type that accepts RandomIdArray and RandomIdArrayOutput values.
@@ -249,7 +236,7 @@ func (i RandomIdMap) ToRandomIdMapOutputWithContext(ctx context.Context) RandomI
 type RandomIdOutput struct{ *pulumi.OutputState }
 
 func (RandomIdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomId)(nil))
+	return reflect.TypeOf((**RandomId)(nil)).Elem()
 }
 
 func (o RandomIdOutput) ToRandomIdOutput() RandomIdOutput {
@@ -260,44 +247,10 @@ func (o RandomIdOutput) ToRandomIdOutputWithContext(ctx context.Context) RandomI
 	return o
 }
 
-func (o RandomIdOutput) ToRandomIdPtrOutput() RandomIdPtrOutput {
-	return o.ToRandomIdPtrOutputWithContext(context.Background())
-}
-
-func (o RandomIdOutput) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomId) *RandomId {
-		return &v
-	}).(RandomIdPtrOutput)
-}
-
-type RandomIdPtrOutput struct{ *pulumi.OutputState }
-
-func (RandomIdPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomId)(nil))
-}
-
-func (o RandomIdPtrOutput) ToRandomIdPtrOutput() RandomIdPtrOutput {
-	return o
-}
-
-func (o RandomIdPtrOutput) ToRandomIdPtrOutputWithContext(ctx context.Context) RandomIdPtrOutput {
-	return o
-}
-
-func (o RandomIdPtrOutput) Elem() RandomIdOutput {
-	return o.ApplyT(func(v *RandomId) RandomId {
-		if v != nil {
-			return *v
-		}
-		var ret RandomId
-		return ret
-	}).(RandomIdOutput)
-}
-
 type RandomIdArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomIdArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RandomId)(nil))
+	return reflect.TypeOf((*[]*RandomId)(nil)).Elem()
 }
 
 func (o RandomIdArrayOutput) ToRandomIdArrayOutput() RandomIdArrayOutput {
@@ -309,15 +262,15 @@ func (o RandomIdArrayOutput) ToRandomIdArrayOutputWithContext(ctx context.Contex
 }
 
 func (o RandomIdArrayOutput) Index(i pulumi.IntInput) RandomIdOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomId {
-		return vs[0].([]RandomId)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomId {
+		return vs[0].([]*RandomId)[vs[1].(int)]
 	}).(RandomIdOutput)
 }
 
 type RandomIdMapOutput struct{ *pulumi.OutputState }
 
 func (RandomIdMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RandomId)(nil))
+	return reflect.TypeOf((*map[string]*RandomId)(nil)).Elem()
 }
 
 func (o RandomIdMapOutput) ToRandomIdMapOutput() RandomIdMapOutput {
@@ -329,18 +282,16 @@ func (o RandomIdMapOutput) ToRandomIdMapOutputWithContext(ctx context.Context) R
 }
 
 func (o RandomIdMapOutput) MapIndex(k pulumi.StringInput) RandomIdOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomId {
-		return vs[0].(map[string]RandomId)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RandomId {
+		return vs[0].(map[string]*RandomId)[vs[1].(string)]
 	}).(RandomIdOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomIdInput)(nil)).Elem(), &RandomId{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RandomIdPtrInput)(nil)).Elem(), &RandomId{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomIdArrayInput)(nil)).Elem(), RandomIdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomIdMapInput)(nil)).Elem(), RandomIdMap{})
 	pulumi.RegisterOutputType(RandomIdOutput{})
-	pulumi.RegisterOutputType(RandomIdPtrOutput{})
 	pulumi.RegisterOutputType(RandomIdArrayOutput{})
 	pulumi.RegisterOutputType(RandomIdMapOutput{})
 }

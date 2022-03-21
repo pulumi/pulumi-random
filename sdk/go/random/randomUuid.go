@@ -52,7 +52,8 @@ import (
 type RandomUuid struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
 	// The generated uuid presented in string format.
 	Result pulumi.StringOutput `pulumi:"result"`
@@ -87,14 +88,16 @@ func GetRandomUuid(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomUuid resources.
 type randomUuidState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 	// The generated uuid presented in string format.
 	Result *string `pulumi:"result"`
 }
 
 type RandomUuidState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
 	// The generated uuid presented in string format.
 	Result pulumi.StringPtrInput
@@ -105,13 +108,15 @@ func (RandomUuidState) ElementType() reflect.Type {
 }
 
 type randomUuidArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
 }
 
 // The set of arguments for constructing a RandomUuid resource.
 type RandomUuidArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
 }
 
@@ -127,7 +132,7 @@ type RandomUuidInput interface {
 }
 
 func (*RandomUuid) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomUuid)(nil))
+	return reflect.TypeOf((**RandomUuid)(nil)).Elem()
 }
 
 func (i *RandomUuid) ToRandomUuidOutput() RandomUuidOutput {
@@ -136,35 +141,6 @@ func (i *RandomUuid) ToRandomUuidOutput() RandomUuidOutput {
 
 func (i *RandomUuid) ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidOutput)
-}
-
-func (i *RandomUuid) ToRandomUuidPtrOutput() RandomUuidPtrOutput {
-	return i.ToRandomUuidPtrOutputWithContext(context.Background())
-}
-
-func (i *RandomUuid) ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidPtrOutput)
-}
-
-type RandomUuidPtrInput interface {
-	pulumi.Input
-
-	ToRandomUuidPtrOutput() RandomUuidPtrOutput
-	ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput
-}
-
-type randomUuidPtrType RandomUuidArgs
-
-func (*randomUuidPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomUuid)(nil))
-}
-
-func (i *randomUuidPtrType) ToRandomUuidPtrOutput() RandomUuidPtrOutput {
-	return i.ToRandomUuidPtrOutputWithContext(context.Background())
-}
-
-func (i *randomUuidPtrType) ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidPtrOutput)
 }
 
 // RandomUuidArrayInput is an input type that accepts RandomUuidArray and RandomUuidArrayOutput values.
@@ -220,7 +196,7 @@ func (i RandomUuidMap) ToRandomUuidMapOutputWithContext(ctx context.Context) Ran
 type RandomUuidOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RandomUuid)(nil))
+	return reflect.TypeOf((**RandomUuid)(nil)).Elem()
 }
 
 func (o RandomUuidOutput) ToRandomUuidOutput() RandomUuidOutput {
@@ -231,44 +207,10 @@ func (o RandomUuidOutput) ToRandomUuidOutputWithContext(ctx context.Context) Ran
 	return o
 }
 
-func (o RandomUuidOutput) ToRandomUuidPtrOutput() RandomUuidPtrOutput {
-	return o.ToRandomUuidPtrOutputWithContext(context.Background())
-}
-
-func (o RandomUuidOutput) ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RandomUuid) *RandomUuid {
-		return &v
-	}).(RandomUuidPtrOutput)
-}
-
-type RandomUuidPtrOutput struct{ *pulumi.OutputState }
-
-func (RandomUuidPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RandomUuid)(nil))
-}
-
-func (o RandomUuidPtrOutput) ToRandomUuidPtrOutput() RandomUuidPtrOutput {
-	return o
-}
-
-func (o RandomUuidPtrOutput) ToRandomUuidPtrOutputWithContext(ctx context.Context) RandomUuidPtrOutput {
-	return o
-}
-
-func (o RandomUuidPtrOutput) Elem() RandomUuidOutput {
-	return o.ApplyT(func(v *RandomUuid) RandomUuid {
-		if v != nil {
-			return *v
-		}
-		var ret RandomUuid
-		return ret
-	}).(RandomUuidOutput)
-}
-
 type RandomUuidArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RandomUuid)(nil))
+	return reflect.TypeOf((*[]*RandomUuid)(nil)).Elem()
 }
 
 func (o RandomUuidArrayOutput) ToRandomUuidArrayOutput() RandomUuidArrayOutput {
@@ -280,15 +222,15 @@ func (o RandomUuidArrayOutput) ToRandomUuidArrayOutputWithContext(ctx context.Co
 }
 
 func (o RandomUuidArrayOutput) Index(i pulumi.IntInput) RandomUuidOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RandomUuid {
-		return vs[0].([]RandomUuid)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomUuid {
+		return vs[0].([]*RandomUuid)[vs[1].(int)]
 	}).(RandomUuidOutput)
 }
 
 type RandomUuidMapOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RandomUuid)(nil))
+	return reflect.TypeOf((*map[string]*RandomUuid)(nil)).Elem()
 }
 
 func (o RandomUuidMapOutput) ToRandomUuidMapOutput() RandomUuidMapOutput {
@@ -300,18 +242,16 @@ func (o RandomUuidMapOutput) ToRandomUuidMapOutputWithContext(ctx context.Contex
 }
 
 func (o RandomUuidMapOutput) MapIndex(k pulumi.StringInput) RandomUuidOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RandomUuid {
-		return vs[0].(map[string]RandomUuid)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RandomUuid {
+		return vs[0].(map[string]*RandomUuid)[vs[1].(string)]
 	}).(RandomUuidOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomUuidInput)(nil)).Elem(), &RandomUuid{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RandomUuidPtrInput)(nil)).Elem(), &RandomUuid{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomUuidArrayInput)(nil)).Elem(), RandomUuidArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RandomUuidMapInput)(nil)).Elem(), RandomUuidMap{})
 	pulumi.RegisterOutputType(RandomUuidOutput{})
-	pulumi.RegisterOutputType(RandomUuidPtrOutput{})
 	pulumi.RegisterOutputType(RandomUuidArrayOutput{})
 	pulumi.RegisterOutputType(RandomUuidMapOutput{})
 }

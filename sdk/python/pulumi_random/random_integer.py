@@ -21,7 +21,8 @@ class RandomIntegerArgs:
         The set of arguments for constructing a RandomInteger resource.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
         pulumi.set(__self__, "max", max)
@@ -59,7 +60,8 @@ class RandomIntegerArgs:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -90,7 +92,8 @@ class _RandomIntegerState:
                  seed: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RandomInteger resources.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
         :param pulumi.Input[int] result: The random integer result.
@@ -111,7 +114,8 @@ class _RandomIntegerState:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -218,7 +222,8 @@ class RandomInteger(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
@@ -329,7 +334,8 @@ class RandomInteger(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[int] max: The maximum inclusive value of the range.
         :param pulumi.Input[int] min: The minimum inclusive value of the range.
         :param pulumi.Input[int] result: The random integer result.
@@ -350,7 +356,8 @@ class RandomInteger(pulumi.CustomResource):
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 

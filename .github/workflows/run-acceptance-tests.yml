@@ -1,5 +1,4 @@
 env:
-  COVERAGE_OUTPUT_DIR: ${{ secrets.COVERAGE_OUTPUT_DIR }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -41,7 +40,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1
+      uses: pulumi/action-install-pulumi-cli@v2
     - name: Setup Node
       uses: actions/setup-node@v2
       with:
@@ -93,7 +92,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         language:
         - nodejs
         - python
@@ -108,13 +107,13 @@ jobs:
     name: comment-notification
     runs-on: ubuntu-latest
     steps:
-    - id: var
+    - id: run-url
       name: Create URL to the run output
       run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
     - name: Update with Result
       uses: peter-evans/create-or-update-comment@v1
       with:
-        body: Please view the PR build - ${{ steps.vars.outputs.run-url }}
+        body: 'Please view the PR build: ${{ steps.run-url.outputs.run-url }}'
         issue-number: ${{ github.event.client_payload.github.payload.issue.number
           }}
         repository: ${{ github.event.client_payload.github.payload.repository.full_name
@@ -148,7 +147,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1
+      uses: pulumi/action-install-pulumi-cli@v2
     - run: make lint_provider
     - if: failure() && github.event_name == 'push'
       name: Notify Slack
@@ -161,7 +160,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-        - 1.16.x
+        - 1.17.x
   lint_sdk:
     container: golangci/golangci-lint:latest
     if: github.event_name == 'repository_dispatch' || github.event.pull_request.head.repo.full_name
@@ -190,7 +189,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1
+      uses: pulumi/action-install-pulumi-cli@v2
     - run: cd sdk/go/random && golangci-lint run -c ../../../.golangci.yml
     - if: failure() && github.event_name == 'push'
       name: Notify Slack
@@ -203,7 +202,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-        - 1.16.x
+        - 1.17.x
   prerequisites:
     if: github.event_name == 'repository_dispatch' || github.event.pull_request.head.repo.full_name
       == github.repository
@@ -230,7 +229,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1
+      uses: pulumi/action-install-pulumi-cli@v2
     - if: github.event_name == 'pull_request'
       name: Install Schema Tools
       uses: jaxxstorm/action-install-gh-release@v1.2.0
@@ -246,7 +245,7 @@ jobs:
         echo 'EOF' >> $GITHUB_ENV
     - if: github.event_name == 'pull_request'
       name: Comment on PR with Details of Schema Check
-      uses: thollander/actions-comment-pull-request@1.0.1
+      uses: thollander/actions-comment-pull-request@v1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         message: |
@@ -275,7 +274,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -307,7 +306,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1
+      uses: pulumi/action-install-pulumi-cli@v2
     - name: Setup Node
       uses: actions/setup-node@v2
       with:
@@ -347,9 +346,13 @@ jobs:
         pip3 install pipenv
     - name: Install dependencies
       run: make install_${{ matrix.language}}_sdk
+    - name: Install gotestfmt
+      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      with:
+        repo: haveyoudebuggedit/gotestfmt
     - name: Run tests
-      run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language
-        }} -parallel 4 .
+      run: cd examples && go test -v -json -count=1 -cover -timeout 2h -tags=${{ matrix.language
+        }} -parallel 4 . 2>&1 | tee /tmp/gotest.log | gotestfmt
     - if: failure() && github.event_name == 'push'
       name: Notify Slack
       uses: 8398a7/action-slack@v3
@@ -363,7 +366,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         language:
         - nodejs
         - python
@@ -378,6 +381,7 @@ name: run-acceptance-tests
   pull_request:
     branches:
     - master
+    - main
     paths-ignore:
     - CHANGELOG.md
   repository_dispatch:

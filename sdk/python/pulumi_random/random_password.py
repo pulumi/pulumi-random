@@ -27,16 +27,19 @@ class RandomPasswordArgs:
         """
         The set of arguments for constructing a RandomPassword resource.
         :param pulumi.Input[int] length: The length of the string desired.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result.
-        :param pulumi.Input[int] min_special: Minimum number of special characters in the result.
-        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result.
-        :param pulumi.Input[bool] number: Include numeric characters in the result.
-        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
-        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
+        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
+        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation. This overrides the default character list in
+               the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+               generation.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         pulumi.set(__self__, "length", length)
         if keepers is not None:
@@ -76,7 +79,8 @@ class RandomPasswordArgs:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -88,7 +92,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def lower(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include lowercase alphabet characters in the result.
+        Include lowercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "lower")
 
@@ -100,7 +104,7 @@ class RandomPasswordArgs:
     @pulumi.getter(name="minLower")
     def min_lower(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of lowercase alphabet characters in the result.
+        Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_lower")
 
@@ -112,7 +116,7 @@ class RandomPasswordArgs:
     @pulumi.getter(name="minNumeric")
     def min_numeric(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of numeric characters in the result.
+        Minimum number of numeric characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_numeric")
 
@@ -124,7 +128,7 @@ class RandomPasswordArgs:
     @pulumi.getter(name="minSpecial")
     def min_special(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of special characters in the result.
+        Minimum number of special characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_special")
 
@@ -136,7 +140,7 @@ class RandomPasswordArgs:
     @pulumi.getter(name="minUpper")
     def min_upper(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of uppercase alphabet characters in the result.
+        Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_upper")
 
@@ -148,7 +152,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include numeric characters in the result.
+        Include numeric characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "number")
 
@@ -160,7 +164,9 @@ class RandomPasswordArgs:
     @pulumi.getter(name="overrideSpecial")
     def override_special(self) -> Optional[pulumi.Input[str]]:
         """
-        Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        Supply your own list of special characters to use for string generation. This overrides the default character list in
+        the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+        generation.
         """
         return pulumi.get(self, "override_special")
 
@@ -172,7 +178,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def special(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
@@ -184,7 +190,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def upper(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include uppercase alphabet characters in the result.
+        Include uppercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "upper")
 
@@ -210,18 +216,21 @@ class _RandomPasswordState:
                  upper: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering RandomPassword resources.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[int] length: The length of the string desired.
-        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result.
-        :param pulumi.Input[int] min_special: Minimum number of special characters in the result.
-        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result.
-        :param pulumi.Input[bool] number: Include numeric characters in the result.
-        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
+        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation. This overrides the default character list in
+               the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+               generation.
         :param pulumi.Input[str] result: The generated random string.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
-        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
@@ -252,7 +261,8 @@ class _RandomPasswordState:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -276,7 +286,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def lower(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include lowercase alphabet characters in the result.
+        Include lowercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "lower")
 
@@ -288,7 +298,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="minLower")
     def min_lower(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of lowercase alphabet characters in the result.
+        Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_lower")
 
@@ -300,7 +310,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="minNumeric")
     def min_numeric(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of numeric characters in the result.
+        Minimum number of numeric characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_numeric")
 
@@ -312,7 +322,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="minSpecial")
     def min_special(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of special characters in the result.
+        Minimum number of special characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_special")
 
@@ -324,7 +334,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="minUpper")
     def min_upper(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of uppercase alphabet characters in the result.
+        Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_upper")
 
@@ -336,7 +346,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include numeric characters in the result.
+        Include numeric characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "number")
 
@@ -348,7 +358,9 @@ class _RandomPasswordState:
     @pulumi.getter(name="overrideSpecial")
     def override_special(self) -> Optional[pulumi.Input[str]]:
         """
-        Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        Supply your own list of special characters to use for string generation. This overrides the default character list in
+        the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+        generation.
         """
         return pulumi.get(self, "override_special")
 
@@ -372,7 +384,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def special(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
@@ -384,7 +396,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def upper(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include uppercase alphabet characters in the result.
+        Include uppercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "upper")
 
@@ -411,10 +423,6 @@ class RandomPassword(pulumi.CustomResource):
                  upper: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Identical to RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.
-
-        This resource *does* use a cryptographic random number generator.
-
         ## Example Usage
 
         ```python
@@ -425,7 +433,7 @@ class RandomPassword(pulumi.CustomResource):
         password = random.RandomPassword("password",
             length=16,
             special=True,
-            override_special="_%@")
+            override_special="!#$%&*()-_=+[]{}<>:?")
         example = aws.rds.Instance("example",
             instance_class="db.t3.micro",
             allocated_storage=64,
@@ -444,17 +452,20 @@ class RandomPassword(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[int] length: The length of the string desired.
-        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result.
-        :param pulumi.Input[int] min_special: Minimum number of special characters in the result.
-        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result.
-        :param pulumi.Input[bool] number: Include numeric characters in the result.
-        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
-        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result.
+        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
+        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation. This overrides the default character list in
+               the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+               generation.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         ...
     @overload
@@ -463,10 +474,6 @@ class RandomPassword(pulumi.CustomResource):
                  args: RandomPasswordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Identical to RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.
-
-        This resource *does* use a cryptographic random number generator.
-
         ## Example Usage
 
         ```python
@@ -477,7 +484,7 @@ class RandomPassword(pulumi.CustomResource):
         password = random.RandomPassword("password",
             length=16,
             special=True,
-            override_special="_%@")
+            override_special="!#$%&*()-_=+[]{}<>:?")
         example = aws.rds.Instance("example",
             instance_class="db.t3.micro",
             allocated_storage=64,
@@ -575,18 +582,21 @@ class RandomPassword(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+               documentation](../index.html) for more information.
         :param pulumi.Input[int] length: The length of the string desired.
-        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result.
-        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result.
-        :param pulumi.Input[int] min_special: Minimum number of special characters in the result.
-        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result.
-        :param pulumi.Input[bool] number: Include numeric characters in the result.
-        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
+        :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
+        :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation. This overrides the default character list in
+               the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+               generation.
         :param pulumi.Input[str] result: The generated random string.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
-        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -610,7 +620,8 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        documentation](../index.html) for more information.
         """
         return pulumi.get(self, "keepers")
 
@@ -626,7 +637,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def lower(self) -> pulumi.Output[Optional[bool]]:
         """
-        Include lowercase alphabet characters in the result.
+        Include lowercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "lower")
 
@@ -634,7 +645,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="minLower")
     def min_lower(self) -> pulumi.Output[Optional[int]]:
         """
-        Minimum number of lowercase alphabet characters in the result.
+        Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_lower")
 
@@ -642,7 +653,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="minNumeric")
     def min_numeric(self) -> pulumi.Output[Optional[int]]:
         """
-        Minimum number of numeric characters in the result.
+        Minimum number of numeric characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_numeric")
 
@@ -650,7 +661,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="minSpecial")
     def min_special(self) -> pulumi.Output[Optional[int]]:
         """
-        Minimum number of special characters in the result.
+        Minimum number of special characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_special")
 
@@ -658,7 +669,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="minUpper")
     def min_upper(self) -> pulumi.Output[Optional[int]]:
         """
-        Minimum number of uppercase alphabet characters in the result.
+        Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_upper")
 
@@ -666,7 +677,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def number(self) -> pulumi.Output[Optional[bool]]:
         """
-        Include numeric characters in the result.
+        Include numeric characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "number")
 
@@ -674,7 +685,9 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="overrideSpecial")
     def override_special(self) -> pulumi.Output[Optional[str]]:
         """
-        Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        Supply your own list of special characters to use for string generation. This overrides the default character list in
+        the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
+        generation.
         """
         return pulumi.get(self, "override_special")
 
@@ -690,7 +703,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def special(self) -> pulumi.Output[Optional[bool]]:
         """
-        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
@@ -698,7 +711,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def upper(self) -> pulumi.Output[Optional[bool]]:
         """
-        Include uppercase alphabet characters in the result.
+        Include uppercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "upper")
 

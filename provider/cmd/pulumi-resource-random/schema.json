@@ -26,7 +26,7 @@
                 },
                 "b64Url": {
                     "type": "string",
-                    "description": "The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.\n"
+                    "description": "The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the\ncharacters `_` and `-`.\n"
                 },
                 "byteLength": {
                     "type": "integer",
@@ -38,18 +38,18 @@
                 },
                 "hex": {
                     "type": "string",
-                    "description": "The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.\n"
+                    "description": "The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte\nlength.\n"
                 },
                 "keepers": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "prefix": {
                     "type": "string",
-                    "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.\n"
+                    "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be\nURL-safe or base64 encoded.\n"
                 }
             },
             "required": [
@@ -69,11 +69,11 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "prefix": {
                     "type": "string",
-                    "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.\n"
+                    "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be\nURL-safe or base64 encoded.\n"
                 }
             },
             "requiredInputs": [
@@ -88,7 +88,7 @@
                     },
                     "b64Url": {
                         "type": "string",
-                        "description": "The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.\n"
+                        "description": "The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the\ncharacters `_` and `-`.\n"
                     },
                     "byteLength": {
                         "type": "integer",
@@ -100,18 +100,18 @@
                     },
                     "hex": {
                         "type": "string",
-                        "description": "The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.\n"
+                        "description": "The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte\nlength.\n"
                     },
                     "keepers": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "prefix": {
                         "type": "string",
-                        "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.\n"
+                        "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be\nURL-safe or base64 encoded.\n"
                     }
                 },
                 "type": "object"
@@ -125,7 +125,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "max": {
                     "type": "integer",
@@ -155,7 +155,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "max": {
                     "type": "integer",
@@ -182,7 +182,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "max": {
                         "type": "integer",
@@ -205,14 +205,14 @@
             }
         },
         "random:index/randomPassword:RandomPassword": {
-            "description": "Identical to random.RandomString with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output.\n\nThis resource *does* use a cryptographic random number generator.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as random from \"@pulumi/random\";\n\nconst password = new random.RandomPassword(\"password\", {\n    length: 16,\n    special: true,\n    overrideSpecial: `_%@`,\n});\nconst example = new aws.rds.Instance(\"example\", {\n    instanceClass: \"db.t3.micro\",\n    allocatedStorage: 64,\n    engine: \"mysql\",\n    username: \"someone\",\n    password: password.result,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_random as random\n\npassword = random.RandomPassword(\"password\",\n    length=16,\n    special=True,\n    override_special=\"_%@\")\nexample = aws.rds.Instance(\"example\",\n    instance_class=\"db.t3.micro\",\n    allocated_storage=64,\n    engine=\"mysql\",\n    username=\"someone\",\n    password=password.result)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Random = Pulumi.Random;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var password = new Random.RandomPassword(\"password\", new Random.RandomPasswordArgs\n        {\n            Length = 16,\n            Special = true,\n            OverrideSpecial = \"_%@\",\n        });\n        var example = new Aws.Rds.Instance(\"example\", new Aws.Rds.InstanceArgs\n        {\n            InstanceClass = \"db.t3.micro\",\n            AllocatedStorage = 64,\n            Engine = \"mysql\",\n            Username = \"someone\",\n            Password = password.Result,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/rds\"\n\t\"github.com/pulumi/pulumi-random/sdk/v4/go/random\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpassword, err := random.NewRandomPassword(ctx, \"password\", \u0026random.RandomPasswordArgs{\n\t\t\tLength:          pulumi.Int(16),\n\t\t\tSpecial:         pulumi.Bool(true),\n\t\t\tOverrideSpecial: pulumi.String(fmt.Sprintf(\"%v%v%v\", \"_\", \"%\", \"@\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rds.NewInstance(ctx, \"example\", \u0026rds.InstanceArgs{\n\t\t\tInstanceClass:    pulumi.String(\"db.t3.micro\"),\n\t\t\tAllocatedStorage: pulumi.Int(64),\n\t\t\tEngine:           pulumi.String(\"mysql\"),\n\t\t\tUsername:         pulumi.String(\"someone\"),\n\t\t\tPassword:         password.Result,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# Random Password can be imported by specifying the value of the string\n\n```sh\n $ pulumi import random:index/randomPassword:RandomPassword password securepassword\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as random from \"@pulumi/random\";\n\nconst password = new random.RandomPassword(\"password\", {\n    length: 16,\n    special: true,\n    overrideSpecial: `!#$%\u0026*()-_=+[]{}\u003c\u003e:?`,\n});\nconst example = new aws.rds.Instance(\"example\", {\n    instanceClass: \"db.t3.micro\",\n    allocatedStorage: 64,\n    engine: \"mysql\",\n    username: \"someone\",\n    password: password.result,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_random as random\n\npassword = random.RandomPassword(\"password\",\n    length=16,\n    special=True,\n    override_special=\"!#$%\u0026*()-_=+[]{}\u003c\u003e:?\")\nexample = aws.rds.Instance(\"example\",\n    instance_class=\"db.t3.micro\",\n    allocated_storage=64,\n    engine=\"mysql\",\n    username=\"someone\",\n    password=password.result)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Random = Pulumi.Random;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var password = new Random.RandomPassword(\"password\", new Random.RandomPasswordArgs\n        {\n            Length = 16,\n            Special = true,\n            OverrideSpecial = \"!#$%\u0026*()-_=+[]{}\u003c\u003e:?\",\n        });\n        var example = new Aws.Rds.Instance(\"example\", new Aws.Rds.InstanceArgs\n        {\n            InstanceClass = \"db.t3.micro\",\n            AllocatedStorage = 64,\n            Engine = \"mysql\",\n            Username = \"someone\",\n            Password = password.Result,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/rds\"\n\t\"github.com/pulumi/pulumi-random/sdk/v4/go/random\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpassword, err := random.NewRandomPassword(ctx, \"password\", \u0026random.RandomPasswordArgs{\n\t\t\tLength:          pulumi.Int(16),\n\t\t\tSpecial:         pulumi.Bool(true),\n\t\t\tOverrideSpecial: pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"!#\", \"$\", \"%\", \"\u0026*()-_=+[]{}\u003c\u003e:?\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rds.NewInstance(ctx, \"example\", \u0026rds.InstanceArgs{\n\t\t\tInstanceClass:    pulumi.String(\"db.t3.micro\"),\n\t\t\tAllocatedStorage: pulumi.Int(64),\n\t\t\tEngine:           pulumi.String(\"mysql\"),\n\t\t\tUsername:         pulumi.String(\"someone\"),\n\t\t\tPassword:         password.Result,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# Random Password can be imported by specifying the value of the string\n\n```sh\n $ pulumi import random:index/randomPassword:RandomPassword password securepassword\n```\n\n ",
             "properties": {
                 "keepers": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "length": {
                     "type": "integer",
@@ -220,31 +220,31 @@
                 },
                 "lower": {
                     "type": "boolean",
-                    "description": "Include lowercase alphabet characters in the result.\n"
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
                 },
                 "minLower": {
                     "type": "integer",
-                    "description": "Minimum number of lowercase alphabet characters in the result.\n"
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "minNumeric": {
                     "type": "integer",
-                    "description": "Minimum number of numeric characters in the result.\n"
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
                 },
                 "minSpecial": {
                     "type": "integer",
-                    "description": "Minimum number of special characters in the result.\n"
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
                 },
                 "minUpper": {
                     "type": "integer",
-                    "description": "Minimum number of uppercase alphabet characters in the result.\n"
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "number": {
                     "type": "boolean",
-                    "description": "Include numeric characters in the result.\n"
+                    "description": "Include numeric characters in the result. Default value is `true`.\n"
                 },
                 "overrideSpecial": {
                     "type": "string",
-                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                    "description": "Supply your own list of special characters to use for string generation. This overrides the default character list in\nthe special argument. The `special` argument must still be set to true for any overwritten characters to be used in\ngeneration.\n"
                 },
                 "result": {
                     "type": "string",
@@ -252,11 +252,11 @@
                 },
                 "special": {
                     "type": "boolean",
-                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`\n"
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
                 },
                 "upper": {
                     "type": "boolean",
-                    "description": "Include uppercase alphabet characters in the result.\n"
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
                 }
             },
             "required": [
@@ -269,7 +269,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "length": {
                     "type": "integer",
@@ -277,39 +277,39 @@
                 },
                 "lower": {
                     "type": "boolean",
-                    "description": "Include lowercase alphabet characters in the result.\n"
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
                 },
                 "minLower": {
                     "type": "integer",
-                    "description": "Minimum number of lowercase alphabet characters in the result.\n"
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "minNumeric": {
                     "type": "integer",
-                    "description": "Minimum number of numeric characters in the result.\n"
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
                 },
                 "minSpecial": {
                     "type": "integer",
-                    "description": "Minimum number of special characters in the result.\n"
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
                 },
                 "minUpper": {
                     "type": "integer",
-                    "description": "Minimum number of uppercase alphabet characters in the result.\n"
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "number": {
                     "type": "boolean",
-                    "description": "Include numeric characters in the result.\n"
+                    "description": "Include numeric characters in the result. Default value is `true`.\n"
                 },
                 "overrideSpecial": {
                     "type": "string",
-                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                    "description": "Supply your own list of special characters to use for string generation. This overrides the default character list in\nthe special argument. The `special` argument must still be set to true for any overwritten characters to be used in\ngeneration.\n"
                 },
                 "special": {
                     "type": "boolean",
-                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`\n"
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
                 },
                 "upper": {
                     "type": "boolean",
-                    "description": "Include uppercase alphabet characters in the result.\n"
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
                 }
             },
             "requiredInputs": [
@@ -323,7 +323,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "length": {
                         "type": "integer",
@@ -331,31 +331,31 @@
                     },
                     "lower": {
                         "type": "boolean",
-                        "description": "Include lowercase alphabet characters in the result.\n"
+                        "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
                     },
                     "minLower": {
                         "type": "integer",
-                        "description": "Minimum number of lowercase alphabet characters in the result.\n"
+                        "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
                     },
                     "minNumeric": {
                         "type": "integer",
-                        "description": "Minimum number of numeric characters in the result.\n"
+                        "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
                     },
                     "minSpecial": {
                         "type": "integer",
-                        "description": "Minimum number of special characters in the result.\n"
+                        "description": "Minimum number of special characters in the result. Default value is `0`.\n"
                     },
                     "minUpper": {
                         "type": "integer",
-                        "description": "Minimum number of uppercase alphabet characters in the result.\n"
+                        "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
                     },
                     "number": {
                         "type": "boolean",
-                        "description": "Include numeric characters in the result.\n"
+                        "description": "Include numeric characters in the result. Default value is `true`.\n"
                     },
                     "overrideSpecial": {
                         "type": "string",
-                        "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                        "description": "Supply your own list of special characters to use for string generation. This overrides the default character list in\nthe special argument. The `special` argument must still be set to true for any overwritten characters to be used in\ngeneration.\n"
                     },
                     "result": {
                         "type": "string",
@@ -363,11 +363,11 @@
                     },
                     "special": {
                         "type": "boolean",
-                        "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`\n"
+                        "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
                     },
                     "upper": {
                         "type": "boolean",
-                        "description": "Include uppercase alphabet characters in the result.\n"
+                        "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
                     }
                 },
                 "type": "object"
@@ -381,7 +381,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "length": {
                     "type": "integer",
@@ -402,7 +402,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "length": {
                     "type": "integer",
@@ -425,7 +425,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "length": {
                         "type": "integer",
@@ -458,11 +458,11 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "resultCount": {
                     "type": "integer",
-                    "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.\n"
+                    "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some\nelements will be excluded from the result. If more items are requested, items will be repeated in the result but not\nmore frequently than the number of items in the input list.\n"
                 },
                 "results": {
                     "type": "array",
@@ -473,7 +473,7 @@
                 },
                 "seed": {
                     "type": "string",
-                    "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.\n"
+                    "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the\nlist. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across\ndifferent versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.\n"
                 }
             },
             "required": [
@@ -493,15 +493,15 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "resultCount": {
                     "type": "integer",
-                    "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.\n"
+                    "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some\nelements will be excluded from the result. If more items are requested, items will be repeated in the result but not\nmore frequently than the number of items in the input list.\n"
                 },
                 "seed": {
                     "type": "string",
-                    "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.\n"
+                    "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the\nlist. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across\ndifferent versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.\n"
                 }
             },
             "requiredInputs": [
@@ -522,11 +522,11 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "resultCount": {
                         "type": "integer",
-                        "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.\n"
+                        "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some\nelements will be excluded from the result. If more items are requested, items will be repeated in the result but not\nmore frequently than the number of items in the input list.\n"
                     },
                     "results": {
                         "type": "array",
@@ -537,7 +537,7 @@
                     },
                     "seed": {
                         "type": "string",
-                        "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.\n"
+                        "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the\nlist. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across\ndifferent versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.\n"
                     }
                 },
                 "type": "object"
@@ -551,7 +551,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "length": {
                     "type": "integer",
@@ -559,31 +559,31 @@
                 },
                 "lower": {
                     "type": "boolean",
-                    "description": "Include lowercase alphabet characters in the result.\n"
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
                 },
                 "minLower": {
                     "type": "integer",
-                    "description": "Minimum number of lowercase alphabet characters in the result.\n"
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "minNumeric": {
                     "type": "integer",
-                    "description": "Minimum number of numeric characters in the result.\n"
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
                 },
                 "minSpecial": {
                     "type": "integer",
-                    "description": "Minimum number of special characters in the result.\n"
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
                 },
                 "minUpper": {
                     "type": "integer",
-                    "description": "Minimum number of uppercase alphabet characters in the result.\n"
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "number": {
                     "type": "boolean",
-                    "description": "Include numeric characters in the result.\n"
+                    "description": "Include numeric characters in the result. Default value is `true`.\n"
                 },
                 "overrideSpecial": {
                     "type": "string",
-                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                    "description": "Supply your own list of special characters to use for string generation. This overrides the default character list in\nthe special argument. The `special` argument must still be set to true for any overwritten characters to be used in\ngeneration.\n"
                 },
                 "result": {
                     "type": "string",
@@ -591,11 +591,11 @@
                 },
                 "special": {
                     "type": "boolean",
-                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`\n"
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
                 },
                 "upper": {
                     "type": "boolean",
-                    "description": "Include uppercase alphabet characters in the result.\n"
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
                 }
             },
             "required": [
@@ -608,7 +608,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "length": {
                     "type": "integer",
@@ -616,39 +616,39 @@
                 },
                 "lower": {
                     "type": "boolean",
-                    "description": "Include lowercase alphabet characters in the result.\n"
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
                 },
                 "minLower": {
                     "type": "integer",
-                    "description": "Minimum number of lowercase alphabet characters in the result.\n"
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "minNumeric": {
                     "type": "integer",
-                    "description": "Minimum number of numeric characters in the result.\n"
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
                 },
                 "minSpecial": {
                     "type": "integer",
-                    "description": "Minimum number of special characters in the result.\n"
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
                 },
                 "minUpper": {
                     "type": "integer",
-                    "description": "Minimum number of uppercase alphabet characters in the result.\n"
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
                 },
                 "number": {
                     "type": "boolean",
-                    "description": "Include numeric characters in the result.\n"
+                    "description": "Include numeric characters in the result. Default value is `true`.\n"
                 },
                 "overrideSpecial": {
                     "type": "string",
-                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                    "description": "Supply your own list of special characters to use for string generation. This overrides the default character list in\nthe special argument. The `special` argument must still be set to true for any overwritten characters to be used in\ngeneration.\n"
                 },
                 "special": {
                     "type": "boolean",
-                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`\n"
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
                 },
                 "upper": {
                     "type": "boolean",
-                    "description": "Include uppercase alphabet characters in the result.\n"
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
                 }
             },
             "requiredInputs": [
@@ -662,7 +662,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "length": {
                         "type": "integer",
@@ -670,31 +670,31 @@
                     },
                     "lower": {
                         "type": "boolean",
-                        "description": "Include lowercase alphabet characters in the result.\n"
+                        "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
                     },
                     "minLower": {
                         "type": "integer",
-                        "description": "Minimum number of lowercase alphabet characters in the result.\n"
+                        "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
                     },
                     "minNumeric": {
                         "type": "integer",
-                        "description": "Minimum number of numeric characters in the result.\n"
+                        "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
                     },
                     "minSpecial": {
                         "type": "integer",
-                        "description": "Minimum number of special characters in the result.\n"
+                        "description": "Minimum number of special characters in the result. Default value is `0`.\n"
                     },
                     "minUpper": {
                         "type": "integer",
-                        "description": "Minimum number of uppercase alphabet characters in the result.\n"
+                        "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
                     },
                     "number": {
                         "type": "boolean",
-                        "description": "Include numeric characters in the result.\n"
+                        "description": "Include numeric characters in the result. Default value is `true`.\n"
                     },
                     "overrideSpecial": {
                         "type": "string",
-                        "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                        "description": "Supply your own list of special characters to use for string generation. This overrides the default character list in\nthe special argument. The `special` argument must still be set to true for any overwritten characters to be used in\ngeneration.\n"
                     },
                     "result": {
                         "type": "string",
@@ -702,11 +702,11 @@
                     },
                     "special": {
                         "type": "boolean",
-                        "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`\n"
+                        "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
                     },
                     "upper": {
                         "type": "boolean",
-                        "description": "Include uppercase alphabet characters in the result.\n"
+                        "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
                     }
                 },
                 "type": "object"
@@ -720,7 +720,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 },
                 "result": {
                     "type": "string",
@@ -736,7 +736,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                 }
             },
             "stateInputs": {
@@ -747,7 +747,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider\ndocumentation](../index.html) for more information.\n"
                     },
                     "result": {
                         "type": "string",
@@ -769,6 +769,7 @@
             }
         },
         "go": {
+            "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumi/pulumi-random/sdk/v4/go/random"
         },

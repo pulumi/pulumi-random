@@ -49,7 +49,8 @@ namespace Pulumi.Random
     public partial class RandomUuid : Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        /// documentation](../index.html) for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
@@ -110,7 +111,8 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        /// documentation](../index.html) for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -129,7 +131,8 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+        /// documentation](../index.html) for more information.
         /// </summary>
         public InputMap<object> Keepers
         {

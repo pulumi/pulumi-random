@@ -63,11 +63,14 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public readonly inputs!: pulumi.Output<string[]>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
+     * elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
+     * more frequently than the number of items in the input list.
      */
     public readonly resultCount!: pulumi.Output<number | undefined>;
     /**
@@ -75,7 +78,9 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public /*out*/ readonly results!: pulumi.Output<string[]>;
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
      */
     public readonly seed!: pulumi.Output<string | undefined>;
 
@@ -88,30 +93,28 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     constructor(name: string, args: RandomShuffleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RandomShuffleArgs | RandomShuffleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomShuffleState | undefined;
-            inputs["inputs"] = state ? state.inputs : undefined;
-            inputs["keepers"] = state ? state.keepers : undefined;
-            inputs["resultCount"] = state ? state.resultCount : undefined;
-            inputs["results"] = state ? state.results : undefined;
-            inputs["seed"] = state ? state.seed : undefined;
+            resourceInputs["inputs"] = state ? state.inputs : undefined;
+            resourceInputs["keepers"] = state ? state.keepers : undefined;
+            resourceInputs["resultCount"] = state ? state.resultCount : undefined;
+            resourceInputs["results"] = state ? state.results : undefined;
+            resourceInputs["seed"] = state ? state.seed : undefined;
         } else {
             const args = argsOrState as RandomShuffleArgs | undefined;
             if ((!args || args.inputs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'inputs'");
             }
-            inputs["inputs"] = args ? args.inputs : undefined;
-            inputs["keepers"] = args ? args.keepers : undefined;
-            inputs["resultCount"] = args ? args.resultCount : undefined;
-            inputs["seed"] = args ? args.seed : undefined;
-            inputs["results"] = undefined /*out*/;
+            resourceInputs["inputs"] = args ? args.inputs : undefined;
+            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["resultCount"] = args ? args.resultCount : undefined;
+            resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["results"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RandomShuffle.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RandomShuffle.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -124,11 +127,14 @@ export interface RandomShuffleState {
      */
     inputs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
+     * elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
+     * more frequently than the number of items in the input list.
      */
     resultCount?: pulumi.Input<number>;
     /**
@@ -136,7 +142,9 @@ export interface RandomShuffleState {
      */
     results?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
      */
     seed?: pulumi.Input<string>;
 }
@@ -150,15 +158,20 @@ export interface RandomShuffleArgs {
      */
     inputs: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+     * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
+     * elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
+     * more frequently than the number of items in the input list.
      */
     resultCount?: pulumi.Input<number>;
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
      */
     seed?: pulumi.Input<string>;
 }

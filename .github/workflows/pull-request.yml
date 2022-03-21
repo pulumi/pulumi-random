@@ -1,5 +1,4 @@
 env:
-  COVERAGE_OUTPUT_DIR: ${{ secrets.COVERAGE_OUTPUT_DIR }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -21,7 +20,7 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Comment PR
-      uses: thollander/actions-comment-pull-request@1.0.1
+      uses: thollander/actions-comment-pull-request@v1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         message: |
