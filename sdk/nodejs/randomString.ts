@@ -66,7 +66,8 @@ export class RandomString extends pulumi.CustomResource {
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The length of the string desired.
+     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+     * `min_lower` + `min_numeric` + `min_special`).
      */
     public readonly length!: pulumi.Output<number>;
     /**
@@ -170,7 +171,8 @@ export interface RandomStringState {
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The length of the string desired.
+     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+     * `min_lower` + `min_numeric` + `min_special`).
      */
     length?: pulumi.Input<number>;
     /**
@@ -227,7 +229,8 @@ export interface RandomStringArgs {
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The length of the string desired.
+     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+     * `min_lower` + `min_numeric` + `min_special`).
      */
     length: pulumi.Input<number>;
     /**
