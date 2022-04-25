@@ -216,7 +216,7 @@
                 },
                 "length": {
                     "type": "integer",
-                    "description": "The length of the string desired.\n"
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`min_upper` +\n`min_lower` + `min_numeric` + `min_special`).\n"
                 },
                 "lower": {
                     "type": "boolean",
@@ -273,7 +273,7 @@
                 },
                 "length": {
                     "type": "integer",
-                    "description": "The length of the string desired.\n"
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`min_upper` +\n`min_lower` + `min_numeric` + `min_special`).\n"
                 },
                 "lower": {
                     "type": "boolean",
@@ -327,7 +327,7 @@
                     },
                     "length": {
                         "type": "integer",
-                        "description": "The length of the string desired.\n"
+                        "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`min_upper` +\n`min_lower` + `min_numeric` + `min_special`).\n"
                     },
                     "lower": {
                         "type": "boolean",
@@ -555,7 +555,7 @@
                 },
                 "length": {
                     "type": "integer",
-                    "description": "The length of the string desired.\n"
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`min_upper` +\n`min_lower` + `min_numeric` + `min_special`).\n"
                 },
                 "lower": {
                     "type": "boolean",
@@ -612,7 +612,7 @@
                 },
                 "length": {
                     "type": "integer",
-                    "description": "The length of the string desired.\n"
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`min_upper` +\n`min_lower` + `min_numeric` + `min_special`).\n"
                 },
                 "lower": {
                     "type": "boolean",
@@ -666,7 +666,7 @@
                     },
                     "length": {
                         "type": "integer",
-                        "description": "The length of the string desired.\n"
+                        "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`min_upper` +\n`min_lower` + `min_numeric` + `min_special`).\n"
                     },
                     "lower": {
                         "type": "boolean",

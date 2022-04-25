@@ -26,7 +26,8 @@ class RandomStringArgs:
                  upper: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a RandomString resource.
-        :param pulumi.Input[int] length: The length of the string desired.
+        :param pulumi.Input[int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+               `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
@@ -67,7 +68,8 @@ class RandomStringArgs:
     @pulumi.getter
     def length(self) -> pulumi.Input[int]:
         """
-        The length of the string desired.
+        The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+        `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
@@ -218,7 +220,8 @@ class _RandomStringState:
         Input properties used for looking up and filtering RandomString resources.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length of the string desired.
+        :param pulumi.Input[int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+               `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
@@ -274,7 +277,8 @@ class _RandomStringState:
     @pulumi.getter
     def length(self) -> Optional[pulumi.Input[int]]:
         """
-        The length of the string desired.
+        The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+        `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
@@ -453,7 +457,8 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length of the string desired.
+        :param pulumi.Input[int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+               `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
@@ -582,7 +587,8 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length of the string desired.
+        :param pulumi.Input[int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+               `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
@@ -627,7 +633,8 @@ class RandomString(pulumi.CustomResource):
     @pulumi.getter
     def length(self) -> pulumi.Output[int]:
         """
-        The length of the string desired.
+        The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+        `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
