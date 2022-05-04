@@ -207,6 +207,17 @@ func (o RandomUuidOutput) ToRandomUuidOutputWithContext(ctx context.Context) Ran
 	return o
 }
 
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+// documentation](../index.html) for more information.
+func (o RandomUuidOutput) Keepers() pulumi.MapOutput {
+	return o.ApplyT(func(v *RandomUuid) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+}
+
+// The generated uuid presented in string format.
+func (o RandomUuidOutput) Result() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomUuid) pulumi.StringOutput { return v.Result }).(pulumi.StringOutput)
+}
+
 type RandomUuidArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidArrayOutput) ElementType() reflect.Type {

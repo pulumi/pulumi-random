@@ -259,6 +259,36 @@ func (o RandomShuffleOutput) ToRandomShuffleOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The list of strings to shuffle.
+func (o RandomShuffleOutput) Inputs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RandomShuffle) pulumi.StringArrayOutput { return v.Inputs }).(pulumi.StringArrayOutput)
+}
+
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+// documentation](../index.html) for more information.
+func (o RandomShuffleOutput) Keepers() pulumi.MapOutput {
+	return o.ApplyT(func(v *RandomShuffle) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+}
+
+// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
+// elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
+// more frequently than the number of items in the input list.
+func (o RandomShuffleOutput) ResultCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RandomShuffle) pulumi.IntPtrOutput { return v.ResultCount }).(pulumi.IntPtrOutput)
+}
+
+// Random permutation of the list of strings given in `input`.
+func (o RandomShuffleOutput) Results() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RandomShuffle) pulumi.StringArrayOutput { return v.Results }).(pulumi.StringArrayOutput)
+}
+
+// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
+// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
+// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+func (o RandomShuffleOutput) Seed() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RandomShuffle) pulumi.StringPtrOutput { return v.Seed }).(pulumi.StringPtrOutput)
+}
+
 type RandomShuffleArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomShuffleArrayOutput) ElementType() reflect.Type {
