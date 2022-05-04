@@ -195,6 +195,27 @@ func (o RandomPetOutput) ToRandomPetOutputWithContext(ctx context.Context) Rando
 	return o
 }
 
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+// documentation](../index.html) for more information.
+func (o RandomPetOutput) Keepers() pulumi.MapOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+}
+
+// The length (in words) of the pet name.
+func (o RandomPetOutput) Length() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.IntPtrOutput { return v.Length }).(pulumi.IntPtrOutput)
+}
+
+// A string to prefix the name with.
+func (o RandomPetOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.StringPtrOutput { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+// The character to separate words in the pet name.
+func (o RandomPetOutput) Separator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.StringPtrOutput { return v.Separator }).(pulumi.StringPtrOutput)
+}
+
 type RandomPetArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomPetArrayOutput) ElementType() reflect.Type {
