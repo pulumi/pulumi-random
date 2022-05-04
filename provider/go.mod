@@ -3,7 +3,7 @@ module github.com/pulumi/pulumi-random/provider/v4
 go 1.16
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.22.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.22.1
 	github.com/pulumi/pulumi/sdk/v3 v3.31.1
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
