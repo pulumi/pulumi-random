@@ -62,7 +62,8 @@ type RandomPassword struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// The length of the string desired.
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+	// `min_lower` + `min_numeric` + `min_special`).
 	Length pulumi.IntOutput `pulumi:"length"`
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrOutput `pulumi:"lower"`
@@ -123,7 +124,8 @@ type randomPasswordState struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length of the string desired.
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+	// `min_lower` + `min_numeric` + `min_special`).
 	Length *int `pulumi:"length"`
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
@@ -153,7 +155,8 @@ type RandomPasswordState struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
-	// The length of the string desired.
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+	// `min_lower` + `min_numeric` + `min_special`).
 	Length pulumi.IntPtrInput
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
@@ -187,7 +190,8 @@ type randomPasswordArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length of the string desired.
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+	// `min_lower` + `min_numeric` + `min_special`).
 	Length int `pulumi:"length"`
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
@@ -216,7 +220,8 @@ type RandomPasswordArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
-	// The length of the string desired.
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
+	// `min_lower` + `min_numeric` + `min_special`).
 	Length pulumi.IntInput
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
