@@ -257,6 +257,32 @@ func (o RandomIntegerOutput) ToRandomIntegerOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+// documentation](../index.html) for more information.
+func (o RandomIntegerOutput) Keepers() pulumi.MapOutput {
+	return o.ApplyT(func(v *RandomInteger) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+}
+
+// The maximum inclusive value of the range.
+func (o RandomIntegerOutput) Max() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomInteger) pulumi.IntOutput { return v.Max }).(pulumi.IntOutput)
+}
+
+// The minimum inclusive value of the range.
+func (o RandomIntegerOutput) Min() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomInteger) pulumi.IntOutput { return v.Min }).(pulumi.IntOutput)
+}
+
+// The random integer result.
+func (o RandomIntegerOutput) Result() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomInteger) pulumi.IntOutput { return v.Result }).(pulumi.IntOutput)
+}
+
+// A custom seed to always produce the same value.
+func (o RandomIntegerOutput) Seed() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RandomInteger) pulumi.StringPtrOutput { return v.Seed }).(pulumi.StringPtrOutput)
+}
+
 type RandomIntegerArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerArrayOutput) ElementType() reflect.Type {

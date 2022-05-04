@@ -247,6 +247,45 @@ func (o RandomIdOutput) ToRandomIdOutputWithContext(ctx context.Context) RandomI
 	return o
 }
 
+// The generated id presented in base64 without additional transformations.
+func (o RandomIdOutput) B64Std() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.B64Std }).(pulumi.StringOutput)
+}
+
+// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
+// characters `_` and `-`.
+func (o RandomIdOutput) B64Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.B64Url }).(pulumi.StringOutput)
+}
+
+// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+func (o RandomIdOutput) ByteLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.IntOutput { return v.ByteLength }).(pulumi.IntOutput)
+}
+
+// The generated id presented in non-padded decimal digits.
+func (o RandomIdOutput) Dec() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.Dec }).(pulumi.StringOutput)
+}
+
+// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
+// length.
+func (o RandomIdOutput) Hex() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.Hex }).(pulumi.StringOutput)
+}
+
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
+// documentation](../index.html) for more information.
+func (o RandomIdOutput) Keepers() pulumi.MapOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+}
+
+// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
+// URL-safe or base64 encoded.
+func (o RandomIdOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RandomId) pulumi.StringPtrOutput { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
 type RandomIdArrayOutput struct{ *pulumi.OutputState }
 
 func (RandomIdArrayOutput) ElementType() reflect.Type {
