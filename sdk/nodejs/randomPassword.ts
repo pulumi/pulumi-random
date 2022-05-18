@@ -63,6 +63,10 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
+     * A bcrypt hash of the generated random string.
+     */
+    public /*out*/ readonly bcryptHash!: pulumi.Output<string>;
+    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
      */
@@ -128,6 +132,7 @@ export class RandomPassword extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPasswordState | undefined;
+            resourceInputs["bcryptHash"] = state ? state.bcryptHash : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["length"] = state ? state.length : undefined;
             resourceInputs["lower"] = state ? state.lower : undefined;
@@ -156,6 +161,7 @@ export class RandomPassword extends pulumi.CustomResource {
             resourceInputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
             resourceInputs["special"] = args ? args.special : undefined;
             resourceInputs["upper"] = args ? args.upper : undefined;
+            resourceInputs["bcryptHash"] = undefined /*out*/;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -167,6 +173,10 @@ export class RandomPassword extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RandomPassword resources.
  */
 export interface RandomPasswordState {
+    /**
+     * A bcrypt hash of the generated random string.
+     */
+    bcryptHash?: pulumi.Input<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.

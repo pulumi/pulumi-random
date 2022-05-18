@@ -52,6 +52,12 @@ namespace Pulumi.Random
     public partial class RandomPassword : Pulumi.CustomResource
     {
         /// <summary>
+        /// A bcrypt hash of the generated random string.
+        /// </summary>
+        [Output("bcryptHash")]
+        public Output<string> BcryptHash { get; private set; } = null!;
+
+        /// <summary>
         /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
         /// documentation](../index.html) for more information.
         /// </summary>
@@ -256,6 +262,12 @@ namespace Pulumi.Random
 
     public sealed class RandomPasswordState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A bcrypt hash of the generated random string.
+        /// </summary>
+        [Input("bcryptHash")]
+        public Input<string>? BcryptHash { get; set; }
+
         [Input("keepers")]
         private InputMap<object>? _keepers;
 

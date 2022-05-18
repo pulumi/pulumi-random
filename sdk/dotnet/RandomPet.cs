@@ -60,7 +60,7 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length (in words) of the pet name.
+        /// The length (in words) of the pet name. Defaults to 2
         /// </summary>
         [Output("length")]
         public Output<int?> Length { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Random
         public Output<string?> Prefix { get; private set; } = null!;
 
         /// <summary>
-        /// The character to separate words in the pet name.
+        /// The character to separate words in the pet name. Defaults to "-"
         /// </summary>
         [Output("separator")]
         public Output<string?> Separator { get; private set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length (in words) of the pet name.
+        /// The length (in words) of the pet name. Defaults to 2
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -149,7 +149,7 @@ namespace Pulumi.Random
         public Input<string>? Prefix { get; set; }
 
         /// <summary>
-        /// The character to separate words in the pet name.
+        /// The character to separate words in the pet name. Defaults to "-"
         /// </summary>
         [Input("separator")]
         public Input<string>? Separator { get; set; }
@@ -175,7 +175,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length (in words) of the pet name.
+        /// The length (in words) of the pet name. Defaults to 2
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -187,7 +187,7 @@ namespace Pulumi.Random
         public Input<string>? Prefix { get; set; }
 
         /// <summary>
-        /// The character to separate words in the pet name.
+        /// The character to separate words in the pet name. Defaults to "-"
         /// </summary>
         [Input("separator")]
         public Input<string>? Separator { get; set; }

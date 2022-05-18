@@ -36,8 +36,12 @@ namespace Pulumi.Random
     ///         });
     ///         var example = new Aws.Elb.LoadBalancer("example", new Aws.Elb.LoadBalancerArgs
     ///         {
-    ///             AvailabilityZones = az.Results,
+    ///             AvailabilityZones = 
+    ///             {
+    ///                 az.Results,
+    ///             },
     ///         });
+    ///         // ... and other aws_elb arguments ...
     ///     }
     /// 
     /// }

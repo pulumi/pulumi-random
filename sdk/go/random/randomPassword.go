@@ -59,6 +59,8 @@ import (
 type RandomPassword struct {
 	pulumi.CustomResourceState
 
+	// A bcrypt hash of the generated random string.
+	BcryptHash pulumi.StringOutput `pulumi:"bcryptHash"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
@@ -121,6 +123,8 @@ func GetRandomPassword(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type randomPasswordState struct {
+	// A bcrypt hash of the generated random string.
+	BcryptHash *string `pulumi:"bcryptHash"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
@@ -152,6 +156,8 @@ type randomPasswordState struct {
 }
 
 type RandomPasswordState struct {
+	// A bcrypt hash of the generated random string.
+	BcryptHash pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
@@ -330,6 +336,11 @@ func (o RandomPasswordOutput) ToRandomPasswordOutput() RandomPasswordOutput {
 
 func (o RandomPasswordOutput) ToRandomPasswordOutputWithContext(ctx context.Context) RandomPasswordOutput {
 	return o
+}
+
+// A bcrypt hash of the generated random string.
+func (o RandomPasswordOutput) BcryptHash() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.BcryptHash }).(pulumi.StringOutput)
 }
 
 // Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
