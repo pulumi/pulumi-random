@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const main = new aws.alb.ListenerRule("main", {
- *     listenerArn: _var.listener_arn,
+ *     listenerArn: priority.keepers.apply(keepers => keepers?.listenerArn),
  *     priority: priority.result,
  *     actions: [{
  *         type: "forward",

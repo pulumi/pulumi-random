@@ -38,7 +38,7 @@ namespace Pulumi.Random
     ///         });
     ///         var main = new Aws.Alb.ListenerRule("main", new Aws.Alb.ListenerRuleArgs
     ///         {
-    ///             ListenerArn = @var.Listener_arn,
+    ///             ListenerArn = priority.Keepers.Apply(keepers =&gt; keepers?.ListenerArn),
     ///             Priority = priority.Result,
     ///             Actions = 
     ///             {

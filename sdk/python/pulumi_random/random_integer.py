@@ -203,7 +203,7 @@ class RandomInteger(pulumi.CustomResource):
                 "listener_arn": var["listener_arn"],
             })
         main = aws.alb.ListenerRule("main",
-            listener_arn=var["listener_arn"],
+            listener_arn=priority.keepers["listenerArn"],
             priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
                 type="forward",
@@ -255,7 +255,7 @@ class RandomInteger(pulumi.CustomResource):
                 "listener_arn": var["listener_arn"],
             })
         main = aws.alb.ListenerRule("main",
-            listener_arn=var["listener_arn"],
+            listener_arn=priority.keepers["listenerArn"],
             priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
                 type="forward",

@@ -19,11 +19,11 @@ type RandomPet struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// The length (in words) of the pet name.
+	// The length (in words) of the pet name. Defaults to 2
 	Length pulumi.IntPtrOutput `pulumi:"length"`
 	// A string to prefix the name with.
 	Prefix pulumi.StringPtrOutput `pulumi:"prefix"`
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator pulumi.StringPtrOutput `pulumi:"separator"`
 }
 
@@ -59,11 +59,11 @@ type randomPetState struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length (in words) of the pet name.
+	// The length (in words) of the pet name. Defaults to 2
 	Length *int `pulumi:"length"`
 	// A string to prefix the name with.
 	Prefix *string `pulumi:"prefix"`
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator *string `pulumi:"separator"`
 }
 
@@ -71,11 +71,11 @@ type RandomPetState struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
-	// The length (in words) of the pet name.
+	// The length (in words) of the pet name. Defaults to 2
 	Length pulumi.IntPtrInput
 	// A string to prefix the name with.
 	Prefix pulumi.StringPtrInput
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator pulumi.StringPtrInput
 }
 
@@ -87,11 +87,11 @@ type randomPetArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length (in words) of the pet name.
+	// The length (in words) of the pet name. Defaults to 2
 	Length *int `pulumi:"length"`
 	// A string to prefix the name with.
 	Prefix *string `pulumi:"prefix"`
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator *string `pulumi:"separator"`
 }
 
@@ -100,11 +100,11 @@ type RandomPetArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
 	// documentation](../index.html) for more information.
 	Keepers pulumi.MapInput
-	// The length (in words) of the pet name.
+	// The length (in words) of the pet name. Defaults to 2
 	Length pulumi.IntPtrInput
 	// A string to prefix the name with.
 	Prefix pulumi.StringPtrInput
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator pulumi.StringPtrInput
 }
 
@@ -201,7 +201,7 @@ func (o RandomPetOutput) Keepers() pulumi.MapOutput {
 	return o.ApplyT(func(v *RandomPet) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
 }
 
-// The length (in words) of the pet name.
+// The length (in words) of the pet name. Defaults to 2
 func (o RandomPetOutput) Length() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RandomPet) pulumi.IntPtrOutput { return v.Length }).(pulumi.IntPtrOutput)
 }
@@ -211,7 +211,7 @@ func (o RandomPetOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomPet) pulumi.StringPtrOutput { return v.Prefix }).(pulumi.StringPtrOutput)
 }
 
-// The character to separate words in the pet name.
+// The character to separate words in the pet name. Defaults to "-"
 func (o RandomPetOutput) Separator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomPet) pulumi.StringPtrOutput { return v.Separator }).(pulumi.StringPtrOutput)
 }

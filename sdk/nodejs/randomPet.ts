@@ -65,7 +65,7 @@ export class RandomPet extends pulumi.CustomResource {
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      */
     public readonly length!: pulumi.Output<number | undefined>;
     /**
@@ -73,7 +73,7 @@ export class RandomPet extends pulumi.CustomResource {
      */
     public readonly prefix!: pulumi.Output<string | undefined>;
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to "-"
      */
     public readonly separator!: pulumi.Output<string | undefined>;
 
@@ -116,7 +116,7 @@ export interface RandomPetState {
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      */
     length?: pulumi.Input<number>;
     /**
@@ -124,7 +124,7 @@ export interface RandomPetState {
      */
     prefix?: pulumi.Input<string>;
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to "-"
      */
     separator?: pulumi.Input<string>;
 }
@@ -139,7 +139,7 @@ export interface RandomPetArgs {
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      */
     length?: pulumi.Input<number>;
     /**
@@ -147,7 +147,7 @@ export interface RandomPetArgs {
      */
     prefix?: pulumi.Input<string>;
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to "-"
      */
     separator?: pulumi.Input<string>;
 }

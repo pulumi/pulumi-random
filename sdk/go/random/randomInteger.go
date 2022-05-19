@@ -15,47 +15,6 @@ import (
 //
 // This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/alb"
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
-// 			Min: pulumi.Int(1),
-// 			Max: pulumi.Int(50000),
-// 			Keepers: pulumi.AnyMap{
-// 				"listener_arn": pulumi.Any(_var.Listener_arn),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
-// 			ListenerArn: pulumi.Any(_var.Listener_arn),
-// 			Priority:    priority.Result,
-// 			Actions: alb.ListenerRuleActionArray{
-// 				&alb.ListenerRuleActionArgs{
-// 					Type:           pulumi.String("forward"),
-// 					TargetGroupArn: pulumi.Any(_var.Target_group_arn),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // # Random integers can be imported using the result, min, and max, with an # optional seed. This can be used to replace a config value with a value # interpolated from the random provider without experiencing diffs. # Example (values are separated by a ,)

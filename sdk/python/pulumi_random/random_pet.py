@@ -21,9 +21,9 @@ class RandomPetArgs:
         The set of arguments for constructing a RandomPet resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length (in words) of the pet name.
+        :param pulumi.Input[int] length: The length (in words) of the pet name. Defaults to 2
         :param pulumi.Input[str] prefix: A string to prefix the name with.
-        :param pulumi.Input[str] separator: The character to separate words in the pet name.
+        :param pulumi.Input[str] separator: The character to separate words in the pet name. Defaults to "-"
         """
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
@@ -51,7 +51,7 @@ class RandomPetArgs:
     @pulumi.getter
     def length(self) -> Optional[pulumi.Input[int]]:
         """
-        The length (in words) of the pet name.
+        The length (in words) of the pet name. Defaults to 2
         """
         return pulumi.get(self, "length")
 
@@ -75,7 +75,7 @@ class RandomPetArgs:
     @pulumi.getter
     def separator(self) -> Optional[pulumi.Input[str]]:
         """
-        The character to separate words in the pet name.
+        The character to separate words in the pet name. Defaults to "-"
         """
         return pulumi.get(self, "separator")
 
@@ -95,9 +95,9 @@ class _RandomPetState:
         Input properties used for looking up and filtering RandomPet resources.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length (in words) of the pet name.
+        :param pulumi.Input[int] length: The length (in words) of the pet name. Defaults to 2
         :param pulumi.Input[str] prefix: A string to prefix the name with.
-        :param pulumi.Input[str] separator: The character to separate words in the pet name.
+        :param pulumi.Input[str] separator: The character to separate words in the pet name. Defaults to "-"
         """
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
@@ -125,7 +125,7 @@ class _RandomPetState:
     @pulumi.getter
     def length(self) -> Optional[pulumi.Input[int]]:
         """
-        The length (in words) of the pet name.
+        The length (in words) of the pet name. Defaults to 2
         """
         return pulumi.get(self, "length")
 
@@ -149,7 +149,7 @@ class _RandomPetState:
     @pulumi.getter
     def separator(self) -> Optional[pulumi.Input[str]]:
         """
-        The character to separate words in the pet name.
+        The character to separate words in the pet name. Defaults to "-"
         """
         return pulumi.get(self, "separator")
 
@@ -198,9 +198,9 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length (in words) of the pet name.
+        :param pulumi.Input[int] length: The length (in words) of the pet name. Defaults to 2
         :param pulumi.Input[str] prefix: A string to prefix the name with.
-        :param pulumi.Input[str] separator: The character to separate words in the pet name.
+        :param pulumi.Input[str] separator: The character to separate words in the pet name. Defaults to "-"
         """
         ...
     @overload
@@ -292,9 +292,9 @@ class RandomPet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
                documentation](../index.html) for more information.
-        :param pulumi.Input[int] length: The length (in words) of the pet name.
+        :param pulumi.Input[int] length: The length (in words) of the pet name. Defaults to 2
         :param pulumi.Input[str] prefix: A string to prefix the name with.
-        :param pulumi.Input[str] separator: The character to separate words in the pet name.
+        :param pulumi.Input[str] separator: The character to separate words in the pet name. Defaults to "-"
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -319,7 +319,7 @@ class RandomPet(pulumi.CustomResource):
     @pulumi.getter
     def length(self) -> pulumi.Output[Optional[int]]:
         """
-        The length (in words) of the pet name.
+        The length (in words) of the pet name. Defaults to 2
         """
         return pulumi.get(self, "length")
 
@@ -335,7 +335,7 @@ class RandomPet(pulumi.CustomResource):
     @pulumi.getter
     def separator(self) -> pulumi.Output[Optional[str]]:
         """
-        The character to separate words in the pet name.
+        The character to separate words in the pet name. Defaults to "-"
         """
         return pulumi.get(self, "separator")
 
