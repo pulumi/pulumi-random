@@ -80,8 +80,8 @@ clean::
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource aws 4.0.0
-	pulumi plugin install resource azure 4.0.0
+	pulumi plugin install resource aws 5.4.0
+	pulumi plugin install resource azure 5.6.0
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
