@@ -19,14 +19,34 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &gt; **Note:** Requires random provider version &gt;= 2.2.0
+ * 
+ * Identical to random.RandomString with the exception that the
+ * result is treated as sensitive and, thus, _not_ displayed in console output.
+ * 
+ * &gt; **Note:** All attributes including the generated password will be stored in
+ * the raw state as plain-text. [Read more about sensitive data in
+ * state](https://www.terraform.io/docs/state/sensitive-data.html).
+ * 
+ * This resource *does* use a cryptographic random number generator.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
  * 
- * import java.util.*;
- * import java.io.*;
- * import java.nio.*;
- * import com.pulumi.*;
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.random.RandomPassword;
+ * import com.pulumi.random.RandomPasswordArgs;
+ * import com.pulumi.aws.rds.Instance;
+ * import com.pulumi.aws.rds.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
  * public class App {
  *     public static void main(String[] args) {
@@ -37,7 +57,7 @@ import javax.annotation.Nullable;
  *         var password = new RandomPassword(&#34;password&#34;, RandomPasswordArgs.builder()        
  *             .length(16)
  *             .special(true)
- *             .overrideSpecial(&#34;!#$%&amp;*()-_=+[]{}&lt;&gt;:?&#34;)
+ *             .overrideSpecial(&#34;_%@&#34;)
  *             .build());
  * 
  *         var example = new Instance(&#34;example&#34;, InstanceArgs.builder()        
@@ -54,7 +74,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # Random Password can be imported by specifying the value of the string
+ * Random Password can be imported by specifying the value of the string
  * 
  * ```sh
  *  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
@@ -63,20 +83,6 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="random:index/randomPassword:RandomPassword")
 public class RandomPassword extends com.pulumi.resources.CustomResource {
-    /**
-     * A bcrypt hash of the generated random string.
-     * 
-     */
-    @Export(name="bcryptHash", type=String.class, parameters={})
-    private Output<String> bcryptHash;
-
-    /**
-     * @return A bcrypt hash of the generated random string.
-     * 
-     */
-    public Output<String> bcryptHash() {
-        return this.bcryptHash;
-    }
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
@@ -94,100 +100,98 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keepers);
     }
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired.
      * 
      */
     @Export(name="length", type=Integer.class, parameters={})
     private Output<Integer> length;
 
     /**
-     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * @return The length of the string desired.
      * 
      */
     public Output<Integer> length() {
         return this.length;
     }
     /**
-     * Include lowercase alphabet characters in the result. Default value is `true`.
+     * Include lowercase alphabet characters in the result.
      * 
      */
     @Export(name="lower", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> lower;
 
     /**
-     * @return Include lowercase alphabet characters in the result. Default value is `true`.
+     * @return Include lowercase alphabet characters in the result.
      * 
      */
     public Output<Optional<Boolean>> lower() {
         return Codegen.optional(this.lower);
     }
     /**
-     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of lowercase alphabet characters in the result.
      * 
      */
     @Export(name="minLower", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> minLower;
 
     /**
-     * @return Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * @return Minimum number of lowercase alphabet characters in the result.
      * 
      */
     public Output<Optional<Integer>> minLower() {
         return Codegen.optional(this.minLower);
     }
     /**
-     * Minimum number of numeric characters in the result. Default value is `0`.
+     * Minimum number of numeric characters in the result.
      * 
      */
     @Export(name="minNumeric", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> minNumeric;
 
     /**
-     * @return Minimum number of numeric characters in the result. Default value is `0`.
+     * @return Minimum number of numeric characters in the result.
      * 
      */
     public Output<Optional<Integer>> minNumeric() {
         return Codegen.optional(this.minNumeric);
     }
     /**
-     * Minimum number of special characters in the result. Default value is `0`.
+     * Minimum number of special characters in the result.
      * 
      */
     @Export(name="minSpecial", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> minSpecial;
 
     /**
-     * @return Minimum number of special characters in the result. Default value is `0`.
+     * @return Minimum number of special characters in the result.
      * 
      */
     public Output<Optional<Integer>> minSpecial() {
         return Codegen.optional(this.minSpecial);
     }
     /**
-     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of uppercase alphabet characters in the result.
      * 
      */
     @Export(name="minUpper", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> minUpper;
 
     /**
-     * @return Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * @return Minimum number of uppercase alphabet characters in the result.
      * 
      */
     public Output<Optional<Integer>> minUpper() {
         return Codegen.optional(this.minUpper);
     }
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result.
      * 
      */
     @Export(name="number", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> number;
 
     /**
-     * @return Include numeric characters in the result. Default value is `true`.
+     * @return Include numeric characters in the result.
      * 
      */
     public Output<Optional<Boolean>> number() {
@@ -226,28 +230,28 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
         return this.result;
     }
     /**
-     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
      * 
      */
     @Export(name="special", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
      * 
      */
     public Output<Optional<Boolean>> special() {
         return Codegen.optional(this.special);
     }
     /**
-     * Include uppercase alphabet characters in the result. Default value is `true`.
+     * Include uppercase alphabet characters in the result.
      * 
      */
     @Export(name="upper", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> upper;
 
     /**
-     * @return Include uppercase alphabet characters in the result. Default value is `true`.
+     * @return Include uppercase alphabet characters in the result.
      * 
      */
     public Output<Optional<Boolean>> upper() {

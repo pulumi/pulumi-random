@@ -26,13 +26,13 @@ import (
 //
 // ## Import
 //
-// # Random IDs can be imported using the b64_url with an optional prefix. This # can be used to replace a config value with a value interpolated from the # random provider without experiencing diffs. # Example with no prefix
+// Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
 //
 // ```sh
 //  $ pulumi import random:index/randomId:RandomId server p-9hUg
 // ```
 //
-// # Example with prefix (prefix is separated by a ,)
+//  Example with prefix (prefix is separated by a `,`)
 //
 // ```sh
 //  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
@@ -42,21 +42,22 @@ type RandomId struct {
 
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringOutput `pulumi:"b64Std"`
-	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-	// characters `_` and `-`.
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
 	B64Url pulumi.StringOutput `pulumi:"b64Url"`
-	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+	// The number of random bytes to produce. The
+	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntOutput `pulumi:"byteLength"`
 	// The generated id presented in non-padded decimal digits.
 	Dec pulumi.StringOutput `pulumi:"dec"`
-	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-	// length.
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringOutput `pulumi:"hex"`
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-	// URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This
+	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+	// base64 encoded.
 	Prefix pulumi.StringPtrOutput `pulumi:"prefix"`
 }
 
@@ -94,42 +95,44 @@ func GetRandomId(ctx *pulumi.Context,
 type randomIdState struct {
 	// The generated id presented in base64 without additional transformations.
 	B64Std *string `pulumi:"b64Std"`
-	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-	// characters `_` and `-`.
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
 	B64Url *string `pulumi:"b64Url"`
-	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+	// The number of random bytes to produce. The
+	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength *int `pulumi:"byteLength"`
 	// The generated id presented in non-padded decimal digits.
 	Dec *string `pulumi:"dec"`
-	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-	// length.
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex *string `pulumi:"hex"`
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-	// URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This
+	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+	// base64 encoded.
 	Prefix *string `pulumi:"prefix"`
 }
 
 type RandomIdState struct {
 	// The generated id presented in base64 without additional transformations.
 	B64Std pulumi.StringPtrInput
-	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-	// characters `_` and `-`.
+	// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
 	B64Url pulumi.StringPtrInput
-	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+	// The number of random bytes to produce. The
+	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntPtrInput
 	// The generated id presented in non-padded decimal digits.
 	Dec pulumi.StringPtrInput
-	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-	// length.
+	// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 	Hex pulumi.StringPtrInput
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-	// URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This
+	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+	// base64 encoded.
 	Prefix pulumi.StringPtrInput
 }
 
@@ -138,25 +141,31 @@ func (RandomIdState) ElementType() reflect.Type {
 }
 
 type randomIdArgs struct {
-	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+	// The number of random bytes to produce. The
+	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength int `pulumi:"byteLength"`
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers map[string]interface{} `pulumi:"keepers"`
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-	// URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This
+	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+	// base64 encoded.
 	Prefix *string `pulumi:"prefix"`
 }
 
 // The set of arguments for constructing a RandomId resource.
 type RandomIdArgs struct {
-	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+	// The number of random bytes to produce. The
+	// minimum value is 1, which produces eight bits of randomness.
 	ByteLength pulumi.IntInput
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
+	// Arbitrary map of values that, when changed, will
+	// trigger a new id to be generated. See
+	// the main provider documentation for more information.
 	Keepers pulumi.MapInput
-	// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-	// URL-safe or base64 encoded.
+	// Arbitrary string to prefix the output value with. This
+	// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+	// base64 encoded.
 	Prefix pulumi.StringPtrInput
 }
 
@@ -252,13 +261,13 @@ func (o RandomIdOutput) B64Std() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.B64Std }).(pulumi.StringOutput)
 }
 
-// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-// characters `_` and `-`.
+// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
 func (o RandomIdOutput) B64Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.B64Url }).(pulumi.StringOutput)
 }
 
-// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+// The number of random bytes to produce. The
+// minimum value is 1, which produces eight bits of randomness.
 func (o RandomIdOutput) ByteLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.IntOutput { return v.ByteLength }).(pulumi.IntOutput)
 }
@@ -268,20 +277,21 @@ func (o RandomIdOutput) Dec() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.Dec }).(pulumi.StringOutput)
 }
 
-// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-// length.
+// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
 func (o RandomIdOutput) Hex() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.StringOutput { return v.Hex }).(pulumi.StringOutput)
 }
 
-// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-// documentation](../index.html) for more information.
+// Arbitrary map of values that, when changed, will
+// trigger a new id to be generated. See
+// the main provider documentation for more information.
 func (o RandomIdOutput) Keepers() pulumi.MapOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
 }
 
-// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-// URL-safe or base64 encoded.
+// Arbitrary string to prefix the output value with. This
+// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+// base64 encoded.
 func (o RandomIdOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomId) pulumi.StringPtrOutput { return v.Prefix }).(pulumi.StringPtrOutput)
 }

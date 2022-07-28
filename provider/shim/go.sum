@@ -89,8 +89,8 @@ github.com/nsf/jsondiff v0.0.0-20200515183724-f29ed568f4ce h1:RPclfga2SEJmgMmz2k
 github.com/oklog/run v1.0.0 h1:Ru7dDtJNOyC66gQ5dQmaCa0qIsAUFY3sFpK1Xk8igrw=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/pulumi/terraform-provider-random v1.3.2-0.20220610114958-6003bdcff64d h1:ewxDCq0h4ULiR+tGQ6J489Zmy5BWED4tcEqIS53pjzE=
-github.com/pulumi/terraform-provider-random v1.3.2-0.20220610114958-6003bdcff64d/go.mod h1:kbdBbYQgAap5c9V6uwyTzmgSMha19lmk1Xi4gB5WPaY=
+github.com/pulumi/terraform-provider-random v1.3.2-0.20220627122729-2ed10370a61b h1:TXd0DsmkJtKyxDN4pwrtwO4cp4W6DMvurVyOCopU5QI=
+github.com/pulumi/terraform-provider-random v1.3.2-0.20220627122729-2ed10370a61b/go.mod h1:o2Gf46wsD87EwpjBODVSCjKA85IsrujYeHKIwfbzHcM=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/spf13/pflag v1.0.2/go.mod h1:DYY7MBk1bdzusC3SYhjObp+wFpr4gzcvqqNjLnInEg4=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=

@@ -17,18 +17,30 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The resource `random.RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
+ * The resource `random.RandomUuid` generates random uuid string that is intended to be
+ * used as unique identifiers for other resources.
  * 
- * This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
+ * This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
+ * for use with services needed a unique string identifier.
  * 
  * ## Example Usage
+ * 
+ * The following example shows how to generate a unique name for an Azure Resource Group.
  * ```java
  * package generated_program;
  * 
- * import java.util.*;
- * import java.io.*;
- * import java.nio.*;
- * import com.pulumi.*;
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.random.RandomUuid;
+ * import com.pulumi.azure.core.ResourceGroup;
+ * import com.pulumi.azure.core.ResourceGroupArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
  * public class App {
  *     public static void main(String[] args) {
@@ -48,7 +60,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # Random UUID&#39;s can be imported. This can be used to replace a config # value with a value interpolated from the random provider without # experiencing diffs.
+ * Random UUID&#39;s can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
  * 
  * ```sh
  *  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -58,16 +70,18 @@ import javax.annotation.Nullable;
 @ResourceType(type="random:index/randomUuid:RandomUuid")
 public class RandomUuid extends com.pulumi.resources.CustomResource {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new uuid to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     @Export(name="keepers", type=Map.class, parameters={String.class, Object.class})
     private Output</* @Nullable */ Map<String,Object>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * @return Arbitrary map of values that, when changed, will
+     * trigger a new uuid to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     public Output<Optional<Map<String,Object>>> keepers() {

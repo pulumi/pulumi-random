@@ -5,6 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **Note:** Requires random provider version >= 2.2.0
+ *
+ * Identical to random.RandomString with the exception that the
+ * result is treated as sensitive and, thus, _not_ displayed in console output.
+ *
+ * > **Note:** All attributes including the generated password will be stored in
+ * the raw state as plain-text. [Read more about sensitive data in
+ * state](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
+ * This resource *does* use a cryptographic random number generator.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -15,7 +26,7 @@ import * as utilities from "./utilities";
  * const password = new random.RandomPassword("password", {
  *     length: 16,
  *     special: true,
- *     overrideSpecial: `!#$%&*()-_=+[]{}<>:?`,
+ *     overrideSpecial: `_%@`,
  * });
  * const example = new aws.rds.Instance("example", {
  *     instanceClass: "db.t3.micro",
@@ -28,7 +39,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * # Random Password can be imported by specifying the value of the string
+ * Random Password can be imported by specifying the value of the string
  *
  * ```sh
  *  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
@@ -63,41 +74,36 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
-     * A bcrypt hash of the generated random string.
-     */
-    public /*out*/ readonly bcryptHash!: pulumi.Output<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired.
      */
     public readonly length!: pulumi.Output<number>;
     /**
-     * Include lowercase alphabet characters in the result. Default value is `true`.
+     * Include lowercase alphabet characters in the result.
      */
     public readonly lower!: pulumi.Output<boolean | undefined>;
     /**
-     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of lowercase alphabet characters in the result.
      */
     public readonly minLower!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of numeric characters in the result. Default value is `0`.
+     * Minimum number of numeric characters in the result.
      */
     public readonly minNumeric!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of special characters in the result. Default value is `0`.
+     * Minimum number of special characters in the result.
      */
     public readonly minSpecial!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of uppercase alphabet characters in the result.
      */
     public readonly minUpper!: pulumi.Output<number | undefined>;
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result.
      */
     public readonly number!: pulumi.Output<boolean | undefined>;
     /**
@@ -111,11 +117,11 @@ export class RandomPassword extends pulumi.CustomResource {
      */
     public /*out*/ readonly result!: pulumi.Output<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
      */
     public readonly special!: pulumi.Output<boolean | undefined>;
     /**
-     * Include uppercase alphabet characters in the result. Default value is `true`.
+     * Include uppercase alphabet characters in the result.
      */
     public readonly upper!: pulumi.Output<boolean | undefined>;
 
@@ -132,7 +138,6 @@ export class RandomPassword extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPasswordState | undefined;
-            resourceInputs["bcryptHash"] = state ? state.bcryptHash : undefined;
             resourceInputs["keepers"] = state ? state.keepers : undefined;
             resourceInputs["length"] = state ? state.length : undefined;
             resourceInputs["lower"] = state ? state.lower : undefined;
@@ -161,7 +166,6 @@ export class RandomPassword extends pulumi.CustomResource {
             resourceInputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
             resourceInputs["special"] = args ? args.special : undefined;
             resourceInputs["upper"] = args ? args.upper : undefined;
-            resourceInputs["bcryptHash"] = undefined /*out*/;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -174,41 +178,36 @@ export class RandomPassword extends pulumi.CustomResource {
  */
 export interface RandomPasswordState {
     /**
-     * A bcrypt hash of the generated random string.
-     */
-    bcryptHash?: pulumi.Input<string>;
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired.
      */
     length?: pulumi.Input<number>;
     /**
-     * Include lowercase alphabet characters in the result. Default value is `true`.
+     * Include lowercase alphabet characters in the result.
      */
     lower?: pulumi.Input<boolean>;
     /**
-     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of lowercase alphabet characters in the result.
      */
     minLower?: pulumi.Input<number>;
     /**
-     * Minimum number of numeric characters in the result. Default value is `0`.
+     * Minimum number of numeric characters in the result.
      */
     minNumeric?: pulumi.Input<number>;
     /**
-     * Minimum number of special characters in the result. Default value is `0`.
+     * Minimum number of special characters in the result.
      */
     minSpecial?: pulumi.Input<number>;
     /**
-     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of uppercase alphabet characters in the result.
      */
     minUpper?: pulumi.Input<number>;
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result.
      */
     number?: pulumi.Input<boolean>;
     /**
@@ -222,11 +221,11 @@ export interface RandomPasswordState {
      */
     result?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
      */
     special?: pulumi.Input<boolean>;
     /**
-     * Include uppercase alphabet characters in the result. Default value is `true`.
+     * Include uppercase alphabet characters in the result.
      */
     upper?: pulumi.Input<boolean>;
 }
@@ -241,32 +240,31 @@ export interface RandomPasswordArgs {
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired.
      */
     length: pulumi.Input<number>;
     /**
-     * Include lowercase alphabet characters in the result. Default value is `true`.
+     * Include lowercase alphabet characters in the result.
      */
     lower?: pulumi.Input<boolean>;
     /**
-     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of lowercase alphabet characters in the result.
      */
     minLower?: pulumi.Input<number>;
     /**
-     * Minimum number of numeric characters in the result. Default value is `0`.
+     * Minimum number of numeric characters in the result.
      */
     minNumeric?: pulumi.Input<number>;
     /**
-     * Minimum number of special characters in the result. Default value is `0`.
+     * Minimum number of special characters in the result.
      */
     minSpecial?: pulumi.Input<number>;
     /**
-     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of uppercase alphabet characters in the result.
      */
     minUpper?: pulumi.Input<number>;
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result.
      */
     number?: pulumi.Input<boolean>;
     /**
@@ -276,11 +274,11 @@ export interface RandomPasswordArgs {
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
      */
     special?: pulumi.Input<boolean>;
     /**
-     * Include uppercase alphabet characters in the result. Default value is `true`.
+     * Include uppercase alphabet characters in the result.
      */
     upper?: pulumi.Input<boolean>;
 }

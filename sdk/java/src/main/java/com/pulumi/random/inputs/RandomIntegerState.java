@@ -19,16 +19,18 @@ public final class RandomIntegerState extends com.pulumi.resources.ResourceArgs 
     public static final RandomIntegerState Empty = new RandomIntegerState();
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     @Import(name="keepers")
     private @Nullable Output<Map<String,Object>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * @return Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     public Optional<Output<Map<String,Object>>> keepers() {
@@ -66,14 +68,14 @@ public final class RandomIntegerState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The random integer result.
+     * (int) The random Integer result.
      * 
      */
     @Import(name="result")
     private @Nullable Output<Integer> result;
 
     /**
-     * @return The random integer result.
+     * @return (int) The random Integer result.
      * 
      */
     public Optional<Output<Integer>> result() {
@@ -124,8 +126,9 @@ public final class RandomIntegerState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-         * documentation](../index.html) for more information.
+         * @param keepers Arbitrary map of values that, when changed, will
+         * trigger a new id to be generated. See
+         * the main provider documentation for more information.
          * 
          * @return builder
          * 
@@ -136,8 +139,9 @@ public final class RandomIntegerState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-         * documentation](../index.html) for more information.
+         * @param keepers Arbitrary map of values that, when changed, will
+         * trigger a new id to be generated. See
+         * the main provider documentation for more information.
          * 
          * @return builder
          * 
@@ -189,7 +193,7 @@ public final class RandomIntegerState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param result The random integer result.
+         * @param result (int) The random Integer result.
          * 
          * @return builder
          * 
@@ -200,7 +204,7 @@ public final class RandomIntegerState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param result The random integer result.
+         * @param result (int) The random Integer result.
          * 
          * @return builder
          * 
