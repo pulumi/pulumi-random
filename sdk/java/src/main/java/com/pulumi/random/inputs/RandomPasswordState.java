@@ -20,21 +20,6 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     public static final RandomPasswordState Empty = new RandomPasswordState();
 
     /**
-     * A bcrypt hash of the generated random string.
-     * 
-     */
-    @Import(name="bcryptHash")
-    private @Nullable Output<String> bcryptHash;
-
-    /**
-     * @return A bcrypt hash of the generated random string.
-     * 
-     */
-    public Optional<Output<String>> bcryptHash() {
-        return Optional.ofNullable(this.bcryptHash);
-    }
-
-    /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
      * documentation](../index.html) for more information.
      * 
@@ -52,16 +37,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired.
      * 
      */
     @Import(name="length")
     private @Nullable Output<Integer> length;
 
     /**
-     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` +
-     * `min_lower` + `min_numeric` + `min_special`).
+     * @return The length of the string desired.
      * 
      */
     public Optional<Output<Integer>> length() {
@@ -69,14 +52,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Include lowercase alphabet characters in the result. Default value is `true`.
+     * Include lowercase alphabet characters in the result.
      * 
      */
     @Import(name="lower")
     private @Nullable Output<Boolean> lower;
 
     /**
-     * @return Include lowercase alphabet characters in the result. Default value is `true`.
+     * @return Include lowercase alphabet characters in the result.
      * 
      */
     public Optional<Output<Boolean>> lower() {
@@ -84,14 +67,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of lowercase alphabet characters in the result.
      * 
      */
     @Import(name="minLower")
     private @Nullable Output<Integer> minLower;
 
     /**
-     * @return Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+     * @return Minimum number of lowercase alphabet characters in the result.
      * 
      */
     public Optional<Output<Integer>> minLower() {
@@ -99,14 +82,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Minimum number of numeric characters in the result. Default value is `0`.
+     * Minimum number of numeric characters in the result.
      * 
      */
     @Import(name="minNumeric")
     private @Nullable Output<Integer> minNumeric;
 
     /**
-     * @return Minimum number of numeric characters in the result. Default value is `0`.
+     * @return Minimum number of numeric characters in the result.
      * 
      */
     public Optional<Output<Integer>> minNumeric() {
@@ -114,14 +97,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Minimum number of special characters in the result. Default value is `0`.
+     * Minimum number of special characters in the result.
      * 
      */
     @Import(name="minSpecial")
     private @Nullable Output<Integer> minSpecial;
 
     /**
-     * @return Minimum number of special characters in the result. Default value is `0`.
+     * @return Minimum number of special characters in the result.
      * 
      */
     public Optional<Output<Integer>> minSpecial() {
@@ -129,14 +112,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * Minimum number of uppercase alphabet characters in the result.
      * 
      */
     @Import(name="minUpper")
     private @Nullable Output<Integer> minUpper;
 
     /**
-     * @return Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+     * @return Minimum number of uppercase alphabet characters in the result.
      * 
      */
     public Optional<Output<Integer>> minUpper() {
@@ -144,14 +127,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result.
      * 
      */
     @Import(name="number")
     private @Nullable Output<Boolean> number;
 
     /**
-     * @return Include numeric characters in the result. Default value is `true`.
+     * @return Include numeric characters in the result.
      * 
      */
     public Optional<Output<Boolean>> number() {
@@ -193,14 +176,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
      * 
      */
     @Import(name="special")
     private @Nullable Output<Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
      * 
      */
     public Optional<Output<Boolean>> special() {
@@ -208,14 +191,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Include uppercase alphabet characters in the result. Default value is `true`.
+     * Include uppercase alphabet characters in the result.
      * 
      */
     @Import(name="upper")
     private @Nullable Output<Boolean> upper;
 
     /**
-     * @return Include uppercase alphabet characters in the result. Default value is `true`.
+     * @return Include uppercase alphabet characters in the result.
      * 
      */
     public Optional<Output<Boolean>> upper() {
@@ -225,7 +208,6 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     private RandomPasswordState() {}
 
     private RandomPasswordState(RandomPasswordState $) {
-        this.bcryptHash = $.bcryptHash;
         this.keepers = $.keepers;
         this.length = $.length;
         this.lower = $.lower;
@@ -259,27 +241,6 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bcryptHash A bcrypt hash of the generated random string.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder bcryptHash(@Nullable Output<String> bcryptHash) {
-            $.bcryptHash = bcryptHash;
-            return this;
-        }
-
-        /**
-         * @param bcryptHash A bcrypt hash of the generated random string.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder bcryptHash(String bcryptHash) {
-            return bcryptHash(Output.of(bcryptHash));
-        }
-
-        /**
          * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
          * documentation](../index.html) for more information.
          * 
@@ -303,8 +264,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` +
-         * `min_lower` + `min_numeric` + `min_special`).
+         * @param length The length of the string desired.
          * 
          * @return builder
          * 
@@ -315,8 +275,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` +
-         * `min_lower` + `min_numeric` + `min_special`).
+         * @param length The length of the string desired.
          * 
          * @return builder
          * 
@@ -326,7 +285,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param lower Include lowercase alphabet characters in the result. Default value is `true`.
+         * @param lower Include lowercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -337,7 +296,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param lower Include lowercase alphabet characters in the result. Default value is `true`.
+         * @param lower Include lowercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -347,7 +306,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minLower Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+         * @param minLower Minimum number of lowercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -358,7 +317,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minLower Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+         * @param minLower Minimum number of lowercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -368,7 +327,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minNumeric Minimum number of numeric characters in the result. Default value is `0`.
+         * @param minNumeric Minimum number of numeric characters in the result.
          * 
          * @return builder
          * 
@@ -379,7 +338,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minNumeric Minimum number of numeric characters in the result. Default value is `0`.
+         * @param minNumeric Minimum number of numeric characters in the result.
          * 
          * @return builder
          * 
@@ -389,7 +348,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minSpecial Minimum number of special characters in the result. Default value is `0`.
+         * @param minSpecial Minimum number of special characters in the result.
          * 
          * @return builder
          * 
@@ -400,7 +359,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minSpecial Minimum number of special characters in the result. Default value is `0`.
+         * @param minSpecial Minimum number of special characters in the result.
          * 
          * @return builder
          * 
@@ -410,7 +369,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minUpper Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+         * @param minUpper Minimum number of uppercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -421,7 +380,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param minUpper Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+         * @param minUpper Minimum number of uppercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -431,7 +390,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param number Include numeric characters in the result. Default value is `true`.
+         * @param number Include numeric characters in the result.
          * 
          * @return builder
          * 
@@ -442,7 +401,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param number Include numeric characters in the result. Default value is `true`.
+         * @param number Include numeric characters in the result.
          * 
          * @return builder
          * 
@@ -498,7 +457,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param special Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+         * @param special Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
          * 
          * @return builder
          * 
@@ -509,7 +468,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param special Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+         * @param special Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
          * 
          * @return builder
          * 
@@ -519,7 +478,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param upper Include uppercase alphabet characters in the result. Default value is `true`.
+         * @param upper Include uppercase alphabet characters in the result.
          * 
          * @return builder
          * 
@@ -530,7 +489,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param upper Include uppercase alphabet characters in the result. Default value is `true`.
+         * @param upper Include uppercase alphabet characters in the result.
          * 
          * @return builder
          * 

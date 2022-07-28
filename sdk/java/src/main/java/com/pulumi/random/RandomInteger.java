@@ -20,16 +20,32 @@ import javax.annotation.Nullable;
 /**
  * The resource `random.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
  * 
- * This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+ * This resource can be used in conjunction with resources that have
+ * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+ * unique names during the brief period where both the old and new resources
+ * exist concurrently.
  * 
  * ## Example Usage
+ * 
+ * The following example shows how to generate a random priority between 1 and 50000 for
+ * a `aws_alb_listener_rule` resource:
  * ```java
  * package generated_program;
  * 
- * import java.util.*;
- * import java.io.*;
- * import java.nio.*;
- * import com.pulumi.*;
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.random.RandomInteger;
+ * import com.pulumi.random.RandomIntegerArgs;
+ * import com.pulumi.aws.alb.ListenerRule;
+ * import com.pulumi.aws.alb.ListenerRuleArgs;
+ * import com.pulumi.aws.alb.inputs.ListenerRuleActionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
  * public class App {
  *     public static void main(String[] args) {
@@ -38,27 +54,29 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var priority = new RandomInteger(&#34;priority&#34;, RandomIntegerArgs.builder()        
- *             .min(1)
- *             .max(50000)
  *             .keepers(Map.of(&#34;listener_arn&#34;, var_.listener_arn()))
+ *             .max(50000)
+ *             .min(1)
  *             .build());
  * 
  *         var main = new ListenerRule(&#34;main&#34;, ListenerRuleArgs.builder()        
- *             .listenerArn(priority.keepers().apply(keepers -&gt; keepers.listenerArn()))
- *             .priority(priority.result())
  *             .actions(ListenerRuleActionArgs.builder()
- *                 .type(&#34;forward&#34;)
  *                 .targetGroupArn(var_.target_group_arn())
+ *                 .type(&#34;forward&#34;)
  *                 .build())
+ *             .listenerArn(var_.listener_arn())
+ *             .priority(priority.result())
  *             .build());
  * 
  *     }
  * }
  * ```
  * 
+ * The result of the above will set a random priority.
+ * 
  * ## Import
  * 
- * # Random integers can be imported using the result, min, and max, with an # optional seed. This can be used to replace a config value with a value # interpolated from the random provider without experiencing diffs. # Example (values are separated by a ,)
+ * Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
  * 
  * ```sh
  *  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
@@ -68,16 +86,18 @@ import javax.annotation.Nullable;
 @ResourceType(type="random:index/randomInteger:RandomInteger")
 public class RandomInteger extends com.pulumi.resources.CustomResource {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     @Export(name="keepers", type=Map.class, parameters={String.class, Object.class})
     private Output</* @Nullable */ Map<String,Object>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * @return Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     public Output<Optional<Map<String,Object>>> keepers() {
@@ -112,14 +132,14 @@ public class RandomInteger extends com.pulumi.resources.CustomResource {
         return this.min;
     }
     /**
-     * The random integer result.
+     * (int) The random Integer result.
      * 
      */
     @Export(name="result", type=Integer.class, parameters={})
     private Output<Integer> result;
 
     /**
-     * @return The random integer result.
+     * @return (int) The random Integer result.
      * 
      */
     public Output<Integer> result() {

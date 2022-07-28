@@ -5,7 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.
+ * The resource `random.RandomShuffle` generates a random permutation of a list
+ * of strings given as an argument.
  *
  * ## Example Usage
  *
@@ -23,8 +24,11 @@ import * as utilities from "./utilities";
  *     ],
  *     resultCount: 2,
  * });
- * const example = new aws.elb.LoadBalancer("example", {availabilityZones: [az.results]});
- * // ... and other aws_elb arguments ...
+ * const example = new aws.elb.LoadBalancer("example", {
+ *     // Place the ELB in any two of the given availability zones, selected
+ *     // at random.
+ *     availabilityZones: az.results,
+ * });
  * ```
  */
 export class RandomShuffle extends pulumi.CustomResource {
@@ -60,14 +64,17 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public readonly inputs!: pulumi.Output<string[]>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
-     * elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
-     * more frequently than the number of items in the input list.
+     * The number of results to return. Defaults to
+     * the number of items in the `input` list. If fewer items are requested,
+     * some elements will be excluded from the result. If more items are requested,
+     * items will be repeated in the result but not more frequently than the number
+     * of items in the input list.
      */
     public readonly resultCount!: pulumi.Output<number | undefined>;
     /**
@@ -124,14 +131,17 @@ export interface RandomShuffleState {
      */
     inputs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
-     * elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
-     * more frequently than the number of items in the input list.
+     * The number of results to return. Defaults to
+     * the number of items in the `input` list. If fewer items are requested,
+     * some elements will be excluded from the result. If more items are requested,
+     * items will be repeated in the result but not more frequently than the number
+     * of items in the input list.
      */
     resultCount?: pulumi.Input<number>;
     /**
@@ -155,14 +165,17 @@ export interface RandomShuffleArgs {
      */
     inputs: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some
-     * elements will be excluded from the result. If more items are requested, items will be repeated in the result but not
-     * more frequently than the number of items in the input list.
+     * The number of results to return. Defaults to
+     * the number of items in the `input` list. If fewer items are requested,
+     * some elements will be excluded from the result. If more items are requested,
+     * items will be repeated in the result but not more frequently than the number
+     * of items in the input list.
      */
     resultCount?: pulumi.Input<number>;
     /**

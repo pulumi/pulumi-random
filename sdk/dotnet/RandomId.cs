@@ -25,6 +25,9 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
+    /// The following example shows how to generate a unique name for an AWS EC2
+    /// instance that changes each time a new AMI id is selected.
+    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
@@ -34,25 +37,22 @@ namespace Pulumi.Random
     /// {
     ///     public MyStack()
     ///     {
-    ///         // The following example shows how to generate a unique name for an AWS EC2
-    ///         // instance that changes each time a new AMI id is selected.
     ///         var serverRandomId = new Random.RandomId("serverRandomId", new Random.RandomIdArgs
     ///         {
+    ///             ByteLength = 8,
     ///             Keepers = 
     ///             {
     ///                 { "ami_id", @var.Ami_id },
     ///             },
-    ///             ByteLength = 8,
     ///         });
     ///         var serverInstance = new Aws.Ec2.Instance("serverInstance", new Aws.Ec2.InstanceArgs
     ///         {
+    ///             Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///             Tags = 
     ///             {
     ///                 { "Name", serverRandomId.Hex.Apply(hex =&gt; $"web-server {hex}") },
     ///             },
-    ///             Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///         });
-    ///         // ... (other aws_instance arguments) ...
     ///     }
     /// 
     /// }
@@ -60,13 +60,13 @@ namespace Pulumi.Random
     /// 
     /// ## Import
     /// 
-    /// # Random IDs can be imported using the b64_url with an optional prefix. This # can be used to replace a config value with a value interpolated from the # random provider without experiencing diffs. # Example with no prefix
+    /// Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
     /// 
     /// ```sh
     ///  $ pulumi import random:index/randomId:RandomId server p-9hUg
     /// ```
     /// 
-    /// # Example with prefix (prefix is separated by a ,)
+    ///  Example with prefix (prefix is separated by a `,`)
     /// 
     /// ```sh
     ///  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
@@ -82,14 +82,14 @@ namespace Pulumi.Random
         public Output<string> B64Std { get; private set; } = null!;
 
         /// <summary>
-        /// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-        /// characters `_` and `-`.
+        /// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
         /// </summary>
         [Output("b64Url")]
         public Output<string> B64Url { get; private set; } = null!;
 
         /// <summary>
-        /// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+        /// The number of random bytes to produce. The
+        /// minimum value is 1, which produces eight bits of randomness.
         /// </summary>
         [Output("byteLength")]
         public Output<int> ByteLength { get; private set; } = null!;
@@ -101,22 +101,23 @@ namespace Pulumi.Random
         public Output<string> Dec { get; private set; } = null!;
 
         /// <summary>
-        /// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-        /// length.
+        /// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         /// </summary>
         [Output("hex")]
         public Output<string> Hex { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-        /// documentation](../index.html) for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-        /// URL-safe or base64 encoded.
+        /// Arbitrary string to prefix the output value with. This
+        /// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+        /// base64 encoded.
         /// </summary>
         [Output("prefix")]
         public Output<string?> Prefix { get; private set; } = null!;
@@ -168,7 +169,8 @@ namespace Pulumi.Random
     public sealed class RandomIdArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+        /// The number of random bytes to produce. The
+        /// minimum value is 1, which produces eight bits of randomness.
         /// </summary>
         [Input("byteLength", required: true)]
         public Input<int> ByteLength { get; set; } = null!;
@@ -177,8 +179,9 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-        /// documentation](../index.html) for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -187,8 +190,9 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-        /// URL-safe or base64 encoded.
+        /// Arbitrary string to prefix the output value with. This
+        /// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+        /// base64 encoded.
         /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
@@ -207,14 +211,14 @@ namespace Pulumi.Random
         public Input<string>? B64Std { get; set; }
 
         /// <summary>
-        /// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-        /// characters `_` and `-`.
+        /// The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
         /// </summary>
         [Input("b64Url")]
         public Input<string>? B64Url { get; set; }
 
         /// <summary>
-        /// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+        /// The number of random bytes to produce. The
+        /// minimum value is 1, which produces eight bits of randomness.
         /// </summary>
         [Input("byteLength")]
         public Input<int>? ByteLength { get; set; }
@@ -226,8 +230,7 @@ namespace Pulumi.Random
         public Input<string>? Dec { get; set; }
 
         /// <summary>
-        /// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-        /// length.
+        /// The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         /// </summary>
         [Input("hex")]
         public Input<string>? Hex { get; set; }
@@ -236,8 +239,9 @@ namespace Pulumi.Random
         private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-        /// documentation](../index.html) for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         public InputMap<object> Keepers
         {
@@ -246,8 +250,9 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-        /// URL-safe or base64 encoded.
+        /// Arbitrary string to prefix the output value with. This
+        /// string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+        /// base64 encoded.
         /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }

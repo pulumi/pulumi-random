@@ -32,13 +32,25 @@ import javax.annotation.Nullable;
  * exist concurrently.
  * 
  * ## Example Usage
+ * 
+ * The following example shows how to generate a unique name for an AWS EC2
+ * instance that changes each time a new AMI id is selected.
  * ```java
  * package generated_program;
  * 
- * import java.util.*;
- * import java.io.*;
- * import java.nio.*;
- * import com.pulumi.*;
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.random.RandomId;
+ * import com.pulumi.random.RandomIdArgs;
+ * import com.pulumi.aws.ec2.Instance;
+ * import com.pulumi.aws.ec2.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
  * public class App {
  *     public static void main(String[] args) {
@@ -47,13 +59,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var serverRandomId = new RandomId(&#34;serverRandomId&#34;, RandomIdArgs.builder()        
- *             .keepers(Map.of(&#34;ami_id&#34;, var_.ami_id()))
  *             .byteLength(8)
+ *             .keepers(Map.of(&#34;ami_id&#34;, var_.ami_id()))
  *             .build());
  * 
  *         var serverInstance = new Instance(&#34;serverInstance&#34;, InstanceArgs.builder()        
- *             .tags(Map.of(&#34;Name&#34;, serverRandomId.hex().apply(hex -&gt; String.format(&#34;web-server %s&#34;, hex))))
- *             .ami(serverRandomId.keepers().apply(keepers -&gt; keepers.amiId()))
+ *             .ami(serverRandomId.keepers().applyValue(keepers -&gt; keepers.amiId()))
+ *             .tags(Map.of(&#34;Name&#34;, serverRandomId.hex().applyValue(hex -&gt; String.format(&#34;web-server %s&#34;, hex))))
  *             .build());
  * 
  *     }
@@ -62,13 +74,13 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # Random IDs can be imported using the b64_url with an optional prefix. This # can be used to replace a config value with a value interpolated from the # random provider without experiencing diffs. # Example with no prefix
+ * Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
  * 
  * ```sh
  *  $ pulumi import random:index/randomId:RandomId server p-9hUg
  * ```
  * 
- * # Example with prefix (prefix is separated by a ,)
+ *  Example with prefix (prefix is separated by a `,`)
  * 
  * ```sh
  *  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
@@ -92,30 +104,30 @@ public class RandomId extends com.pulumi.resources.CustomResource {
         return this.b64Std;
     }
     /**
-     * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-     * characters `_` and `-`.
+     * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      * 
      */
     @Export(name="b64Url", type=String.class, parameters={})
     private Output<String> b64Url;
 
     /**
-     * @return The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-     * characters `_` and `-`.
+     * @return The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      * 
      */
     public Output<String> b64Url() {
         return this.b64Url;
     }
     /**
-     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      * 
      */
     @Export(name="byteLength", type=Integer.class, parameters={})
     private Output<Integer> byteLength;
 
     /**
-     * @return The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * @return The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      * 
      */
     public Output<Integer> byteLength() {
@@ -136,48 +148,50 @@ public class RandomId extends com.pulumi.resources.CustomResource {
         return this.dec;
     }
     /**
-     * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-     * length.
+     * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      * 
      */
     @Export(name="hex", type=String.class, parameters={})
     private Output<String> hex;
 
     /**
-     * @return The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-     * length.
+     * @return The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      * 
      */
     public Output<String> hex() {
         return this.hex;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     @Export(name="keepers", type=Map.class, parameters={String.class, Object.class})
     private Output</* @Nullable */ Map<String,Object>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * @return Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     public Output<Optional<Map<String,Object>>> keepers() {
         return Codegen.optional(this.keepers);
     }
     /**
-     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-     * URL-safe or base64 encoded.
+     * Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      * 
      */
     @Export(name="prefix", type=String.class, parameters={})
     private Output</* @Nullable */ String> prefix;
 
     /**
-     * @return Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-     * URL-safe or base64 encoded.
+     * @return Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      * 
      */
     public Output<Optional<String>> prefix() {

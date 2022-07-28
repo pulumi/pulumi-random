@@ -20,37 +20,38 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * The following example shows how to generate a unique name for an AWS EC2
+ * instance that changes each time a new AMI id is selected.
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  *
- * // The following example shows how to generate a unique name for an AWS EC2
- * // instance that changes each time a new AMI id is selected.
- * const serverRandomId = new random.RandomId("serverRandomId", {
- *     keepers: {
- *         ami_id: _var.ami_id,
- *     },
+ * const serverRandomId = new random.RandomId("server", {
  *     byteLength: 8,
+ *     keepers: {
+ *         // Generate a new id each time we switch to a new AMI id
+ *         ami_id: var_ami_id,
+ *     },
  * });
- * const serverInstance = new aws.ec2.Instance("serverInstance", {
+ * const serverInstance = new aws.ec2.Instance("server", {
+ *     ami: serverRandomId.keepers.apply(keepers => keepers.amiId),
  *     tags: {
  *         Name: pulumi.interpolate`web-server ${serverRandomId.hex}`,
  *     },
- *     ami: serverRandomId.keepers.apply(keepers => keepers?.amiId),
  * });
- * // ... (other aws_instance arguments) ...
  * ```
  *
  * ## Import
  *
- * # Random IDs can be imported using the b64_url with an optional prefix. This # can be used to replace a config value with a value interpolated from the # random provider without experiencing diffs. # Example with no prefix
+ * Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
  *
  * ```sh
  *  $ pulumi import random:index/randomId:RandomId server p-9hUg
  * ```
  *
- * # Example with prefix (prefix is separated by a ,)
+ *  Example with prefix (prefix is separated by a `,`)
  *
  * ```sh
  *  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
@@ -89,12 +90,12 @@ export class RandomId extends pulumi.CustomResource {
      */
     public /*out*/ readonly b64Std!: pulumi.Output<string>;
     /**
-     * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-     * characters `_` and `-`.
+     * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      */
     public /*out*/ readonly b64Url!: pulumi.Output<string>;
     /**
-     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      */
     public readonly byteLength!: pulumi.Output<number>;
     /**
@@ -102,18 +103,19 @@ export class RandomId extends pulumi.CustomResource {
      */
     public /*out*/ readonly dec!: pulumi.Output<string>;
     /**
-     * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-     * length.
+     * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      */
     public /*out*/ readonly hex!: pulumi.Output<string>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-     * URL-safe or base64 encoded.
+     * Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      */
     public readonly prefix!: pulumi.Output<string | undefined>;
 
@@ -164,12 +166,12 @@ export interface RandomIdState {
      */
     b64Std?: pulumi.Input<string>;
     /**
-     * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the
-     * characters `_` and `-`.
+     * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      */
     b64Url?: pulumi.Input<string>;
     /**
-     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      */
     byteLength?: pulumi.Input<number>;
     /**
@@ -177,18 +179,19 @@ export interface RandomIdState {
      */
     dec?: pulumi.Input<string>;
     /**
-     * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte
-     * length.
+     * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      */
     hex?: pulumi.Input<string>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-     * URL-safe or base64 encoded.
+     * Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      */
     prefix?: pulumi.Input<string>;
 }
@@ -198,17 +201,20 @@ export interface RandomIdState {
  */
 export interface RandomIdArgs {
     /**
-     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      */
     byteLength: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-     * documentation](../index.html) for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
     keepers?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be
-     * URL-safe or base64 encoded.
+     * Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      */
     prefix?: pulumi.Input<string>;
 }
