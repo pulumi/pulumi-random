@@ -24,31 +24,30 @@ namespace Pulumi.Random
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var password = new Random.RandomPassword("password", new()
     ///     {
-    ///         var password = new Random.RandomPassword("password", new Random.RandomPasswordArgs
-    ///         {
-    ///             Length = 16,
-    ///             Special = true,
-    ///             OverrideSpecial = "_%@",
-    ///         });
-    ///         var example = new Aws.Rds.Instance("example", new Aws.Rds.InstanceArgs
-    ///         {
-    ///             InstanceClass = "db.t3.micro",
-    ///             AllocatedStorage = 64,
-    ///             Engine = "mysql",
-    ///             Username = "someone",
-    ///             Password = password.Result,
-    ///         });
-    ///     }
+    ///         Length = 16,
+    ///         Special = true,
+    ///         OverrideSpecial = "_%@",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Aws.Rds.Instance("example", new()
+    ///     {
+    ///         InstanceClass = "db.t3.micro",
+    ///         AllocatedStorage = 64,
+    ///         Engine = "mysql",
+    ///         Username = "someone",
+    ///         Password = password.Result,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -60,7 +59,7 @@ namespace Pulumi.Random
     /// ```
     /// </summary>
     [RandomResourceType("random:index/randomPassword:RandomPassword")]
-    public partial class RandomPassword : Pulumi.CustomResource
+    public partial class RandomPassword : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
@@ -181,7 +180,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomPasswordArgs : Pulumi.ResourceArgs
+    public sealed class RandomPasswordArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -261,9 +260,10 @@ namespace Pulumi.Random
         public RandomPasswordArgs()
         {
         }
+        public static new RandomPasswordArgs Empty => new RandomPasswordArgs();
     }
 
-    public sealed class RandomPasswordState : Pulumi.ResourceArgs
+    public sealed class RandomPasswordState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -349,5 +349,6 @@ namespace Pulumi.Random
         public RandomPasswordState()
         {
         }
+        public static new RandomPasswordState Empty => new RandomPasswordState();
     }
 }

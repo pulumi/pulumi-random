@@ -16,36 +16,35 @@ namespace Pulumi.Random
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var az = new Random.RandomShuffle("az", new()
     ///     {
-    ///         var az = new Random.RandomShuffle("az", new Random.RandomShuffleArgs
+    ///         Inputs = new[]
     ///         {
-    ///             Inputs = 
-    ///             {
-    ///                 "us-west-1a",
-    ///                 "us-west-1c",
-    ///                 "us-west-1d",
-    ///                 "us-west-1e",
-    ///             },
-    ///             ResultCount = 2,
-    ///         });
-    ///         var example = new Aws.Elb.LoadBalancer("example", new Aws.Elb.LoadBalancerArgs
-    ///         {
-    ///             AvailabilityZones = az.Results,
-    ///         });
-    ///     }
+    ///             "us-west-1a",
+    ///             "us-west-1c",
+    ///             "us-west-1d",
+    ///             "us-west-1e",
+    ///         },
+    ///         ResultCount = 2,
+    ///     });
     /// 
-    /// }
+    ///     var example = new Aws.Elb.LoadBalancer("example", new()
+    ///     {
+    ///         AvailabilityZones = az.Results,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [RandomResourceType("random:index/randomShuffle:RandomShuffle")]
-    public partial class RandomShuffle : Pulumi.CustomResource
+    public partial class RandomShuffle : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The list of strings to shuffle.
@@ -129,7 +128,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomShuffleArgs : Pulumi.ResourceArgs
+    public sealed class RandomShuffleArgs : global::Pulumi.ResourceArgs
     {
         [Input("inputs", required: true)]
         private InputList<string>? _inputs;
@@ -178,9 +177,10 @@ namespace Pulumi.Random
         public RandomShuffleArgs()
         {
         }
+        public static new RandomShuffleArgs Empty => new RandomShuffleArgs();
     }
 
-    public sealed class RandomShuffleState : Pulumi.ResourceArgs
+    public sealed class RandomShuffleState : global::Pulumi.ResourceArgs
     {
         [Input("inputs")]
         private InputList<string>? _inputs;
@@ -241,5 +241,6 @@ namespace Pulumi.Random
         public RandomShuffleState()
         {
         }
+        public static new RandomShuffleState Empty => new RandomShuffleState();
     }
 }

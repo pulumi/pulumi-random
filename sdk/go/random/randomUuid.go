@@ -24,26 +24,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-azure/sdk/v5/go/azure/core"
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-azure/sdk/v5/go/azure/core"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := random.NewRandomUuid(ctx, "testRandomUuid", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = core.NewResourceGroup(ctx, "testResourceGroup", &core.ResourceGroupArgs{
-// 			Location: pulumi.String("Central US"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := random.NewRandomUuid(ctx, "testRandomUuid", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = core.NewResourceGroup(ctx, "testResourceGroup", &core.ResourceGroupArgs{
+//				Location: pulumi.String("Central US"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -51,7 +54,9 @@ import (
 // Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
 //
 // ```sh
-//  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
+//
+//	$ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
+//
 // ```
 type RandomUuid struct {
 	pulumi.CustomResourceState
@@ -155,7 +160,7 @@ func (i *RandomUuid) ToRandomUuidOutputWithContext(ctx context.Context) RandomUu
 // RandomUuidArrayInput is an input type that accepts RandomUuidArray and RandomUuidArrayOutput values.
 // You can construct a concrete instance of `RandomUuidArrayInput` via:
 //
-//          RandomUuidArray{ RandomUuidArgs{...} }
+//	RandomUuidArray{ RandomUuidArgs{...} }
 type RandomUuidArrayInput interface {
 	pulumi.Input
 
@@ -180,7 +185,7 @@ func (i RandomUuidArray) ToRandomUuidArrayOutputWithContext(ctx context.Context)
 // RandomUuidMapInput is an input type that accepts RandomUuidMap and RandomUuidMapOutput values.
 // You can construct a concrete instance of `RandomUuidMapInput` via:
 //
-//          RandomUuidMap{ "key": RandomUuidArgs{...} }
+//	RandomUuidMap{ "key": RandomUuidArgs{...} }
 type RandomUuidMapInput interface {
 	pulumi.Input
 

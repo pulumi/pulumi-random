@@ -23,22 +23,20 @@ namespace Pulumi.Random
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var random = new Random.RandomString("random", new()
     ///     {
-    ///         var random = new Random.RandomString("random", new Random.RandomStringArgs
-    ///         {
-    ///             Length = 16,
-    ///             OverrideSpecial = "/@£$",
-    ///             Special = true,
-    ///         });
-    ///     }
+    ///         Length = 16,
+    ///         OverrideSpecial = "/@£$",
+    ///         Special = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +48,7 @@ namespace Pulumi.Random
     /// ```
     /// </summary>
     [RandomResourceType("random:index/randomString:RandomString")]
-    public partial class RandomString : Pulumi.CustomResource
+    public partial class RandomString : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will
@@ -181,7 +179,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomStringArgs : Pulumi.ResourceArgs
+    public sealed class RandomStringArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -271,9 +269,10 @@ namespace Pulumi.Random
         public RandomStringArgs()
         {
         }
+        public static new RandomStringArgs Empty => new RandomStringArgs();
     }
 
-    public sealed class RandomStringState : Pulumi.ResourceArgs
+    public sealed class RandomStringState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -369,5 +368,6 @@ namespace Pulumi.Random
         public RandomStringState()
         {
         }
+        public static new RandomStringState Empty => new RandomStringState();
     }
 }

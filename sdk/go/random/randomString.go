@@ -27,33 +27,38 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := random.NewRandomString(ctx, "random", &random.RandomStringArgs{
-// 			Length:          pulumi.Int(16),
-// 			OverrideSpecial: pulumi.String(fmt.Sprintf("/@£$")),
-// 			Special:         pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := random.NewRandomString(ctx, "random", &random.RandomStringArgs{
+//				Length:          pulumi.Int(16),
+//				OverrideSpecial: pulumi.String(fmt.Sprintf("/@£$")),
+//				Special:         pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Strings can be imported by just specifying the value of the string
+// # Strings can be imported by just specifying the value of the string
 //
 // ```sh
-//  $ pulumi import random:index/randomString:RandomString test test
+//
+//	$ pulumi import random:index/randomString:RandomString test test
+//
 // ```
 type RandomString struct {
 	pulumi.CustomResourceState
@@ -315,7 +320,7 @@ func (i *RandomString) ToRandomStringOutputWithContext(ctx context.Context) Rand
 // RandomStringArrayInput is an input type that accepts RandomStringArray and RandomStringArrayOutput values.
 // You can construct a concrete instance of `RandomStringArrayInput` via:
 //
-//          RandomStringArray{ RandomStringArgs{...} }
+//	RandomStringArray{ RandomStringArgs{...} }
 type RandomStringArrayInput interface {
 	pulumi.Input
 
@@ -340,7 +345,7 @@ func (i RandomStringArray) ToRandomStringArrayOutputWithContext(ctx context.Cont
 // RandomStringMapInput is an input type that accepts RandomStringMap and RandomStringMapOutput values.
 // You can construct a concrete instance of `RandomStringMapInput` via:
 //
-//          RandomStringMap{ "key": RandomStringArgs{...} }
+//	RandomStringMap{ "key": RandomStringArgs{...} }
 type RandomStringMapInput interface {
 	pulumi.Input
 

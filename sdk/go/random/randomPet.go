@@ -143,7 +143,7 @@ func (i *RandomPet) ToRandomPetOutputWithContext(ctx context.Context) RandomPetO
 // RandomPetArrayInput is an input type that accepts RandomPetArray and RandomPetArrayOutput values.
 // You can construct a concrete instance of `RandomPetArrayInput` via:
 //
-//          RandomPetArray{ RandomPetArgs{...} }
+//	RandomPetArray{ RandomPetArgs{...} }
 type RandomPetArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +168,7 @@ func (i RandomPetArray) ToRandomPetArrayOutputWithContext(ctx context.Context) R
 // RandomPetMapInput is an input type that accepts RandomPetMap and RandomPetMapOutput values.
 // You can construct a concrete instance of `RandomPetMapInput` via:
 //
-//          RandomPetMap{ "key": RandomPetArgs{...} }
+//	RandomPetMap{ "key": RandomPetArgs{...} }
 type RandomPetMapInput interface {
 	pulumi.Input
 

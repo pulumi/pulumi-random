@@ -21,24 +21,21 @@ namespace Pulumi.Random
     /// The following example shows how to generate a unique name for an Azure Resource Group.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Azure = Pulumi.Azure;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testRandomUuid = new Random.RandomUuid("testRandomUuid", new Random.RandomUuidArgs
-    ///         {
-    ///         });
-    ///         var testResourceGroup = new Azure.Core.ResourceGroup("testResourceGroup", new Azure.Core.ResourceGroupArgs
-    ///         {
-    ///             Location = "Central US",
-    ///         });
-    ///     }
+    ///     var testRandomUuid = new Random.RandomUuid("testRandomUuid");
     /// 
-    /// }
+    ///     var testResourceGroup = new Azure.Core.ResourceGroup("testResourceGroup", new()
+    ///     {
+    ///         Location = "Central US",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +47,7 @@ namespace Pulumi.Random
     /// ```
     /// </summary>
     [RandomResourceType("random:index/randomUuid:RandomUuid")]
-    public partial class RandomUuid : Pulumi.CustomResource
+    public partial class RandomUuid : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will
@@ -110,7 +107,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomUuidArgs : Pulumi.ResourceArgs
+    public sealed class RandomUuidArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -129,9 +126,10 @@ namespace Pulumi.Random
         public RandomUuidArgs()
         {
         }
+        public static new RandomUuidArgs Empty => new RandomUuidArgs();
     }
 
-    public sealed class RandomUuidState : Pulumi.ResourceArgs
+    public sealed class RandomUuidState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -156,5 +154,6 @@ namespace Pulumi.Random
         public RandomUuidState()
         {
         }
+        public static new RandomUuidState Empty => new RandomUuidState();
     }
 }

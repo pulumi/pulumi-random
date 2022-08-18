@@ -24,39 +24,38 @@ namespace Pulumi.Random
     /// instance that changes each time a new AMI id is selected.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var serverRandomPet = new Random.RandomPet("serverRandomPet", new()
     ///     {
-    ///         var serverRandomPet = new Random.RandomPet("serverRandomPet", new Random.RandomPetArgs
+    ///         Keepers = 
     ///         {
-    ///             Keepers = 
-    ///             {
-    ///                 { "ami_id", @var.Ami_id },
-    ///             },
-    ///         });
-    ///         var serverInstance = new Aws.Ec2.Instance("serverInstance", new Aws.Ec2.InstanceArgs
-    ///         {
-    ///             Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
-    ///             Tags = 
-    ///             {
-    ///                 { "Name", serverRandomPet.Id.Apply(id =&gt; $"web-server-{id}") },
-    ///             },
-    ///         });
-    ///     }
+    ///             { "ami_id", @var.Ami_id },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var serverInstance = new Aws.Ec2.Instance("serverInstance", new()
+    ///     {
+    ///         Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
+    ///         Tags = 
+    ///         {
+    ///             { "Name", serverRandomPet.Id.Apply(id =&gt; $"web-server-{id}") },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// The result of the above will set the Name of the AWS Instance to
     /// `web-server-simple-snake`.
     /// </summary>
     [RandomResourceType("random:index/randomPet:RandomPet")]
-    public partial class RandomPet : Pulumi.CustomResource
+    public partial class RandomPet : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will
@@ -128,7 +127,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomPetArgs : Pulumi.ResourceArgs
+    public sealed class RandomPetArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -165,9 +164,10 @@ namespace Pulumi.Random
         public RandomPetArgs()
         {
         }
+        public static new RandomPetArgs Empty => new RandomPetArgs();
     }
 
-    public sealed class RandomPetState : Pulumi.ResourceArgs
+    public sealed class RandomPetState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -204,5 +204,6 @@ namespace Pulumi.Random
         public RandomPetState()
         {
         }
+        public static new RandomPetState Empty => new RandomPetState();
     }
 }

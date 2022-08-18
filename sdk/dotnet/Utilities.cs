@@ -74,7 +74,7 @@ namespace Pulumi.Random
         }
     }
 
-    internal sealed class RandomResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class RandomResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public RandomResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {
