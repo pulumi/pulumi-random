@@ -27,39 +27,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/alb"
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/alb"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
-// 			Keepers: pulumi.AnyMap{
-// 				"listener_arn": pulumi.Any(_var.Listener_arn),
-// 			},
-// 			Max: pulumi.Int(50000),
-// 			Min: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
-// 			Actions: alb.ListenerRuleActionArray{
-// 				&alb.ListenerRuleActionArgs{
-// 					TargetGroupArn: pulumi.Any(_var.Target_group_arn),
-// 					Type:           pulumi.String("forward"),
-// 				},
-// 			},
-// 			ListenerArn: pulumi.Any(_var.Listener_arn),
-// 			Priority:    priority.Result,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
+//				Keepers: pulumi.AnyMap{
+//					"listener_arn": pulumi.Any(_var.Listener_arn),
+//				},
+//				Max: pulumi.Int(50000),
+//				Min: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
+//				Actions: alb.ListenerRuleActionArray{
+//					&alb.ListenerRuleActionArgs{
+//						TargetGroupArn: pulumi.Any(_var.Target_group_arn),
+//						Type:           pulumi.String("forward"),
+//					},
+//				},
+//				ListenerArn: pulumi.Any(_var.Listener_arn),
+//				Priority:    priority.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // The result of the above will set a random priority.
@@ -69,7 +72,9 @@ import (
 // Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
 //
 // ```sh
-//  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
+//
+//	$ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
+//
 // ```
 type RandomInteger struct {
 	pulumi.CustomResourceState
@@ -209,7 +214,7 @@ func (i *RandomInteger) ToRandomIntegerOutputWithContext(ctx context.Context) Ra
 // RandomIntegerArrayInput is an input type that accepts RandomIntegerArray and RandomIntegerArrayOutput values.
 // You can construct a concrete instance of `RandomIntegerArrayInput` via:
 //
-//          RandomIntegerArray{ RandomIntegerArgs{...} }
+//	RandomIntegerArray{ RandomIntegerArgs{...} }
 type RandomIntegerArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +239,7 @@ func (i RandomIntegerArray) ToRandomIntegerArrayOutputWithContext(ctx context.Co
 // RandomIntegerMapInput is an input type that accepts RandomIntegerMap and RandomIntegerMapOutput values.
 // You can construct a concrete instance of `RandomIntegerMapInput` via:
 //
-//          RandomIntegerMap{ "key": RandomIntegerArgs{...} }
+//	RandomIntegerMap{ "key": RandomIntegerArgs{...} }
 type RandomIntegerMapInput interface {
 	pulumi.Input
 

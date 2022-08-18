@@ -23,39 +23,38 @@ namespace Pulumi.Random
     /// a `aws_alb_listener_rule` resource:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var priority = new Random.RandomInteger("priority", new()
     ///     {
-    ///         var priority = new Random.RandomInteger("priority", new Random.RandomIntegerArgs
+    ///         Keepers = 
     ///         {
-    ///             Keepers = 
-    ///             {
-    ///                 { "listener_arn", @var.Listener_arn },
-    ///             },
-    ///             Max = 50000,
-    ///             Min = 1,
-    ///         });
-    ///         var main = new Aws.Alb.ListenerRule("main", new Aws.Alb.ListenerRuleArgs
-    ///         {
-    ///             Actions = 
-    ///             {
-    ///                 new Aws.Alb.Inputs.ListenerRuleActionArgs
-    ///                 {
-    ///                     TargetGroupArn = @var.Target_group_arn,
-    ///                     Type = "forward",
-    ///                 },
-    ///             },
-    ///             ListenerArn = @var.Listener_arn,
-    ///             Priority = priority.Result,
-    ///         });
-    ///     }
+    ///             { "listener_arn", @var.Listener_arn },
+    ///         },
+    ///         Max = 50000,
+    ///         Min = 1,
+    ///     });
     /// 
-    /// }
+    ///     var main = new Aws.Alb.ListenerRule("main", new()
+    ///     {
+    ///         Actions = new[]
+    ///         {
+    ///             new Aws.Alb.Inputs.ListenerRuleActionArgs
+    ///             {
+    ///                 TargetGroupArn = @var.Target_group_arn,
+    ///                 Type = "forward",
+    ///             },
+    ///         },
+    ///         ListenerArn = @var.Listener_arn,
+    ///         Priority = priority.Result,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// The result of the above will set a random priority.
@@ -69,7 +68,7 @@ namespace Pulumi.Random
     /// ```
     /// </summary>
     [RandomResourceType("random:index/randomInteger:RandomInteger")]
-    public partial class RandomInteger : Pulumi.CustomResource
+    public partial class RandomInteger : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Arbitrary map of values that, when changed, will
@@ -147,7 +146,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomIntegerArgs : Pulumi.ResourceArgs
+    public sealed class RandomIntegerArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -184,9 +183,10 @@ namespace Pulumi.Random
         public RandomIntegerArgs()
         {
         }
+        public static new RandomIntegerArgs Empty => new RandomIntegerArgs();
     }
 
-    public sealed class RandomIntegerState : Pulumi.ResourceArgs
+    public sealed class RandomIntegerState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
         private InputMap<object>? _keepers;
@@ -229,5 +229,6 @@ namespace Pulumi.Random
         public RandomIntegerState()
         {
         }
+        public static new RandomIntegerState Empty => new RandomIntegerState();
     }
 }

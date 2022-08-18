@@ -28,44 +28,49 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/rds"
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/rds"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		password, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
-// 			Length:          pulumi.Int(16),
-// 			Special:         pulumi.Bool(true),
-// 			OverrideSpecial: pulumi.String(fmt.Sprintf("_%v@", "%")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rds.NewInstance(ctx, "example", &rds.InstanceArgs{
-// 			InstanceClass:    pulumi.String("db.t3.micro"),
-// 			AllocatedStorage: pulumi.Int(64),
-// 			Engine:           pulumi.String("mysql"),
-// 			Username:         pulumi.String("someone"),
-// 			Password:         password.Result,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			password, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String(fmt.Sprintf("_%v@", "%")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds.NewInstance(ctx, "example", &rds.InstanceArgs{
+//				InstanceClass:    pulumi.String("db.t3.micro"),
+//				AllocatedStorage: pulumi.Int(64),
+//				Engine:           pulumi.String("mysql"),
+//				Username:         pulumi.String("someone"),
+//				Password:         password.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Random Password can be imported by specifying the value of the string
+// # Random Password can be imported by specifying the value of the string
 //
 // ```sh
-//  $ pulumi import random:index/randomPassword:RandomPassword password securepassword
+//
+//	$ pulumi import random:index/randomPassword:RandomPassword password securepassword
+//
 // ```
 type RandomPassword struct {
 	pulumi.CustomResourceState
@@ -277,7 +282,7 @@ func (i *RandomPassword) ToRandomPasswordOutputWithContext(ctx context.Context) 
 // RandomPasswordArrayInput is an input type that accepts RandomPasswordArray and RandomPasswordArrayOutput values.
 // You can construct a concrete instance of `RandomPasswordArrayInput` via:
 //
-//          RandomPasswordArray{ RandomPasswordArgs{...} }
+//	RandomPasswordArray{ RandomPasswordArgs{...} }
 type RandomPasswordArrayInput interface {
 	pulumi.Input
 
@@ -302,7 +307,7 @@ func (i RandomPasswordArray) ToRandomPasswordArrayOutputWithContext(ctx context.
 // RandomPasswordMapInput is an input type that accepts RandomPasswordMap and RandomPasswordMapOutput values.
 // You can construct a concrete instance of `RandomPasswordMapInput` via:
 //
-//          RandomPasswordMap{ "key": RandomPasswordArgs{...} }
+//	RandomPasswordMap{ "key": RandomPasswordArgs{...} }
 type RandomPasswordMapInput interface {
 	pulumi.Input
 

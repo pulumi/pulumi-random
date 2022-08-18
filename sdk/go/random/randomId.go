@@ -29,13 +29,17 @@ import (
 // Random Ids can be imported using the `b64_url` with an optional `prefix`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
 //
 // ```sh
-//  $ pulumi import random:index/randomId:RandomId server p-9hUg
+//
+//	$ pulumi import random:index/randomId:RandomId server p-9hUg
+//
 // ```
 //
-//  Example with prefix (prefix is separated by a `,`)
+//	Example with prefix (prefix is separated by a `,`)
 //
 // ```sh
-//  $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
+//
+//	$ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
+//
 // ```
 type RandomId struct {
 	pulumi.CustomResourceState
@@ -195,7 +199,7 @@ func (i *RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutp
 // RandomIdArrayInput is an input type that accepts RandomIdArray and RandomIdArrayOutput values.
 // You can construct a concrete instance of `RandomIdArrayInput` via:
 //
-//          RandomIdArray{ RandomIdArgs{...} }
+//	RandomIdArray{ RandomIdArgs{...} }
 type RandomIdArrayInput interface {
 	pulumi.Input
 
@@ -220,7 +224,7 @@ func (i RandomIdArray) ToRandomIdArrayOutputWithContext(ctx context.Context) Ran
 // RandomIdMapInput is an input type that accepts RandomIdMap and RandomIdMapOutput values.
 // You can construct a concrete instance of `RandomIdMapInput` via:
 //
-//          RandomIdMap{ "key": RandomIdArgs{...} }
+//	RandomIdMap{ "key": RandomIdArgs{...} }
 type RandomIdMapInput interface {
 	pulumi.Input
 

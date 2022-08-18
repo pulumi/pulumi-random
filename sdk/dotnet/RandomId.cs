@@ -29,33 +29,32 @@ namespace Pulumi.Random
     /// instance that changes each time a new AMI id is selected.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Random = Pulumi.Random;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var serverRandomId = new Random.RandomId("serverRandomId", new()
     ///     {
-    ///         var serverRandomId = new Random.RandomId("serverRandomId", new Random.RandomIdArgs
+    ///         ByteLength = 8,
+    ///         Keepers = 
     ///         {
-    ///             ByteLength = 8,
-    ///             Keepers = 
-    ///             {
-    ///                 { "ami_id", @var.Ami_id },
-    ///             },
-    ///         });
-    ///         var serverInstance = new Aws.Ec2.Instance("serverInstance", new Aws.Ec2.InstanceArgs
-    ///         {
-    ///             Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
-    ///             Tags = 
-    ///             {
-    ///                 { "Name", serverRandomId.Hex.Apply(hex =&gt; $"web-server {hex}") },
-    ///             },
-    ///         });
-    ///     }
+    ///             { "ami_id", @var.Ami_id },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var serverInstance = new Aws.Ec2.Instance("serverInstance", new()
+    ///     {
+    ///         Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
+    ///         Tags = 
+    ///         {
+    ///             { "Name", serverRandomId.Hex.Apply(hex =&gt; $"web-server {hex}") },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -73,7 +72,7 @@ namespace Pulumi.Random
     /// ```
     /// </summary>
     [RandomResourceType("random:index/randomId:RandomId")]
-    public partial class RandomId : Pulumi.CustomResource
+    public partial class RandomId : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The generated id presented in base64 without additional transformations.
@@ -166,7 +165,7 @@ namespace Pulumi.Random
         }
     }
 
-    public sealed class RandomIdArgs : Pulumi.ResourceArgs
+    public sealed class RandomIdArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The number of random bytes to produce. The
@@ -200,9 +199,10 @@ namespace Pulumi.Random
         public RandomIdArgs()
         {
         }
+        public static new RandomIdArgs Empty => new RandomIdArgs();
     }
 
-    public sealed class RandomIdState : Pulumi.ResourceArgs
+    public sealed class RandomIdState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The generated id presented in base64 without additional transformations.
@@ -260,5 +260,6 @@ namespace Pulumi.Random
         public RandomIdState()
         {
         }
+        public static new RandomIdState Empty => new RandomIdState();
     }
 }
