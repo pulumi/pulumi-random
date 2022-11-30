@@ -24,11 +24,7 @@ import * as utilities from "./utilities";
  *     ],
  *     resultCount: 2,
  * });
- * const example = new aws.elb.LoadBalancer("example", {
- *     // Place the ELB in any two of the given availability zones, selected
- *     // at random.
- *     availabilityZones: az.results,
- * });
+ * const example = new aws.elb.LoadBalancer("example", {availabilityZones: az.results});
  * ```
  */
 export class RandomShuffle extends pulumi.CustomResource {

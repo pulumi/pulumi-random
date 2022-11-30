@@ -169,6 +169,8 @@ export class RandomPassword extends pulumi.CustomResource {
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["result"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(RandomPassword.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -159,6 +159,10 @@ namespace Pulumi.Random
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "result",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -328,11 +332,21 @@ namespace Pulumi.Random
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
 
+        [Input("result")]
+        private Input<string>? _result;
+
         /// <summary>
         /// The generated random string.
         /// </summary>
-        [Input("result")]
-        public Input<string>? Result { get; set; }
+        public Input<string>? Result
+        {
+            get => _result;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _result = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`
