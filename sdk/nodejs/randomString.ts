@@ -21,9 +21,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as random from "@pulumi/random";
  *
- * const randomRandomString = new random.RandomString("random", {
+ * const random = new random.RandomString("random", {
  *     length: 16,
- *     overrideSpecial: "/@£$",
+ *     overrideSpecial: `/@£$`,
  *     special: true,
  * });
  * ```

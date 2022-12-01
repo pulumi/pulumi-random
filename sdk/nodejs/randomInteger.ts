@@ -24,18 +24,17 @@ import * as utilities from "./utilities";
  *
  * const priority = new random.RandomInteger("priority", {
  *     keepers: {
- *         // Generate a new integer each time we switch to a new listener ARN
- *         listener_arn: var_listener_arn,
+ *         listener_arn: _var.listener_arn,
  *     },
  *     max: 50000,
  *     min: 1,
  * });
  * const main = new aws.alb.ListenerRule("main", {
  *     actions: [{
- *         targetGroupArn: var_target_group_arn,
+ *         targetGroupArn: _var.target_group_arn,
  *         type: "forward",
  *     }],
- *     listenerArn: var_listener_arn,
+ *     listenerArn: _var.listener_arn,
  *     priority: priority.result,
  * });
  * ```

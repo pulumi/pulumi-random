@@ -23,14 +23,11 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  *
- * const serverRandomPet = new random.RandomPet("server", {
- *     keepers: {
- *         // Generate a new pet name each time we switch to a new AMI id
- *         ami_id: var_ami_id,
- *     },
- * });
- * const serverInstance = new aws.ec2.Instance("server", {
- *     ami: serverRandomPet.keepers.apply(keepers => keepers.amiId),
+ * const serverRandomPet = new random.RandomPet("serverRandomPet", {keepers: {
+ *     ami_id: _var.ami_id,
+ * }});
+ * const serverInstance = new aws.ec2.Instance("serverInstance", {
+ *     ami: serverRandomPet.keepers.apply(keepers => keepers?.amiId),
  *     tags: {
  *         Name: pulumi.interpolate`web-server-${serverRandomPet.id}`,
  *     },

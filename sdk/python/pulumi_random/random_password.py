@@ -573,6 +573,8 @@ class RandomPassword(pulumi.CustomResource):
             __props__.__dict__["special"] = special
             __props__.__dict__["upper"] = upper
             __props__.__dict__["result"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["result"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RandomPassword, __self__).__init__(
             'random:index/randomPassword:RandomPassword',
             resource_name,
