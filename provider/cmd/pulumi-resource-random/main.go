@@ -28,6 +28,9 @@ import (
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
+//go:embed renames.json
+var renames []byte
+
 func main() {
-	tfbridge.Main("random", version.Version, random.Provider(), pulumiSchema)
+	tfbridge.Main("random", version.Version, random.Provider(), pulumiSchema, renames)
 }
