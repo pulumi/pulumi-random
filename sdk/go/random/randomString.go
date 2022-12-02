@@ -11,15 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The resource `RandomString` generates a random permutation of alphanumeric
-// characters and optionally special characters.
+// The resource `RandomString` generates a random permutation of alphanumeric characters and optionally special characters.
 //
 // This resource *does* use a cryptographic random number generator.
 //
-// Historically this resource's intended usage has been ambiguous as the original example
-// used it in a password. For backwards compatibility it will
-// continue to exist. For unique ids please use random_id, for sensitive
-// random values please use random_password.
+// Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
 //
 // ## Example Usage
 //
@@ -53,53 +49,94 @@ import (
 //
 // ## Import
 //
-// # Strings can be imported by just specifying the value of the string
+// ### Avoiding Replacement
 //
 // ```sh
 //
-//	$ pulumi import random:index/randomString:RandomString test test
+//	$ pulumi import random:index/randomString:RandomString If the resource were imported using `random_string.test test`,
 //
 // ```
+//
+//	replacement can be avoided by using1. Attribute values that match the imported ID and defaults:
+//
+//	terraform
+//
+//	resource "random_string" "test" {
+//
+//	length = 4
+//
+//	lower
+//
+// = true
+//
+//	} 2. Attribute values that match the imported ID and omit the attributes with defaults:
+//
+//	terraform
+//
+//	resource "random_string" "test" {
+//
+//	length = 4
+//
+//	} 3. `ignore_changes` specifying the attributes to ignore:
+//
+//	terraform
+//
+//	resource "random_string" "test" {
+//
+//	length = 16
+//
+//	lower
+//
+// = false
+//
+//	lifecycle {
+//
+//	ignore_changes = [
+//
+//	length,
+//
+//	lower,
+//
+//	]
+//
+//	}
+//
+//	}
+//
+//	**NOTE** `ignore_changes` is only required until the resource is recreated after import,
+//
+//	after which it will use the configuration values specified.
 type RandomString struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// The length of the string desired
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapOutput `pulumi:"keepers"`
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntOutput `pulumi:"length"`
-	// (default true) Include lowercase alphabet characters
-	// in random string.
-	Lower pulumi.BoolPtrOutput `pulumi:"lower"`
-	// (default 0) Minimum number of lowercase alphabet
-	// characters in random string.
-	MinLower pulumi.IntPtrOutput `pulumi:"minLower"`
-	// (default 0) Minimum number of numeric characters
-	// in random string.
-	MinNumeric pulumi.IntPtrOutput `pulumi:"minNumeric"`
-	// (default 0) Minimum number of special characters
-	// in random string.
-	MinSpecial pulumi.IntPtrOutput `pulumi:"minSpecial"`
-	// (default 0) Minimum number of uppercase alphabet
-	// characters in random string.
-	MinUpper pulumi.IntPtrOutput `pulumi:"minUpper"`
-	// (default true) Include numeric characters in random
-	// string.
-	Number pulumi.BoolPtrOutput `pulumi:"number"`
-	// Supply your own list of special characters to
-	// use for string generation.  This overrides the default character list in the special
-	// argument.  The special argument must still be set to true for any overwritten
-	// characters to be used in generation.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
+	Lower pulumi.BoolOutput `pulumi:"lower"`
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+	MinLower pulumi.IntOutput `pulumi:"minLower"`
+	// Minimum number of numeric characters in the result. Default value is `0`.
+	MinNumeric pulumi.IntOutput `pulumi:"minNumeric"`
+	// Minimum number of special characters in the result. Default value is `0`.
+	MinSpecial pulumi.IntOutput `pulumi:"minSpecial"`
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+	MinUpper pulumi.IntOutput `pulumi:"minUpper"`
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
+	Number pulumi.BoolOutput `pulumi:"number"`
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric pulumi.BoolOutput `pulumi:"numeric"`
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
-	// Random string generated.
+	// The generated random string.
 	Result pulumi.StringOutput `pulumi:"result"`
-	// (default true) Include special characters in random
-	// string. These are `!@#$%&*()-_=+[]{}<>:?`
-	Special pulumi.BoolPtrOutput `pulumi:"special"`
-	// (default true) Include uppercase alphabet characters
-	// in random string.
-	Upper pulumi.BoolPtrOutput `pulumi:"upper"`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	Special pulumi.BoolOutput `pulumi:"special"`
+	// Include uppercase alphabet characters in the result. Default value is `true`.
+	Upper pulumi.BoolOutput `pulumi:"upper"`
 }
 
 // NewRandomString registers a new resource with the given unique name, arguments, and options.
@@ -134,82 +171,64 @@ func GetRandomString(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomString resources.
 type randomStringState struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length of the string desired
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length *int `pulumi:"length"`
-	// (default true) Include lowercase alphabet characters
-	// in random string.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
-	// (default 0) Minimum number of lowercase alphabet
-	// characters in random string.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower *int `pulumi:"minLower"`
-	// (default 0) Minimum number of numeric characters
-	// in random string.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric *int `pulumi:"minNumeric"`
-	// (default 0) Minimum number of special characters
-	// in random string.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial *int `pulumi:"minSpecial"`
-	// (default 0) Minimum number of uppercase alphabet
-	// characters in random string.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper *int `pulumi:"minUpper"`
-	// (default true) Include numeric characters in random
-	// string.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number *bool `pulumi:"number"`
-	// Supply your own list of special characters to
-	// use for string generation.  This overrides the default character list in the special
-	// argument.  The special argument must still be set to true for any overwritten
-	// characters to be used in generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric *bool `pulumi:"numeric"`
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
-	// Random string generated.
+	// The generated random string.
 	Result *string `pulumi:"result"`
-	// (default true) Include special characters in random
-	// string. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
-	// (default true) Include uppercase alphabet characters
-	// in random string.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
 }
 
 type RandomStringState struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapInput
-	// The length of the string desired
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntPtrInput
-	// (default true) Include lowercase alphabet characters
-	// in random string.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
-	// (default 0) Minimum number of lowercase alphabet
-	// characters in random string.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower pulumi.IntPtrInput
-	// (default 0) Minimum number of numeric characters
-	// in random string.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric pulumi.IntPtrInput
-	// (default 0) Minimum number of special characters
-	// in random string.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial pulumi.IntPtrInput
-	// (default 0) Minimum number of uppercase alphabet
-	// characters in random string.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntPtrInput
-	// (default true) Include numeric characters in random
-	// string.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolPtrInput
-	// Supply your own list of special characters to
-	// use for string generation.  This overrides the default character list in the special
-	// argument.  The special argument must still be set to true for any overwritten
-	// characters to be used in generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric pulumi.BoolPtrInput
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
-	// Random string generated.
+	// The generated random string.
 	Result pulumi.StringPtrInput
-	// (default true) Include special characters in random
-	// string. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
-	// (default true) Include uppercase alphabet characters
-	// in random string.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
 }
 
@@ -218,79 +237,61 @@ func (RandomStringState) ElementType() reflect.Type {
 }
 
 type randomStringArgs struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length of the string desired
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length int `pulumi:"length"`
-	// (default true) Include lowercase alphabet characters
-	// in random string.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
-	// (default 0) Minimum number of lowercase alphabet
-	// characters in random string.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower *int `pulumi:"minLower"`
-	// (default 0) Minimum number of numeric characters
-	// in random string.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric *int `pulumi:"minNumeric"`
-	// (default 0) Minimum number of special characters
-	// in random string.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial *int `pulumi:"minSpecial"`
-	// (default 0) Minimum number of uppercase alphabet
-	// characters in random string.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper *int `pulumi:"minUpper"`
-	// (default true) Include numeric characters in random
-	// string.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number *bool `pulumi:"number"`
-	// Supply your own list of special characters to
-	// use for string generation.  This overrides the default character list in the special
-	// argument.  The special argument must still be set to true for any overwritten
-	// characters to be used in generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric *bool `pulumi:"numeric"`
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
-	// (default true) Include special characters in random
-	// string. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
-	// (default true) Include uppercase alphabet characters
-	// in random string.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
 }
 
 // The set of arguments for constructing a RandomString resource.
 type RandomStringArgs struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapInput
-	// The length of the string desired
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntInput
-	// (default true) Include lowercase alphabet characters
-	// in random string.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
-	// (default 0) Minimum number of lowercase alphabet
-	// characters in random string.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower pulumi.IntPtrInput
-	// (default 0) Minimum number of numeric characters
-	// in random string.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric pulumi.IntPtrInput
-	// (default 0) Minimum number of special characters
-	// in random string.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial pulumi.IntPtrInput
-	// (default 0) Minimum number of uppercase alphabet
-	// characters in random string.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntPtrInput
-	// (default true) Include numeric characters in random
-	// string.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolPtrInput
-	// Supply your own list of special characters to
-	// use for string generation.  This overrides the default character list in the special
-	// argument.  The special argument must still be set to true for any overwritten
-	// characters to be used in generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric pulumi.BoolPtrInput
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
-	// (default true) Include special characters in random
-	// string. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
-	// (default true) Include uppercase alphabet characters
-	// in random string.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
 }
 
@@ -381,77 +382,71 @@ func (o RandomStringOutput) ToRandomStringOutputWithContext(ctx context.Context)
 	return o
 }
 
-// Arbitrary map of values that, when changed, will
-// trigger a new id to be generated. See
-// the main provider documentation for more information.
-func (o RandomStringOutput) Keepers() pulumi.MapOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+func (o RandomStringOutput) Keepers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.StringMapOutput { return v.Keepers }).(pulumi.StringMapOutput)
 }
 
-// The length of the string desired
+// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 func (o RandomStringOutput) Length() pulumi.IntOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
 }
 
-// (default true) Include lowercase alphabet characters
-// in random string.
-func (o RandomStringOutput) Lower() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.BoolPtrOutput { return v.Lower }).(pulumi.BoolPtrOutput)
+// Include lowercase alphabet characters in the result. Default value is `true`.
+func (o RandomStringOutput) Lower() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Lower }).(pulumi.BoolOutput)
 }
 
-// (default 0) Minimum number of lowercase alphabet
-// characters in random string.
-func (o RandomStringOutput) MinLower() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.IntPtrOutput { return v.MinLower }).(pulumi.IntPtrOutput)
+// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+func (o RandomStringOutput) MinLower() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.IntOutput { return v.MinLower }).(pulumi.IntOutput)
 }
 
-// (default 0) Minimum number of numeric characters
-// in random string.
-func (o RandomStringOutput) MinNumeric() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.IntPtrOutput { return v.MinNumeric }).(pulumi.IntPtrOutput)
+// Minimum number of numeric characters in the result. Default value is `0`.
+func (o RandomStringOutput) MinNumeric() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.IntOutput { return v.MinNumeric }).(pulumi.IntOutput)
 }
 
-// (default 0) Minimum number of special characters
-// in random string.
-func (o RandomStringOutput) MinSpecial() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.IntPtrOutput { return v.MinSpecial }).(pulumi.IntPtrOutput)
+// Minimum number of special characters in the result. Default value is `0`.
+func (o RandomStringOutput) MinSpecial() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.IntOutput { return v.MinSpecial }).(pulumi.IntOutput)
 }
 
-// (default 0) Minimum number of uppercase alphabet
-// characters in random string.
-func (o RandomStringOutput) MinUpper() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.IntPtrOutput { return v.MinUpper }).(pulumi.IntPtrOutput)
+// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+func (o RandomStringOutput) MinUpper() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.IntOutput { return v.MinUpper }).(pulumi.IntOutput)
 }
 
-// (default true) Include numeric characters in random
-// string.
-func (o RandomStringOutput) Number() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.BoolPtrOutput { return v.Number }).(pulumi.BoolPtrOutput)
+// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+//
+// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
+func (o RandomStringOutput) Number() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Number }).(pulumi.BoolOutput)
 }
 
-// Supply your own list of special characters to
-// use for string generation.  This overrides the default character list in the special
-// argument.  The special argument must still be set to true for any overwritten
-// characters to be used in generation.
+// Include numeric characters in the result. Default value is `true`.
+func (o RandomStringOutput) Numeric() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Numeric }).(pulumi.BoolOutput)
+}
+
+// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 func (o RandomStringOutput) OverrideSpecial() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.StringPtrOutput { return v.OverrideSpecial }).(pulumi.StringPtrOutput)
 }
 
-// Random string generated.
+// The generated random string.
 func (o RandomStringOutput) Result() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.StringOutput { return v.Result }).(pulumi.StringOutput)
 }
 
-// (default true) Include special characters in random
-// string. These are `!@#$%&*()-_=+[]{}<>:?`
-func (o RandomStringOutput) Special() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.BoolPtrOutput { return v.Special }).(pulumi.BoolPtrOutput)
+// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+func (o RandomStringOutput) Special() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Special }).(pulumi.BoolOutput)
 }
 
-// (default true) Include uppercase alphabet characters
-// in random string.
-func (o RandomStringOutput) Upper() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomString) pulumi.BoolPtrOutput { return v.Upper }).(pulumi.BoolPtrOutput)
+// Include uppercase alphabet characters in the result. Default value is `true`.
+func (o RandomStringOutput) Upper() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Upper }).(pulumi.BoolOutput)
 }
 
 type RandomStringArrayOutput struct{ *pulumi.OutputState }

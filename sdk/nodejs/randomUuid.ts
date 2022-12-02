@@ -5,28 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random.RandomUuid` generates random uuid string that is intended to be
- * used as unique identifiers for other resources.
+ * The resource `random.RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
  *
- * This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
- * for use with services needed a unique string identifier.
+ * This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
  *
  * ## Example Usage
- *
- * The following example shows how to generate a unique name for an Azure Resource Group.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as azure from "@pulumi/azure";
  * import * as random from "@pulumi/random";
  *
- * const testRandomUuid = new random.RandomUuid("testRandomUuid", {});
- * const testResourceGroup = new azure.core.ResourceGroup("testResourceGroup", {location: "Central US"});
+ * const testRandomUuid = new random.RandomUuid("test", {});
+ * const testResourceGroup = new azure.core.ResourceGroup("test", {
+ *     location: "Central US",
+ * });
  * ```
  *
  * ## Import
  *
- * Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
+ * Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
  *
  * ```sh
  *  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -61,11 +59,9 @@ export class RandomUuid extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The generated uuid presented in string format.
      */
@@ -101,11 +97,9 @@ export class RandomUuid extends pulumi.CustomResource {
  */
 export interface RandomUuidState {
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: any}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The generated uuid presented in string format.
      */
@@ -117,9 +111,7 @@ export interface RandomUuidState {
  */
 export interface RandomUuidArgs {
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: any}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

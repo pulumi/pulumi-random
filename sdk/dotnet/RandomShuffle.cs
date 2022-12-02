@@ -10,8 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random.RandomShuffle` generates a random permutation of a list
-    /// of strings given as an argument.
+    /// The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.
     /// 
     /// ## Example Usage
     /// 
@@ -37,9 +36,13 @@ namespace Pulumi.Random
     /// 
     ///     var example = new Aws.Elb.LoadBalancer("example", new()
     ///     {
-    ///         AvailabilityZones = az.Results,
+    ///         AvailabilityZones = new[]
+    ///         {
+    ///             az.Results,
+    ///         },
     ///     });
     /// 
+    ///     // ... and other aws_elb arguments ...
     /// });
     /// ```
     /// </summary>
@@ -53,33 +56,22 @@ namespace Pulumi.Random
         public Output<ImmutableArray<string>> Inputs { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
-        public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The number of results to return. Defaults to
-        /// the number of items in the `input` list. If fewer items are requested,
-        /// some elements will be excluded from the result. If more items are requested,
-        /// items will be repeated in the result but not more frequently than the number
-        /// of items in the input list.
+        /// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         /// </summary>
         [Output("resultCount")]
         public Output<int?> ResultCount { get; private set; } = null!;
 
-        /// <summary>
-        /// Random permutation of the list of strings given in `input`.
-        /// </summary>
         [Output("results")]
         public Output<ImmutableArray<string>> Results { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-        /// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-        /// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+        /// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         /// </summary>
         [Output("seed")]
         public Output<string?> Seed { get; private set; } = null!;
@@ -143,33 +135,25 @@ namespace Pulumi.Random
         }
 
         [Input("keepers")]
-        private InputMap<object>? _keepers;
+        private InputMap<string>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
-        public InputMap<object> Keepers
+        public InputMap<string> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<object>());
+            get => _keepers ?? (_keepers = new InputMap<string>());
             set => _keepers = value;
         }
 
         /// <summary>
-        /// The number of results to return. Defaults to
-        /// the number of items in the `input` list. If fewer items are requested,
-        /// some elements will be excluded from the result. If more items are requested,
-        /// items will be repeated in the result but not more frequently than the number
-        /// of items in the input list.
+        /// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         /// </summary>
         [Input("resultCount")]
         public Input<int>? ResultCount { get; set; }
 
         /// <summary>
-        /// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-        /// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-        /// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+        /// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         /// </summary>
         [Input("seed")]
         public Input<string>? Seed { get; set; }
@@ -195,35 +179,25 @@ namespace Pulumi.Random
         }
 
         [Input("keepers")]
-        private InputMap<object>? _keepers;
+        private InputMap<string>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
-        public InputMap<object> Keepers
+        public InputMap<string> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<object>());
+            get => _keepers ?? (_keepers = new InputMap<string>());
             set => _keepers = value;
         }
 
         /// <summary>
-        /// The number of results to return. Defaults to
-        /// the number of items in the `input` list. If fewer items are requested,
-        /// some elements will be excluded from the result. If more items are requested,
-        /// items will be repeated in the result but not more frequently than the number
-        /// of items in the input list.
+        /// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         /// </summary>
         [Input("resultCount")]
         public Input<int>? ResultCount { get; set; }
 
         [Input("results")]
         private InputList<string>? _results;
-
-        /// <summary>
-        /// Random permutation of the list of strings given in `input`.
-        /// </summary>
         public InputList<string> Results
         {
             get => _results ?? (_results = new InputList<string>());
@@ -231,9 +205,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-        /// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-        /// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+        /// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         /// </summary>
         [Input("seed")]
         public Input<string>? Seed { get; set; }

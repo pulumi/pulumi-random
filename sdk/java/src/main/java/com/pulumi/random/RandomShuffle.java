@@ -11,7 +11,6 @@ import com.pulumi.random.RandomShuffleArgs;
 import com.pulumi.random.Utilities;
 import com.pulumi.random.inputs.RandomShuffleState;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The resource `random.RandomShuffle` generates a random permutation of a list
- * of strings given as an argument.
+ * The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.
  * 
  * ## Example Usage
  * ```java
@@ -81,72 +79,48 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
         return this.inputs;
     }
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, Object.class})
-    private Output</* @Nullable */ Map<String,Object>> keepers;
+    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    public Output<Optional<Map<String,Object>>> keepers() {
+    public Output<Optional<Map<String,String>>> keepers() {
         return Codegen.optional(this.keepers);
     }
     /**
-     * The number of results to return. Defaults to
-     * the number of items in the `input` list. If fewer items are requested,
-     * some elements will be excluded from the result. If more items are requested,
-     * items will be repeated in the result but not more frequently than the number
-     * of items in the input list.
+     * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      * 
      */
     @Export(name="resultCount", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> resultCount;
 
     /**
-     * @return The number of results to return. Defaults to
-     * the number of items in the `input` list. If fewer items are requested,
-     * some elements will be excluded from the result. If more items are requested,
-     * items will be repeated in the result but not more frequently than the number
-     * of items in the input list.
+     * @return The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      * 
      */
     public Output<Optional<Integer>> resultCount() {
         return Codegen.optional(this.resultCount);
     }
-    /**
-     * Random permutation of the list of strings given in `input`.
-     * 
-     */
     @Export(name="results", type=List.class, parameters={String.class})
     private Output<List<String>> results;
 
-    /**
-     * @return Random permutation of the list of strings given in `input`.
-     * 
-     */
     public Output<List<String>> results() {
         return this.results;
     }
     /**
-     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+     * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      * 
      */
     @Export(name="seed", type=String.class, parameters={})
     private Output</* @Nullable */ String> seed;
 
     /**
-     * @return Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-     * list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-     * different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+     * @return Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      * 
      */
     public Output<Optional<String>> seed() {

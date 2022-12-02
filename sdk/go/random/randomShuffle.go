@@ -11,8 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The resource `RandomShuffle` generates a random permutation of a list
-// of strings given as an argument.
+// The resource `RandomShuffle` generates a random permutation of a list of strings given as an argument.
 //
 // ## Example Usage
 //
@@ -42,7 +41,9 @@ import (
 //				return err
 //			}
 //			_, err = elb.NewLoadBalancer(ctx, "example", &elb.LoadBalancerArgs{
-//				AvailabilityZones: az.Results,
+//				AvailabilityZones: pulumi.StringArray{
+//					az.Results,
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -57,21 +58,12 @@ type RandomShuffle struct {
 
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayOutput `pulumi:"inputs"`
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// The number of results to return. Defaults to
-	// the number of items in the `input` list. If fewer items are requested,
-	// some elements will be excluded from the result. If more items are requested,
-	// items will be repeated in the result but not more frequently than the number
-	// of items in the input list.
-	ResultCount pulumi.IntPtrOutput `pulumi:"resultCount"`
-	// Random permutation of the list of strings given in `input`.
-	Results pulumi.StringArrayOutput `pulumi:"results"`
-	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-	// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-	// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapOutput `pulumi:"keepers"`
+	// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+	ResultCount pulumi.IntPtrOutput      `pulumi:"resultCount"`
+	Results     pulumi.StringArrayOutput `pulumi:"results"`
+	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
 	Seed pulumi.StringPtrOutput `pulumi:"seed"`
 }
 
@@ -109,42 +101,24 @@ func GetRandomShuffle(ctx *pulumi.Context,
 type randomShuffleState struct {
 	// The list of strings to shuffle.
 	Inputs []string `pulumi:"inputs"`
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The number of results to return. Defaults to
-	// the number of items in the `input` list. If fewer items are requested,
-	// some elements will be excluded from the result. If more items are requested,
-	// items will be repeated in the result but not more frequently than the number
-	// of items in the input list.
-	ResultCount *int `pulumi:"resultCount"`
-	// Random permutation of the list of strings given in `input`.
-	Results []string `pulumi:"results"`
-	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-	// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-	// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+	ResultCount *int     `pulumi:"resultCount"`
+	Results     []string `pulumi:"results"`
+	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
 	Seed *string `pulumi:"seed"`
 }
 
 type RandomShuffleState struct {
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayInput
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapInput
-	// The number of results to return. Defaults to
-	// the number of items in the `input` list. If fewer items are requested,
-	// some elements will be excluded from the result. If more items are requested,
-	// items will be repeated in the result but not more frequently than the number
-	// of items in the input list.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
 	ResultCount pulumi.IntPtrInput
-	// Random permutation of the list of strings given in `input`.
-	Results pulumi.StringArrayInput
-	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-	// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-	// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+	Results     pulumi.StringArrayInput
+	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
 	Seed pulumi.StringPtrInput
 }
 
@@ -155,19 +129,11 @@ func (RandomShuffleState) ElementType() reflect.Type {
 type randomShuffleArgs struct {
 	// The list of strings to shuffle.
 	Inputs []string `pulumi:"inputs"`
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The number of results to return. Defaults to
-	// the number of items in the `input` list. If fewer items are requested,
-	// some elements will be excluded from the result. If more items are requested,
-	// items will be repeated in the result but not more frequently than the number
-	// of items in the input list.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
 	ResultCount *int `pulumi:"resultCount"`
-	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-	// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-	// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
 	Seed *string `pulumi:"seed"`
 }
 
@@ -175,19 +141,11 @@ type randomShuffleArgs struct {
 type RandomShuffleArgs struct {
 	// The list of strings to shuffle.
 	Inputs pulumi.StringArrayInput
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapInput
-	// The number of results to return. Defaults to
-	// the number of items in the `input` list. If fewer items are requested,
-	// some elements will be excluded from the result. If more items are requested,
-	// items will be repeated in the result but not more frequently than the number
-	// of items in the input list.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
 	ResultCount pulumi.IntPtrInput
-	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-	// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-	// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+	// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
 	Seed pulumi.StringPtrInput
 }
 
@@ -283,30 +241,21 @@ func (o RandomShuffleOutput) Inputs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RandomShuffle) pulumi.StringArrayOutput { return v.Inputs }).(pulumi.StringArrayOutput)
 }
 
-// Arbitrary map of values that, when changed, will
-// trigger a new id to be generated. See
-// the main provider documentation for more information.
-func (o RandomShuffleOutput) Keepers() pulumi.MapOutput {
-	return o.ApplyT(func(v *RandomShuffle) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+func (o RandomShuffleOutput) Keepers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RandomShuffle) pulumi.StringMapOutput { return v.Keepers }).(pulumi.StringMapOutput)
 }
 
-// The number of results to return. Defaults to
-// the number of items in the `input` list. If fewer items are requested,
-// some elements will be excluded from the result. If more items are requested,
-// items will be repeated in the result but not more frequently than the number
-// of items in the input list.
+// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
 func (o RandomShuffleOutput) ResultCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RandomShuffle) pulumi.IntPtrOutput { return v.ResultCount }).(pulumi.IntPtrOutput)
 }
 
-// Random permutation of the list of strings given in `input`.
 func (o RandomShuffleOutput) Results() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RandomShuffle) pulumi.StringArrayOutput { return v.Results }).(pulumi.StringArrayOutput)
 }
 
-// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the
-// list. **Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across
-// different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+// Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
 func (o RandomShuffleOutput) Seed() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomShuffle) pulumi.StringPtrOutput { return v.Seed }).(pulumi.StringPtrOutput)
 }
