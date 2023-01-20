@@ -6,7 +6,6 @@ package com.pulumi.random;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -19,33 +18,29 @@ public final class RandomPetArgs extends com.pulumi.resources.ResourceArgs {
     public static final RandomPetArgs Empty = new RandomPetArgs();
 
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
     @Import(name="keepers")
-    private @Nullable Output<Map<String,Object>> keepers;
+    private @Nullable Output<Map<String,String>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    public Optional<Output<Map<String,Object>>> keepers() {
+    public Optional<Output<Map<String,String>>> keepers() {
         return Optional.ofNullable(this.keepers);
     }
 
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      * 
      */
     @Import(name="length")
     private @Nullable Output<Integer> length;
 
     /**
-     * @return The length (in words) of the pet name.
+     * @return The length (in words) of the pet name. Defaults to 2
      * 
      */
     public Optional<Output<Integer>> length() {
@@ -68,14 +63,14 @@ public final class RandomPetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to &#34;-&#34;
      * 
      */
     @Import(name="separator")
     private @Nullable Output<String> separator;
 
     /**
-     * @return The character to separate words in the pet name.
+     * @return The character to separate words in the pet name. Defaults to &#34;-&#34;
      * 
      */
     public Optional<Output<String>> separator() {
@@ -110,32 +105,28 @@ public final class RandomPetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will
-         * trigger a new id to be generated. See
-         * the main provider documentation for more information.
+         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
          * 
          * @return builder
          * 
          */
-        public Builder keepers(@Nullable Output<Map<String,Object>> keepers) {
+        public Builder keepers(@Nullable Output<Map<String,String>> keepers) {
             $.keepers = keepers;
             return this;
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will
-         * trigger a new id to be generated. See
-         * the main provider documentation for more information.
+         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
          * 
          * @return builder
          * 
          */
-        public Builder keepers(Map<String,Object> keepers) {
+        public Builder keepers(Map<String,String> keepers) {
             return keepers(Output.of(keepers));
         }
 
         /**
-         * @param length The length (in words) of the pet name.
+         * @param length The length (in words) of the pet name. Defaults to 2
          * 
          * @return builder
          * 
@@ -146,7 +137,7 @@ public final class RandomPetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param length The length (in words) of the pet name.
+         * @param length The length (in words) of the pet name. Defaults to 2
          * 
          * @return builder
          * 
@@ -177,7 +168,7 @@ public final class RandomPetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param separator The character to separate words in the pet name.
+         * @param separator The character to separate words in the pet name. Defaults to &#34;-&#34;
          * 
          * @return builder
          * 
@@ -188,7 +179,7 @@ public final class RandomPetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param separator The character to separate words in the pet name.
+         * @param separator The character to separate words in the pet name. Defaults to &#34;-&#34;
          * 
          * @return builder
          * 
