@@ -11,17 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// > **Note:** Requires random provider version >= 2.2.0
-//
-// Identical to RandomString with the exception that the
-// result is treated as sensitive and, thus, _not_ displayed in console output.
-//
-// > **Note:** All attributes including the generated password will be stored in
-// the raw state as plain-text. [Read more about sensitive data in
-// state](https://www.terraform.io/docs/state/sensitive-data.html).
-//
-// This resource *does* use a cryptographic random number generator.
-//
 // ## Example Usage
 //
 // ```go
@@ -42,7 +31,7 @@ import (
 //			password, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
 //				Length:          pulumi.Int(16),
 //				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String(fmt.Sprintf("_%v@", "%")),
+//				OverrideSpecial: pulumi.String(fmt.Sprintf("!#$%v&*()-_=+[]{}<>:?", "%")),
 //			})
 //			if err != nil {
 //				return err
@@ -65,43 +54,96 @@ import (
 //
 // ## Import
 //
-// # Random Password can be imported by specifying the value of the string
+// ### Avoiding Replacement
 //
 // ```sh
 //
-//	$ pulumi import random:index/randomPassword:RandomPassword password securepassword
+//	$ pulumi import random:index/randomPassword:RandomPassword If the resource were imported using `random_password.password securepassword`,
 //
 // ```
+//
+//	replacement could be avoided by using1. Attribute values that match the imported ID and defaults:
+//
+//	terraform
+//
+//	resource "random_password" "password" {
+//
+//	length = 14
+//
+//	lower
+//
+// = true
+//
+//	} 2. Attribute values that match the imported ID and omit the attributes with defaults:
+//
+//	terraform
+//
+//	resource "random_password" "password" {
+//
+//	length = 14
+//
+//	} 3. `ignore_changes` specifying the attributes to ignore:
+//
+//	terraform
+//
+//	resource "random_password" "password" {
+//
+//	length = 16
+//
+//	lower
+//
+// = false
+//
+//	lifecycle {
+//
+//	ignore_changes = [
+//
+//	length,
+//
+//	lower,
+//
+//	]
+//
+//	}
+//
+//	}
+//
+//	**NOTE** `ignore_changes` is only required until the resource is recreated after import,
+//
+//	after which it will use the configuration values specified.
 type RandomPassword struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
-	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// The length of the string desired.
+	// A bcrypt hash of the generated random string.
+	BcryptHash pulumi.StringOutput `pulumi:"bcryptHash"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapOutput `pulumi:"keepers"`
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntOutput `pulumi:"length"`
-	// Include lowercase alphabet characters in the result.
-	Lower pulumi.BoolPtrOutput `pulumi:"lower"`
-	// Minimum number of lowercase alphabet characters in the result.
-	MinLower pulumi.IntPtrOutput `pulumi:"minLower"`
-	// Minimum number of numeric characters in the result.
-	MinNumeric pulumi.IntPtrOutput `pulumi:"minNumeric"`
-	// Minimum number of special characters in the result.
-	MinSpecial pulumi.IntPtrOutput `pulumi:"minSpecial"`
-	// Minimum number of uppercase alphabet characters in the result.
-	MinUpper pulumi.IntPtrOutput `pulumi:"minUpper"`
-	// Include numeric characters in the result.
-	Number pulumi.BoolPtrOutput `pulumi:"number"`
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
+	Lower pulumi.BoolOutput `pulumi:"lower"`
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+	MinLower pulumi.IntOutput `pulumi:"minLower"`
+	// Minimum number of numeric characters in the result. Default value is `0`.
+	MinNumeric pulumi.IntOutput `pulumi:"minNumeric"`
+	// Minimum number of special characters in the result. Default value is `0`.
+	MinSpecial pulumi.IntOutput `pulumi:"minSpecial"`
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+	MinUpper pulumi.IntOutput `pulumi:"minUpper"`
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
+	Number pulumi.BoolOutput `pulumi:"number"`
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric pulumi.BoolOutput `pulumi:"numeric"`
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result pulumi.StringOutput `pulumi:"result"`
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
-	Special pulumi.BoolPtrOutput `pulumi:"special"`
-	// Include uppercase alphabet characters in the result.
-	Upper pulumi.BoolPtrOutput `pulumi:"upper"`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	Special pulumi.BoolOutput `pulumi:"special"`
+	// Include uppercase alphabet characters in the result. Default value is `true`.
+	Upper pulumi.BoolOutput `pulumi:"upper"`
 }
 
 // NewRandomPassword registers a new resource with the given unique name, arguments, and options.
@@ -115,6 +157,7 @@ func NewRandomPassword(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Length'")
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bcryptHash",
 		"result",
 	})
 	opts = append(opts, secrets)
@@ -140,62 +183,68 @@ func GetRandomPassword(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type randomPasswordState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length of the string desired.
+	// A bcrypt hash of the generated random string.
+	BcryptHash *string `pulumi:"bcryptHash"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length *int `pulumi:"length"`
-	// Include lowercase alphabet characters in the result.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
-	// Minimum number of lowercase alphabet characters in the result.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower *int `pulumi:"minLower"`
-	// Minimum number of numeric characters in the result.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric *int `pulumi:"minNumeric"`
-	// Minimum number of special characters in the result.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial *int `pulumi:"minSpecial"`
-	// Minimum number of uppercase alphabet characters in the result.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper *int `pulumi:"minUpper"`
-	// Include numeric characters in the result.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number *bool `pulumi:"number"`
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric *bool `pulumi:"numeric"`
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result *string `pulumi:"result"`
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
-	// Include uppercase alphabet characters in the result.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
 }
 
 type RandomPasswordState struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
-	Keepers pulumi.MapInput
-	// The length of the string desired.
+	// A bcrypt hash of the generated random string.
+	BcryptHash pulumi.StringPtrInput
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntPtrInput
-	// Include lowercase alphabet characters in the result.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
-	// Minimum number of lowercase alphabet characters in the result.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower pulumi.IntPtrInput
-	// Minimum number of numeric characters in the result.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric pulumi.IntPtrInput
-	// Minimum number of special characters in the result.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial pulumi.IntPtrInput
-	// Minimum number of uppercase alphabet characters in the result.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntPtrInput
-	// Include numeric characters in the result.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolPtrInput
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric pulumi.BoolPtrInput
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
 	// The generated random string.
 	Result pulumi.StringPtrInput
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
-	// Include uppercase alphabet characters in the result.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
 }
 
@@ -204,59 +253,61 @@ func (RandomPasswordState) ElementType() reflect.Type {
 }
 
 type randomPasswordArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length of the string desired.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length int `pulumi:"length"`
-	// Include lowercase alphabet characters in the result.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
-	// Minimum number of lowercase alphabet characters in the result.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower *int `pulumi:"minLower"`
-	// Minimum number of numeric characters in the result.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric *int `pulumi:"minNumeric"`
-	// Minimum number of special characters in the result.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial *int `pulumi:"minSpecial"`
-	// Minimum number of uppercase alphabet characters in the result.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper *int `pulumi:"minUpper"`
-	// Include numeric characters in the result.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number *bool `pulumi:"number"`
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric *bool `pulumi:"numeric"`
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
-	// Include uppercase alphabet characters in the result.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
 }
 
 // The set of arguments for constructing a RandomPassword resource.
 type RandomPasswordArgs struct {
-	// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-	// documentation](../index.html) for more information.
-	Keepers pulumi.MapInput
-	// The length of the string desired.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntInput
-	// Include lowercase alphabet characters in the result.
+	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
-	// Minimum number of lowercase alphabet characters in the result.
+	// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
 	MinLower pulumi.IntPtrInput
-	// Minimum number of numeric characters in the result.
+	// Minimum number of numeric characters in the result. Default value is `0`.
 	MinNumeric pulumi.IntPtrInput
-	// Minimum number of special characters in the result.
+	// Minimum number of special characters in the result. Default value is `0`.
 	MinSpecial pulumi.IntPtrInput
-	// Minimum number of uppercase alphabet characters in the result.
+	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntPtrInput
-	// Include numeric characters in the result.
+	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	//
+	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolPtrInput
-	// Supply your own list of special characters to use for string generation. This overrides the default character list in
-	// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-	// generation.
+	// Include numeric characters in the result. Default value is `true`.
+	Numeric pulumi.BoolPtrInput
+	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
-	// Include uppercase alphabet characters in the result.
+	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
 }
 
@@ -347,50 +398,59 @@ func (o RandomPasswordOutput) ToRandomPasswordOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider
-// documentation](../index.html) for more information.
-func (o RandomPasswordOutput) Keepers() pulumi.MapOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+// A bcrypt hash of the generated random string.
+func (o RandomPasswordOutput) BcryptHash() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.BcryptHash }).(pulumi.StringOutput)
 }
 
-// The length of the string desired.
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+func (o RandomPasswordOutput) Keepers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.StringMapOutput { return v.Keepers }).(pulumi.StringMapOutput)
+}
+
+// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 func (o RandomPasswordOutput) Length() pulumi.IntOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
 }
 
-// Include lowercase alphabet characters in the result.
-func (o RandomPasswordOutput) Lower() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.BoolPtrOutput { return v.Lower }).(pulumi.BoolPtrOutput)
+// Include lowercase alphabet characters in the result. Default value is `true`.
+func (o RandomPasswordOutput) Lower() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Lower }).(pulumi.BoolOutput)
 }
 
-// Minimum number of lowercase alphabet characters in the result.
-func (o RandomPasswordOutput) MinLower() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.IntPtrOutput { return v.MinLower }).(pulumi.IntPtrOutput)
+// Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+func (o RandomPasswordOutput) MinLower() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.IntOutput { return v.MinLower }).(pulumi.IntOutput)
 }
 
-// Minimum number of numeric characters in the result.
-func (o RandomPasswordOutput) MinNumeric() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.IntPtrOutput { return v.MinNumeric }).(pulumi.IntPtrOutput)
+// Minimum number of numeric characters in the result. Default value is `0`.
+func (o RandomPasswordOutput) MinNumeric() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.IntOutput { return v.MinNumeric }).(pulumi.IntOutput)
 }
 
-// Minimum number of special characters in the result.
-func (o RandomPasswordOutput) MinSpecial() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.IntPtrOutput { return v.MinSpecial }).(pulumi.IntPtrOutput)
+// Minimum number of special characters in the result. Default value is `0`.
+func (o RandomPasswordOutput) MinSpecial() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.IntOutput { return v.MinSpecial }).(pulumi.IntOutput)
 }
 
-// Minimum number of uppercase alphabet characters in the result.
-func (o RandomPasswordOutput) MinUpper() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.IntPtrOutput { return v.MinUpper }).(pulumi.IntPtrOutput)
+// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+func (o RandomPasswordOutput) MinUpper() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.IntOutput { return v.MinUpper }).(pulumi.IntOutput)
 }
 
-// Include numeric characters in the result.
-func (o RandomPasswordOutput) Number() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.BoolPtrOutput { return v.Number }).(pulumi.BoolPtrOutput)
+// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+//
+// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
+func (o RandomPasswordOutput) Number() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Number }).(pulumi.BoolOutput)
 }
 
-// Supply your own list of special characters to use for string generation. This overrides the default character list in
-// the special argument. The `special` argument must still be set to true for any overwritten characters to be used in
-// generation.
+// Include numeric characters in the result. Default value is `true`.
+func (o RandomPasswordOutput) Numeric() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Numeric }).(pulumi.BoolOutput)
+}
+
+// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 func (o RandomPasswordOutput) OverrideSpecial() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringPtrOutput { return v.OverrideSpecial }).(pulumi.StringPtrOutput)
 }
@@ -400,14 +460,14 @@ func (o RandomPasswordOutput) Result() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.Result }).(pulumi.StringOutput)
 }
 
-// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`
-func (o RandomPasswordOutput) Special() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.BoolPtrOutput { return v.Special }).(pulumi.BoolPtrOutput)
+// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+func (o RandomPasswordOutput) Special() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Special }).(pulumi.BoolOutput)
 }
 
-// Include uppercase alphabet characters in the result.
-func (o RandomPasswordOutput) Upper() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RandomPassword) pulumi.BoolPtrOutput { return v.Upper }).(pulumi.BoolPtrOutput)
+// Include uppercase alphabet characters in the result. Default value is `true`.
+func (o RandomPasswordOutput) Upper() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Upper }).(pulumi.BoolOutput)
 }
 
 type RandomPasswordArrayOutput struct{ *pulumi.OutputState }

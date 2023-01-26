@@ -5,37 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The resource `random.RandomPet` generates random pet names that are intended to be
- * used as unique identifiers for other resources.
+ * The resource `random.RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
  *
- * This resource can be used in conjunction with resources that have
- * the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
- * unique names during the brief period where both the old and new resources
- * exist concurrently.
+ * This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
  *
  * ## Example Usage
- *
- * The following example shows how to generate a unique pet name for an AWS EC2
- * instance that changes each time a new AMI id is selected.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  *
+ * // The following example shows how to generate a unique pet name
+ * // for an AWS EC2 instance that changes each time a new AMI id is
+ * // selected.
  * const serverRandomPet = new random.RandomPet("serverRandomPet", {keepers: {
  *     ami_id: _var.ami_id,
  * }});
  * const serverInstance = new aws.ec2.Instance("serverInstance", {
- *     ami: serverRandomPet.keepers.apply(keepers => keepers?.amiId),
  *     tags: {
  *         Name: pulumi.interpolate`web-server-${serverRandomPet.id}`,
  *     },
+ *     ami: serverRandomPet.keepers.apply(keepers => keepers?.amiId),
  * });
+ * // ... (other aws_instance arguments) ...
  * ```
- *
- * The result of the above will set the Name of the AWS Instance to
- * `web-server-simple-snake`.
  */
 export class RandomPet extends pulumi.CustomResource {
     /**
@@ -66,23 +60,21 @@ export class RandomPet extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      */
-    public readonly length!: pulumi.Output<number | undefined>;
+    public readonly length!: pulumi.Output<number>;
     /**
      * A string to prefix the name with.
      */
     public readonly prefix!: pulumi.Output<string | undefined>;
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to "-"
      */
-    public readonly separator!: pulumi.Output<string | undefined>;
+    public readonly separator!: pulumi.Output<string>;
 
     /**
      * Create a RandomPet resource with the given unique name, arguments, and options.
@@ -118,13 +110,11 @@ export class RandomPet extends pulumi.CustomResource {
  */
 export interface RandomPetState {
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: any}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      */
     length?: pulumi.Input<number>;
     /**
@@ -132,7 +122,7 @@ export interface RandomPetState {
      */
     prefix?: pulumi.Input<string>;
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to "-"
      */
     separator?: pulumi.Input<string>;
 }
@@ -142,13 +132,11 @@ export interface RandomPetState {
  */
 export interface RandomPetArgs {
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: any}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      */
     length?: pulumi.Input<number>;
     /**
@@ -156,7 +144,7 @@ export interface RandomPetArgs {
      */
     prefix?: pulumi.Input<string>;
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to "-"
      */
     separator?: pulumi.Input<string>;
 }

@@ -12,15 +12,9 @@ namespace Pulumi.Random
     /// <summary>
     /// The resource `random.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
     /// 
-    /// This resource can be used in conjunction with resources that have
-    /// the `create_before_destroy` lifecycle flag set, to avoid conflicts with
-    /// unique names during the brief period where both the old and new resources
-    /// exist concurrently.
+    /// This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
     /// 
     /// ## Example Usage
-    /// 
-    /// The following example shows how to generate a random priority between 1 and 50000 for
-    /// a `aws_alb_listener_rule` resource:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -30,38 +24,39 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // The following example shows how to generate a random priority
+    ///     // between 1 and 50000 for a aws_alb_listener_rule resource:
     ///     var priority = new Random.RandomInteger("priority", new()
     ///     {
+    ///         Min = 1,
+    ///         Max = 50000,
     ///         Keepers = 
     ///         {
     ///             { "listener_arn", @var.Listener_arn },
     ///         },
-    ///         Max = 50000,
-    ///         Min = 1,
     ///     });
     /// 
     ///     var main = new Aws.Alb.ListenerRule("main", new()
     ///     {
+    ///         ListenerArn = priority.Keepers.Apply(keepers =&gt; keepers?.ListenerArn),
+    ///         Priority = priority.Result,
     ///         Actions = new[]
     ///         {
     ///             new Aws.Alb.Inputs.ListenerRuleActionArgs
     ///             {
-    ///                 TargetGroupArn = @var.Target_group_arn,
     ///                 Type = "forward",
+    ///                 TargetGroupArn = @var.Target_group_arn,
     ///             },
     ///         },
-    ///         ListenerArn = @var.Listener_arn,
-    ///         Priority = priority.Result,
     ///     });
     /// 
+    ///     // ... (other aws_alb_listener_rule arguments) ...
     /// });
     /// ```
     /// 
-    /// The result of the above will set a random priority.
-    /// 
     /// ## Import
     /// 
-    /// Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
+    /// Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)
     /// 
     /// ```sh
     ///  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
@@ -71,12 +66,10 @@ namespace Pulumi.Random
     public partial class RandomInteger : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
-        public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
         /// The maximum inclusive value of the range.
@@ -91,7 +84,7 @@ namespace Pulumi.Random
         public Output<int> Min { get; private set; } = null!;
 
         /// <summary>
-        /// (int) The random Integer result.
+        /// The random integer result.
         /// </summary>
         [Output("result")]
         public Output<int> Result { get; private set; } = null!;
@@ -149,16 +142,14 @@ namespace Pulumi.Random
     public sealed class RandomIntegerArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
-        private InputMap<object>? _keepers;
+        private InputMap<string>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
-        public InputMap<object> Keepers
+        public InputMap<string> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<object>());
+            get => _keepers ?? (_keepers = new InputMap<string>());
             set => _keepers = value;
         }
 
@@ -189,16 +180,14 @@ namespace Pulumi.Random
     public sealed class RandomIntegerState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
-        private InputMap<object>? _keepers;
+        private InputMap<string>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will
-        /// trigger a new id to be generated. See
-        /// the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         /// </summary>
-        public InputMap<object> Keepers
+        public InputMap<string> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<object>());
+            get => _keepers ?? (_keepers = new InputMap<string>());
             set => _keepers = value;
         }
 
@@ -215,7 +204,7 @@ namespace Pulumi.Random
         public Input<int>? Min { get; set; }
 
         /// <summary>
-        /// (int) The random Integer result.
+        /// The random integer result.
         /// </summary>
         [Input("result")]
         public Input<int>? Result { get; set; }
