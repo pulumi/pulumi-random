@@ -15,12 +15,11 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfpfbridge/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
 
 	random "github.com/pulumi/pulumi-random/provider/v4"
-	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
 )
 
 func main() {
-	tfgen.Main("random", version.Version, random.Provider())
+	tfgen.Main("random", random.Provider())
 }

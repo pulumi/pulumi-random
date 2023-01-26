@@ -17,20 +17,24 @@
 package main
 
 import (
+	"context"
 	_ "embed"
 
-	tfbridge "github.com/pulumi/pulumi-terraform-bridge/pkg/tfpfbridge"
+	tfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 
 	random "github.com/pulumi/pulumi-random/provider/v4"
-	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
-//go:embed renames.json
-var renames []byte
+//go:embed bridge-metadata.json
+var bridgeMetadata []byte
 
 func main() {
-	tfbridge.Main("random", version.Version, random.Provider(), pulumiSchema, renames)
+	meta := tfbridge.ProviderMetadata{
+		PackageSchema:  pulumiSchema,
+		BridgeMetadata: bridgeMetadata,
+	}
+	tfbridge.Main(context.Background(), "random", random.Provider(), meta)
 }
