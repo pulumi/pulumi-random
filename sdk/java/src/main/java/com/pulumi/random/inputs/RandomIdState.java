@@ -6,6 +6,7 @@ package com.pulumi.random.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -48,14 +49,16 @@ public final class RandomIdState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      * 
      */
     @Import(name="byteLength")
     private @Nullable Output<Integer> byteLength;
 
     /**
-     * @return The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+     * @return The number of random bytes to produce. The
+     * minimum value is 1, which produces eight bits of randomness.
      * 
      */
     public Optional<Output<Integer>> byteLength() {
@@ -93,29 +96,37 @@ public final class RandomIdState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     @Import(name="keepers")
-    private @Nullable Output<Map<String,String>> keepers;
+    private @Nullable Output<Map<String,Object>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
-    public Optional<Output<Map<String,String>>> keepers() {
+    public Optional<Output<Map<String,Object>>> keepers() {
         return Optional.ofNullable(this.keepers);
     }
 
     /**
-     * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+     * Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      * 
      */
     @Import(name="prefix")
     private @Nullable Output<String> prefix;
 
     /**
-     * @return Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+     * @return Arbitrary string to prefix the output value with. This
+     * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+     * base64 encoded.
      * 
      */
     public Optional<Output<String>> prefix() {
@@ -195,7 +206,8 @@ public final class RandomIdState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param byteLength The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+         * @param byteLength The number of random bytes to produce. The
+         * minimum value is 1, which produces eight bits of randomness.
          * 
          * @return builder
          * 
@@ -206,7 +218,8 @@ public final class RandomIdState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param byteLength The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+         * @param byteLength The number of random bytes to produce. The
+         * minimum value is 1, which produces eight bits of randomness.
          * 
          * @return builder
          * 
@@ -258,28 +271,34 @@ public final class RandomIdState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+         * @param keepers Arbitrary map of values that, when changed, will
+         * trigger a new id to be generated. See
+         * the main provider documentation for more information.
          * 
          * @return builder
          * 
          */
-        public Builder keepers(@Nullable Output<Map<String,String>> keepers) {
+        public Builder keepers(@Nullable Output<Map<String,Object>> keepers) {
             $.keepers = keepers;
             return this;
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+         * @param keepers Arbitrary map of values that, when changed, will
+         * trigger a new id to be generated. See
+         * the main provider documentation for more information.
          * 
          * @return builder
          * 
          */
-        public Builder keepers(Map<String,String> keepers) {
+        public Builder keepers(Map<String,Object> keepers) {
             return keepers(Output.of(keepers));
         }
 
         /**
-         * @param prefix Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+         * @param prefix Arbitrary string to prefix the output value with. This
+         * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+         * base64 encoded.
          * 
          * @return builder
          * 
@@ -290,7 +309,9 @@ public final class RandomIdState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param prefix Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+         * @param prefix Arbitrary string to prefix the output value with. This
+         * string is supplied as-is, meaning it is not guaranteed to be URL-safe or
+         * base64 encoded.
          * 
          * @return builder
          * 

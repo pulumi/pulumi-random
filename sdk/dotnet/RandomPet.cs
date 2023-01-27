@@ -10,11 +10,18 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random.RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
+    /// The resource `random.RandomPet` generates random pet names that are intended to be
+    /// used as unique identifiers for other resources.
     /// 
-    /// This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+    /// This resource can be used in conjunction with resources that have
+    /// the `create_before_destroy` lifecycle flag set, to avoid conflicts with
+    /// unique names during the brief period where both the old and new resources
+    /// exist concurrently.
     /// 
     /// ## Example Usage
+    /// 
+    /// The following example shows how to generate a unique pet name for an AWS EC2
+    /// instance that changes each time a new AMI id is selected.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -24,9 +31,6 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // The following example shows how to generate a unique pet name
-    ///     // for an AWS EC2 instance that changes each time a new AMI id is
-    ///     // selected.
     ///     var serverRandomPet = new Random.RandomPet("serverRandomPet", new()
     ///     {
     ///         Keepers = 
@@ -37,31 +41,35 @@ namespace Pulumi.Random
     /// 
     ///     var serverInstance = new Aws.Ec2.Instance("serverInstance", new()
     ///     {
+    ///         Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///         Tags = 
     ///         {
     ///             { "Name", serverRandomPet.Id.Apply(id =&gt; $"web-server-{id}") },
     ///         },
-    ///         Ami = serverRandomPet.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///     });
     /// 
-    ///     // ... (other aws_instance arguments) ...
     /// });
     /// ```
+    /// 
+    /// The result of the above will set the Name of the AWS Instance to
+    /// `web-server-simple-snake`.
     /// </summary>
     [RandomResourceType("random:index/randomPet:RandomPet")]
     public partial class RandomPet : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
-        public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length (in words) of the pet name. Defaults to 2
+        /// The length (in words) of the pet name.
         /// </summary>
         [Output("length")]
-        public Output<int> Length { get; private set; } = null!;
+        public Output<int?> Length { get; private set; } = null!;
 
         /// <summary>
         /// A string to prefix the name with.
@@ -70,10 +78,10 @@ namespace Pulumi.Random
         public Output<string?> Prefix { get; private set; } = null!;
 
         /// <summary>
-        /// The character to separate words in the pet name. Defaults to "-"
+        /// The character to separate words in the pet name.
         /// </summary>
         [Output("separator")]
-        public Output<string> Separator { get; private set; } = null!;
+        public Output<string?> Separator { get; private set; } = null!;
 
 
         /// <summary>
@@ -122,19 +130,21 @@ namespace Pulumi.Random
     public sealed class RandomPetArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
-        private InputMap<string>? _keepers;
+        private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
-        public InputMap<string> Keepers
+        public InputMap<object> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<string>());
+            get => _keepers ?? (_keepers = new InputMap<object>());
             set => _keepers = value;
         }
 
         /// <summary>
-        /// The length (in words) of the pet name. Defaults to 2
+        /// The length (in words) of the pet name.
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -146,7 +156,7 @@ namespace Pulumi.Random
         public Input<string>? Prefix { get; set; }
 
         /// <summary>
-        /// The character to separate words in the pet name. Defaults to "-"
+        /// The character to separate words in the pet name.
         /// </summary>
         [Input("separator")]
         public Input<string>? Separator { get; set; }
@@ -160,19 +170,21 @@ namespace Pulumi.Random
     public sealed class RandomPetState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
-        private InputMap<string>? _keepers;
+        private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new id to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
-        public InputMap<string> Keepers
+        public InputMap<object> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<string>());
+            get => _keepers ?? (_keepers = new InputMap<object>());
             set => _keepers = value;
         }
 
         /// <summary>
-        /// The length (in words) of the pet name. Defaults to 2
+        /// The length (in words) of the pet name.
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -184,7 +196,7 @@ namespace Pulumi.Random
         public Input<string>? Prefix { get; set; }
 
         /// <summary>
-        /// The character to separate words in the pet name. Defaults to "-"
+        /// The character to separate words in the pet name.
         /// </summary>
         [Input("separator")]
         public Input<string>? Separator { get; set; }
