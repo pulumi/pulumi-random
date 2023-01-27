@@ -1,4 +1,4 @@
-// Copyright 2016-2023, Pulumi Corporation.
+// Copyright 2016-2018, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,11 +19,10 @@ import (
 	"path/filepath"
 	"unicode"
 
-	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-
 	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-random/shim"
 )
 
@@ -51,15 +50,15 @@ func randomResource(mod string, res string) tokens.Type {
 }
 
 // Provider returns additional overlaid schema and metadata associated with the random package.
-func Provider() pf.ProviderInfo {
-	info := tfbridge.ProviderInfo{
+func Provider() tfbridge.ProviderInfo {
+	return tfbridge.ProviderInfo{
+		P:           shimv2.NewProvider(shim.NewProvider()),
 		Name:        "random",
 		Description: "A Pulumi package to safely use randomness in Pulumi programs.",
 		Keywords:    []string{"pulumi", "random"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-random",
-		Version:     version.Version,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"random_id":       {Tok: randomResource(randomMod, "RandomId")},
 			"random_password": {Tok: randomResource(randomMod, "RandomPassword")},
@@ -99,9 +98,5 @@ func Provider() pf.ProviderInfo {
 				"random": "Random",
 			},
 		},
-	}
-	return pf.ProviderInfo{
-		ProviderInfo: info,
-		NewProvider:  shim.NewProvider,
 	}
 }

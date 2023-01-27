@@ -10,11 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
-    /// The resource `random.RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
+    /// The resource `random.RandomUuid` generates random uuid string that is intended to be
+    /// used as unique identifiers for other resources.
     /// 
-    /// This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
+    /// This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
+    /// for use with services needed a unique string identifier.
     /// 
     /// ## Example Usage
+    /// 
+    /// The following example shows how to generate a unique name for an Azure Resource Group.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -36,7 +40,7 @@ namespace Pulumi.Random
     /// 
     /// ## Import
     /// 
-    /// Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
+    /// Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
     /// 
     /// ```sh
     ///  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -46,10 +50,12 @@ namespace Pulumi.Random
     public partial class RandomUuid : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new uuid to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
         [Output("keepers")]
-        public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, object>?> Keepers { get; private set; } = null!;
 
         /// <summary>
         /// The generated uuid presented in string format.
@@ -104,14 +110,16 @@ namespace Pulumi.Random
     public sealed class RandomUuidArgs : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
-        private InputMap<string>? _keepers;
+        private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new uuid to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
-        public InputMap<string> Keepers
+        public InputMap<object> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<string>());
+            get => _keepers ?? (_keepers = new InputMap<object>());
             set => _keepers = value;
         }
 
@@ -124,14 +132,16 @@ namespace Pulumi.Random
     public sealed class RandomUuidState : global::Pulumi.ResourceArgs
     {
         [Input("keepers")]
-        private InputMap<string>? _keepers;
+        private InputMap<object>? _keepers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will
+        /// trigger a new uuid to be generated. See
+        /// the main provider documentation for more information.
         /// </summary>
-        public InputMap<string> Keepers
+        public InputMap<object> Keepers
         {
-            get => _keepers ?? (_keepers = new InputMap<string>());
+            get => _keepers ?? (_keepers = new InputMap<object>());
             set => _keepers = value;
         }
 

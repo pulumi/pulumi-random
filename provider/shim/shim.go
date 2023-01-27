@@ -1,10 +1,10 @@
 package shim
 
 import (
-	tfpf "github.com/hashicorp/terraform-plugin-framework/provider"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/terraform-providers/terraform-provider-random/internal/provider"
 )
 
-func NewProvider() tfpf.Provider {
+func NewProvider() *schema.Provider {
 	return provider.New()
 }

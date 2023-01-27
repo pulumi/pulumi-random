@@ -7,38 +7,43 @@ import * as utilities from "./utilities";
 /**
  * The resource `random.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
  *
- * This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+ * This resource can be used in conjunction with resources that have
+ * the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
+ * unique names during the brief period where both the old and new resources
+ * exist concurrently.
  *
  * ## Example Usage
+ *
+ * The following example shows how to generate a random priority between 1 and 50000 for
+ * a `awsAlbListenerRule` resource:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as random from "@pulumi/random";
  *
- * // The following example shows how to generate a random priority
- * // between 1 and 50000 for a aws_alb_listener_rule resource:
  * const priority = new random.RandomInteger("priority", {
- *     min: 1,
- *     max: 50000,
  *     keepers: {
  *         listener_arn: _var.listener_arn,
  *     },
+ *     max: 50000,
+ *     min: 1,
  * });
  * const main = new aws.alb.ListenerRule("main", {
- *     listenerArn: priority.keepers.apply(keepers => keepers?.listenerArn),
- *     priority: priority.result,
  *     actions: [{
- *         type: "forward",
  *         targetGroupArn: _var.target_group_arn,
+ *         type: "forward",
  *     }],
+ *     listenerArn: _var.listener_arn,
+ *     priority: priority.result,
  * });
- * // ... (other aws_alb_listener_rule arguments) ...
  * ```
+ *
+ * The result of the above will set a random priority.
  *
  * ## Import
  *
- * Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)
+ * Random integers can be imported using the `result`, `min`, and `max`, with an optional `seed`. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a `,`)
  *
  * ```sh
  *  $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
@@ -73,9 +78,11 @@ export class RandomInteger extends pulumi.CustomResource {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly keepers!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The maximum inclusive value of the range.
      */
@@ -85,7 +92,7 @@ export class RandomInteger extends pulumi.CustomResource {
      */
     public readonly min!: pulumi.Output<number>;
     /**
-     * The random integer result.
+     * (int) The random Integer result.
      */
     public /*out*/ readonly result!: pulumi.Output<number>;
     /**
@@ -135,9 +142,11 @@ export class RandomInteger extends pulumi.CustomResource {
  */
 export interface RandomIntegerState {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: any}>;
     /**
      * The maximum inclusive value of the range.
      */
@@ -147,7 +156,7 @@ export interface RandomIntegerState {
      */
     min?: pulumi.Input<number>;
     /**
-     * The random integer result.
+     * (int) The random Integer result.
      */
     result?: pulumi.Input<number>;
     /**
@@ -161,9 +170,11 @@ export interface RandomIntegerState {
  */
 export interface RandomIntegerArgs {
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: any}>;
     /**
      * The maximum inclusive value of the range.
      */

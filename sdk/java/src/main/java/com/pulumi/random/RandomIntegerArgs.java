@@ -6,6 +6,7 @@ package com.pulumi.random;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -18,17 +19,21 @@ public final class RandomIntegerArgs extends com.pulumi.resources.ResourceArgs {
     public static final RandomIntegerArgs Empty = new RandomIntegerArgs();
 
     /**
-     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
     @Import(name="keepers")
-    private @Nullable Output<Map<String,String>> keepers;
+    private @Nullable Output<Map<String,Object>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will
+     * trigger a new id to be generated. See
+     * the main provider documentation for more information.
      * 
      */
-    public Optional<Output<Map<String,String>>> keepers() {
+    public Optional<Output<Map<String,Object>>> keepers() {
         return Optional.ofNullable(this.keepers);
     }
 
@@ -105,23 +110,27 @@ public final class RandomIntegerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+         * @param keepers Arbitrary map of values that, when changed, will
+         * trigger a new id to be generated. See
+         * the main provider documentation for more information.
          * 
          * @return builder
          * 
          */
-        public Builder keepers(@Nullable Output<Map<String,String>> keepers) {
+        public Builder keepers(@Nullable Output<Map<String,Object>> keepers) {
             $.keepers = keepers;
             return this;
         }
 
         /**
-         * @param keepers Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+         * @param keepers Arbitrary map of values that, when changed, will
+         * trigger a new id to be generated. See
+         * the main provider documentation for more information.
          * 
          * @return builder
          * 
          */
-        public Builder keepers(Map<String,String> keepers) {
+        public Builder keepers(Map<String,Object> keepers) {
             return keepers(Output.of(keepers));
         }
 
