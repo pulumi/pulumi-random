@@ -1,6 +1,7 @@
-// Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
+//go:build nodejs || all
 // +build nodejs all
 
+// Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 package examples
 
 import (
@@ -13,9 +14,9 @@ import (
 func TestSimpleTs(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: filepath.Join(getCwd(t), "simple", "ts"),
+			Dir:           filepath.Join(getCwd(t), "simple", "ts"),
+			RunUpdateTest: true,
 		})
-
 	integration.ProgramTest(t, &test)
 }
 
