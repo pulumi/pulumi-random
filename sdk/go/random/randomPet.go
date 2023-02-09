@@ -10,26 +10,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The resource `RandomPet` generates random pet names that are intended to be
-// used as unique identifiers for other resources.
+// The resource `RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
 //
-// This resource can be used in conjunction with resources that have
-// the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with
-// unique names during the brief period where both the old and new resources
-// exist concurrently.
+// This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			serverRandomPet, err := random.NewRandomPet(ctx, "serverRandomPet", &random.RandomPetArgs{
+//				Keepers: pulumi.StringMap{
+//					"ami_id": pulumi.Any(_var.Ami_id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
+//				Tags: pulumi.StringMap{
+//					"Name": serverRandomPet.ID().ApplyT(func(id string) (string, error) {
+//						return fmt.Sprintf("web-server-%v", id), nil
+//					}).(pulumi.StringOutput),
+//				},
+//				Ami: serverRandomPet.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
+//					return &keepers.AmiId, nil
+//				}).(pulumi.StringPtrOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type RandomPet struct {
 	pulumi.CustomResourceState
 
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapOutput `pulumi:"keepers"`
-	// The length (in words) of the pet name.
-	Length pulumi.IntPtrOutput `pulumi:"length"`
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapOutput `pulumi:"keepers"`
+	// The length (in words) of the pet name. Defaults to 2
+	Length pulumi.IntOutput `pulumi:"length"`
 	// A string to prefix the name with.
 	Prefix pulumi.StringPtrOutput `pulumi:"prefix"`
-	// The character to separate words in the pet name.
-	Separator pulumi.StringPtrOutput `pulumi:"separator"`
+	// The character to separate words in the pet name. Defaults to "-"
+	Separator pulumi.StringOutput `pulumi:"separator"`
 }
 
 // NewRandomPet registers a new resource with the given unique name, arguments, and options.
@@ -61,28 +99,24 @@ func GetRandomPet(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPet resources.
 type randomPetState struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length (in words) of the pet name.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The length (in words) of the pet name. Defaults to 2
 	Length *int `pulumi:"length"`
 	// A string to prefix the name with.
 	Prefix *string `pulumi:"prefix"`
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator *string `pulumi:"separator"`
 }
 
 type RandomPetState struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapInput
-	// The length (in words) of the pet name.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The length (in words) of the pet name. Defaults to 2
 	Length pulumi.IntPtrInput
 	// A string to prefix the name with.
 	Prefix pulumi.StringPtrInput
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator pulumi.StringPtrInput
 }
 
@@ -91,29 +125,25 @@ func (RandomPetState) ElementType() reflect.Type {
 }
 
 type randomPetArgs struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers map[string]interface{} `pulumi:"keepers"`
-	// The length (in words) of the pet name.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers map[string]string `pulumi:"keepers"`
+	// The length (in words) of the pet name. Defaults to 2
 	Length *int `pulumi:"length"`
 	// A string to prefix the name with.
 	Prefix *string `pulumi:"prefix"`
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator *string `pulumi:"separator"`
 }
 
 // The set of arguments for constructing a RandomPet resource.
 type RandomPetArgs struct {
-	// Arbitrary map of values that, when changed, will
-	// trigger a new id to be generated. See
-	// the main provider documentation for more information.
-	Keepers pulumi.MapInput
-	// The length (in words) of the pet name.
+	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+	Keepers pulumi.StringMapInput
+	// The length (in words) of the pet name. Defaults to 2
 	Length pulumi.IntPtrInput
 	// A string to prefix the name with.
 	Prefix pulumi.StringPtrInput
-	// The character to separate words in the pet name.
+	// The character to separate words in the pet name. Defaults to "-"
 	Separator pulumi.StringPtrInput
 }
 
@@ -204,16 +234,14 @@ func (o RandomPetOutput) ToRandomPetOutputWithContext(ctx context.Context) Rando
 	return o
 }
 
-// Arbitrary map of values that, when changed, will
-// trigger a new id to be generated. See
-// the main provider documentation for more information.
-func (o RandomPetOutput) Keepers() pulumi.MapOutput {
-	return o.ApplyT(func(v *RandomPet) pulumi.MapOutput { return v.Keepers }).(pulumi.MapOutput)
+// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
+func (o RandomPetOutput) Keepers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.StringMapOutput { return v.Keepers }).(pulumi.StringMapOutput)
 }
 
-// The length (in words) of the pet name.
-func (o RandomPetOutput) Length() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RandomPet) pulumi.IntPtrOutput { return v.Length }).(pulumi.IntPtrOutput)
+// The length (in words) of the pet name. Defaults to 2
+func (o RandomPetOutput) Length() pulumi.IntOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
 }
 
 // A string to prefix the name with.
@@ -221,9 +249,9 @@ func (o RandomPetOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomPet) pulumi.StringPtrOutput { return v.Prefix }).(pulumi.StringPtrOutput)
 }
 
-// The character to separate words in the pet name.
-func (o RandomPetOutput) Separator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RandomPet) pulumi.StringPtrOutput { return v.Separator }).(pulumi.StringPtrOutput)
+// The character to separate words in the pet name. Defaults to "-"
+func (o RandomPetOutput) Separator() pulumi.StringOutput {
+	return o.ApplyT(func(v *RandomPet) pulumi.StringOutput { return v.Separator }).(pulumi.StringOutput)
 }
 
 type RandomPetArrayOutput struct{ *pulumi.OutputState }

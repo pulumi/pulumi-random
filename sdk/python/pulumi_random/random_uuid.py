@@ -14,41 +14,35 @@ __all__ = ['RandomUuidArgs', 'RandomUuid']
 @pulumi.input_type
 class RandomUuidArgs:
     def __init__(__self__, *,
-                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a RandomUuid resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         if keepers is not None:
             pulumi.set(__self__, "keepers", keepers)
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Arbitrary map of values that, when changed, will
-        trigger a new uuid to be generated. See
-        the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "keepers", value)
 
 
 @pulumi.input_type
 class _RandomUuidState:
     def __init__(__self__, *,
-                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  result: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RandomUuid resources.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
         if keepers is not None:
@@ -58,16 +52,14 @@ class _RandomUuidState:
 
     @property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Arbitrary map of values that, when changed, will
-        trigger a new uuid to be generated. See
-        the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "keepers", value)
 
     @property
@@ -88,18 +80,14 @@ class RandomUuid(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The resource `RandomUuid` generates random uuid string that is intended to be
-        used as unique identifiers for other resources.
+        The resource `RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
 
-        This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
-        for use with services needed a unique string identifier.
+        This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
 
         ## Example Usage
-
-        The following example shows how to generate a unique name for an Azure Resource Group.
 
         ```python
         import pulumi
@@ -112,7 +100,7 @@ class RandomUuid(pulumi.CustomResource):
 
         ## Import
 
-        Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
+        Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
 
         ```sh
          $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -120,9 +108,7 @@ class RandomUuid(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         ...
     @overload
@@ -131,15 +117,11 @@ class RandomUuid(pulumi.CustomResource):
                  args: Optional[RandomUuidArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The resource `RandomUuid` generates random uuid string that is intended to be
-        used as unique identifiers for other resources.
+        The resource `RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
 
-        This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
-        for use with services needed a unique string identifier.
+        This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
 
         ## Example Usage
-
-        The following example shows how to generate a unique name for an Azure Resource Group.
 
         ```python
         import pulumi
@@ -152,7 +134,7 @@ class RandomUuid(pulumi.CustomResource):
 
         ## Import
 
-        Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
+        Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
 
         ```sh
          $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -173,7 +155,7 @@ class RandomUuid(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -195,7 +177,7 @@ class RandomUuid(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             result: Optional[pulumi.Input[str]] = None) -> 'RandomUuid':
         """
         Get an existing RandomUuid resource's state with the given name, id, and optional extra
@@ -204,9 +186,7 @@ class RandomUuid(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will
-               trigger a new uuid to be generated. See
-               the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -219,11 +199,9 @@ class RandomUuid(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keepers(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def keepers(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Arbitrary map of values that, when changed, will
-        trigger a new uuid to be generated. See
-        the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
