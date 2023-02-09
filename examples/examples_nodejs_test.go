@@ -1,6 +1,7 @@
-// Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
+//go:build nodejs || all
 // +build nodejs all
 
+// Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 package examples
 
 import (
@@ -8,6 +9,8 @@ import (
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
+
+	"github.com/pulumi/pulumi-random/examples/v4/internal/testutil"
 )
 
 func TestSimpleTs(t *testing.T) {
@@ -17,6 +20,15 @@ func TestSimpleTs(t *testing.T) {
 		})
 
 	integration.ProgramTest(t, &test)
+}
+
+func TestProviderUpdate(t *testing.T) {
+	test := getJSBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: filepath.Join(getCwd(t), "simple", "ts"),
+		})
+
+	testutil.ProviderUpdateTest(t, "pulumi-resource-random", test)
 }
 
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
