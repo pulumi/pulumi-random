@@ -10,22 +10,17 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.random.RandomUuidArgs;
 import com.pulumi.random.Utilities;
 import com.pulumi.random.inputs.RandomUuidState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The resource `random.RandomUuid` generates random uuid string that is intended to be
- * used as unique identifiers for other resources.
+ * The resource `random.RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
  * 
- * This resource uses the `hashicorp/go-uuid` to generate a UUID-formatted string
- * for use with services needed a unique string identifier.
+ * This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
  * 
  * ## Example Usage
- * 
- * The following example shows how to generate a unique name for an Azure Resource Group.
  * ```java
  * package generated_program;
  * 
@@ -60,7 +55,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Random UUID&#39;s can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example
+ * Random UUID&#39;s can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
  * 
  * ```sh
  *  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -70,21 +65,17 @@ import javax.annotation.Nullable;
 @ResourceType(type="random:index/randomUuid:RandomUuid")
 public class RandomUuid extends com.pulumi.resources.CustomResource {
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, Object.class})
-    private Output</* @Nullable */ Map<String,Object>> keepers;
+    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will
-     * trigger a new uuid to be generated. See
-     * the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    public Output<Optional<Map<String,Object>>> keepers() {
+    public Output<Optional<Map<String,String>>> keepers() {
         return Codegen.optional(this.keepers);
     }
     /**

@@ -11,25 +11,17 @@ import com.pulumi.random.RandomPetArgs;
 import com.pulumi.random.Utilities;
 import com.pulumi.random.inputs.RandomPetState;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The resource `random.RandomPet` generates random pet names that are intended to be
- * used as unique identifiers for other resources.
+ * The resource `random.RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
  * 
- * This resource can be used in conjunction with resources that have
- * the `create_before_destroy` lifecycle flag set, to avoid conflicts with
- * unique names during the brief period where both the old and new resources
- * exist concurrently.
+ * This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
  * 
  * ## Example Usage
- * 
- * The following example shows how to generate a unique pet name for an AWS EC2
- * instance that changes each time a new AMI id is selected.
  * ```java
  * package generated_program;
  * 
@@ -58,51 +50,44 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serverInstance = new Instance(&#34;serverInstance&#34;, InstanceArgs.builder()        
- *             .ami(serverRandomPet.keepers().applyValue(keepers -&gt; keepers.amiId()))
  *             .tags(Map.of(&#34;Name&#34;, serverRandomPet.id().applyValue(id -&gt; String.format(&#34;web-server-%s&#34;, id))))
+ *             .ami(serverRandomPet.keepers().applyValue(keepers -&gt; keepers.amiId()))
  *             .build());
  * 
  *     }
  * }
  * ```
  * 
- * The result of the above will set the Name of the AWS Instance to
- * `web-server-simple-snake`.
- * 
  */
 @ResourceType(type="random:index/randomPet:RandomPet")
 public class RandomPet extends com.pulumi.resources.CustomResource {
     /**
-     * Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, Object.class})
-    private Output</* @Nullable */ Map<String,Object>> keepers;
+    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will
-     * trigger a new id to be generated. See
-     * the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    public Output<Optional<Map<String,Object>>> keepers() {
+    public Output<Optional<Map<String,String>>> keepers() {
         return Codegen.optional(this.keepers);
     }
     /**
-     * The length (in words) of the pet name.
+     * The length (in words) of the pet name. Defaults to 2
      * 
      */
     @Export(name="length", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> length;
+    private Output<Integer> length;
 
     /**
-     * @return The length (in words) of the pet name.
+     * @return The length (in words) of the pet name. Defaults to 2
      * 
      */
-    public Output<Optional<Integer>> length() {
-        return Codegen.optional(this.length);
+    public Output<Integer> length() {
+        return this.length;
     }
     /**
      * A string to prefix the name with.
@@ -119,18 +104,18 @@ public class RandomPet extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.prefix);
     }
     /**
-     * The character to separate words in the pet name.
+     * The character to separate words in the pet name. Defaults to &#34;-&#34;
      * 
      */
     @Export(name="separator", type=String.class, parameters={})
-    private Output</* @Nullable */ String> separator;
+    private Output<String> separator;
 
     /**
-     * @return The character to separate words in the pet name.
+     * @return The character to separate words in the pet name. Defaults to &#34;-&#34;
      * 
      */
-    public Output<Optional<String>> separator() {
-        return Codegen.optional(this.separator);
+    public Output<String> separator() {
+        return this.separator;
     }
 
     /**
