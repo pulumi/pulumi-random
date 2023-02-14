@@ -20,3 +20,8 @@ export const randomString = new random.RandomString("string", { length: 32 }).re
 export const randomInteger = new random.RandomInteger("integer", { min: 128, max: 1024 }).result;
 export const randomUuid = new random.RandomUuid("uuid").result;
 export const randomPassword = new random.RandomPassword("password", { length: 32 }).result;
+
+export const randomPasswordWithKeepers = new random.RandomPassword("passwordWithKeepers", {
+    length: 32,
+    keepers: { pwdseed1: "pwdseed1" },
+}).result;
