@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * const password = new random.RandomPassword("password", {
  *     length: 16,
  *     special: true,
- *     overrideSpecial: `!#$%&*()-_=+[]{}<>:?`,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
  * });
  * const example = new aws.rds.Instance("example", {
  *     instanceClass: "db.t3.micro",
