@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -24,8 +24,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -35,7 +33,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := random.NewRandomString(ctx, "random", &random.RandomStringArgs{
 //				Length:          pulumi.Int(16),
-//				OverrideSpecial: pulumi.String(fmt.Sprintf("/@£$")),
+//				OverrideSpecial: pulumi.String("/@£$"),
 //				Special:         pulumi.Bool(true),
 //			})
 //			if err != nil {
