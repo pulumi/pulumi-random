@@ -15,15 +15,20 @@
 package testutil
 
 import (
+	"context"
+	"fmt"
 	"os/exec"
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 
 	"github.com/pulumi/pulumi/pkg/v3/engine"
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
+	pulumi_testing "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/retry"
 )
 
 // Test that upgrading the binary and language SDK is safe and results in no-change preview and update.
@@ -41,14 +46,6 @@ func ProviderUpdateTest(t *testing.T, providerBinary string, opts integration.Pr
 	// Restrict the PATH so pulumi CLI does not see it.
 	opts = opts.With(restrictPath(t, "node", "pulumi", "yarn"))
 
-	var yarnBin string = opts.YarnBin
-	if yarnBin == "" {
-		var err error
-		yarnBin, err = exec.LookPath("yarn")
-		require.NoError(t, err)
-		require.NotEmpty(t, yarnBin)
-	}
-
 	// Capture workdir from PrepareProject, as integration.ProgramTester does not expose it.
 	var workdir string
 
@@ -60,13 +57,11 @@ func ProviderUpdateTest(t *testing.T, providerBinary string, opts integration.Pr
 	// matching provider binary version.
 	opts.PrepareProject = func(info *engine.Projinfo) (err error) {
 		workdir = info.Root
-		err = integration.RunCommand(t, "yarn install", []string{yarnBin, "install"}, workdir, &opts)
-		require.NoError(t, err)
+		yarn(t, opts, workdir, "install")
 		return nil
 	}
 
 	pt := integration.ProgramTestManualLifeCycle(t, &opts)
-
 	err := pt.TestLifeCyclePrepare()
 	require.NoError(t, err)
 
@@ -90,8 +85,7 @@ func ProviderUpdateTest(t *testing.T, providerBinary string, opts integration.Pr
 
 	// Also bring local Node SDK versions in for testing via yarn link.
 	for _, d := range opts.Dependencies {
-		err := integration.RunCommand(t, "yarn link", []string{yarnBin, "link", d}, workdir, &opts)
-		require.NoError(t, err)
+		yarn(t, opts, workdir, "link", d)
 	}
 
 	// Test that local provider and SDK versions generate nop preview/udpate on the stack.
@@ -102,6 +96,46 @@ func ProviderUpdateTest(t *testing.T, providerBinary string, opts integration.Pr
 	require.NoError(t, err)
 
 	pt.TestFinished = true
+}
+
+func yarn(t *testing.T, opts integration.ProgramTestOptions, wd string, args ...string) {
+	name := "yarn " + strings.Join(args, " ")
+
+	// Yarn will time out if multiple processes are trying to install packages at the same time.
+	pulumi_testing.YarnInstallMutex.Lock()
+	defer pulumi_testing.YarnInstallMutex.Unlock()
+	t.Log("acquired yarn install lock")
+	t.Log("released yarn install lock")
+
+	var yarnBin string = opts.YarnBin
+	if yarnBin == "" {
+		var err error
+		yarnBin, err = exec.LookPath("yarn")
+		require.NoError(t, err)
+		require.NotEmpty(t, yarnBin)
+	}
+
+	_, _, err := retry.Until(context.Background(), retry.Acceptor{
+		Accept: func(try int, nextRetryTime time.Duration) (bool, interface{}, error) {
+			runerr := integration.RunCommand(t, name, append([]string{yarnBin}, args...), wd, &opts)
+			if runerr == nil {
+				return true, nil, nil
+			} else if _, ok := runerr.(*exec.ExitError); ok {
+				// yarn failed, let's try again, assuming we haven't failed a few times.
+				if try+1 >= 3 {
+					return false, nil, fmt.Errorf("%v did not complete after %v tries", name, try+1)
+				}
+
+				return false, nil, nil
+			}
+
+			// someother error, fail
+			return false, nil, runerr
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
 }
 
 func restrictPath(t *testing.T, commands ...string) integration.ProgramTestOptions {
