@@ -21,6 +21,7 @@ import (
 
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
@@ -65,9 +66,22 @@ func Provider() pf.ProviderInfo {
 			"random_password": {Tok: randomResource(randomMod, "RandomPassword")},
 			"random_pet":      {Tok: randomResource(randomMod, "RandomPet")},
 			"random_shuffle":  {Tok: randomResource(randomMod, "RandomShuffle")},
-			"random_string":   {Tok: randomResource(randomMod, "RandomString")},
 			"random_integer":  {Tok: randomResource(randomMod, "RandomInteger")},
 			"random_uuid":     {Tok: randomResource(randomMod, "RandomUuid")},
+
+			"random_string": {
+				Tok: randomResource(randomMod, "RandomString"),
+				PreStateUpgradeHook: func(args tfbridge.PreStateUpgradeHookArgs) (int64, resource.PropertyMap, error) {
+					// States for RandomString may be contaminated by
+					// https://github.com/pulumi/pulumi-random/issues/258 bug where the state is
+					// missing the version marker. Pretend that these states are at V1, which is the
+					// best guess. V1->V2/V3 migrations seem idempotent, this is probably safe.
+					if args.PriorStateSchemaVersion == 0 {
+						return 1, args.PriorState, nil
+					}
+					return args.PriorStateSchemaVersion, args.PriorState, nil
+				},
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
