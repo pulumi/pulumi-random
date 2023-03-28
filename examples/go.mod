@@ -10,8 +10,8 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-random/provider/v4 v4.0.0-20230306191832-8c7659ab0229
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.6.0
-	github.com/pulumi/pulumi-terraform-bridge/testing v0.0.0-20230327171336-65bb3a2fc37d
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.6.1
+	github.com/pulumi/pulumi-terraform-bridge/testing v0.0.0-20230328212400-4806fbe25bd9
 	github.com/pulumi/pulumi/pkg/v3 v3.59.1
 	github.com/pulumi/pulumi/sdk/v3 v3.59.1
 	github.com/stretchr/testify v1.8.2
@@ -183,7 +183,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.8.0 // indirect
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.42.2-0.20230327171336-65bb3a2fc37d // indirect
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.43.1-0.20230328212400-4806fbe25bd9 // indirect
 	github.com/pulumi/pulumi-yaml v1.0.4 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
