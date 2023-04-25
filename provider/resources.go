@@ -16,6 +16,10 @@ package random
 
 import (
 	"fmt"
+	// embed is used to store bridge-metadata.json in the compiled binary
+	_ "embed"
+	// embed is used to store bridge-metadata.json in the compiled binary
+	_ "embed"
 	"path/filepath"
 	"unicode"
 
@@ -113,9 +117,12 @@ func Provider() pf.ProviderInfo {
 				"random": "Random",
 			},
 		},
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
 	return pf.ProviderInfo{
 		ProviderInfo: info,
 		NewProvider:  shim.NewProvider,
 	}
 }
+
+var metadata []byte
