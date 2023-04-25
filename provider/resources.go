@@ -16,6 +16,8 @@ package random
 
 import (
 	"fmt"
+	// embed is used to store bridge-metadata.json in the compiled binary
+	_ "embed"
 	"path/filepath"
 	"unicode"
 
@@ -51,16 +53,20 @@ func randomResource(mod string, res string) tokens.Type {
 	return randomType(mod+"/"+fn, res)
 }
 
+//go:embed cmd/pulumi-resource-random/bridge-metadata.json
+var metadata []byte
+
 // Provider returns additional overlaid schema and metadata associated with the random package.
 func Provider() pf.ProviderInfo {
 	info := tfbridge.ProviderInfo{
-		Name:        "random",
-		Description: "A Pulumi package to safely use randomness in Pulumi programs.",
-		Keywords:    []string{"pulumi", "random"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-random",
-		Version:     version.Version,
+		Name:         "random",
+		Description:  "A Pulumi package to safely use randomness in Pulumi programs.",
+		Keywords:     []string{"pulumi", "random"},
+		License:      "Apache-2.0",
+		Homepage:     "https://pulumi.io",
+		Repository:   "https://github.com/pulumi/pulumi-random",
+		Version:      version.Version,
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"random_id":       {Tok: randomResource(randomMod, "RandomId")},
 			"random_password": {Tok: randomResource(randomMod, "RandomPassword")},
