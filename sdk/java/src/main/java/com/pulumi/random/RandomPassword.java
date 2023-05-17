@@ -130,7 +130,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * A bcrypt hash of the generated random string.
      * 
      */
-    @Export(name="bcryptHash", type=String.class, parameters={})
+    @Export(name="bcryptHash", refs={String.class}, tree="[0]")
     private Output<String> bcryptHash;
 
     /**
@@ -144,7 +144,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="keepers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
@@ -158,7 +158,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
      * 
      */
-    @Export(name="length", type=Integer.class, parameters={})
+    @Export(name="length", refs={Integer.class}, tree="[0]")
     private Output<Integer> length;
 
     /**
@@ -172,7 +172,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Include lowercase alphabet characters in the result. Default value is `true`.
      * 
      */
-    @Export(name="lower", type=Boolean.class, parameters={})
+    @Export(name="lower", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> lower;
 
     /**
@@ -186,7 +186,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
      * 
      */
-    @Export(name="minLower", type=Integer.class, parameters={})
+    @Export(name="minLower", refs={Integer.class}, tree="[0]")
     private Output<Integer> minLower;
 
     /**
@@ -200,7 +200,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Minimum number of numeric characters in the result. Default value is `0`.
      * 
      */
-    @Export(name="minNumeric", type=Integer.class, parameters={})
+    @Export(name="minNumeric", refs={Integer.class}, tree="[0]")
     private Output<Integer> minNumeric;
 
     /**
@@ -214,7 +214,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Minimum number of special characters in the result. Default value is `0`.
      * 
      */
-    @Export(name="minSpecial", type=Integer.class, parameters={})
+    @Export(name="minSpecial", refs={Integer.class}, tree="[0]")
     private Output<Integer> minSpecial;
 
     /**
@@ -228,7 +228,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
      * 
      */
-    @Export(name="minUpper", type=Integer.class, parameters={})
+    @Export(name="minUpper", refs={Integer.class}, tree="[0]")
     private Output<Integer> minUpper;
 
     /**
@@ -246,7 +246,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* **NOTE**: This is deprecated, use `numeric` instead. */
-    @Export(name="number", type=Boolean.class, parameters={})
+    @Export(name="number", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> number;
 
     /**
@@ -260,7 +260,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Include numeric characters in the result. Default value is `true`.
      * 
      */
-    @Export(name="numeric", type=Boolean.class, parameters={})
+    @Export(name="numeric", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> numeric;
 
     /**
@@ -274,7 +274,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      * 
      */
-    @Export(name="overrideSpecial", type=String.class, parameters={})
+    @Export(name="overrideSpecial", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> overrideSpecial;
 
     /**
@@ -288,7 +288,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * The generated random string.
      * 
      */
-    @Export(name="result", type=String.class, parameters={})
+    @Export(name="result", refs={String.class}, tree="[0]")
     private Output<String> result;
 
     /**
@@ -302,7 +302,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
-    @Export(name="special", type=Boolean.class, parameters={})
+    @Export(name="special", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> special;
 
     /**
@@ -316,7 +316,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
      * Include uppercase alphabet characters in the result. Default value is `true`.
      * 
      */
-    @Export(name="upper", type=Boolean.class, parameters={})
+    @Export(name="upper", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> upper;
 
     /**

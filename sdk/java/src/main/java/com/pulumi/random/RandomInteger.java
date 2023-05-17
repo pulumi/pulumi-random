@@ -80,7 +80,7 @@ public class RandomInteger extends com.pulumi.resources.CustomResource {
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="keepers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
@@ -94,7 +94,7 @@ public class RandomInteger extends com.pulumi.resources.CustomResource {
      * The maximum inclusive value of the range.
      * 
      */
-    @Export(name="max", type=Integer.class, parameters={})
+    @Export(name="max", refs={Integer.class}, tree="[0]")
     private Output<Integer> max;
 
     /**
@@ -108,7 +108,7 @@ public class RandomInteger extends com.pulumi.resources.CustomResource {
      * The minimum inclusive value of the range.
      * 
      */
-    @Export(name="min", type=Integer.class, parameters={})
+    @Export(name="min", refs={Integer.class}, tree="[0]")
     private Output<Integer> min;
 
     /**
@@ -122,7 +122,7 @@ public class RandomInteger extends com.pulumi.resources.CustomResource {
      * The random integer result.
      * 
      */
-    @Export(name="result", type=Integer.class, parameters={})
+    @Export(name="result", refs={Integer.class}, tree="[0]")
     private Output<Integer> result;
 
     /**
@@ -136,7 +136,7 @@ public class RandomInteger extends com.pulumi.resources.CustomResource {
      * A custom seed to always produce the same value.
      * 
      */
-    @Export(name="seed", type=String.class, parameters={})
+    @Export(name="seed", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> seed;
 
     /**

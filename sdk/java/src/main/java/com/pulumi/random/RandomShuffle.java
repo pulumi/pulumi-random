@@ -68,7 +68,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * The list of strings to shuffle.
      * 
      */
-    @Export(name="inputs", type=List.class, parameters={String.class})
+    @Export(name="inputs", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> inputs;
 
     /**
@@ -82,7 +82,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="keepers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
@@ -96,7 +96,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      * 
      */
-    @Export(name="resultCount", type=Integer.class, parameters={})
+    @Export(name="resultCount", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> resultCount;
 
     /**
@@ -110,7 +110,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * Random permutation of the list of strings given in `input`.
      * 
      */
-    @Export(name="results", type=List.class, parameters={String.class})
+    @Export(name="results", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> results;
 
     /**
@@ -124,7 +124,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      * 
      */
-    @Export(name="seed", type=String.class, parameters={})
+    @Export(name="seed", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> seed;
 
     /**

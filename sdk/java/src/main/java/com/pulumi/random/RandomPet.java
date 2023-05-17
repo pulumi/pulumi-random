@@ -65,7 +65,7 @@ public class RandomPet extends com.pulumi.resources.CustomResource {
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="keepers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
@@ -79,7 +79,7 @@ public class RandomPet extends com.pulumi.resources.CustomResource {
      * The length (in words) of the pet name. Defaults to 2
      * 
      */
-    @Export(name="length", type=Integer.class, parameters={})
+    @Export(name="length", refs={Integer.class}, tree="[0]")
     private Output<Integer> length;
 
     /**
@@ -93,7 +93,7 @@ public class RandomPet extends com.pulumi.resources.CustomResource {
      * A string to prefix the name with.
      * 
      */
-    @Export(name="prefix", type=String.class, parameters={})
+    @Export(name="prefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> prefix;
 
     /**
@@ -107,7 +107,7 @@ public class RandomPet extends com.pulumi.resources.CustomResource {
      * The character to separate words in the pet name. Defaults to &#34;-&#34;
      * 
      */
-    @Export(name="separator", type=String.class, parameters={})
+    @Export(name="separator", refs={String.class}, tree="[0]")
     private Output<String> separator;
 
     /**

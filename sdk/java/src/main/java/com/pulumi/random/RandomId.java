@@ -89,7 +89,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * The generated id presented in base64 without additional transformations.
      * 
      */
-    @Export(name="b64Std", type=String.class, parameters={})
+    @Export(name="b64Std", refs={String.class}, tree="[0]")
     private Output<String> b64Std;
 
     /**
@@ -103,7 +103,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      * 
      */
-    @Export(name="b64Url", type=String.class, parameters={})
+    @Export(name="b64Url", refs={String.class}, tree="[0]")
     private Output<String> b64Url;
 
     /**
@@ -117,7 +117,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
      * 
      */
-    @Export(name="byteLength", type=Integer.class, parameters={})
+    @Export(name="byteLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> byteLength;
 
     /**
@@ -131,7 +131,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * The generated id presented in non-padded decimal digits.
      * 
      */
-    @Export(name="dec", type=String.class, parameters={})
+    @Export(name="dec", refs={String.class}, tree="[0]")
     private Output<String> dec;
 
     /**
@@ -145,7 +145,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      * 
      */
-    @Export(name="hex", type=String.class, parameters={})
+    @Export(name="hex", refs={String.class}, tree="[0]")
     private Output<String> hex;
 
     /**
@@ -159,7 +159,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      * 
      */
-    @Export(name="keepers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="keepers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> keepers;
 
     /**
@@ -173,7 +173,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      * 
      */
-    @Export(name="prefix", type=String.class, parameters={})
+    @Export(name="prefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> prefix;
 
     /**
