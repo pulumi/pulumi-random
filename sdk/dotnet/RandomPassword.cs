@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Random
 {
     /// <summary>
+    /// Identical to random_string.
+    /// 
+    /// This resource *does* use a cryptographic random number generator.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

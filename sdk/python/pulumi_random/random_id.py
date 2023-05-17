@@ -209,6 +209,28 @@ class RandomId(pulumi.CustomResource):
         unique names during the brief period where both the old and new resources
         exist concurrently.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        # The following example shows how to generate a unique name for an AWS EC2
+        # instance that changes each time a new AMI id is selected.
+        server_random_id = random.RandomId("serverRandomId",
+            keepers={
+                "ami_id": var["ami_id"],
+            },
+            byte_length=8)
+        server_instance = aws.ec2.Instance("serverInstance",
+            tags={
+                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
+            },
+            ami=server_random_id.keepers["amiId"])
+        # ... (other aws_instance arguments) ...
+        ```
+
         ## Import
 
         Random IDs can be imported using the b64_url with an optional prefix. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
@@ -248,6 +270,28 @@ class RandomId(pulumi.CustomResource):
         the `create_before_destroy` lifecycle flag set to avoid conflicts with
         unique names during the brief period where both the old and new resources
         exist concurrently.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        # The following example shows how to generate a unique name for an AWS EC2
+        # instance that changes each time a new AMI id is selected.
+        server_random_id = random.RandomId("serverRandomId",
+            keepers={
+                "ami_id": var["ami_id"],
+            },
+            byte_length=8)
+        server_instance = aws.ec2.Instance("serverInstance",
+            tags={
+                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
+            },
+            ami=server_random_id.keepers["amiId"])
+        # ... (other aws_instance arguments) ...
+        ```
 
         ## Import
 
