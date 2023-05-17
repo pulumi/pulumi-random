@@ -19,6 +19,10 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Identical to random_string.
+ * 
+ * This resource *does* use a cryptographic random number generator.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;

@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Identical to random_string.
+//
+// This resource *does* use a cryptographic random number generator.
+//
 // ## Example Usage
 //
 // ```go

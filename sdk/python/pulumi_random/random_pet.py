@@ -170,6 +170,27 @@ class RandomPet(pulumi.CustomResource):
 
         This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        # The following example shows how to generate a unique pet name
+        # for an AWS EC2 instance that changes each time a new AMI id is
+        # selected.
+        server_random_pet = random.RandomPet("serverRandomPet", keepers={
+            "ami_id": var["ami_id"],
+        })
+        server_instance = aws.ec2.Instance("serverInstance",
+            tags={
+                "Name": server_random_pet.id.apply(lambda id: f"web-server-{id}"),
+            },
+            ami=server_random_pet.keepers["amiId"])
+        # ... (other aws_instance arguments) ...
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -187,6 +208,27 @@ class RandomPet(pulumi.CustomResource):
         The resource `RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
 
         This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        # The following example shows how to generate a unique pet name
+        # for an AWS EC2 instance that changes each time a new AMI id is
+        # selected.
+        server_random_pet = random.RandomPet("serverRandomPet", keepers={
+            "ami_id": var["ami_id"],
+        })
+        server_instance = aws.ec2.Instance("serverInstance",
+            tags={
+                "Name": server_random_pet.id.apply(lambda id: f"web-server-{id}"),
+            },
+            ami=server_random_pet.keepers["amiId"])
+        # ... (other aws_instance arguments) ...
+        ```
 
         :param str resource_name: The name of the resource.
         :param RandomPetArgs args: The arguments to use to populate this resource's properties.
