@@ -158,6 +158,9 @@ class RandomPasswordArgs:
         """
         Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
+        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
+        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
+
         return pulumi.get(self, "number")
 
     @number.setter
@@ -381,6 +384,9 @@ class _RandomPasswordState:
         """
         Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
+        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
+        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
+
         return pulumi.get(self, "number")
 
     @number.setter
@@ -844,6 +850,9 @@ class RandomPassword(pulumi.CustomResource):
         """
         Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
+        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
+        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
+
         return pulumi.get(self, "number")
 
     @property

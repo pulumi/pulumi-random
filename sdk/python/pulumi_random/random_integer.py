@@ -204,7 +204,7 @@ class RandomInteger(pulumi.CustomResource):
             priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
                 type="forward",
-                target_group_arn=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                target_group_arn=var["target_group_arn"],
             )])
         # ... (other aws_alb_listener_rule arguments) ...
         ```
@@ -255,7 +255,7 @@ class RandomInteger(pulumi.CustomResource):
             priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
                 type="forward",
-                target_group_arn=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                target_group_arn=var["target_group_arn"],
             )])
         # ... (other aws_alb_listener_rule arguments) ...
         ```
