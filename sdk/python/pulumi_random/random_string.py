@@ -158,6 +158,9 @@ class RandomStringArgs:
         """
         Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
+        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
+        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
+
         return pulumi.get(self, "number")
 
     @number.setter
@@ -365,6 +368,9 @@ class _RandomStringState:
         """
         Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
+        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
+        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
+
         return pulumi.get(self, "number")
 
     @number.setter
@@ -804,6 +810,9 @@ class RandomString(pulumi.CustomResource):
         """
         Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
+        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
+        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
+
         return pulumi.get(self, "number")
 
     @property

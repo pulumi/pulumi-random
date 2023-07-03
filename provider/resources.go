@@ -57,8 +57,9 @@ func randomResource(mod string, res string) tokens.Type {
 var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the random package.
-func Provider() pf.ProviderInfo {
+func Provider() tfbridge.ProviderInfo {
 	info := tfbridge.ProviderInfo{
+		P:            pf.ShimProvider(shim.NewProvider()),
 		Name:         "random",
 		Description:  "A Pulumi package to safely use randomness in Pulumi programs.",
 		Keywords:     []string{"pulumi", "random"},
@@ -120,8 +121,5 @@ func Provider() pf.ProviderInfo {
 			},
 		},
 	}
-	return pf.ProviderInfo{
-		ProviderInfo: info,
-		NewProvider:  shim.NewProvider,
-	}
+	return info
 }

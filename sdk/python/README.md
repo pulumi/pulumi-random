@@ -14,27 +14,6 @@ Using randomness as usual would not work well with Pulumi, because by definition
 a new random state would be produced, necessitating re-convergence on the goal state. This provider understands
 how to work with the Pulumi resource lifecycle to accomplish randomness safely and in a way that works as desired.
 
-## Example
-
-For example, to generate a random password, allocate a `RandomPassword` resource
-and then use its `result` output property (of type `Output<string>`) to pass
-to another resource.
-
-```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
-import * as random from "@pulumi/random";
-
-const password = new random.RandomPassword("password", {
-    length: 16,
-    overrideSpecial: "_%@",
-    special: true,
-});
-const example = new aws.rds.Instance("example", {
-    password: password.result,
-});
-```
-
 ## Installing
 
 This package is available in many languages in the standard packaging formats.
@@ -66,6 +45,27 @@ To use from Go, use `go get` to grab the latest version of the library
 To use from .NET, install using `dotnet add package`:
 
     $ dotnet add package Pulumi.Random
+
+## Example
+
+For example, to generate a random password, allocate a `RandomPassword` resource
+and then use its `result` output property (of type `Output<string>`) to pass
+to another resource.
+
+```typescript
+import * as pulumi from "@pulumi/pulumi";
+import * as aws from "@pulumi/aws";
+import * as random from "@pulumi/random";
+
+const password = new random.RandomPassword("password", {
+    length: 16,
+    overrideSpecial: "_%@",
+    special: true,
+});
+const example = new aws.rds.Instance("example", {
+    password: password.result,
+});
+```
 
 ## Reference
 
