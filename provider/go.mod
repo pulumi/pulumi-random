@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-random/provider/v4
 
-go 1.20
+go 1.21
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.13.0
