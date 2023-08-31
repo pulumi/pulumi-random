@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-random/examples/v4
 
-go 1.20
+go 1.21
 
 replace (
 	github.com/pulumi/pulumi-random/provider/v4 => ../provider
