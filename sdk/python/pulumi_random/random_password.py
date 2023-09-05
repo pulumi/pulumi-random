@@ -235,7 +235,7 @@ class _RandomPasswordState:
                  upper: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering RandomPassword resources.
-        :param pulumi.Input[str] bcrypt_hash: A bcrypt hash of the generated random string.
+        :param pulumi.Input[str] bcrypt_hash: A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
@@ -286,7 +286,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="bcryptHash")
     def bcrypt_hash(self) -> Optional[pulumi.Input[str]]:
         """
-        A bcrypt hash of the generated random string.
+        A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         """
         return pulumi.get(self, "bcrypt_hash")
 
@@ -745,7 +745,7 @@ class RandomPassword(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bcrypt_hash: A bcrypt hash of the generated random string.
+        :param pulumi.Input[str] bcrypt_hash: A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
@@ -784,7 +784,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="bcryptHash")
     def bcrypt_hash(self) -> pulumi.Output[str]:
         """
-        A bcrypt hash of the generated random string.
+        A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         """
         return pulumi.get(self, "bcrypt_hash")
 

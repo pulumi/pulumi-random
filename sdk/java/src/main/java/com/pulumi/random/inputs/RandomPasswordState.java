@@ -19,14 +19,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     public static final RandomPasswordState Empty = new RandomPasswordState();
 
     /**
-     * A bcrypt hash of the generated random string.
+     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
      * 
      */
     @Import(name="bcryptHash")
     private @Nullable Output<String> bcryptHash;
 
     /**
-     * @return A bcrypt hash of the generated random string.
+     * @return A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
      * 
      */
     public Optional<Output<String>> bcryptHash() {
@@ -274,7 +274,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bcryptHash A bcrypt hash of the generated random string.
+         * @param bcryptHash A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bcryptHash A bcrypt hash of the generated random string.
+         * @param bcryptHash A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
          * 
          * @return builder
          * 
