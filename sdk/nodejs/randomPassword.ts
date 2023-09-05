@@ -117,7 +117,7 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
-     * A bcrypt hash of the generated random string.
+     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
      */
     public /*out*/ readonly bcryptHash!: pulumi.Output<string>;
     /**
@@ -234,7 +234,7 @@ export class RandomPassword extends pulumi.CustomResource {
  */
 export interface RandomPasswordState {
     /**
-     * A bcrypt hash of the generated random string.
+     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
      */
     bcryptHash?: pulumi.Input<string>;
     /**

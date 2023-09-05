@@ -106,7 +106,7 @@ namespace Pulumi.Random
     public partial class RandomPassword : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A bcrypt hash of the generated random string.
+        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         /// </summary>
         [Output("bcryptHash")]
         public Output<string> BcryptHash { get; private set; } = null!;
@@ -330,7 +330,7 @@ namespace Pulumi.Random
         private Input<string>? _bcryptHash;
 
         /// <summary>
-        /// A bcrypt hash of the generated random string.
+        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         /// </summary>
         public Input<string>? BcryptHash
         {

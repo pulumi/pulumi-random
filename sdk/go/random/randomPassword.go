@@ -116,7 +116,7 @@ import (
 type RandomPassword struct {
 	pulumi.CustomResourceState
 
-	// A bcrypt hash of the generated random string.
+	// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 	BcryptHash pulumi.StringOutput `pulumi:"bcryptHash"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.StringMapOutput `pulumi:"keepers"`
@@ -185,7 +185,7 @@ func GetRandomPassword(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type randomPasswordState struct {
-	// A bcrypt hash of the generated random string.
+	// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 	BcryptHash *string `pulumi:"bcryptHash"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`
@@ -218,7 +218,7 @@ type randomPasswordState struct {
 }
 
 type RandomPasswordState struct {
-	// A bcrypt hash of the generated random string.
+	// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 	BcryptHash pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.StringMapInput
@@ -400,7 +400,7 @@ func (o RandomPasswordOutput) ToRandomPasswordOutputWithContext(ctx context.Cont
 	return o
 }
 
-// A bcrypt hash of the generated random string.
+// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 func (o RandomPasswordOutput) BcryptHash() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.BcryptHash }).(pulumi.StringOutput)
 }

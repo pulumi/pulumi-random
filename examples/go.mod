@@ -4,7 +4,6 @@ go 1.21
 
 replace (
 	github.com/pulumi/pulumi-random/provider/v4 => ../provider
-	github.com/terraform-providers/terraform-provider-random => github.com/terraform-providers/terraform-provider-random v1.3.2-0.20230117062402-cab81572f740
 	github.com/terraform-providers/terraform-provider-random/shim => ../provider/shim
 )
 

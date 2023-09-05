@@ -127,14 +127,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="random:index/randomPassword:RandomPassword")
 public class RandomPassword extends com.pulumi.resources.CustomResource {
     /**
-     * A bcrypt hash of the generated random string.
+     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
      * 
      */
     @Export(name="bcryptHash", refs={String.class}, tree="[0]")
     private Output<String> bcryptHash;
 
     /**
-     * @return A bcrypt hash of the generated random string.
+     * @return A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
      * 
      */
     public Output<String> bcryptHash() {
