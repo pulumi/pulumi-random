@@ -9,11 +9,7 @@ require (
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
 
-replace (
-	github.com/terraform-providers/terraform-provider-random => github.com/terraform-providers/terraform-provider-random v1.3.2-0.20230117062402-cab81572f740
-	github.com/terraform-providers/terraform-provider-random/shim => ./shim
-
-)
+replace github.com/terraform-providers/terraform-provider-random/shim => ./shim
 
 require (
 	cloud.google.com/go v0.110.0 // indirect
@@ -156,7 +152,7 @@ require (
 	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
-	github.com/mitchellh/cli v1.1.4 // indirect
+	github.com/mitchellh/cli v1.1.5 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/go-ps v1.0.0 // indirect
