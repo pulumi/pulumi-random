@@ -498,61 +498,9 @@ class RandomPassword(pulumi.CustomResource):
 
         ## Import
 
-        ### Avoiding Replacement
+        You can import external passwords into your Pulumi programs as follows:
 
-        ```sh
-         $ pulumi import random:index/randomPassword:RandomPassword If the resource were imported using `random_password.password securepassword`,
-        ```
-
-         replacement could be avoided by using1. Attribute values that match the imported ID and defaults:
-
-         terraform
-
-         resource "random_password" "password" {
-
-         length = 14
-
-         lower
-
-        = true
-
-         } 2. Attribute values that match the imported ID and omit the attributes with defaults:
-
-         terraform
-
-         resource "random_password" "password" {
-
-         length = 14
-
-         } 3. `ignore_changes` specifying the attributes to ignore:
-
-         terraform
-
-         resource "random_password" "password" {
-
-         length = 16
-
-         lower
-
-        = false
-
-         lifecycle {
-
-         ignore_changes = [
-
-         length,
-
-         lower,
-
-         ]
-
-         }
-
-         }
-
-         **NOTE** `ignore_changes` is only required until the resource is recreated after import,
-
-         after which it will use the configuration values specified.
+        This command will encode the `supersecret` token in Pulumi state and generate a code suggestion to include a new RandomPassword resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your secret password is now securely stored in Pulumi, and you can reference it in your Pulumi program as `newPassword.result`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -601,61 +549,9 @@ class RandomPassword(pulumi.CustomResource):
 
         ## Import
 
-        ### Avoiding Replacement
+        You can import external passwords into your Pulumi programs as follows:
 
-        ```sh
-         $ pulumi import random:index/randomPassword:RandomPassword If the resource were imported using `random_password.password securepassword`,
-        ```
-
-         replacement could be avoided by using1. Attribute values that match the imported ID and defaults:
-
-         terraform
-
-         resource "random_password" "password" {
-
-         length = 14
-
-         lower
-
-        = true
-
-         } 2. Attribute values that match the imported ID and omit the attributes with defaults:
-
-         terraform
-
-         resource "random_password" "password" {
-
-         length = 14
-
-         } 3. `ignore_changes` specifying the attributes to ignore:
-
-         terraform
-
-         resource "random_password" "password" {
-
-         length = 16
-
-         lower
-
-        = false
-
-         lifecycle {
-
-         ignore_changes = [
-
-         length,
-
-         lower,
-
-         ]
-
-         }
-
-         }
-
-         **NOTE** `ignore_changes` is only required until the resource is recreated after import,
-
-         after which it will use the configuration values specified.
+        This command will encode the `supersecret` token in Pulumi state and generate a code suggestion to include a new RandomPassword resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your secret password is now securely stored in Pulumi, and you can reference it in your Pulumi program as `newPassword.result`.
 
         :param str resource_name: The name of the resource.
         :param RandomPasswordArgs args: The arguments to use to populate this resource's properties.

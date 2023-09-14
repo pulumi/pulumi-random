@@ -49,63 +49,11 @@ import (
 //
 // ## Import
 //
-// ### Avoiding Replacement
+// You can import external strings into your Pulumi programs as RandomString resources as follows:
 //
-// ```sh
+// This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
 //
-//	$ pulumi import random:index/randomString:RandomString If the resource were imported using `random_string.test test`,
-//
-// ```
-//
-//	replacement can be avoided by using1. Attribute values that match the imported ID and defaults:
-//
-//	terraform
-//
-//	resource "random_string" "test" {
-//
-//	length = 4
-//
-//	lower
-//
-// = true
-//
-//	} 2. Attribute values that match the imported ID and omit the attributes with defaults:
-//
-//	terraform
-//
-//	resource "random_string" "test" {
-//
-//	length = 4
-//
-//	} 3. `ignore_changes` specifying the attributes to ignore:
-//
-//	terraform
-//
-//	resource "random_string" "test" {
-//
-//	length = 16
-//
-//	lower
-//
-// = false
-//
-//	lifecycle {
-//
-//	ignore_changes = [
-//
-//	length,
-//
-//	lower,
-//
-//	]
-//
-//	}
-//
-//	}
-//
-//	**NOTE** `ignore_changes` is only required until the resource is recreated after import,
-//
-//	after which it will use the configuration values specified.
+// If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
 type RandomString struct {
 	pulumi.CustomResourceState
 

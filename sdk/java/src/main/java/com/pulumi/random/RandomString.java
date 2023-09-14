@@ -58,61 +58,11 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * ### Avoiding Replacement
+ * You can import external strings into your Pulumi programs as RandomString resources as follows:
  * 
- * ```sh
- *  $ pulumi import random:index/randomString:RandomString If the resource were imported using `random_string.test test`,
- * ```
+ * This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
  * 
- *  replacement can be avoided by using1. Attribute values that match the imported ID and defaults:
- * 
- *  terraform
- * 
- *  resource &#34;random_string&#34; &#34;test&#34; {
- * 
- *  length = 4
- * 
- *  lower
- * 
- * = true
- * 
- *  } 2. Attribute values that match the imported ID and omit the attributes with defaults:
- * 
- *  terraform
- * 
- *  resource &#34;random_string&#34; &#34;test&#34; {
- * 
- *  length = 4
- * 
- *  } 3. `ignore_changes` specifying the attributes to ignore:
- * 
- *  terraform
- * 
- *  resource &#34;random_string&#34; &#34;test&#34; {
- * 
- *  length = 16
- * 
- *  lower
- * 
- * = false
- * 
- *  lifecycle {
- * 
- *  ignore_changes = [
- * 
- *  length,
- * 
- *  lower,
- * 
- *  ]
- * 
- *  }
- * 
- *  }
- * 
- *  **NOTE** `ignore_changes` is only required until the resource is recreated after import,
- * 
- *  after which it will use the configuration values specified.
+ * If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
  * 
  */
 @ResourceType(type="random:index/randomString:RandomString")
