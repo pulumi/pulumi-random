@@ -1,0 +1,59 @@
+### Limitations of Import
+
+Any attribute values that are specified within Pulumi config will be ignored during import and all
+attributes that have defaults defined within the schema will have the default assigned.
+
+For instance, using the following config during import:
+
+```pulumi
+resource "random_password" "password" {
+  length = 16
+  lower  = false
+}
+```
+
+Then importing the resource using `pulumi import random_password.password securepassword`, would
+result in the triggering of a replacement (i.e., destroy-create) during the next `pulumi up`.
+
+### Avoiding Replacement
+
+If the resource were imported using `pulumi import random_password.password securepassword`,
+replacement could be avoided by using:
+
+1. Attribute values that match the imported ID and defaults:
+
+    ```pulumi
+    resource "random_password" "password" {
+      length = 14
+      lower  = true
+    }
+    ```
+
+
+2. Attribute values that match the imported ID and omit the attributes with defaults:
+
+    ```pulumi
+    resource "random_password" "password" {
+      length = 14
+    }
+    ```
+
+
+3. `ignore_changes` specifying the attributes to ignore:
+
+    ```pulumi
+    resource "random_password" "password" {
+      length = 16
+      lower  = false
+
+      lifecycle {
+        ignore_changes = [
+          length,
+          lower,
+        ]
+      }
+    }
+    ```
+
+**NOTE** `ignore_changes` is only required until the resource is recreated after import, after which
+it will use the configuration values specified.
