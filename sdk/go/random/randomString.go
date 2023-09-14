@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-random/sdk/v4/go/random/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The resource `RandomString` generates a random permutation of alphanumeric characters and optionally special characters.
@@ -147,6 +149,7 @@ func NewRandomString(ctx *pulumi.Context,
 	if args.Length == nil {
 		return nil, errors.New("invalid value for required argument 'Length'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RandomString
 	err := ctx.RegisterResource("random:index/randomString:RandomString", name, args, &resource, opts...)
 	if err != nil {
@@ -316,6 +319,12 @@ func (i *RandomString) ToRandomStringOutputWithContext(ctx context.Context) Rand
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringOutput)
 }
 
+func (i *RandomString) ToOutput(ctx context.Context) pulumix.Output[*RandomString] {
+	return pulumix.Output[*RandomString]{
+		OutputState: i.ToRandomStringOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RandomStringArrayInput is an input type that accepts RandomStringArray and RandomStringArrayOutput values.
 // You can construct a concrete instance of `RandomStringArrayInput` via:
 //
@@ -339,6 +348,12 @@ func (i RandomStringArray) ToRandomStringArrayOutput() RandomStringArrayOutput {
 
 func (i RandomStringArray) ToRandomStringArrayOutputWithContext(ctx context.Context) RandomStringArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringArrayOutput)
+}
+
+func (i RandomStringArray) ToOutput(ctx context.Context) pulumix.Output[[]*RandomString] {
+	return pulumix.Output[[]*RandomString]{
+		OutputState: i.ToRandomStringArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RandomStringMapInput is an input type that accepts RandomStringMap and RandomStringMapOutput values.
@@ -366,6 +381,12 @@ func (i RandomStringMap) ToRandomStringMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringMapOutput)
 }
 
+func (i RandomStringMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomString] {
+	return pulumix.Output[map[string]*RandomString]{
+		OutputState: i.ToRandomStringMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RandomStringOutput struct{ *pulumi.OutputState }
 
 func (RandomStringOutput) ElementType() reflect.Type {
@@ -378,6 +399,12 @@ func (o RandomStringOutput) ToRandomStringOutput() RandomStringOutput {
 
 func (o RandomStringOutput) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
 	return o
+}
+
+func (o RandomStringOutput) ToOutput(ctx context.Context) pulumix.Output[*RandomString] {
+	return pulumix.Output[*RandomString]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -461,6 +488,12 @@ func (o RandomStringArrayOutput) ToRandomStringArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o RandomStringArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RandomString] {
+	return pulumix.Output[[]*RandomString]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RandomStringArrayOutput) Index(i pulumi.IntInput) RandomStringOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomString {
 		return vs[0].([]*RandomString)[vs[1].(int)]
@@ -479,6 +512,12 @@ func (o RandomStringMapOutput) ToRandomStringMapOutput() RandomStringMapOutput {
 
 func (o RandomStringMapOutput) ToRandomStringMapOutputWithContext(ctx context.Context) RandomStringMapOutput {
 	return o
+}
+
+func (o RandomStringMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomString] {
+	return pulumix.Output[map[string]*RandomString]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RandomStringMapOutput) MapIndex(k pulumi.StringInput) RandomStringOutput {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-random/sdk/v4/go/random/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The resource `RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
@@ -70,6 +72,7 @@ func NewRandomUuid(ctx *pulumi.Context,
 		args = &RandomUuidArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RandomUuid
 	err := ctx.RegisterResource("random:index/randomUuid:RandomUuid", name, args, &resource, opts...)
 	if err != nil {
@@ -143,6 +146,12 @@ func (i *RandomUuid) ToRandomUuidOutputWithContext(ctx context.Context) RandomUu
 	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidOutput)
 }
 
+func (i *RandomUuid) ToOutput(ctx context.Context) pulumix.Output[*RandomUuid] {
+	return pulumix.Output[*RandomUuid]{
+		OutputState: i.ToRandomUuidOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RandomUuidArrayInput is an input type that accepts RandomUuidArray and RandomUuidArrayOutput values.
 // You can construct a concrete instance of `RandomUuidArrayInput` via:
 //
@@ -166,6 +175,12 @@ func (i RandomUuidArray) ToRandomUuidArrayOutput() RandomUuidArrayOutput {
 
 func (i RandomUuidArray) ToRandomUuidArrayOutputWithContext(ctx context.Context) RandomUuidArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidArrayOutput)
+}
+
+func (i RandomUuidArray) ToOutput(ctx context.Context) pulumix.Output[[]*RandomUuid] {
+	return pulumix.Output[[]*RandomUuid]{
+		OutputState: i.ToRandomUuidArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RandomUuidMapInput is an input type that accepts RandomUuidMap and RandomUuidMapOutput values.
@@ -193,6 +208,12 @@ func (i RandomUuidMap) ToRandomUuidMapOutputWithContext(ctx context.Context) Ran
 	return pulumi.ToOutputWithContext(ctx, i).(RandomUuidMapOutput)
 }
 
+func (i RandomUuidMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomUuid] {
+	return pulumix.Output[map[string]*RandomUuid]{
+		OutputState: i.ToRandomUuidMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RandomUuidOutput struct{ *pulumi.OutputState }
 
 func (RandomUuidOutput) ElementType() reflect.Type {
@@ -205,6 +226,12 @@ func (o RandomUuidOutput) ToRandomUuidOutput() RandomUuidOutput {
 
 func (o RandomUuidOutput) ToRandomUuidOutputWithContext(ctx context.Context) RandomUuidOutput {
 	return o
+}
+
+func (o RandomUuidOutput) ToOutput(ctx context.Context) pulumix.Output[*RandomUuid] {
+	return pulumix.Output[*RandomUuid]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -231,6 +258,12 @@ func (o RandomUuidArrayOutput) ToRandomUuidArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o RandomUuidArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RandomUuid] {
+	return pulumix.Output[[]*RandomUuid]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RandomUuidArrayOutput) Index(i pulumi.IntInput) RandomUuidOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomUuid {
 		return vs[0].([]*RandomUuid)[vs[1].(int)]
@@ -249,6 +282,12 @@ func (o RandomUuidMapOutput) ToRandomUuidMapOutput() RandomUuidMapOutput {
 
 func (o RandomUuidMapOutput) ToRandomUuidMapOutputWithContext(ctx context.Context) RandomUuidMapOutput {
 	return o
+}
+
+func (o RandomUuidMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomUuid] {
+	return pulumix.Output[map[string]*RandomUuid]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RandomUuidMapOutput) MapIndex(k pulumi.StringInput) RandomUuidOutput {
