@@ -479,6 +479,10 @@ class RandomString(pulumi.CustomResource):
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
 
+        ```sh
+         $ import random:index/randomString:RandomString newString myspecialdata
+        ```
+
         This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
 
         If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
@@ -526,6 +530,10 @@ class RandomString(pulumi.CustomResource):
         ## Import
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
+
+        ```sh
+         $ import random:index/randomString:RandomString newString myspecialdata
+        ```
 
         This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
 

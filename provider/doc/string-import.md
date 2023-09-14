@@ -1,8 +1,8 @@
 You can import external strings into your Pulumi programs as RandomString resources as follows:
 
-```bash<break><break>
-import random:index/randomString:RandomString newString myspecialdata
-<break><break>```
+```sh<break>
+$ import random:index/randomString:RandomString newString myspecialdata
+<break>```
 
 This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to
 include a new RandomString resource in your Pulumi program. Include the suggested code and do a

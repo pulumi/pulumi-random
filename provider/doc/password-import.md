@@ -1,8 +1,8 @@
 You can import external passwords into your Pulumi programs as follows:
 
-```bash<break><break>
-import random:index/randomPassword:RandomPassword newPassword supersecret
-<break><break>```
+```sh<break>
+$ import random:index/randomPassword:RandomPassword newPassword supersecret
+<break>```
 
 This command will encode the `supersecret` token in Pulumi state and generate a code suggestion to
 include a new RandomPassword resource in your Pulumi program. Include the suggested code and do a
