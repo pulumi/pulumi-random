@@ -15,7 +15,7 @@
 package random
 
 import (
-	_ "embed"
+	_ "embed" // justification comment to appease lint
 )
 
 //go:embed doc/password-import.md
