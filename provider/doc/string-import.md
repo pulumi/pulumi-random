@@ -1,56 +1,14 @@
-### Limitations of Import
+You can import external strings into your Pulumi programs as RandomString resources as follows:
 
-Any attribute values that are specified within Pulumi config will be ignored during import and
-all attributes that have defaults defined within the schema will have the default assigned.
+```bash<break><break>
+import random:index/randomString:RandomString newString myspecialdata
+<break><break>```
 
-For instance, using the following config during import:
+This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to
+include a new RandomString resource in your Pulumi program. Include the suggested code and do a
+`pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as
+`newString.result`.
 
-```pulumi
-resource "random_string" "test" {
-  length = 16
-  lower  = false
-}
-```
+If the data needs to be stored securily as a secret, consider using the RandomPassword resource
+instead.
 
-Then importing the resource using `pulumi import random_string.test test`, would result in the
-triggering of a replacement (i.e., destroy-create) during the next `pulumi up`.
-
-
-### Avoiding Replacement
-
-If the resource were imported using `pulumi import random_string.test test`,
-replacement can be avoided by using:
-
-1. Attribute values that match the imported ID and defaults:
-    ```pulumi
-    resource "random_string" "test" {
-      length = 4
-      lower  = true
-    }
-    ```
-
-2. Attribute values that match the imported ID and omit the attributes with defaults:
-    ```pulumi
-    resource "random_string" "test" {
-      length = 4
-    }
-    ```
-
-3. `ignore_changes` specifying the attributes to ignore:
-
-    ```pulumi
-    resource "random_string" "test" {
-      length = 16
-      lower  = false
-
-      lifecycle {
-        ignore_changes = [
-          length,
-          lower,
-        ]
-      }
-    }
-    ```
-
-**NOTE** `ignore_changes` is only required until the resource is recreated after import, after which
-it will use the configuration values specified.
