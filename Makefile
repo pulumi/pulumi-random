@@ -95,7 +95,7 @@ install_plugins:
 	pulumi plugin install resource aws 5.21.1
 	pulumi plugin install resource azure 5.24.0
 
-lint_provider: provider
+lint_provider:
 	cd provider && golangci-lint run -c ../.golangci.yml
 
 provider: tfgen install_plugins
