@@ -1,4 +1,4 @@
-// Copyright 2016-2018, Pulumi Corporation.
+// Copyright 2016-2023, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,4 +25,10 @@ export const randomPet = new random.RandomPet("pet").id;
 export const randomPasswordWithKeepers = new random.RandomPassword("passwordWithKeepers", {
     length: 32,
     keepers: { pwdseed1: "pwdseed1" },
+}).result;
+
+
+export const randomStringWithWarning = new random.RandomString("stringWithWarning", {
+    length: 32,
+    number: false, // this is deprecated, but Pulumi program should not fail
 }).result;
