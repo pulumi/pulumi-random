@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-random/sdk/v4/go/random/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
@@ -98,6 +100,7 @@ func NewRandomInteger(ctx *pulumi.Context,
 	if args.Min == nil {
 		return nil, errors.New("invalid value for required argument 'Min'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RandomInteger
 	err := ctx.RegisterResource("random:index/randomInteger:RandomInteger", name, args, &resource, opts...)
 	if err != nil {
@@ -195,6 +198,12 @@ func (i *RandomInteger) ToRandomIntegerOutputWithContext(ctx context.Context) Ra
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerOutput)
 }
 
+func (i *RandomInteger) ToOutput(ctx context.Context) pulumix.Output[*RandomInteger] {
+	return pulumix.Output[*RandomInteger]{
+		OutputState: i.ToRandomIntegerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RandomIntegerArrayInput is an input type that accepts RandomIntegerArray and RandomIntegerArrayOutput values.
 // You can construct a concrete instance of `RandomIntegerArrayInput` via:
 //
@@ -218,6 +227,12 @@ func (i RandomIntegerArray) ToRandomIntegerArrayOutput() RandomIntegerArrayOutpu
 
 func (i RandomIntegerArray) ToRandomIntegerArrayOutputWithContext(ctx context.Context) RandomIntegerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerArrayOutput)
+}
+
+func (i RandomIntegerArray) ToOutput(ctx context.Context) pulumix.Output[[]*RandomInteger] {
+	return pulumix.Output[[]*RandomInteger]{
+		OutputState: i.ToRandomIntegerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RandomIntegerMapInput is an input type that accepts RandomIntegerMap and RandomIntegerMapOutput values.
@@ -245,6 +260,12 @@ func (i RandomIntegerMap) ToRandomIntegerMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIntegerMapOutput)
 }
 
+func (i RandomIntegerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomInteger] {
+	return pulumix.Output[map[string]*RandomInteger]{
+		OutputState: i.ToRandomIntegerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RandomIntegerOutput struct{ *pulumi.OutputState }
 
 func (RandomIntegerOutput) ElementType() reflect.Type {
@@ -257,6 +278,12 @@ func (o RandomIntegerOutput) ToRandomIntegerOutput() RandomIntegerOutput {
 
 func (o RandomIntegerOutput) ToRandomIntegerOutputWithContext(ctx context.Context) RandomIntegerOutput {
 	return o
+}
+
+func (o RandomIntegerOutput) ToOutput(ctx context.Context) pulumix.Output[*RandomInteger] {
+	return pulumix.Output[*RandomInteger]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -298,6 +325,12 @@ func (o RandomIntegerArrayOutput) ToRandomIntegerArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o RandomIntegerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RandomInteger] {
+	return pulumix.Output[[]*RandomInteger]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RandomIntegerArrayOutput) Index(i pulumi.IntInput) RandomIntegerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomInteger {
 		return vs[0].([]*RandomInteger)[vs[1].(int)]
@@ -316,6 +349,12 @@ func (o RandomIntegerMapOutput) ToRandomIntegerMapOutput() RandomIntegerMapOutpu
 
 func (o RandomIntegerMapOutput) ToRandomIntegerMapOutputWithContext(ctx context.Context) RandomIntegerMapOutput {
 	return o
+}
+
+func (o RandomIntegerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomInteger] {
+	return pulumix.Output[map[string]*RandomInteger]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RandomIntegerMapOutput) MapIndex(k pulumi.StringInput) RandomIntegerOutput {

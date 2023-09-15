@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-random/sdk/v4/go/random/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The resource `RandomString` generates a random permutation of alphanumeric characters and optionally special characters.
@@ -47,63 +49,17 @@ import (
 //
 // ## Import
 //
-// ### Avoiding Replacement
+// You can import external strings into your Pulumi programs as RandomString resources as follows:
 //
 // ```sh
 //
-//	$ pulumi import random:index/randomString:RandomString If the resource were imported using `random_string.test test`,
+//	$ import random:index/randomString:RandomString newString myspecialdata
 //
 // ```
 //
-//	replacement can be avoided by using1. Attribute values that match the imported ID and defaults:
+// This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
 //
-//	terraform
-//
-//	resource "random_string" "test" {
-//
-//	length = 4
-//
-//	lower
-//
-// = true
-//
-//	} 2. Attribute values that match the imported ID and omit the attributes with defaults:
-//
-//	terraform
-//
-//	resource "random_string" "test" {
-//
-//	length = 4
-//
-//	} 3. `ignore_changes` specifying the attributes to ignore:
-//
-//	terraform
-//
-//	resource "random_string" "test" {
-//
-//	length = 16
-//
-//	lower
-//
-// = false
-//
-//	lifecycle {
-//
-//	ignore_changes = [
-//
-//	length,
-//
-//	lower,
-//
-//	]
-//
-//	}
-//
-//	}
-//
-//	**NOTE** `ignore_changes` is only required until the resource is recreated after import,
-//
-//	after which it will use the configuration values specified.
+// If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
 type RandomString struct {
 	pulumi.CustomResourceState
 
@@ -147,6 +103,7 @@ func NewRandomString(ctx *pulumi.Context,
 	if args.Length == nil {
 		return nil, errors.New("invalid value for required argument 'Length'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RandomString
 	err := ctx.RegisterResource("random:index/randomString:RandomString", name, args, &resource, opts...)
 	if err != nil {
@@ -316,6 +273,12 @@ func (i *RandomString) ToRandomStringOutputWithContext(ctx context.Context) Rand
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringOutput)
 }
 
+func (i *RandomString) ToOutput(ctx context.Context) pulumix.Output[*RandomString] {
+	return pulumix.Output[*RandomString]{
+		OutputState: i.ToRandomStringOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RandomStringArrayInput is an input type that accepts RandomStringArray and RandomStringArrayOutput values.
 // You can construct a concrete instance of `RandomStringArrayInput` via:
 //
@@ -339,6 +302,12 @@ func (i RandomStringArray) ToRandomStringArrayOutput() RandomStringArrayOutput {
 
 func (i RandomStringArray) ToRandomStringArrayOutputWithContext(ctx context.Context) RandomStringArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringArrayOutput)
+}
+
+func (i RandomStringArray) ToOutput(ctx context.Context) pulumix.Output[[]*RandomString] {
+	return pulumix.Output[[]*RandomString]{
+		OutputState: i.ToRandomStringArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RandomStringMapInput is an input type that accepts RandomStringMap and RandomStringMapOutput values.
@@ -366,6 +335,12 @@ func (i RandomStringMap) ToRandomStringMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(RandomStringMapOutput)
 }
 
+func (i RandomStringMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomString] {
+	return pulumix.Output[map[string]*RandomString]{
+		OutputState: i.ToRandomStringMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RandomStringOutput struct{ *pulumi.OutputState }
 
 func (RandomStringOutput) ElementType() reflect.Type {
@@ -378,6 +353,12 @@ func (o RandomStringOutput) ToRandomStringOutput() RandomStringOutput {
 
 func (o RandomStringOutput) ToRandomStringOutputWithContext(ctx context.Context) RandomStringOutput {
 	return o
+}
+
+func (o RandomStringOutput) ToOutput(ctx context.Context) pulumix.Output[*RandomString] {
+	return pulumix.Output[*RandomString]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -461,6 +442,12 @@ func (o RandomStringArrayOutput) ToRandomStringArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o RandomStringArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RandomString] {
+	return pulumix.Output[[]*RandomString]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RandomStringArrayOutput) Index(i pulumi.IntInput) RandomStringOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomString {
 		return vs[0].([]*RandomString)[vs[1].(int)]
@@ -479,6 +466,12 @@ func (o RandomStringMapOutput) ToRandomStringMapOutput() RandomStringMapOutput {
 
 func (o RandomStringMapOutput) ToRandomStringMapOutputWithContext(ctx context.Context) RandomStringMapOutput {
 	return o
+}
+
+func (o RandomStringMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomString] {
+	return pulumix.Output[map[string]*RandomString]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RandomStringMapOutput) MapIndex(k pulumi.StringInput) RandomStringOutput {
