@@ -1,0 +1,12 @@
+provider: random
+major-version: 4
+makeTemplate: bridged
+# TODO: Enable this once our random provider is updated with framework support
+# generate-nightly-test-workflow: true
+plugins:
+  - name: aws
+    version: "5.21.1"
+  - name: azure
+    version: "5.24.0"
+team: ecosystem
+javaGenVersion: "v0.9.3"
