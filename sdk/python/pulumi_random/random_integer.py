@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RandomIntegerArgs', 'RandomInteger']
@@ -25,12 +25,27 @@ class RandomIntegerArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
-        pulumi.set(__self__, "max", max)
-        pulumi.set(__self__, "min", min)
+        RandomIntegerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max=max,
+            min=min,
+            keepers=keepers,
+            seed=seed,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max: pulumi.Input[int],
+             min: pulumi.Input[int],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             seed: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("max", max)
+        _setter("min", min)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if seed is not None:
-            pulumi.set(__self__, "seed", seed)
+            _setter("seed", seed)
 
     @property
     @pulumi.getter
@@ -97,16 +112,33 @@ class _RandomIntegerState:
         :param pulumi.Input[int] result: The random integer result.
         :param pulumi.Input[str] seed: A custom seed to always produce the same value.
         """
+        _RandomIntegerState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            keepers=keepers,
+            max=max,
+            min=min,
+            result=result,
+            seed=seed,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             max: Optional[pulumi.Input[int]] = None,
+             min: Optional[pulumi.Input[int]] = None,
+             result: Optional[pulumi.Input[int]] = None,
+             seed: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if max is not None:
-            pulumi.set(__self__, "max", max)
+            _setter("max", max)
         if min is not None:
-            pulumi.set(__self__, "min", min)
+            _setter("min", min)
         if result is not None:
-            pulumi.set(__self__, "result", result)
+            _setter("result", result)
         if seed is not None:
-            pulumi.set(__self__, "seed", seed)
+            _setter("seed", seed)
 
     @property
     @pulumi.getter
@@ -278,6 +310,10 @@ class RandomInteger(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RandomIntegerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
