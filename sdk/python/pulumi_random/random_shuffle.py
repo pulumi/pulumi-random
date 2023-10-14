@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RandomShuffleArgs', 'RandomShuffle']
@@ -25,13 +25,28 @@ class RandomShuffleArgs:
         :param pulumi.Input[int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         """
-        pulumi.set(__self__, "inputs", inputs)
+        RandomShuffleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            inputs=inputs,
+            keepers=keepers,
+            result_count=result_count,
+            seed=seed,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             inputs: pulumi.Input[Sequence[pulumi.Input[str]]],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             result_count: Optional[pulumi.Input[int]] = None,
+             seed: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("inputs", inputs)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if result_count is not None:
-            pulumi.set(__self__, "result_count", result_count)
+            _setter("result_count", result_count)
         if seed is not None:
-            pulumi.set(__self__, "seed", seed)
+            _setter("seed", seed)
 
     @property
     @pulumi.getter
@@ -98,16 +113,33 @@ class _RandomShuffleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] results: Random permutation of the list of strings given in `input`.
         :param pulumi.Input[str] seed: Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         """
+        _RandomShuffleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            inputs=inputs,
+            keepers=keepers,
+            result_count=result_count,
+            results=results,
+            seed=seed,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             inputs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             result_count: Optional[pulumi.Input[int]] = None,
+             results: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             seed: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if inputs is not None:
-            pulumi.set(__self__, "inputs", inputs)
+            _setter("inputs", inputs)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if result_count is not None:
-            pulumi.set(__self__, "result_count", result_count)
+            _setter("result_count", result_count)
         if results is not None:
-            pulumi.set(__self__, "results", results)
+            _setter("results", results)
         if seed is not None:
-            pulumi.set(__self__, "seed", seed)
+            _setter("seed", seed)
 
     @property
     @pulumi.getter
@@ -247,6 +279,10 @@ class RandomShuffle(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RandomShuffleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
