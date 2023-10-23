@@ -35,11 +35,17 @@ class RandomShuffleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             inputs: pulumi.Input[Sequence[pulumi.Input[str]]],
+             inputs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              result_count: Optional[pulumi.Input[int]] = None,
              seed: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if inputs is None:
+            raise TypeError("Missing 'inputs' argument")
+        if result_count is None and 'resultCount' in kwargs:
+            result_count = kwargs['resultCount']
+
         _setter("inputs", inputs)
         if keepers is not None:
             _setter("keepers", keepers)
@@ -129,7 +135,11 @@ class _RandomShuffleState:
              result_count: Optional[pulumi.Input[int]] = None,
              results: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              seed: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if result_count is None and 'resultCount' in kwargs:
+            result_count = kwargs['resultCount']
+
         if inputs is not None:
             _setter("inputs", inputs)
         if keepers is not None:

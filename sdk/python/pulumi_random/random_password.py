@@ -59,7 +59,7 @@ class RandomPasswordArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             length: pulumi.Input[int],
+             length: Optional[pulumi.Input[int]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              lower: Optional[pulumi.Input[bool]] = None,
              min_lower: Optional[pulumi.Input[int]] = None,
@@ -71,7 +71,21 @@ class RandomPasswordArgs:
              override_special: Optional[pulumi.Input[str]] = None,
              special: Optional[pulumi.Input[bool]] = None,
              upper: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if length is None:
+            raise TypeError("Missing 'length' argument")
+        if min_lower is None and 'minLower' in kwargs:
+            min_lower = kwargs['minLower']
+        if min_numeric is None and 'minNumeric' in kwargs:
+            min_numeric = kwargs['minNumeric']
+        if min_special is None and 'minSpecial' in kwargs:
+            min_special = kwargs['minSpecial']
+        if min_upper is None and 'minUpper' in kwargs:
+            min_upper = kwargs['minUpper']
+        if override_special is None and 'overrideSpecial' in kwargs:
+            override_special = kwargs['overrideSpecial']
+
         _setter("length", length)
         if keepers is not None:
             _setter("keepers", keepers)
@@ -315,7 +329,21 @@ class _RandomPasswordState:
              result: Optional[pulumi.Input[str]] = None,
              special: Optional[pulumi.Input[bool]] = None,
              upper: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bcrypt_hash is None and 'bcryptHash' in kwargs:
+            bcrypt_hash = kwargs['bcryptHash']
+        if min_lower is None and 'minLower' in kwargs:
+            min_lower = kwargs['minLower']
+        if min_numeric is None and 'minNumeric' in kwargs:
+            min_numeric = kwargs['minNumeric']
+        if min_special is None and 'minSpecial' in kwargs:
+            min_special = kwargs['minSpecial']
+        if min_upper is None and 'minUpper' in kwargs:
+            min_upper = kwargs['minUpper']
+        if override_special is None and 'overrideSpecial' in kwargs:
+            override_special = kwargs['overrideSpecial']
+
         if bcrypt_hash is not None:
             _setter("bcrypt_hash", bcrypt_hash)
         if keepers is not None:

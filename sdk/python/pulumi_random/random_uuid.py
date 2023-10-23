@@ -27,7 +27,9 @@ class RandomUuidArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
 
@@ -64,7 +66,9 @@ class _RandomUuidState:
              _setter: Callable[[Any, Any], None],
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              result: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
         if result is not None:

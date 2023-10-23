@@ -39,7 +39,9 @@ class RandomPetArgs:
              length: Optional[pulumi.Input[int]] = None,
              prefix: Optional[pulumi.Input[str]] = None,
              separator: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
         if length is not None:
@@ -126,7 +128,9 @@ class _RandomPetState:
              length: Optional[pulumi.Input[int]] = None,
              prefix: Optional[pulumi.Input[str]] = None,
              separator: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
         if length is not None:

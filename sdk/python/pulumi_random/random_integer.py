@@ -35,11 +35,17 @@ class RandomIntegerArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             max: pulumi.Input[int],
-             min: pulumi.Input[int],
+             max: Optional[pulumi.Input[int]] = None,
+             min: Optional[pulumi.Input[int]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              seed: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if max is None:
+            raise TypeError("Missing 'max' argument")
+        if min is None:
+            raise TypeError("Missing 'min' argument")
+
         _setter("max", max)
         _setter("min", min)
         if keepers is not None:
@@ -128,7 +134,9 @@ class _RandomIntegerState:
              min: Optional[pulumi.Input[int]] = None,
              result: Optional[pulumi.Input[int]] = None,
              seed: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
         if max is not None:

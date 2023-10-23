@@ -32,10 +32,16 @@ class RandomIdArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             byte_length: pulumi.Input[int],
+             byte_length: Optional[pulumi.Input[int]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              prefix: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if byte_length is None and 'byteLength' in kwargs:
+            byte_length = kwargs['byteLength']
+        if byte_length is None:
+            raise TypeError("Missing 'byte_length' argument")
+
         _setter("byte_length", byte_length)
         if keepers is not None:
             _setter("keepers", keepers)
@@ -119,7 +125,15 @@ class _RandomIdState:
              hex: Optional[pulumi.Input[str]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              prefix: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if b64_std is None and 'b64Std' in kwargs:
+            b64_std = kwargs['b64Std']
+        if b64_url is None and 'b64Url' in kwargs:
+            b64_url = kwargs['b64Url']
+        if byte_length is None and 'byteLength' in kwargs:
+            byte_length = kwargs['byteLength']
+
         if b64_std is not None:
             _setter("b64_std", b64_std)
         if b64_url is not None:
