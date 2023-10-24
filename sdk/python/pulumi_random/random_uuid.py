@@ -27,7 +27,9 @@ class RandomUuidArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
 
@@ -64,7 +66,9 @@ class _RandomUuidState:
              _setter: Callable[[Any, Any], None],
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              result: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if keepers is not None:
             _setter("keepers", keepers)
         if result is not None:
@@ -107,17 +111,6 @@ class RandomUuid(pulumi.CustomResource):
 
         This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_azure as azure
-        import pulumi_random as random
-
-        test_random_uuid = random.RandomUuid("testRandomUuid")
-        test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
-        ```
-
         ## Import
 
         Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
@@ -140,17 +133,6 @@ class RandomUuid(pulumi.CustomResource):
         The resource `RandomUuid` generates random uuid string that is intended to be used as unique identifiers for other resources.
 
         This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_azure as azure
-        import pulumi_random as random
-
-        test_random_uuid = random.RandomUuid("testRandomUuid")
-        test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
-        ```
 
         ## Import
 

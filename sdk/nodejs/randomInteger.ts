@@ -9,33 +9,6 @@ import * as utilities from "./utilities";
  *
  * This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as random from "@pulumi/random";
- *
- * // The following example shows how to generate a random priority
- * // between 1 and 50000 for a aws_alb_listener_rule resource:
- * const priority = new random.RandomInteger("priority", {
- *     min: 1,
- *     max: 50000,
- *     keepers: {
- *         listener_arn: _var.listener_arn,
- *     },
- * });
- * const main = new aws.alb.ListenerRule("main", {
- *     listenerArn: priority.keepers.apply(keepers => keepers?.listenerArn),
- *     priority: priority.result,
- *     actions: [{
- *         type: "forward",
- *         targetGroupArn: _var.target_group_arn,
- *     }],
- * });
- * // ... (other aws_alb_listener_rule arguments) ...
- * ```
- *
  * ## Import
  *
  * Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)

@@ -15,50 +15,6 @@ import (
 // The resource `RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
 //
 // This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			serverRandomPet, err := random.NewRandomPet(ctx, "serverRandomPet", &random.RandomPetArgs{
-//				Keepers: pulumi.StringMap{
-//					"ami_id": pulumi.Any(_var.Ami_id),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
-//				Tags: pulumi.StringMap{
-//					"Name": serverRandomPet.ID().ApplyT(func(id string) (string, error) {
-//						return fmt.Sprintf("web-server-%v", id), nil
-//					}).(pulumi.StringOutput),
-//				},
-//				Ami: serverRandomPet.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
-//					return &keepers.AmiId, nil
-//				}).(pulumi.StringPtrOutput),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type RandomPet struct {
 	pulumi.CustomResourceState
 
