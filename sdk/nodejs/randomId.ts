@@ -18,30 +18,6 @@ import * as utilities from "./utilities";
  * unique names during the brief period where both the old and new resources
  * exist concurrently.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as random from "@pulumi/random";
- *
- * // The following example shows how to generate a unique name for an AWS EC2
- * // instance that changes each time a new AMI id is selected.
- * const serverRandomId = new random.RandomId("serverRandomId", {
- *     keepers: {
- *         ami_id: _var.ami_id,
- *     },
- *     byteLength: 8,
- * });
- * const serverInstance = new aws.ec2.Instance("serverInstance", {
- *     tags: {
- *         Name: pulumi.interpolate`web-server ${serverRandomId.hex}`,
- *     },
- *     ami: serverRandomId.keepers.apply(keepers => keepers?.amiId),
- * });
- * // ... (other aws_instance arguments) ...
- * ```
- *
  * ## Import
  *
  * Random IDs can be imported using the b64_url with an optional prefix. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
