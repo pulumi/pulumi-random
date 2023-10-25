@@ -8,6 +8,28 @@ import * as utilities from "./utilities";
  * The resource `random.RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
  *
  * This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as random from "@pulumi/random";
+ *
+ * // The following example shows how to generate a unique pet name
+ * // for an AWS EC2 instance that changes each time a new AMI id is
+ * // selected.
+ * const serverRandomPet = new random.RandomPet("serverRandomPet", {keepers: {
+ *     ami_id: _var.ami_id,
+ * }});
+ * const serverInstance = new aws.ec2.Instance("serverInstance", {
+ *     tags: {
+ *         Name: pulumi.interpolate`web-server-${serverRandomPet.id}`,
+ *     },
+ *     ami: serverRandomPet.keepers.apply(keepers => keepers?.amiId),
+ * });
+ * // ... (other aws_instance arguments) ...
+ * ```
  */
 export class RandomPet extends pulumi.CustomResource {
     /**

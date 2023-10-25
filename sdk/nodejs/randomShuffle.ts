@@ -6,6 +6,26 @@ import * as utilities from "./utilities";
 
 /**
  * The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as random from "@pulumi/random";
+ *
+ * const az = new random.RandomShuffle("az", {
+ *     inputs: [
+ *         "us-west-1a",
+ *         "us-west-1c",
+ *         "us-west-1d",
+ *         "us-west-1e",
+ *     ],
+ *     resultCount: 2,
+ * });
+ * const example = new aws.elb.LoadBalancer("example", {availabilityZones: [az.results]});
+ * // ... and other aws_elb arguments ...
+ * ```
  */
 export class RandomShuffle extends pulumi.CustomResource {
     /**
