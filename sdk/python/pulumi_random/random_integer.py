@@ -224,6 +224,31 @@ class RandomInteger(pulumi.CustomResource):
 
         This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        # The following example shows how to generate a random priority
+        # between 1 and 50000 for a aws_alb_listener_rule resource:
+        priority = random.RandomInteger("priority",
+            min=1,
+            max=50000,
+            keepers={
+                "listener_arn": var["listener_arn"],
+            })
+        main = aws.alb.ListenerRule("main",
+            listener_arn=priority.keepers["listenerArn"],
+            priority=priority.result,
+            actions=[aws.alb.ListenerRuleActionArgs(
+                type="forward",
+                target_group_arn=var["target_group_arn"],
+            )])
+        # ... (other aws_alb_listener_rule arguments) ...
+        ```
+
         ## Import
 
         Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)
@@ -249,6 +274,31 @@ class RandomInteger(pulumi.CustomResource):
         The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
 
         This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_random as random
+
+        # The following example shows how to generate a random priority
+        # between 1 and 50000 for a aws_alb_listener_rule resource:
+        priority = random.RandomInteger("priority",
+            min=1,
+            max=50000,
+            keepers={
+                "listener_arn": var["listener_arn"],
+            })
+        main = aws.alb.ListenerRule("main",
+            listener_arn=priority.keepers["listenerArn"],
+            priority=priority.result,
+            actions=[aws.alb.ListenerRuleActionArgs(
+                type="forward",
+                target_group_arn=var["target_group_arn"],
+            )])
+        # ... (other aws_alb_listener_rule arguments) ...
+        ```
 
         ## Import
 

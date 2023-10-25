@@ -17,6 +17,45 @@ import (
 //
 // This resource *does* use a cryptographic random number generator.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/rds"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			password, err := random.NewRandomPassword(ctx, "password", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds.NewInstance(ctx, "example", &rds.InstanceArgs{
+//				InstanceClass:    pulumi.String("db.t3.micro"),
+//				AllocatedStorage: pulumi.Int(64),
+//				Engine:           pulumi.String("mysql"),
+//				Username:         pulumi.String("someone"),
+//				Password:         password.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // You can import external passwords into your Pulumi programs as follows:

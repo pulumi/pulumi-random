@@ -9,6 +9,27 @@ import * as utilities from "./utilities";
  *
  * This resource *does* use a cryptographic random number generator.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as random from "@pulumi/random";
+ *
+ * const password = new random.RandomPassword("password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const example = new aws.rds.Instance("example", {
+ *     instanceClass: "db.t3.micro",
+ *     allocatedStorage: 64,
+ *     engine: "mysql",
+ *     username: "someone",
+ *     password: password.result,
+ * });
+ * ```
+ *
  * ## Import
  *
  * You can import external passwords into your Pulumi programs as follows:

@@ -553,6 +553,18 @@ class RandomString(pulumi.CustomResource):
 
         Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_random as random
+
+        random = random.RandomString("random",
+            length=16,
+            override_special="/@£$",
+            special=True)
+        ```
+
         ## Import
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
@@ -592,6 +604,18 @@ class RandomString(pulumi.CustomResource):
         This resource *does* use a cryptographic random number generator.
 
         Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_random as random
+
+        random = random.RandomString("random",
+            length=16,
+            override_special="/@£$",
+            special=True)
+        ```
 
         ## Import
 

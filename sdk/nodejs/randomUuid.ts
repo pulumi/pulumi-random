@@ -9,6 +9,17 @@ import * as utilities from "./utilities";
  *
  * This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needed a unique string identifier.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azure from "@pulumi/azure";
+ * import * as random from "@pulumi/random";
+ *
+ * const testRandomUuid = new random.RandomUuid("testRandomUuid", {});
+ * const testResourceGroup = new azure.core.ResourceGroup("testResourceGroup", {location: "Central US"});
+ * ```
+ *
  * ## Import
  *
  * Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.

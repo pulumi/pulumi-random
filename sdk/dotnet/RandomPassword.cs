@@ -14,6 +14,36 @@ namespace Pulumi.Random
     /// 
     /// This resource *does* use a cryptographic random number generator.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var password = new Random.RandomPassword("password", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
+    ///     });
+    /// 
+    ///     var example = new Aws.Rds.Instance("example", new()
+    ///     {
+    ///         InstanceClass = "db.t3.micro",
+    ///         AllocatedStorage = 64,
+    ///         Engine = "mysql",
+    ///         Username = "someone",
+    ///         Password = password.Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// You can import external passwords into your Pulumi programs as follows:

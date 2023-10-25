@@ -16,6 +16,26 @@ namespace Pulumi.Random
     /// 
     /// Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var random = new Random.RandomString("random", new()
+    ///     {
+    ///         Length = 16,
+    ///         OverrideSpecial = "/@£$",
+    ///         Special = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// You can import external strings into your Pulumi programs as RandomString resources as follows:

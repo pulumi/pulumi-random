@@ -14,6 +14,47 @@ namespace Pulumi.Random
     /// 
     /// This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // The following example shows how to generate a random priority
+    ///     // between 1 and 50000 for a aws_alb_listener_rule resource:
+    ///     var priority = new Random.RandomInteger("priority", new()
+    ///     {
+    ///         Min = 1,
+    ///         Max = 50000,
+    ///         Keepers = 
+    ///         {
+    ///             { "listener_arn", @var.Listener_arn },
+    ///         },
+    ///     });
+    /// 
+    ///     var main = new Aws.Alb.ListenerRule("main", new()
+    ///     {
+    ///         ListenerArn = priority.Keepers.Apply(keepers =&gt; keepers?.ListenerArn),
+    ///         Priority = priority.Result,
+    ///         Actions = new[]
+    ///         {
+    ///             new Aws.Alb.Inputs.ListenerRuleActionArgs
+    ///             {
+    ///                 Type = "forward",
+    ///                 TargetGroupArn = @var.Target_group_arn,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // ... (other aws_alb_listener_rule arguments) ...
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)
