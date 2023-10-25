@@ -32,10 +32,16 @@ class RandomIdArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             byte_length: pulumi.Input[int],
+             byte_length: Optional[pulumi.Input[int]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              prefix: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if byte_length is None and 'byteLength' in kwargs:
+            byte_length = kwargs['byteLength']
+        if byte_length is None:
+            raise TypeError("Missing 'byte_length' argument")
+
         _setter("byte_length", byte_length)
         if keepers is not None:
             _setter("keepers", keepers)
@@ -119,7 +125,15 @@ class _RandomIdState:
              hex: Optional[pulumi.Input[str]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              prefix: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if b64_std is None and 'b64Std' in kwargs:
+            b64_std = kwargs['b64Std']
+        if b64_url is None and 'b64Url' in kwargs:
+            b64_url = kwargs['b64Url']
+        if byte_length is None and 'byteLength' in kwargs:
+            byte_length = kwargs['byteLength']
+
         if b64_std is not None:
             _setter("b64_std", b64_std)
         if b64_url is not None:
@@ -243,28 +257,6 @@ class RandomId(pulumi.CustomResource):
         unique names during the brief period where both the old and new resources
         exist concurrently.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_random as random
-
-        # The following example shows how to generate a unique name for an AWS EC2
-        # instance that changes each time a new AMI id is selected.
-        server_random_id = random.RandomId("serverRandomId",
-            keepers={
-                "ami_id": var["ami_id"],
-            },
-            byte_length=8)
-        server_instance = aws.ec2.Instance("serverInstance",
-            tags={
-                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
-            },
-            ami=server_random_id.keepers["amiId"])
-        # ... (other aws_instance arguments) ...
-        ```
-
         ## Import
 
         Random IDs can be imported using the b64_url with an optional prefix. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix
@@ -304,28 +296,6 @@ class RandomId(pulumi.CustomResource):
         the `create_before_destroy` lifecycle flag set to avoid conflicts with
         unique names during the brief period where both the old and new resources
         exist concurrently.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_random as random
-
-        # The following example shows how to generate a unique name for an AWS EC2
-        # instance that changes each time a new AMI id is selected.
-        server_random_id = random.RandomId("serverRandomId",
-            keepers={
-                "ami_id": var["ami_id"],
-            },
-            byte_length=8)
-        server_instance = aws.ec2.Instance("serverInstance",
-            tags={
-                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
-            },
-            ami=server_random_id.keepers["amiId"])
-        # ... (other aws_instance arguments) ...
-        ```
 
         ## Import
 

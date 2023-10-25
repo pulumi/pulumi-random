@@ -23,41 +23,6 @@ namespace Pulumi.Random
     /// unique names during the brief period where both the old and new resources
     /// exist concurrently.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // The following example shows how to generate a unique name for an AWS EC2
-    ///     // instance that changes each time a new AMI id is selected.
-    ///     var serverRandomId = new Random.RandomId("serverRandomId", new()
-    ///     {
-    ///         Keepers = 
-    ///         {
-    ///             { "ami_id", @var.Ami_id },
-    ///         },
-    ///         ByteLength = 8,
-    ///     });
-    /// 
-    ///     var serverInstance = new Aws.Ec2.Instance("serverInstance", new()
-    ///     {
-    ///         Tags = 
-    ///         {
-    ///             { "Name", serverRandomId.Hex.Apply(hex =&gt; $"web-server {hex}") },
-    ///         },
-    ///         Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
-    ///     });
-    /// 
-    ///     // ... (other aws_instance arguments) ...
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Random IDs can be imported using the b64_url with an optional prefix. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix

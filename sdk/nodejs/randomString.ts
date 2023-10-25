@@ -11,19 +11,6 @@ import * as utilities from "./utilities";
  *
  * Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as random from "@pulumi/random";
- *
- * const random = new random.RandomString("random", {
- *     length: 16,
- *     overrideSpecial: "/@£$",
- *     special: true,
- * });
- * ```
- *
  * ## Import
  *
  * You can import external strings into your Pulumi programs as RandomString resources as follows:

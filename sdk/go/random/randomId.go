@@ -26,51 +26,6 @@ import (
 // unique names during the brief period where both the old and new resources
 // exist concurrently.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			serverRandomId, err := random.NewRandomId(ctx, "serverRandomId", &random.RandomIdArgs{
-//				Keepers: pulumi.StringMap{
-//					"ami_id": pulumi.Any(_var.Ami_id),
-//				},
-//				ByteLength: pulumi.Int(8),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
-//				Tags: pulumi.StringMap{
-//					"Name": serverRandomId.Hex.ApplyT(func(hex string) (string, error) {
-//						return fmt.Sprintf("web-server %v", hex), nil
-//					}).(pulumi.StringOutput),
-//				},
-//				Ami: serverRandomId.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
-//					return &keepers.AmiId, nil
-//				}).(pulumi.StringPtrOutput),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Random IDs can be imported using the b64_url with an optional prefix. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix

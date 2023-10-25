@@ -59,7 +59,7 @@ class RandomStringArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             length: pulumi.Input[int],
+             length: Optional[pulumi.Input[int]] = None,
              keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              lower: Optional[pulumi.Input[bool]] = None,
              min_lower: Optional[pulumi.Input[int]] = None,
@@ -71,7 +71,21 @@ class RandomStringArgs:
              override_special: Optional[pulumi.Input[str]] = None,
              special: Optional[pulumi.Input[bool]] = None,
              upper: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if length is None:
+            raise TypeError("Missing 'length' argument")
+        if min_lower is None and 'minLower' in kwargs:
+            min_lower = kwargs['minLower']
+        if min_numeric is None and 'minNumeric' in kwargs:
+            min_numeric = kwargs['minNumeric']
+        if min_special is None and 'minSpecial' in kwargs:
+            min_special = kwargs['minSpecial']
+        if min_upper is None and 'minUpper' in kwargs:
+            min_upper = kwargs['minUpper']
+        if override_special is None and 'overrideSpecial' in kwargs:
+            override_special = kwargs['overrideSpecial']
+
         _setter("length", length)
         if keepers is not None:
             _setter("keepers", keepers)
@@ -311,7 +325,19 @@ class _RandomStringState:
              result: Optional[pulumi.Input[str]] = None,
              special: Optional[pulumi.Input[bool]] = None,
              upper: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if min_lower is None and 'minLower' in kwargs:
+            min_lower = kwargs['minLower']
+        if min_numeric is None and 'minNumeric' in kwargs:
+            min_numeric = kwargs['minNumeric']
+        if min_special is None and 'minSpecial' in kwargs:
+            min_special = kwargs['minSpecial']
+        if min_upper is None and 'minUpper' in kwargs:
+            min_upper = kwargs['minUpper']
+        if override_special is None and 'overrideSpecial' in kwargs:
+            override_special = kwargs['overrideSpecial']
+
         if keepers is not None:
             _setter("keepers", keepers)
         if length is not None:
@@ -527,18 +553,6 @@ class RandomString(pulumi.CustomResource):
 
         Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_random as random
-
-        random = random.RandomString("random",
-            length=16,
-            override_special="/@£$",
-            special=True)
-        ```
-
         ## Import
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
@@ -578,18 +592,6 @@ class RandomString(pulumi.CustomResource):
         This resource *does* use a cryptographic random number generator.
 
         Historically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_random as random
-
-        random = random.RandomString("random",
-            length=16,
-            override_special="/@£$",
-            special=True)
-        ```
 
         ## Import
 
