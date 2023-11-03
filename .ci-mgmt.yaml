@@ -10,3 +10,6 @@ plugins:
     version: "5.24.0"
 team: ecosystem
 javaGenVersion: "v0.9.3"
+license:
+  ignore:
+    - github.com/terraform-providers/terraform-provider-random/shim
