@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RandomIdArgs', 'RandomId']
@@ -23,11 +23,30 @@ class RandomIdArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
         """
-        pulumi.set(__self__, "byte_length", byte_length)
+        RandomIdArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            byte_length=byte_length,
+            keepers=keepers,
+            prefix=prefix,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             byte_length: Optional[pulumi.Input[int]] = None,
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             prefix: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if byte_length is None and 'byteLength' in kwargs:
+            byte_length = kwargs['byteLength']
+        if byte_length is None:
+            raise TypeError("Missing 'byte_length' argument")
+
+        _setter("byte_length", byte_length)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
+            _setter("prefix", prefix)
 
     @property
     @pulumi.getter(name="byteLength")
@@ -86,20 +105,49 @@ class _RandomIdState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] prefix: Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
         """
+        _RandomIdState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            b64_std=b64_std,
+            b64_url=b64_url,
+            byte_length=byte_length,
+            dec=dec,
+            hex=hex,
+            keepers=keepers,
+            prefix=prefix,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             b64_std: Optional[pulumi.Input[str]] = None,
+             b64_url: Optional[pulumi.Input[str]] = None,
+             byte_length: Optional[pulumi.Input[int]] = None,
+             dec: Optional[pulumi.Input[str]] = None,
+             hex: Optional[pulumi.Input[str]] = None,
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             prefix: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if b64_std is None and 'b64Std' in kwargs:
+            b64_std = kwargs['b64Std']
+        if b64_url is None and 'b64Url' in kwargs:
+            b64_url = kwargs['b64Url']
+        if byte_length is None and 'byteLength' in kwargs:
+            byte_length = kwargs['byteLength']
+
         if b64_std is not None:
-            pulumi.set(__self__, "b64_std", b64_std)
+            _setter("b64_std", b64_std)
         if b64_url is not None:
-            pulumi.set(__self__, "b64_url", b64_url)
+            _setter("b64_url", b64_url)
         if byte_length is not None:
-            pulumi.set(__self__, "byte_length", byte_length)
+            _setter("byte_length", byte_length)
         if dec is not None:
-            pulumi.set(__self__, "dec", dec)
+            _setter("dec", dec)
         if hex is not None:
-            pulumi.set(__self__, "hex", hex)
+            _setter("hex", hex)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
+            _setter("prefix", prefix)
 
     @property
     @pulumi.getter(name="b64Std")
@@ -317,6 +365,10 @@ class RandomId(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RandomIdArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RandomPasswordArgs', 'RandomPassword']
@@ -41,32 +41,77 @@ class RandomPasswordArgs:
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
-        pulumi.set(__self__, "length", length)
+        RandomPasswordArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            length=length,
+            keepers=keepers,
+            lower=lower,
+            min_lower=min_lower,
+            min_numeric=min_numeric,
+            min_special=min_special,
+            min_upper=min_upper,
+            number=number,
+            numeric=numeric,
+            override_special=override_special,
+            special=special,
+            upper=upper,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             length: Optional[pulumi.Input[int]] = None,
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             lower: Optional[pulumi.Input[bool]] = None,
+             min_lower: Optional[pulumi.Input[int]] = None,
+             min_numeric: Optional[pulumi.Input[int]] = None,
+             min_special: Optional[pulumi.Input[int]] = None,
+             min_upper: Optional[pulumi.Input[int]] = None,
+             number: Optional[pulumi.Input[bool]] = None,
+             numeric: Optional[pulumi.Input[bool]] = None,
+             override_special: Optional[pulumi.Input[str]] = None,
+             special: Optional[pulumi.Input[bool]] = None,
+             upper: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if length is None:
+            raise TypeError("Missing 'length' argument")
+        if min_lower is None and 'minLower' in kwargs:
+            min_lower = kwargs['minLower']
+        if min_numeric is None and 'minNumeric' in kwargs:
+            min_numeric = kwargs['minNumeric']
+        if min_special is None and 'minSpecial' in kwargs:
+            min_special = kwargs['minSpecial']
+        if min_upper is None and 'minUpper' in kwargs:
+            min_upper = kwargs['minUpper']
+        if override_special is None and 'overrideSpecial' in kwargs:
+            override_special = kwargs['overrideSpecial']
+
+        _setter("length", length)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if lower is not None:
-            pulumi.set(__self__, "lower", lower)
+            _setter("lower", lower)
         if min_lower is not None:
-            pulumi.set(__self__, "min_lower", min_lower)
+            _setter("min_lower", min_lower)
         if min_numeric is not None:
-            pulumi.set(__self__, "min_numeric", min_numeric)
+            _setter("min_numeric", min_numeric)
         if min_special is not None:
-            pulumi.set(__self__, "min_special", min_special)
+            _setter("min_special", min_special)
         if min_upper is not None:
-            pulumi.set(__self__, "min_upper", min_upper)
+            _setter("min_upper", min_upper)
         if number is not None:
             warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
             pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
         if number is not None:
-            pulumi.set(__self__, "number", number)
+            _setter("number", number)
         if numeric is not None:
-            pulumi.set(__self__, "numeric", numeric)
+            _setter("numeric", numeric)
         if override_special is not None:
-            pulumi.set(__self__, "override_special", override_special)
+            _setter("override_special", override_special)
         if special is not None:
-            pulumi.set(__self__, "special", special)
+            _setter("special", special)
         if upper is not None:
-            pulumi.set(__self__, "upper", upper)
+            _setter("upper", upper)
 
     @property
     @pulumi.getter
@@ -250,37 +295,86 @@ class _RandomPasswordState:
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
+        _RandomPasswordState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bcrypt_hash=bcrypt_hash,
+            keepers=keepers,
+            length=length,
+            lower=lower,
+            min_lower=min_lower,
+            min_numeric=min_numeric,
+            min_special=min_special,
+            min_upper=min_upper,
+            number=number,
+            numeric=numeric,
+            override_special=override_special,
+            result=result,
+            special=special,
+            upper=upper,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bcrypt_hash: Optional[pulumi.Input[str]] = None,
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             length: Optional[pulumi.Input[int]] = None,
+             lower: Optional[pulumi.Input[bool]] = None,
+             min_lower: Optional[pulumi.Input[int]] = None,
+             min_numeric: Optional[pulumi.Input[int]] = None,
+             min_special: Optional[pulumi.Input[int]] = None,
+             min_upper: Optional[pulumi.Input[int]] = None,
+             number: Optional[pulumi.Input[bool]] = None,
+             numeric: Optional[pulumi.Input[bool]] = None,
+             override_special: Optional[pulumi.Input[str]] = None,
+             result: Optional[pulumi.Input[str]] = None,
+             special: Optional[pulumi.Input[bool]] = None,
+             upper: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bcrypt_hash is None and 'bcryptHash' in kwargs:
+            bcrypt_hash = kwargs['bcryptHash']
+        if min_lower is None and 'minLower' in kwargs:
+            min_lower = kwargs['minLower']
+        if min_numeric is None and 'minNumeric' in kwargs:
+            min_numeric = kwargs['minNumeric']
+        if min_special is None and 'minSpecial' in kwargs:
+            min_special = kwargs['minSpecial']
+        if min_upper is None and 'minUpper' in kwargs:
+            min_upper = kwargs['minUpper']
+        if override_special is None and 'overrideSpecial' in kwargs:
+            override_special = kwargs['overrideSpecial']
+
         if bcrypt_hash is not None:
-            pulumi.set(__self__, "bcrypt_hash", bcrypt_hash)
+            _setter("bcrypt_hash", bcrypt_hash)
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if length is not None:
-            pulumi.set(__self__, "length", length)
+            _setter("length", length)
         if lower is not None:
-            pulumi.set(__self__, "lower", lower)
+            _setter("lower", lower)
         if min_lower is not None:
-            pulumi.set(__self__, "min_lower", min_lower)
+            _setter("min_lower", min_lower)
         if min_numeric is not None:
-            pulumi.set(__self__, "min_numeric", min_numeric)
+            _setter("min_numeric", min_numeric)
         if min_special is not None:
-            pulumi.set(__self__, "min_special", min_special)
+            _setter("min_special", min_special)
         if min_upper is not None:
-            pulumi.set(__self__, "min_upper", min_upper)
+            _setter("min_upper", min_upper)
         if number is not None:
             warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
             pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
         if number is not None:
-            pulumi.set(__self__, "number", number)
+            _setter("number", number)
         if numeric is not None:
-            pulumi.set(__self__, "numeric", numeric)
+            _setter("numeric", numeric)
         if override_special is not None:
-            pulumi.set(__self__, "override_special", override_special)
+            _setter("override_special", override_special)
         if result is not None:
-            pulumi.set(__self__, "result", result)
+            _setter("result", result)
         if special is not None:
-            pulumi.set(__self__, "special", special)
+            _setter("special", special)
         if upper is not None:
-            pulumi.set(__self__, "upper", upper)
+            _setter("upper", upper)
 
     @property
     @pulumi.getter(name="bcryptHash")
@@ -571,6 +665,10 @@ class RandomPassword(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RandomPasswordArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

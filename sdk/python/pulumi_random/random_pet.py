@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RandomPetArgs', 'RandomPet']
@@ -25,14 +25,31 @@ class RandomPetArgs:
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name. Defaults to "-"
         """
+        RandomPetArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            keepers=keepers,
+            length=length,
+            prefix=prefix,
+            separator=separator,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             length: Optional[pulumi.Input[int]] = None,
+             prefix: Optional[pulumi.Input[str]] = None,
+             separator: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if length is not None:
-            pulumi.set(__self__, "length", length)
+            _setter("length", length)
         if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
+            _setter("prefix", prefix)
         if separator is not None:
-            pulumi.set(__self__, "separator", separator)
+            _setter("separator", separator)
 
     @property
     @pulumi.getter
@@ -97,14 +114,31 @@ class _RandomPetState:
         :param pulumi.Input[str] prefix: A string to prefix the name with.
         :param pulumi.Input[str] separator: The character to separate words in the pet name. Defaults to "-"
         """
+        _RandomPetState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            keepers=keepers,
+            length=length,
+            prefix=prefix,
+            separator=separator,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             length: Optional[pulumi.Input[int]] = None,
+             prefix: Optional[pulumi.Input[str]] = None,
+             separator: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if length is not None:
-            pulumi.set(__self__, "length", length)
+            _setter("length", length)
         if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
+            _setter("prefix", prefix)
         if separator is not None:
-            pulumi.set(__self__, "separator", separator)
+            _setter("separator", separator)
 
     @property
     @pulumi.getter
@@ -240,6 +274,10 @@ class RandomPet(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RandomPetArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

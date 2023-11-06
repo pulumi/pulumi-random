@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RandomUuidArgs', 'RandomUuid']
@@ -19,8 +19,19 @@ class RandomUuidArgs:
         The set of arguments for constructing a RandomUuid resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
+        RandomUuidArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            keepers=keepers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
 
     @property
     @pulumi.getter
@@ -45,10 +56,23 @@ class _RandomUuidState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[str] result: The generated uuid presented in string format.
         """
+        _RandomUuidState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            keepers=keepers,
+            result=result,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             result: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if keepers is not None:
-            pulumi.set(__self__, "keepers", keepers)
+            _setter("keepers", keepers)
         if result is not None:
-            pulumi.set(__self__, "result", result)
+            _setter("result", result)
 
     @property
     @pulumi.getter
@@ -150,6 +174,10 @@ class RandomUuid(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RandomUuidArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
