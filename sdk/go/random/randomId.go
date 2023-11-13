@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-random/sdk/v4/go/random/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The resource `RandomId` generates random numbers that are intended to be
@@ -219,12 +218,6 @@ func (i *RandomId) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutp
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdOutput)
 }
 
-func (i *RandomId) ToOutput(ctx context.Context) pulumix.Output[*RandomId] {
-	return pulumix.Output[*RandomId]{
-		OutputState: i.ToRandomIdOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RandomIdArrayInput is an input type that accepts RandomIdArray and RandomIdArrayOutput values.
 // You can construct a concrete instance of `RandomIdArrayInput` via:
 //
@@ -248,12 +241,6 @@ func (i RandomIdArray) ToRandomIdArrayOutput() RandomIdArrayOutput {
 
 func (i RandomIdArray) ToRandomIdArrayOutputWithContext(ctx context.Context) RandomIdArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdArrayOutput)
-}
-
-func (i RandomIdArray) ToOutput(ctx context.Context) pulumix.Output[[]*RandomId] {
-	return pulumix.Output[[]*RandomId]{
-		OutputState: i.ToRandomIdArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RandomIdMapInput is an input type that accepts RandomIdMap and RandomIdMapOutput values.
@@ -281,12 +268,6 @@ func (i RandomIdMap) ToRandomIdMapOutputWithContext(ctx context.Context) RandomI
 	return pulumi.ToOutputWithContext(ctx, i).(RandomIdMapOutput)
 }
 
-func (i RandomIdMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomId] {
-	return pulumix.Output[map[string]*RandomId]{
-		OutputState: i.ToRandomIdMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RandomIdOutput struct{ *pulumi.OutputState }
 
 func (RandomIdOutput) ElementType() reflect.Type {
@@ -299,12 +280,6 @@ func (o RandomIdOutput) ToRandomIdOutput() RandomIdOutput {
 
 func (o RandomIdOutput) ToRandomIdOutputWithContext(ctx context.Context) RandomIdOutput {
 	return o
-}
-
-func (o RandomIdOutput) ToOutput(ctx context.Context) pulumix.Output[*RandomId] {
-	return pulumix.Output[*RandomId]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The generated id presented in base64 without additional transformations.
@@ -356,12 +331,6 @@ func (o RandomIdArrayOutput) ToRandomIdArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RandomIdArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RandomId] {
-	return pulumix.Output[[]*RandomId]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RandomIdArrayOutput) Index(i pulumi.IntInput) RandomIdOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomId {
 		return vs[0].([]*RandomId)[vs[1].(int)]
@@ -380,12 +349,6 @@ func (o RandomIdMapOutput) ToRandomIdMapOutput() RandomIdMapOutput {
 
 func (o RandomIdMapOutput) ToRandomIdMapOutputWithContext(ctx context.Context) RandomIdMapOutput {
 	return o
-}
-
-func (o RandomIdMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomId] {
-	return pulumix.Output[map[string]*RandomId]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RandomIdMapOutput) MapIndex(k pulumi.StringInput) RandomIdOutput {
