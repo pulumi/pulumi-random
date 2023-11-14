@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['RandomPetArgs', 'RandomPet']
+__all__ = ['RandomPetArrgs', 'RandomPet']
 
 @pulumi.input_type
-class RandomPetArgs:
+calass RandomPetArrgs:
     def __init__(__self__, *,
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  length: Optional[pulumi.Input[int]] = None,
@@ -84,7 +84,7 @@ class RandomPetArgs:
 
 
 @pulumi.input_type
-class _RandomPetState:
+calass _RandomPetState:
     def __init__(__self__, *,
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  length: Optional[pulumi.Input[int]] = None,
@@ -155,7 +155,7 @@ class _RandomPetState:
         pulumi.set(self, "separator", value)
 
 
-class RandomPet(pulumi.CustomResource):
+calass RandomPet(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -202,7 +202,7 @@ class RandomPet(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[RandomPetArgs] = None,
+                 args: Optional[RandomPetArrgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The resource `RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
@@ -231,12 +231,12 @@ class RandomPet(pulumi.CustomResource):
         ```
 
         :param str resource_name: The name of the resource.
-        :param RandomPetArgs args: The arguments to use to populate this resource's properties.
+        :param RandomPetArrgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RandomPetArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RandomPetArrgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -256,7 +256,7 @@ class RandomPet(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RandomPetArgs.__new__(RandomPetArgs)
+            __props__ = RandomPetArrgs.__new__(RandomPetArrgs)
 
             __props__.__dict__["keepers"] = keepers
             __props__.__dict__["length"] = length
