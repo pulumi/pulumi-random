@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-random/sdk/v4/go/random/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The resource `RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
@@ -173,12 +172,6 @@ func (i *RandomPet) ToRandomPetOutputWithContext(ctx context.Context) RandomPetO
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPetOutput)
 }
 
-func (i *RandomPet) ToOutput(ctx context.Context) pulumix.Output[*RandomPet] {
-	return pulumix.Output[*RandomPet]{
-		OutputState: i.ToRandomPetOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RandomPetArrayInput is an input type that accepts RandomPetArray and RandomPetArrayOutput values.
 // You can construct a concrete instance of `RandomPetArrayInput` via:
 //
@@ -202,12 +195,6 @@ func (i RandomPetArray) ToRandomPetArrayOutput() RandomPetArrayOutput {
 
 func (i RandomPetArray) ToRandomPetArrayOutputWithContext(ctx context.Context) RandomPetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPetArrayOutput)
-}
-
-func (i RandomPetArray) ToOutput(ctx context.Context) pulumix.Output[[]*RandomPet] {
-	return pulumix.Output[[]*RandomPet]{
-		OutputState: i.ToRandomPetArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RandomPetMapInput is an input type that accepts RandomPetMap and RandomPetMapOutput values.
@@ -235,12 +222,6 @@ func (i RandomPetMap) ToRandomPetMapOutputWithContext(ctx context.Context) Rando
 	return pulumi.ToOutputWithContext(ctx, i).(RandomPetMapOutput)
 }
 
-func (i RandomPetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomPet] {
-	return pulumix.Output[map[string]*RandomPet]{
-		OutputState: i.ToRandomPetMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RandomPetOutput struct{ *pulumi.OutputState }
 
 func (RandomPetOutput) ElementType() reflect.Type {
@@ -253,12 +234,6 @@ func (o RandomPetOutput) ToRandomPetOutput() RandomPetOutput {
 
 func (o RandomPetOutput) ToRandomPetOutputWithContext(ctx context.Context) RandomPetOutput {
 	return o
-}
-
-func (o RandomPetOutput) ToOutput(ctx context.Context) pulumix.Output[*RandomPet] {
-	return pulumix.Output[*RandomPet]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -295,12 +270,6 @@ func (o RandomPetArrayOutput) ToRandomPetArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o RandomPetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RandomPet] {
-	return pulumix.Output[[]*RandomPet]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RandomPetArrayOutput) Index(i pulumi.IntInput) RandomPetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RandomPet {
 		return vs[0].([]*RandomPet)[vs[1].(int)]
@@ -319,12 +288,6 @@ func (o RandomPetMapOutput) ToRandomPetMapOutput() RandomPetMapOutput {
 
 func (o RandomPetMapOutput) ToRandomPetMapOutputWithContext(ctx context.Context) RandomPetMapOutput {
 	return o
-}
-
-func (o RandomPetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RandomPet] {
-	return pulumix.Output[map[string]*RandomPet]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RandomPetMapOutput) MapIndex(k pulumi.StringInput) RandomPetOutput {
