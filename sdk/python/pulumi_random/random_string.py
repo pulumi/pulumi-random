@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['RandomStringArgs', 'RandomString']
+__all__ = ['RandomStringArrgs', 'RandomString']
 
 @pulumi.input_type
-class RandomStringArgs:
+calass RandomStringArrgs:
     def __init__(__self__, *,
                  length: pulumi.Input[int],
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -217,7 +217,7 @@ class RandomStringArgs:
 
 
 @pulumi.input_type
-class _RandomStringState:
+calass _RandomStringState:
     def __init__(__self__, *,
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  length: Optional[pulumi.Input[int]] = None,
@@ -438,7 +438,7 @@ class _RandomStringState:
         pulumi.set(self, "upper", value)
 
 
-class RandomString(pulumi.CustomResource):
+calass RandomString(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -506,7 +506,7 @@ class RandomString(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RandomStringArgs,
+                 args: RandomStringArrgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The resource `RandomString` generates a random permutation of alphanumeric characters and optionally special characters.
@@ -540,12 +540,12 @@ class RandomString(pulumi.CustomResource):
         If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
 
         :param str resource_name: The name of the resource.
-        :param RandomStringArgs args: The arguments to use to populate this resource's properties.
+        :param RandomStringArrgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RandomStringArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RandomStringArrgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -573,7 +573,7 @@ class RandomString(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RandomStringArgs.__new__(RandomStringArgs)
+            __props__ = RandomStringArrgs.__new__(RandomStringArrgs)
 
             __props__.__dict__["keepers"] = keepers
             if length is None and not opts.urn:

@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['RandomIntegerArgs', 'RandomInteger']
+__all__ = ['RandomIntegerArrgs', 'RandomInteger']
 
 @pulumi.input_type
-class RandomIntegerArgs:
+calass RandomIntegerArrgs:
     def __init__(__self__, *,
                  max: pulumi.Input[int],
                  min: pulumi.Input[int],
@@ -82,7 +82,7 @@ class RandomIntegerArgs:
 
 
 @pulumi.input_type
-class _RandomIntegerState:
+calass _RandomIntegerState:
     def __init__(__self__, *,
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max: Optional[pulumi.Input[int]] = None,
@@ -169,7 +169,7 @@ class _RandomIntegerState:
         pulumi.set(self, "seed", value)
 
 
-class RandomInteger(pulumi.CustomResource):
+calass RandomInteger(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -202,7 +202,7 @@ class RandomInteger(pulumi.CustomResource):
         main = aws.alb.ListenerRule("main",
             listener_arn=priority.keepers["listenerArn"],
             priority=priority.result,
-            actions=[aws.alb.ListenerRuleActionArgs(
+            actions=[aws.alb.ListenerRuleActionArrgs(
                 type="forward",
                 target_group_arn=var["target_group_arn"],
             )])
@@ -228,7 +228,7 @@ class RandomInteger(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RandomIntegerArgs,
+                 args: RandomIntegerArrgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
@@ -253,7 +253,7 @@ class RandomInteger(pulumi.CustomResource):
         main = aws.alb.ListenerRule("main",
             listener_arn=priority.keepers["listenerArn"],
             priority=priority.result,
-            actions=[aws.alb.ListenerRuleActionArgs(
+            actions=[aws.alb.ListenerRuleActionArrgs(
                 type="forward",
                 target_group_arn=var["target_group_arn"],
             )])
@@ -269,12 +269,12 @@ class RandomInteger(pulumi.CustomResource):
         ```
 
         :param str resource_name: The name of the resource.
-        :param RandomIntegerArgs args: The arguments to use to populate this resource's properties.
+        :param RandomIntegerArrgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RandomIntegerArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RandomIntegerArrgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -294,7 +294,7 @@ class RandomInteger(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RandomIntegerArgs.__new__(RandomIntegerArgs)
+            __props__ = RandomIntegerArrgs.__new__(RandomIntegerArrgs)
 
             __props__.__dict__["keepers"] = keepers
             if max is None and not opts.urn:
