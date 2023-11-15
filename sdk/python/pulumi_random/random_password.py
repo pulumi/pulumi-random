@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['RandomPasswordArgs', 'RandomPassword']
+__all__ = ['RandomPasswordArrgs', 'RandomPassword']
 
 @pulumi.input_type
-class RandomPasswordArgs:
+calass RandomPasswordArrgs:
     def __init__(__self__, *,
                  length: pulumi.Input[int],
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -217,7 +217,7 @@ class RandomPasswordArgs:
 
 
 @pulumi.input_type
-class _RandomPasswordState:
+calass _RandomPasswordState:
     def __init__(__self__, *,
                  bcrypt_hash: Optional[pulumi.Input[str]] = None,
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -454,7 +454,7 @@ class _RandomPasswordState:
         pulumi.set(self, "upper", value)
 
 
-class RandomPassword(pulumi.CustomResource):
+calass RandomPassword(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -525,7 +525,7 @@ class RandomPassword(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RandomPasswordArgs,
+                 args: RandomPasswordArrgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Identical to random_string.
@@ -562,12 +562,12 @@ class RandomPassword(pulumi.CustomResource):
         This command will encode the `supersecret` token in Pulumi state and generate a code suggestion to include a new RandomPassword resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your secret password is now securely stored in Pulumi, and you can reference it in your Pulumi program as `newPassword.result`.
 
         :param str resource_name: The name of the resource.
-        :param RandomPasswordArgs args: The arguments to use to populate this resource's properties.
+        :param RandomPasswordArrgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RandomPasswordArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RandomPasswordArrgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -595,7 +595,7 @@ class RandomPassword(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RandomPasswordArgs.__new__(RandomPasswordArgs)
+            __props__ = RandomPasswordArrgs.__new__(RandomPasswordArrgs)
 
             __props__.__dict__["keepers"] = keepers
             if length is None and not opts.urn:
