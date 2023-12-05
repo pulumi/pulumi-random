@@ -23,6 +23,7 @@ import (
 
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -58,7 +59,7 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the random package.
 func Provider() tfbridge.ProviderInfo {
-	info := tfbridge.ProviderInfo{
+	prov := tfbridge.ProviderInfo{
 		P:            pf.ShimProvider(shim.NewProvider()),
 		Name:         "random",
 		Description:  "A Pulumi package to safely use randomness in Pulumi programs.",
@@ -131,5 +132,13 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
-	return info
+
+	makeToken := func(module, name string) (string, error) {
+		return tks.MakeStandard(randomPkg)(module, "Random"+name)
+	}
+
+	prov.MustComputeTokens(tks.SingleModule("random_", randomMod, makeToken))
+	prov.MustApplyAutoAliases()
+
+	return prov
 }

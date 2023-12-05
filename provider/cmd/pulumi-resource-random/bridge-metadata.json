@@ -1,4 +1,48 @@
 {
+    "auto-aliasing": {
+        "resources": {
+            "random_bytes": {
+                "current": "random:index/randomBytes:RandomBytes",
+                "majorVersion": 4
+            },
+            "random_id": {
+                "current": "random:index/randomId:RandomId",
+                "majorVersion": 4
+            },
+            "random_integer": {
+                "current": "random:index/randomInteger:RandomInteger",
+                "majorVersion": 4
+            },
+            "random_password": {
+                "current": "random:index/randomPassword:RandomPassword",
+                "majorVersion": 4
+            },
+            "random_pet": {
+                "current": "random:index/randomPet:RandomPet",
+                "majorVersion": 4
+            },
+            "random_shuffle": {
+                "current": "random:index/randomShuffle:RandomShuffle",
+                "majorVersion": 4,
+                "fields": {
+                    "input": {
+                        "maxItemsOne": false
+                    },
+                    "result": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "random_string": {
+                "current": "random:index/randomString:RandomString",
+                "majorVersion": 4
+            },
+            "random_uuid": {
+                "current": "random:index/randomUuid:RandomUuid",
+                "majorVersion": 4
+            }
+        }
+    },
     "renamedProperties": {
         "random:index/randomId:RandomId": {
             "b64Std": "b64_std",
@@ -28,6 +72,7 @@
     },
     "renames": {
         "resources": {
+            "random:index/randomBytes:RandomBytes": "random_bytes",
             "random:index/randomId:RandomId": "random_id",
             "random:index/randomInteger:RandomInteger": "random_integer",
             "random:index/randomPassword:RandomPassword": "random_password",
