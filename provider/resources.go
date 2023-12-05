@@ -70,20 +70,11 @@ func Provider() tfbridge.ProviderInfo {
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"random_id": {Tok: randomResource(randomMod, "RandomId")},
-
 			"random_password": {
-				Tok:  randomResource(randomMod, "RandomPassword"),
 				Docs: &tfbridge.DocInfo{ImportDetails: string(docPasswordImport)},
 			},
 
-			"random_pet":     {Tok: randomResource(randomMod, "RandomPet")},
-			"random_shuffle": {Tok: randomResource(randomMod, "RandomShuffle")},
-			"random_integer": {Tok: randomResource(randomMod, "RandomInteger")},
-			"random_uuid":    {Tok: randomResource(randomMod, "RandomUuid")},
-
 			"random_string": {
-				Tok: randomResource(randomMod, "RandomString"),
 				PreStateUpgradeHook: func(args tfbridge.PreStateUpgradeHookArgs) (int64, resource.PropertyMap, error) {
 					// States for RandomString may be contaminated by
 					// https://github.com/pulumi/pulumi-random/issues/258 bug where the state is
