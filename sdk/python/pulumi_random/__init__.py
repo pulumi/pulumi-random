@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .provider import *
+from .random_bytes import *
 from .random_id import *
 from .random_integer import *
 from .random_password import *
@@ -16,6 +17,14 @@ from .random_uuid import *
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "random",
+  "mod": "index/randomBytes",
+  "fqn": "pulumi_random",
+  "classes": {
+   "random:index/randomBytes:RandomBytes": "RandomBytes"
+  }
+ },
  {
   "pkg": "random",
   "mod": "index/randomId",

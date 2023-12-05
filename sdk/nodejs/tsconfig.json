@@ -15,6 +15,7 @@
     "files": [
         "index.ts",
         "provider.ts",
+        "randomBytes.ts",
         "randomId.ts",
         "randomInteger.ts",
         "randomPassword.ts",
