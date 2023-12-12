@@ -19,13 +19,11 @@ import (
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
 	"path/filepath"
-	"unicode"
 
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
 	"github.com/terraform-providers/terraform-provider-random/shim"
@@ -36,23 +34,6 @@ const (
 	randomPkg = "random"
 	randomMod = "index"
 )
-
-// randomMember manufactures a type token for the random package and the given module and type.
-func randomMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(randomPkg + ":" + mod + ":" + mem)
-}
-
-// randomType manufactures a type token for the random package and the given module and type.
-func randomType(mod string, typ string) tokens.Type {
-	return tokens.Type(randomMember(mod, typ))
-}
-
-// randomResource manufactures a standard resource token given a module and resource name.  It automatically uses the
-// random package and names the file by simply lower casing the resource's first character.
-func randomResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return randomType(mod+"/"+fn, res)
-}
 
 //go:embed cmd/pulumi-resource-random/bridge-metadata.json
 var metadata []byte
@@ -125,10 +106,10 @@ func Provider() tfbridge.ProviderInfo {
 	}
 
 	makeToken := func(module, name string) (string, error) {
-		return tks.MakeStandard(randomPkg)(module, "Random"+name)
+		return tokens.MakeStandard(randomPkg)(module, "Random"+name)
 	}
 
-	prov.MustComputeTokens(tks.SingleModule("random_", randomMod, makeToken))
+	prov.MustComputeTokens(tokens.SingleModule("random_", randomMod, makeToken))
 	prov.MustApplyAutoAliases()
 
 	return prov
