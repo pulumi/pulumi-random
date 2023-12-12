@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "random:index/randomBytes:RandomBytes":
+		r = &RandomBytes{}
 	case "random:index/randomId:RandomId":
 		r = &RandomId{}
 	case "random:index/randomInteger:RandomInteger":
@@ -66,6 +68,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"random",
+		"index/randomBytes",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"random",
 		"index/randomId",

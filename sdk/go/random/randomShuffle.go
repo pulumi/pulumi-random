@@ -42,9 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = elb.NewLoadBalancer(ctx, "example", &elb.LoadBalancerArgs{
-//				AvailabilityZones: pulumi.StringArray{
-//					az.Results,
-//				},
+//				AvailabilityZones: az.Results,
 //			})
 //			if err != nil {
 //				return err

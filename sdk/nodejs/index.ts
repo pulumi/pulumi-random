@@ -10,6 +10,11 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { RandomBytesArgs, RandomBytesState } from "./randomBytes";
+export type RandomBytes = import("./randomBytes").RandomBytes;
+export const RandomBytes: typeof import("./randomBytes").RandomBytes = null as any;
+utilities.lazyLoad(exports, ["RandomBytes"], () => require("./randomBytes"));
+
 export { RandomIdArgs, RandomIdState } from "./randomId";
 export type RandomId = import("./randomId").RandomId;
 export const RandomId: typeof import("./randomId").RandomId = null as any;
@@ -50,6 +55,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "random:index/randomBytes:RandomBytes":
+                return new RandomBytes(name, <any>undefined, { urn })
             case "random:index/randomId:RandomId":
                 return new RandomId(name, <any>undefined, { urn })
             case "random:index/randomInteger:RandomInteger":
@@ -69,6 +76,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("random", "index/randomBytes", _module)
 pulumi.runtime.registerResourceModule("random", "index/randomId", _module)
 pulumi.runtime.registerResourceModule("random", "index/randomInteger", _module)
 pulumi.runtime.registerResourceModule("random", "index/randomPassword", _module)

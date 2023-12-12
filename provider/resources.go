@@ -19,12 +19,11 @@ import (
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
 	"path/filepath"
-	"unicode"
 
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
 	"github.com/terraform-providers/terraform-provider-random/shim"
@@ -36,29 +35,12 @@ const (
 	randomMod = "index"
 )
 
-// randomMember manufactures a type token for the random package and the given module and type.
-func randomMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(randomPkg + ":" + mod + ":" + mem)
-}
-
-// randomType manufactures a type token for the random package and the given module and type.
-func randomType(mod string, typ string) tokens.Type {
-	return tokens.Type(randomMember(mod, typ))
-}
-
-// randomResource manufactures a standard resource token given a module and resource name.  It automatically uses the
-// random package and names the file by simply lower casing the resource's first character.
-func randomResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return randomType(mod+"/"+fn, res)
-}
-
 //go:embed cmd/pulumi-resource-random/bridge-metadata.json
 var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the random package.
 func Provider() tfbridge.ProviderInfo {
-	info := tfbridge.ProviderInfo{
+	prov := tfbridge.ProviderInfo{
 		P:            pf.ShimProvider(shim.NewProvider()),
 		Name:         "random",
 		Description:  "A Pulumi package to safely use randomness in Pulumi programs.",
@@ -69,20 +51,11 @@ func Provider() tfbridge.ProviderInfo {
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"random_id": {Tok: randomResource(randomMod, "RandomId")},
-
 			"random_password": {
-				Tok:  randomResource(randomMod, "RandomPassword"),
 				Docs: &tfbridge.DocInfo{ImportDetails: string(docPasswordImport)},
 			},
 
-			"random_pet":     {Tok: randomResource(randomMod, "RandomPet")},
-			"random_shuffle": {Tok: randomResource(randomMod, "RandomShuffle")},
-			"random_integer": {Tok: randomResource(randomMod, "RandomInteger")},
-			"random_uuid":    {Tok: randomResource(randomMod, "RandomUuid")},
-
 			"random_string": {
-				Tok: randomResource(randomMod, "RandomString"),
 				PreStateUpgradeHook: func(args tfbridge.PreStateUpgradeHookArgs) (int64, resource.PropertyMap, error) {
 					// States for RandomString may be contaminated by
 					// https://github.com/pulumi/pulumi-random/issues/258 bug where the state is
@@ -131,5 +104,13 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
-	return info
+
+	makeToken := func(module, name string) (string, error) {
+		return tokens.MakeStandard(randomPkg)(module, "Random"+name)
+	}
+
+	prov.MustComputeTokens(tokens.SingleModule("random_", randomMod, makeToken))
+	prov.MustApplyAutoAliases()
+
+	return prov
 }
