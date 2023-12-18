@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.21.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.68.0
-	github.com/pulumi/pulumi/sdk/v3 v3.96.2
+	github.com/pulumi/pulumi/sdk/v3 v3.97.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
 
@@ -173,11 +173,11 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
-	github.com/pulumi/esc v0.6.1-0.20231111193429-44b746a5b3b5 // indirect
+	github.com/pulumi/esc v0.6.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.9.8 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.6 // indirect
 	github.com/pulumi/pulumi-yaml v1.4.3 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.96.2 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.97.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
@@ -236,3 +236,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
+
+replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.78.2-0.20231218171433-2c366f0d4fdd
+
+replace github.com/pulumi/pulumi/sdk/v3 => github.com/pulumi/pulumi/sdk/v3 v3.97.1-0.20231218171433-2c366f0d4fdd
