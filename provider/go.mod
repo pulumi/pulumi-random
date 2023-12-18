@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.21.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.68.0
-	github.com/pulumi/pulumi/sdk/v3 v3.96.2
+	github.com/pulumi/pulumi/sdk/v3 v3.97.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
 
@@ -236,3 +236,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
+
+replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.78.2-0.20231218165640-f8e29f63f531
+
+replace github.com/pulumi/pulumi/sdk/v3 => github.com/pulumi/pulumi/sdk/v3 v3.97.1-0.20231218165640-f8e29f63f531
