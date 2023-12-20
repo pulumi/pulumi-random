@@ -43,6 +43,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renamedProperties": {
         "random:index/randomId:RandomId": {
             "b64Std": "b64_std",
