@@ -5,6 +5,7 @@ package com.pulumi.random;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
@@ -115,7 +116,9 @@ public final class RandomBytesArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RandomBytesArgs build() {
-            $.length = Objects.requireNonNull($.length, "expected parameter 'length' to be non-null");
+            if ($.length == null) {
+                throw new MissingRequiredPropertyException("RandomBytesArgs", "length");
+            }
             return $;
         }
     }

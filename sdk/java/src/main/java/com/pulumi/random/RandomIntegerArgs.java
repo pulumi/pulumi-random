@@ -5,6 +5,7 @@ package com.pulumi.random;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
@@ -189,8 +190,12 @@ public final class RandomIntegerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RandomIntegerArgs build() {
-            $.max = Objects.requireNonNull($.max, "expected parameter 'max' to be non-null");
-            $.min = Objects.requireNonNull($.min, "expected parameter 'min' to be non-null");
+            if ($.max == null) {
+                throw new MissingRequiredPropertyException("RandomIntegerArgs", "max");
+            }
+            if ($.min == null) {
+                throw new MissingRequiredPropertyException("RandomIntegerArgs", "min");
+            }
             return $;
         }
     }
