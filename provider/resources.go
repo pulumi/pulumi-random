@@ -16,9 +16,12 @@ package random
 
 import (
 	"fmt"
+	"path/filepath"
+
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
-	"path/filepath"
+
+	"github.com/terraform-providers/terraform-provider-random/shim"
 
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -26,7 +29,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
 	"github.com/pulumi/pulumi-random/provider/v4/pkg/version"
-	"github.com/terraform-providers/terraform-provider-random/shim"
 )
 
 // all of the random token components used below.
