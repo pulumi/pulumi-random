@@ -22,6 +22,15 @@ func TestSimpleTs(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
+func TestRnadomBytes(t *testing.T) {
+	test := getJSBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: filepath.Join(getCwd(t), "bytes"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
 func TestProviderUpdate(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
