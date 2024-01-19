@@ -15,6 +15,7 @@
 package random
 
 import (
+	"context"
 	"fmt"
 	"path/filepath"
 
@@ -70,6 +71,10 @@ func Provider() tfbridge.ProviderInfo {
 				},
 				Docs: &tfbridge.DocInfo{ImportDetails: string(docStringImport)},
 			},
+
+			"random_bytes": {
+				ComputeID: computeRandomBytesID,
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
@@ -115,4 +120,22 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustApplyAutoAliases()
 
 	return prov
+}
+
+func computeRandomBytesID(_ context.Context, state resource.PropertyMap) (resource.ID, error) {
+	c := ". This is an error in pulumi-random resource provider, please report at " +
+		"https://github.com/pulumi/pulumi-random."
+	b, ok := state["base64"]
+	if !ok {
+		return "", fmt.Errorf("No base64 property in state" + c)
+	}
+	// Although base64 is marked as sensitive in the TF schema and is wrapped in secrets in
+	// Pulumi which cannot yet support secret markers on resource IDs.
+	if b.IsSecret() {
+		b = b.SecretValue().Element
+	}
+	if !b.IsString() {
+		return "", fmt.Errorf("Expected base64 property to be a string" + c)
+	}
+	return resource.ID(b.StringValue()), nil
 }

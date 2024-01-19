@@ -21,6 +21,7 @@ export const randomInteger = new random.RandomInteger("integer", { min: 128, max
 export const randomUuid = new random.RandomUuid("uuid").result;
 export const randomPassword = new random.RandomPassword("password", { length: 32 }).result;
 export const randomPet = new random.RandomPet("pet").id;
+export const randomBytes = new random.RandomBytes({lenght: 64}).hex;
 
 export const randomPasswordWithKeepers = new random.RandomPassword("passwordWithKeepers", {
     length: 32,
