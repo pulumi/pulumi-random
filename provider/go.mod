@@ -3,9 +3,9 @@ module github.com/pulumi/pulumi-random/provider/v4
 go 1.21
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.24.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.71.0
-	github.com/pulumi/pulumi/sdk/v3 v3.101.1
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.24.1-0.20240125210943-e44360b2009d
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.71.1-0.20240125210943-e44360b2009d
+	github.com/pulumi/pulumi/sdk/v3 v3.103.1
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
 
@@ -121,7 +121,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.18.0 // indirect
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
-	github.com/hashicorp/terraform-plugin-framework v1.4.2 // indirect
+	github.com/hashicorp/terraform-plugin-framework v1.5.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework-validators v0.12.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.20.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
@@ -175,8 +175,8 @@ require (
 	github.com/pulumi/esc v0.6.2 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.9.9 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.7 // indirect
-	github.com/pulumi/pulumi-yaml v1.4.5 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.101.1 // indirect
+	github.com/pulumi/pulumi-yaml v1.5.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.103.1 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
@@ -211,14 +211,14 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	gocloud.dev v0.27.0 // indirect
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
-	golang.org/x/crypto v0.17.0 // indirect
+	golang.org/x/crypto v0.18.0 // indirect
 	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa // indirect
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/oauth2 v0.13.0 // indirect
 	golang.org/x/sync v0.5.0 // indirect
-	golang.org/x/sys v0.15.0 // indirect
-	golang.org/x/term v0.15.0 // indirect
+	golang.org/x/sys v0.16.0 // indirect
+	golang.org/x/term v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.15.0 // indirect
