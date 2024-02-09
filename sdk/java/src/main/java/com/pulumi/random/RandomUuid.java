@@ -51,10 +51,14 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Random UUID&#39;s can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs.
+ * Random UUID&#39;s can be imported. This can be used to replace a config
+ * 
+ *  value with a value interpolated from the random provider without
+ * 
+ *  experiencing diffs.
  * 
  * ```sh
- *  $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
+ * $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
  * ```
  * 
  */

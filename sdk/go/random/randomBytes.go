@@ -53,9 +53,7 @@ import (
 // Random bytes can be imported by specifying the value as base64 string.
 //
 // ```sh
-//
-//	$ pulumi import random:index/randomBytes:RandomBytes basic "8/fu3q+2DcgSJ19i0jZ5Cw=="
-//
+// $ pulumi import random:index/randomBytes:RandomBytes basic "8/fu3q+2DcgSJ19i0jZ5Cw=="
 // ```
 type RandomBytes struct {
 	pulumi.CustomResourceState
