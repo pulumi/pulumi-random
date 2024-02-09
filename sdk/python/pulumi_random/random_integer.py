@@ -211,10 +211,16 @@ class RandomInteger(pulumi.CustomResource):
 
         ## Import
 
-        Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)
+        Random integers can be imported using the result, min, and max, with an
+
+         optional seed. This can be used to replace a config value with a value
+
+         interpolated from the random provider without experiencing diffs.
+
+         Example (values are separated by a ,):
 
         ```sh
-         $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
+        $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
         ```
 
         :param str resource_name: The name of the resource.
@@ -262,10 +268,16 @@ class RandomInteger(pulumi.CustomResource):
 
         ## Import
 
-        Random integers can be imported using the result, min, and max, with an optional seed. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ,)
+        Random integers can be imported using the result, min, and max, with an
+
+         optional seed. This can be used to replace a config value with a value
+
+         interpolated from the random provider without experiencing diffs.
+
+         Example (values are separated by a ,):
 
         ```sh
-         $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
+        $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
         ```
 
         :param str resource_name: The name of the resource.

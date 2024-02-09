@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * Random bytes can be imported by specifying the value as base64 string.
  * 
  * ```sh
- *  $ pulumi import random:index/randomBytes:RandomBytes basic &#34;8/fu3q+2DcgSJ19i0jZ5Cw==&#34;
+ * $ pulumi import random:index/randomBytes:RandomBytes basic &#34;8/fu3q+2DcgSJ19i0jZ5Cw==&#34;
  * ```
  * 
  */
