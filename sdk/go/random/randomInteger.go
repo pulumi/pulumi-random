@@ -31,6 +31,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// The following example shows how to generate a random priority
+//			// between 1 and 50000 for a aws_alb_listener_rule resource:
 //			priority, err := random.NewRandomInteger(ctx, "priority", &random.RandomIntegerArgs{
 //				Min: pulumi.Int(1),
 //				Max: pulumi.Int(50000),
