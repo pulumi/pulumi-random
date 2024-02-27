@@ -38,7 +38,8 @@ func TestRegress160(t *testing.T) {
 	    "response": {
 	      "acceptSecrets": true,
 	      "supportsPreview": true,
-	      "acceptResources": true
+	      "acceptResources": true,
+	      "acceptOutputs": true
 	    },
 	    "metadata": {
 	      "kind": "resource",

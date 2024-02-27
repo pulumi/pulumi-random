@@ -32,6 +32,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// The following example shows how to generate a unique pet name
+//			// for an AWS EC2 instance that changes each time a new AMI id is
+//			// selected.
 //			serverRandomPet, err := random.NewRandomPet(ctx, "serverRandomPet", &random.RandomPetArgs{
 //				Keepers: pulumi.StringMap{
 //					"ami_id": pulumi.Any(_var.Ami_id),
