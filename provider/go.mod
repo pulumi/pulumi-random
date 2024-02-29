@@ -3,8 +3,8 @@ module github.com/pulumi/pulumi-random/provider/v4
 go 1.21
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.29.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.76.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.29.1-0.20240229114854-e1756b040e64
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.76.1-0.20240229114854-e1756b040e64
 	github.com/pulumi/pulumi/sdk/v3 v3.107.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
@@ -230,7 +230,7 @@ require (
 	google.golang.org/genproto v0.0.0-20231120223509-83a465c0220f // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20231120223509-83a465c0220f // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231120223509-83a465c0220f // indirect
-	google.golang.org/grpc v1.61.0 // indirect
+	google.golang.org/grpc v1.61.1 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
