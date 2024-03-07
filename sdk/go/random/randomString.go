@@ -20,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,20 +46,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // You can import external strings into your Pulumi programs as RandomString resources as follows:
-//
-// ```sh
-//
-//	$ import random:index/randomString:RandomString newString myspecialdata
-//
-// ```
-//
-// This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
-//
-// If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
 type RandomString struct {
 	pulumi.CustomResourceState
 
@@ -86,7 +78,7 @@ type RandomString struct {
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result pulumi.StringOutput `pulumi:"result"`
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolOutput `pulumi:"special"`
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolOutput `pulumi:"upper"`
@@ -149,7 +141,7 @@ type randomStringState struct {
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result *string `pulumi:"result"`
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
@@ -180,7 +172,7 @@ type RandomStringState struct {
 	OverrideSpecial pulumi.StringPtrInput
 	// The generated random string.
 	Result pulumi.StringPtrInput
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
@@ -213,7 +205,7 @@ type randomStringArgs struct {
 	Numeric *bool `pulumi:"numeric"`
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
@@ -243,7 +235,7 @@ type RandomStringArgs struct {
 	Numeric pulumi.BoolPtrInput
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
-	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
@@ -393,7 +385,7 @@ func (o RandomStringOutput) Result() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.StringOutput { return v.Result }).(pulumi.StringOutput)
 }
 
-// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
 func (o RandomStringOutput) Special() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Special }).(pulumi.BoolOutput)
 }

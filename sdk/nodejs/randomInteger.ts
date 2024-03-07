@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -35,16 +36,17 @@ import * as utilities from "./utilities";
  * });
  * // ... (other aws_alb_listener_rule arguments) ...
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Random integers can be imported using the result, min, and max, with an
  *
- *  optional seed. This can be used to replace a config value with a value
+ * optional seed. This can be used to replace a config value with a value
  *
- *  interpolated from the random provider without experiencing diffs.
+ * interpolated from the random provider without experiencing diffs.
  *
- *  Example (values are separated by a ,):
+ * Example (values are separated by a ,):
  *
  * ```sh
  * $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
