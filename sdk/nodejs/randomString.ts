@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as random from "@pulumi/random";
@@ -23,18 +24,11 @@ import * as utilities from "./utilities";
  *     special: true,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * You can import external strings into your Pulumi programs as RandomString resources as follows:
- *
- * ```sh
- *  $ import random:index/randomString:RandomString newString myspecialdata
- * ```
- *
- * This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
- *
- * If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
  */
 export class RandomString extends pulumi.CustomResource {
     /**
@@ -111,7 +105,7 @@ export class RandomString extends pulumi.CustomResource {
      */
     public /*out*/ readonly result!: pulumi.Output<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
      */
     public readonly special!: pulumi.Output<boolean>;
     /**
@@ -220,7 +214,7 @@ export interface RandomStringState {
      */
     result?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
      */
     special?: pulumi.Input<boolean>;
     /**
@@ -276,7 +270,7 @@ export interface RandomStringArgs {
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
      */
     special?: pulumi.Input<boolean>;
     /**

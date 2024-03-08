@@ -16,6 +16,7 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,16 +55,17 @@ namespace Pulumi.Random
     ///     // ... (other aws_alb_listener_rule arguments) ...
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Random integers can be imported using the result, min, and max, with an
     /// 
-    ///  optional seed. This can be used to replace a config value with a value
+    /// optional seed. This can be used to replace a config value with a value
     /// 
-    ///  interpolated from the random provider without experiencing diffs.
+    /// interpolated from the random provider without experiencing diffs.
     /// 
-    ///  Example (values are separated by a ,):
+    /// Example (values are separated by a ,):
     /// 
     /// ```sh
     /// $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000

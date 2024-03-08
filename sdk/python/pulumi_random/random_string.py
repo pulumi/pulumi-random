@@ -38,7 +38,7 @@ class RandomStringArgs:
         :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         pulumi.set(__self__, "length", length)
@@ -195,7 +195,7 @@ class RandomStringArgs:
     @pulumi.getter
     def special(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
@@ -245,7 +245,7 @@ class _RandomStringState:
         :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[str] result: The generated random string.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         if keepers is not None:
@@ -417,7 +417,7 @@ class _RandomStringState:
     @pulumi.getter
     def special(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
@@ -465,6 +465,7 @@ class RandomString(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -474,18 +475,11 @@ class RandomString(pulumi.CustomResource):
             override_special="/@£$",
             special=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
-
-        ```sh
-         $ import random:index/randomString:RandomString newString myspecialdata
-        ```
-
-        This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
-
-        If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -499,7 +493,7 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
         :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         ...
@@ -517,6 +511,7 @@ class RandomString(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -526,18 +521,11 @@ class RandomString(pulumi.CustomResource):
             override_special="/@£$",
             special=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
-
-        ```sh
-         $ import random:index/randomString:RandomString newString myspecialdata
-        ```
-
-        This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
-
-        If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
 
         :param str resource_name: The name of the resource.
         :param RandomStringArgs args: The arguments to use to populate this resource's properties.
@@ -631,7 +619,7 @@ class RandomString(pulumi.CustomResource):
         :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[str] result: The generated random string.
-        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -748,7 +736,7 @@ class RandomString(pulumi.CustomResource):
     @pulumi.getter
     def special(self) -> pulumi.Output[bool]:
         """
-        Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+        Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 

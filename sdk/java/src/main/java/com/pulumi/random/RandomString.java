@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * Historically this resource&#39;s intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,18 +57,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * You can import external strings into your Pulumi programs as RandomString resources as follows:
- * 
- * ```sh
- *  $ import random:index/randomString:RandomString newString myspecialdata
- * ```
- * 
- * This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
- * 
- * If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
  * 
  */
 @ResourceType(type="random:index/randomString:RandomString")
@@ -230,14 +225,14 @@ public class RandomString extends com.pulumi.resources.CustomResource {
         return this.result;
     }
     /**
-     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     @Export(name="special", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     public Output<Boolean> special() {

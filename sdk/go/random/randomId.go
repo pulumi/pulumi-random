@@ -29,6 +29,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,22 +74,23 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Random IDs can be imported using the b64_url with an optional prefix. This
 //
-//	can be used to replace a config value with a value interpolated from the
+// can be used to replace a config value with a value interpolated from the
 //
-//	random provider without experiencing diffs.
+// random provider without experiencing diffs.
 //
-//	Example with no prefix:
+// Example with no prefix:
 //
 // ```sh
 // $ pulumi import random:index/randomId:RandomId server p-9hUg
 // ```
 //
-//	Example with prefix (prefix is separated by a ,):
+// Example with prefix (prefix is separated by a ,):
 //
 // ```sh
 // $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg

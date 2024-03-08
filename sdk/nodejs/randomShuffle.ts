@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -26,6 +27,7 @@ import * as utilities from "./utilities";
  * const example = new aws.elb.LoadBalancer("example", {availabilityZones: az.results});
  * // ... and other aws_elb arguments ...
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class RandomShuffle extends pulumi.CustomResource {
     /**

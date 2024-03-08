@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * The resource `random.RandomBytes` generates random bytes that are intended to be used as a secret, or key. Use this in preference to `random.RandomId` when the output is considered sensitive, and should not be displayed in the CLI.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,6 +58,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

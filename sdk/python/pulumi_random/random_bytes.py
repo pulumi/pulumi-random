@@ -135,6 +135,7 @@ class RandomBytes(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -145,6 +146,7 @@ class RandomBytes(pulumi.CustomResource):
             key_vault_id="some-azure-key-vault-id",
             value=jwt_secret_random_bytes.base64)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -170,6 +172,7 @@ class RandomBytes(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -180,6 +183,7 @@ class RandomBytes(pulumi.CustomResource):
             key_vault_id="some-azure-key-vault-id",
             value=jwt_secret_random_bytes.base64)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -85,6 +85,7 @@ class RandomUuid(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -93,14 +94,15 @@ class RandomUuid(pulumi.CustomResource):
         test_random_uuid = random.RandomUuid("testRandomUuid")
         test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Random UUID's can be imported. This can be used to replace a config
 
-         value with a value interpolated from the random provider without
+        value with a value interpolated from the random provider without
 
-         experiencing diffs.
+        experiencing diffs.
 
         ```sh
         $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
@@ -119,6 +121,7 @@ class RandomUuid(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -127,14 +130,15 @@ class RandomUuid(pulumi.CustomResource):
         test_random_uuid = random.RandomUuid("testRandomUuid")
         test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Random UUID's can be imported. This can be used to replace a config
 
-         value with a value interpolated from the random provider without
+        value with a value interpolated from the random provider without
 
-         experiencing diffs.
+        experiencing diffs.
 
         ```sh
         $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899

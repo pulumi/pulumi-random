@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as azure from "@pulumi/azure";
@@ -15,14 +16,15 @@ import * as utilities from "./utilities";
  * const testRandomUuid = new random.RandomUuid("testRandomUuid", {});
  * const testResourceGroup = new azure.core.ResourceGroup("testResourceGroup", {location: "Central US"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Random UUID's can be imported. This can be used to replace a config
  *
- *  value with a value interpolated from the random provider without
+ * value with a value interpolated from the random provider without
  *
- *  experiencing diffs.
+ * experiencing diffs.
  *
  * ```sh
  * $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899

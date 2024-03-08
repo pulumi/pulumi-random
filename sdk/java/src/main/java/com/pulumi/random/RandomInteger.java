@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -64,16 +66,17 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Random integers can be imported using the result, min, and max, with an
  * 
- *  optional seed. This can be used to replace a config value with a value
+ * optional seed. This can be used to replace a config value with a value
  * 
- *  interpolated from the random provider without experiencing diffs.
+ * interpolated from the random provider without experiencing diffs.
  * 
- *  Example (values are separated by a ,):
+ * Example (values are separated by a ,):
  * 
  * ```sh
  * $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
