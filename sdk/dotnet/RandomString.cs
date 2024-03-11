@@ -18,6 +18,7 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,18 +36,11 @@ namespace Pulumi.Random
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// You can import external strings into your Pulumi programs as RandomString resources as follows:
-    /// 
-    /// ```sh
-    ///  $ import random:index/randomString:RandomString newString myspecialdata
-    /// ```
-    /// 
-    /// This command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to include a new RandomString resource in your Pulumi program. Include the suggested code and do a `pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as `newString.result`.
-    /// 
-    /// If the data needs to be stored securily as a secret, consider using the RandomPassword resource instead.
     /// </summary>
     [RandomResourceType("random:index/randomString:RandomString")]
     public partial class RandomString : global::Pulumi.CustomResource
@@ -118,7 +112,7 @@ namespace Pulumi.Random
         public Output<string> Result { get; private set; } = null!;
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Output("special")]
         public Output<bool> Special { get; private set; } = null!;
@@ -242,7 +236,7 @@ namespace Pulumi.Random
         public Input<string>? OverrideSpecial { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
@@ -334,7 +328,7 @@ namespace Pulumi.Random
         public Input<string>? Result { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
