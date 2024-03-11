@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -60,6 +62,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="random:index/randomShuffle:RandomShuffle")

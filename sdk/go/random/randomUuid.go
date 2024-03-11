@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,14 +42,15 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Random UUID's can be imported. This can be used to replace a config
 //
-//	value with a value interpolated from the random provider without
+// value with a value interpolated from the random provider without
 //
-//	experiencing diffs.
+// experiencing diffs.
 //
 // ```sh
 // $ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899
