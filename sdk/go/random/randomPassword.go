@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			_, err = rds.NewInstance(ctx, "example", &rds.InstanceArgs{
-//				InstanceClass:    pulumi.String("db.t3.micro"),
+//				InstanceClass:    pulumi.String(rds.InstanceType_T3_Micro),
 //				AllocatedStorage: pulumi.Int(64),
 //				Engine:           pulumi.String("mysql"),
 //				Username:         pulumi.String("someone"),
