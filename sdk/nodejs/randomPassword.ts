@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
  * });
  * const example = new aws.rds.Instance("example", {
- *     instanceClass: "db.t3.micro",
+ *     instanceClass: aws.rds.InstanceType.T3_Micro,
  *     allocatedStorage: 64,
  *     engine: "mysql",
  *     username: "someone",
