@@ -48,6 +48,8 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // The following example shows how to generate a random priority
+ *         // between 1 and 50000 for a aws_alb_listener_rule resource:
  *         var priority = new RandomInteger(&#34;priority&#34;, RandomIntegerArgs.builder()        
  *             .min(1)
  *             .max(50000)
@@ -63,6 +65,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // ... (other aws_alb_listener_rule arguments) ...
  *     }
  * }
  * ```
