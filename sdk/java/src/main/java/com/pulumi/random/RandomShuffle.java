@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  *             .availabilityZones(az.results())
  *             .build());
  * 
+ *         // ... and other aws_elb arguments ...
  *     }
  * }
  * ```
