@@ -17,42 +17,6 @@ import (
 // ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/elb"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			az, err := random.NewRandomShuffle(ctx, "az", &random.RandomShuffleArgs{
-//				Inputs: pulumi.StringArray{
-//					pulumi.String("us-west-1a"),
-//					pulumi.String("us-west-1c"),
-//					pulumi.String("us-west-1d"),
-//					pulumi.String("us-west-1e"),
-//				},
-//				ResultCount: pulumi.Int(2),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elb.NewLoadBalancer(ctx, "example", &elb.LoadBalancerArgs{
-//				AvailabilityZones: az.Results,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // <!--End PulumiCodeChooser -->
 type RandomShuffle struct {
 	pulumi.CustomResourceState
