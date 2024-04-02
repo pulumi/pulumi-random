@@ -17,37 +17,6 @@ import (
 // ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-azure/sdk/v5/go/azure/keyvault"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			jwtSecretRandomBytes, err := random.NewRandomBytes(ctx, "jwtSecretRandomBytes", &random.RandomBytesArgs{
-//				Length: pulumi.Int(64),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keyvault.NewSecret(ctx, "jwtSecretSecret", &keyvault.SecretArgs{
-//				KeyVaultId: pulumi.String("some-azure-key-vault-id"),
-//				Value:      jwtSecretRandomBytes.Base64,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // <!--End PulumiCodeChooser -->
 //
 // ## Import
