@@ -248,14 +248,14 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
         return this.result;
     }
     /**
-     * Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     @Export(name="special", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     public Output<Boolean> special() {
