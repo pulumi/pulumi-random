@@ -207,14 +207,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     @Import(name="special")
     private @Nullable Output<Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     public Optional<Output<Boolean>> special() {
@@ -534,7 +534,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param special Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+         * @param special Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
          * 
          * @return builder
          * 
@@ -545,7 +545,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param special Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+         * @param special Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
          * 
          * @return builder
          * 
