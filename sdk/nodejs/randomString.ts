@@ -105,7 +105,7 @@ export class RandomString extends pulumi.CustomResource {
      */
     public /*out*/ readonly result!: pulumi.Output<string>;
     /**
-     * Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
     public readonly special!: pulumi.Output<boolean>;
     /**
@@ -214,7 +214,7 @@ export interface RandomStringState {
      */
     result?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
     special?: pulumi.Input<boolean>;
     /**
@@ -270,7 +270,7 @@ export interface RandomStringArgs {
      */
     overrideSpecial?: pulumi.Input<string>;
     /**
-     * Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+     * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
     special?: pulumi.Input<boolean>;
     /**

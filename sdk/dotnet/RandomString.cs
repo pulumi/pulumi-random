@@ -112,7 +112,7 @@ namespace Pulumi.Random
         public Output<string> Result { get; private set; } = null!;
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Output("special")]
         public Output<bool> Special { get; private set; } = null!;
@@ -236,7 +236,7 @@ namespace Pulumi.Random
         public Input<string>? OverrideSpecial { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
@@ -328,7 +328,7 @@ namespace Pulumi.Random
         public Input<string>? Result { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%!&amp;(MISSING)*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }

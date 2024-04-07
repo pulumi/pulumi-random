@@ -89,7 +89,7 @@ type RandomPassword struct {
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result pulumi.StringOutput `pulumi:"result"`
-	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolOutput `pulumi:"special"`
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolOutput `pulumi:"upper"`
@@ -159,7 +159,7 @@ type randomPasswordState struct {
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
 	// The generated random string.
 	Result *string `pulumi:"result"`
-	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
@@ -192,7 +192,7 @@ type RandomPasswordState struct {
 	OverrideSpecial pulumi.StringPtrInput
 	// The generated random string.
 	Result pulumi.StringPtrInput
-	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
@@ -225,7 +225,7 @@ type randomPasswordArgs struct {
 	Numeric *bool `pulumi:"numeric"`
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
-	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper *bool `pulumi:"upper"`
@@ -255,7 +255,7 @@ type RandomPasswordArgs struct {
 	Numeric pulumi.BoolPtrInput
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
-	// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
 	// Include uppercase alphabet characters in the result. Default value is `true`.
 	Upper pulumi.BoolPtrInput
@@ -410,7 +410,7 @@ func (o RandomPasswordOutput) Result() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.Result }).(pulumi.StringOutput)
 }
 
-// Include special characters in the result. These are `!@#$%!&(MISSING)*()-_=+[]{}<>:?`. Default value is `true`.
+// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 func (o RandomPasswordOutput) Special() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Special }).(pulumi.BoolOutput)
 }
