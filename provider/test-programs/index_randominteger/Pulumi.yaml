@@ -1,0 +1,15 @@
+name: index_randomintegerOhWAlILnCMss
+runtime: yaml
+description: A minimal Pulumi program that generates a random integer
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/48cb7920-173f-489b-9be1-e43900a00aa1.zip
+outputs:
+  generatedNumber: ${randomNumber.result}
+resources:
+  randomNumber:
+    properties:
+      max: 100
+      min: 1
+    type: random:RandomInteger

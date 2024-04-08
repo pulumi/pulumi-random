@@ -1,0 +1,18 @@
+name: index_randomshuffle0QgUqUNkcFHv
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/7c3b4fd8-6d81-4820-9953-a863d34d7c6e.zip
+resources:
+  randomShuffle:
+    properties:
+      inputs:
+        - apple
+        - banana
+        - cherry
+        - date
+        - fig
+        - grape
+    type: random:RandomShuffle

@@ -1,0 +1,20 @@
+name: index_randompassword1RAsGRjl2J1i
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/d8cd5ed1-63d5-4b57-9962-ca70f7852866.zip
+resources:
+  myRandomPassword:
+    properties:
+      length: 16
+      lower: true
+      minLower: 2
+      minNumeric: 2
+      minSpecial: 2
+      minUpper: 2
+      number: true
+      special: true
+      upper: true
+    type: random:RandomPassword
