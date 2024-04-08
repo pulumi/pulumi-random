@@ -1,3 +1,6 @@
+//go:build !go && !nodejs && !python && !dotnet
+// +build !go,!nodejs,!python,!dotnet
+
 package random
 
 import (
@@ -16,7 +19,7 @@ import (
 )
 
 const providerName = "random"
-const defaultBaselineVersion = "0.0.1"
+const defaultBaselineVersion = "4.16.0"
 
 var programs = []string{
 	"test-programs/index_randomstring",
@@ -112,6 +115,7 @@ func TestPrograms(t *testing.T) {
 }
 
 func TestProgramsUpgrade(t *testing.T) {
+	t.Skipf("skip upgrade tests for now as we have not recorded them.")
 	for _, p := range programs {
 		t.Run(p, func(t *testing.T) {
 			testProviderUpgrade(t, p)
