@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:48:20.715199+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:tCUp9MxE3Cs=:v1:8ghui+WBP7yFH2gJ:24pOWmQKrS+z6CfEbpc7Ge5tRChU8Q=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_randomuuidt32sUas1CCV2::pulumi:pulumi:Stack::index_randomuuidt32sUas1CCV2-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "created": "2024-04-10T10:48:20.671306Z",
+        "modified": "2024-04-10T10:48:20.671306Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randomuuidt32sUas1CCV2::pulumi:providers:random::default",
+        "custom": true,
+        "id": "0a2ec6d1-bd7d-4bed-aa81-d5672c8d669b",
+        "type": "pulumi:providers:random",
+        "created": "2024-04-10T10:48:20.712917Z",
+        "modified": "2024-04-10T10:48:20.712917Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randomuuidt32sUas1CCV2::random:index/randomUuid:RandomUuid::myRandomUuid",
+        "custom": true,
+        "id": "827d0b34-00cc-b03d-d29b-542f354122cb",
+        "type": "random:index/randomUuid:RandomUuid",
+        "outputs": {
+          "id": "827d0b34-00cc-b03d-d29b-542f354122cb",
+          "result": "827d0b34-00cc-b03d-d29b-542f354122cb"
+        },
+        "parent": "urn:pulumi:test::index_randomuuidt32sUas1CCV2::pulumi:pulumi:Stack::index_randomuuidt32sUas1CCV2-test",
+        "provider": "urn:pulumi:test::index_randomuuidt32sUas1CCV2::pulumi:providers:random::default::0a2ec6d1-bd7d-4bed-aa81-d5672c8d669b",
+        "created": "2024-04-10T10:48:20.715182Z",
+        "modified": "2024-04-10T10:48:20.715182Z"
+      }
+    ]
+  }
+}

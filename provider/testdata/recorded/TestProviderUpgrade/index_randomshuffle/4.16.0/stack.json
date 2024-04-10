@@ -1,0 +1,75 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:48:12.677439+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:sWpQNSdnV/o=:v1:ihTLLayEXJsC1JBv:1yDqrTKg8RaNuYT1M4CLNZAgLkmL1w=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_randomshuffle0QgUqUNkcFHv::pulumi:pulumi:Stack::index_randomshuffle0QgUqUNkcFHv-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "created": "2024-04-10T10:48:12.633855Z",
+        "modified": "2024-04-10T10:48:12.633855Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randomshuffle0QgUqUNkcFHv::pulumi:providers:random::default",
+        "custom": true,
+        "id": "90fa00a7-0e45-4214-9327-a4b63f061ea6",
+        "type": "pulumi:providers:random",
+        "created": "2024-04-10T10:48:12.672814Z",
+        "modified": "2024-04-10T10:48:12.672814Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randomshuffle0QgUqUNkcFHv::random:index/randomShuffle:RandomShuffle::randomShuffle",
+        "custom": true,
+        "id": "-",
+        "type": "random:index/randomShuffle:RandomShuffle",
+        "inputs": {
+          "inputs": [
+            "apple",
+            "banana",
+            "cherry",
+            "date",
+            "fig",
+            "grape"
+          ]
+        },
+        "outputs": {
+          "id": "-",
+          "inputs": [
+            "apple",
+            "banana",
+            "cherry",
+            "date",
+            "fig",
+            "grape"
+          ],
+          "results": [
+            "grape",
+            "cherry",
+            "date",
+            "banana",
+            "apple",
+            "fig"
+          ]
+        },
+        "parent": "urn:pulumi:test::index_randomshuffle0QgUqUNkcFHv::pulumi:pulumi:Stack::index_randomshuffle0QgUqUNkcFHv-test",
+        "provider": "urn:pulumi:test::index_randomshuffle0QgUqUNkcFHv::pulumi:providers:random::default::90fa00a7-0e45-4214-9327-a4b63f061ea6",
+        "propertyDependencies": {
+          "inputs": []
+        },
+        "created": "2024-04-10T10:48:12.677395Z",
+        "modified": "2024-04-10T10:48:12.677395Z"
+      }
+    ]
+  }
+}
