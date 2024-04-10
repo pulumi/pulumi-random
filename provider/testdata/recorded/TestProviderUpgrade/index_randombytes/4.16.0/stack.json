@@ -1,0 +1,64 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:48:16.656962+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:DvmcY95pb+w=:v1:uXaAh7T2lbkkD3nW:xoOLdEAmowpsg/YKGV78UqFgbqDLLw=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_randombytessAsJf9cfGYHF::pulumi:pulumi:Stack::index_randombytessAsJf9cfGYHF-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "created": "2024-04-10T10:48:16.612926Z",
+        "modified": "2024-04-10T10:48:16.612926Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randombytessAsJf9cfGYHF::pulumi:providers:random::default",
+        "custom": true,
+        "id": "0b4fafc8-28eb-4938-8f6c-3cffa0d27e3a",
+        "type": "pulumi:providers:random",
+        "created": "2024-04-10T10:48:16.654678Z",
+        "modified": "2024-04-10T10:48:16.654678Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randombytessAsJf9cfGYHF::random:index/randomBytes:RandomBytes::randomBytes",
+        "custom": true,
+        "id": "fE+Jesqco6w20rpufjykBA==",
+        "type": "random:index/randomBytes:RandomBytes",
+        "inputs": {
+          "length": 16
+        },
+        "outputs": {
+          "base64": {
+            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+            "plaintext": "\"fE+Jesqco6w20rpufjykBA==\""
+          },
+          "hex": {
+            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+            "plaintext": "\"7c4f897aca9ca3ac36d2ba6e7e3ca404\""
+          },
+          "length": 16
+        },
+        "parent": "urn:pulumi:test::index_randombytessAsJf9cfGYHF::pulumi:pulumi:Stack::index_randombytessAsJf9cfGYHF-test",
+        "provider": "urn:pulumi:test::index_randombytessAsJf9cfGYHF::pulumi:providers:random::default::0b4fafc8-28eb-4938-8f6c-3cffa0d27e3a",
+        "propertyDependencies": {
+          "length": []
+        },
+        "additionalSecretOutputs": [
+          "base64",
+          "hex"
+        ],
+        "created": "2024-04-10T10:48:16.656944Z",
+        "modified": "2024-04-10T10:48:16.656944Z"
+      }
+    ]
+  }
+}

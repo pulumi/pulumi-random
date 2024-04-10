@@ -1,0 +1,56 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:48:36.882262+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:YQy+nh3kRaQ=:v1:xY0+zopyhdKCFL5+:CubrDlOICo20qKlJG14ATyPCgZQH3w=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_randompeto4wezh6hqPUZ::pulumi:pulumi:Stack::index_randompeto4wezh6hqPUZ-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "created": "2024-04-10T10:48:36.833695Z",
+        "modified": "2024-04-10T10:48:36.833695Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randompeto4wezh6hqPUZ::pulumi:providers:random::default",
+        "custom": true,
+        "id": "29d5250b-70fa-47cc-8aee-bf656cb567d6",
+        "type": "pulumi:providers:random",
+        "created": "2024-04-10T10:48:36.87952Z",
+        "modified": "2024-04-10T10:48:36.87952Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randompeto4wezh6hqPUZ::random:index/randomPet:RandomPet::randomPet",
+        "custom": true,
+        "id": "roughly-fleet-redfish",
+        "type": "random:index/randomPet:RandomPet",
+        "inputs": {
+          "length": 3,
+          "separator": "-"
+        },
+        "outputs": {
+          "id": "roughly-fleet-redfish",
+          "length": 3,
+          "separator": "-"
+        },
+        "parent": "urn:pulumi:test::index_randompeto4wezh6hqPUZ::pulumi:pulumi:Stack::index_randompeto4wezh6hqPUZ-test",
+        "provider": "urn:pulumi:test::index_randompeto4wezh6hqPUZ::pulumi:providers:random::default::29d5250b-70fa-47cc-8aee-bf656cb567d6",
+        "propertyDependencies": {
+          "length": [],
+          "separator": []
+        },
+        "created": "2024-04-10T10:48:36.882245Z",
+        "modified": "2024-04-10T10:48:36.882245Z"
+      }
+    ]
+  }
+}

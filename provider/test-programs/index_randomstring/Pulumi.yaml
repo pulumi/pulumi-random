@@ -1,0 +1,18 @@
+name: index_randomstringTu2iX3Vq02G9
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/c6cefd93-a498-4283-b8d4-cceb467b03f3.zip
+outputs:
+  randomStringResult: ${myRandomString.result}
+resources:
+  myRandomString:
+    properties:
+      length: 16
+      lower: true
+      number: true
+      special: false
+      upper: true
+    type: random:RandomString

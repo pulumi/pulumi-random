@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:48:32.817357+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:h6H/AD5zrZI=:v1:3oTsOVhcn9hD0U7Z:ClWNGTGaSgAYixsphVzbC8KN1cMFxA=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_randomintegerOhWAlILnCMss::pulumi:pulumi:Stack::index_randomintegerOhWAlILnCMss-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "outputs": {
+          "generatedNumber": 83
+        },
+        "created": "2024-04-10T10:48:32.770383Z",
+        "modified": "2024-04-10T10:48:32.770383Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randomintegerOhWAlILnCMss::pulumi:providers:random::default",
+        "custom": true,
+        "id": "ec09d0b2-94ed-4b6a-bb0e-42ca043aebd1",
+        "type": "pulumi:providers:random",
+        "created": "2024-04-10T10:48:32.81353Z",
+        "modified": "2024-04-10T10:48:32.81353Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_randomintegerOhWAlILnCMss::random:index/randomInteger:RandomInteger::randomNumber",
+        "custom": true,
+        "id": "83",
+        "type": "random:index/randomInteger:RandomInteger",
+        "inputs": {
+          "max": 100,
+          "min": 1
+        },
+        "outputs": {
+          "id": "83",
+          "max": 100,
+          "min": 1,
+          "result": 83
+        },
+        "parent": "urn:pulumi:test::index_randomintegerOhWAlILnCMss::pulumi:pulumi:Stack::index_randomintegerOhWAlILnCMss-test",
+        "provider": "urn:pulumi:test::index_randomintegerOhWAlILnCMss::pulumi:providers:random::default::ec09d0b2-94ed-4b6a-bb0e-42ca043aebd1",
+        "propertyDependencies": {
+          "max": [],
+          "min": []
+        },
+        "created": "2024-04-10T10:48:32.816373Z",
+        "modified": "2024-04-10T10:48:32.816373Z"
+      }
+    ]
+  }
+}
