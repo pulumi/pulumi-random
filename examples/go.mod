@@ -13,7 +13,7 @@ require (
 	github.com/pulumi/pulumi-terraform-bridge/testing v0.0.1
 	github.com/pulumi/pulumi/pkg/v3 v3.112.0
 	github.com/pulumi/pulumi/sdk/v3 v3.112.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 
 )
 
