@@ -24,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-azure/sdk/v5/go/azure/keyvault"
+//	"github.com/pulumi/pulumi-azurerm/sdk/v1/go/azurerm"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -32,15 +32,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			jwtSecretRandomBytes, err := random.NewRandomBytes(ctx, "jwtSecretRandomBytes", &random.RandomBytesArgs{
+//			jwtSecret, err := random.NewRandomBytes(ctx, "jwt_secret", &random.RandomBytesArgs{
 //				Length: pulumi.Int(64),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keyvault.NewSecret(ctx, "jwtSecretSecret", &keyvault.SecretArgs{
-//				KeyVaultId: pulumi.String("some-azure-key-vault-id"),
-//				Value:      jwtSecretRandomBytes.Base64,
+//			_, err = index.NewKeyVaultSecret(ctx, "jwt_secret", &index.KeyVaultSecretArgs{
+//				KeyVaultId: "some-azure-key-vault-id",
+//				Name:       "JwtSecret",
+//				Value:      jwtSecret.Base64,
 //			})
 //			if err != nil {
 //				return err

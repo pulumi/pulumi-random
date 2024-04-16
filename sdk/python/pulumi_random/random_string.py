@@ -472,8 +472,8 @@ class RandomString(pulumi.CustomResource):
 
         random = random.RandomString("random",
             length=16,
-            override_special="/@£$",
-            special=True)
+            special=True,
+            override_special="/@£$")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -518,8 +518,8 @@ class RandomString(pulumi.CustomResource):
 
         random = random.RandomString("random",
             length=16,
-            override_special="/@£$",
-            special=True)
+            special=True,
+            override_special="/@£$")
         ```
         <!--End PulumiCodeChooser -->
 

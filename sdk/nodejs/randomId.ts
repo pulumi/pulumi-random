@@ -30,19 +30,18 @@ import * as utilities from "./utilities";
  *
  * // The following example shows how to generate a unique name for an AWS EC2
  * // instance that changes each time a new AMI id is selected.
- * const serverRandomId = new random.RandomId("serverRandomId", {
+ * const server = new random.RandomId("server", {
  *     keepers: {
- *         ami_id: _var.ami_id,
+ *         ami_id: amiId,
  *     },
  *     byteLength: 8,
  * });
- * const serverInstance = new aws.ec2.Instance("serverInstance", {
+ * const serverInstance = new aws.index.Instance("server", {
  *     tags: {
- *         Name: pulumi.interpolate`web-server ${serverRandomId.hex}`,
+ *         name: `web-server ${server.hex}`,
  *     },
- *     ami: serverRandomId.keepers.apply(keepers => keepers?.amiId),
+ *     ami: server.keepers?.amiId,
  * });
- * // ... (other aws_instance arguments) ...
  * ```
  * <!--End PulumiCodeChooser -->
  *

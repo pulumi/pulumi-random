@@ -22,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/elb"
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -42,7 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = elb.NewLoadBalancer(ctx, "example", &elb.LoadBalancerArgs{
+//			_, err = aws.NewElb(ctx, "example", &aws.ElbArgs{
 //				AvailabilityZones: az.Results,
 //			})
 //			if err != nil {

@@ -181,15 +181,14 @@ class RandomPet(pulumi.CustomResource):
         # The following example shows how to generate a unique pet name
         # for an AWS EC2 instance that changes each time a new AMI id is
         # selected.
-        server_random_pet = random.RandomPet("serverRandomPet", keepers={
-            "ami_id": var["ami_id"],
+        server = random.RandomPet("server", keepers={
+            "ami_id": ami_id,
         })
-        server_instance = aws.ec2.Instance("serverInstance",
+        server_instance = aws.index.Instance("server",
             tags={
-                "Name": server_random_pet.id.apply(lambda id: f"web-server-{id}"),
+                name: fweb-server-{server.id},
             },
-            ami=server_random_pet.keepers["amiId"])
-        # ... (other aws_instance arguments) ...
+            ami=server.keepers.ami_id)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -222,15 +221,14 @@ class RandomPet(pulumi.CustomResource):
         # The following example shows how to generate a unique pet name
         # for an AWS EC2 instance that changes each time a new AMI id is
         # selected.
-        server_random_pet = random.RandomPet("serverRandomPet", keepers={
-            "ami_id": var["ami_id"],
+        server = random.RandomPet("server", keepers={
+            "ami_id": ami_id,
         })
-        server_instance = aws.ec2.Instance("serverInstance",
+        server_instance = aws.index.Instance("server",
             tags={
-                "Name": server_random_pet.id.apply(lambda id: f"web-server-{id}"),
+                name: fweb-server-{server.id},
             },
-            ami=server_random_pet.keepers["amiId"])
-        # ... (other aws_instance arguments) ...
+            ami=server.keepers.ami_id)
         ```
         <!--End PulumiCodeChooser -->
 

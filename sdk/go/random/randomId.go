@@ -37,7 +37,7 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -47,24 +47,22 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// The following example shows how to generate a unique name for an AWS EC2
 //			// instance that changes each time a new AMI id is selected.
-//			serverRandomId, err := random.NewRandomId(ctx, "serverRandomId", &random.RandomIdArgs{
+//			server, err := random.NewRandomId(ctx, "server", &random.RandomIdArgs{
 //				Keepers: pulumi.StringMap{
-//					"ami_id": pulumi.Any(_var.Ami_id),
+//					"ami_id": pulumi.Any(amiId),
 //				},
 //				ByteLength: pulumi.Int(8),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
-//				Tags: pulumi.StringMap{
-//					"Name": serverRandomId.Hex.ApplyT(func(hex string) (string, error) {
+//			_, err = aws.NewInstance(ctx, "server", &aws.InstanceArgs{
+//				Tags: map[string]interface{}{
+//					"name": server.Hex.ApplyT(func(hex string) (string, error) {
 //						return fmt.Sprintf("web-server %v", hex), nil
 //					}).(pulumi.StringOutput),
 //				},
-//				Ami: serverRandomId.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
-//					return &keepers.AmiId, nil
-//				}).(pulumi.StringPtrOutput),
+//				Ami: server.Keepers.AmiId,
 //			})
 //			if err != nil {
 //				return err

@@ -32,9 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomInteger;
  * import com.pulumi.random.RandomIntegerArgs;
- * import com.pulumi.aws.alb.ListenerRule;
- * import com.pulumi.aws.alb.ListenerRuleArgs;
- * import com.pulumi.aws.alb.inputs.ListenerRuleActionArgs;
+ * import com.pulumi.aws.albListenerRule;
+ * import com.pulumi.aws.AlbListenerRuleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -53,19 +52,15 @@ import javax.annotation.Nullable;
  *         var priority = new RandomInteger(&#34;priority&#34;, RandomIntegerArgs.builder()        
  *             .min(1)
  *             .max(50000)
- *             .keepers(Map.of(&#34;listener_arn&#34;, var_.listener_arn()))
+ *             .keepers(Map.of(&#34;listener_arn&#34;, listenerArn))
  *             .build());
  * 
- *         var main = new ListenerRule(&#34;main&#34;, ListenerRuleArgs.builder()        
+ *         var main = new AlbListenerRule(&#34;main&#34;, AlbListenerRuleArgs.builder()        
  *             .listenerArn(priority.keepers().applyValue(keepers -&gt; keepers.listenerArn()))
  *             .priority(priority.result())
- *             .actions(ListenerRuleActionArgs.builder()
- *                 .type(&#34;forward&#34;)
- *                 .targetGroupArn(var_.target_group_arn())
- *                 .build())
+ *             .action(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
- *         // ... (other aws_alb_listener_rule arguments) ...
  *     }
  * }
  * ```

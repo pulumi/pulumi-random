@@ -24,8 +24,7 @@ import * as utilities from "./utilities";
  *     ],
  *     resultCount: 2,
  * });
- * const example = new aws.elb.LoadBalancer("example", {availabilityZones: az.results});
- * // ... and other aws_elb arguments ...
+ * const example = new aws.index.Elb("example", {availabilityZones: az.results});
  * ```
  * <!--End PulumiCodeChooser -->
  */

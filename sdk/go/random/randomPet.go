@@ -25,7 +25,7 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -36,23 +36,21 @@ import (
 //			// The following example shows how to generate a unique pet name
 //			// for an AWS EC2 instance that changes each time a new AMI id is
 //			// selected.
-//			serverRandomPet, err := random.NewRandomPet(ctx, "serverRandomPet", &random.RandomPetArgs{
+//			server, err := random.NewRandomPet(ctx, "server", &random.RandomPetArgs{
 //				Keepers: pulumi.StringMap{
-//					"ami_id": pulumi.Any(_var.Ami_id),
+//					"ami_id": pulumi.Any(amiId),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ec2.NewInstance(ctx, "serverInstance", &ec2.InstanceArgs{
-//				Tags: pulumi.StringMap{
-//					"Name": serverRandomPet.ID().ApplyT(func(id string) (string, error) {
+//			_, err = aws.NewInstance(ctx, "server", &aws.InstanceArgs{
+//				Tags: map[string]interface{}{
+//					"name": server.ID().ApplyT(func(id string) (string, error) {
 //						return fmt.Sprintf("web-server-%v", id), nil
 //					}).(pulumi.StringOutput),
 //				},
-//				Ami: serverRandomPet.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
-//					return &keepers.AmiId, nil
-//				}).(pulumi.StringPtrOutput),
+//				Ami: server.Keepers.AmiId,
 //			})
 //			if err != nil {
 //				return err

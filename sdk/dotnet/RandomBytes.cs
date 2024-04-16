@@ -21,20 +21,21 @@ namespace Pulumi.Random
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Azure = Pulumi.Azure;
+    /// using Azurerm = Pulumi.Azurerm;
     /// using Random = Pulumi.Random;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var jwtSecretRandomBytes = new Random.RandomBytes("jwtSecretRandomBytes", new()
+    ///     var jwtSecret = new Random.RandomBytes("jwt_secret", new()
     ///     {
     ///         Length = 64,
     ///     });
     /// 
-    ///     var jwtSecretSecret = new Azure.KeyVault.Secret("jwtSecretSecret", new()
+    ///     var jwtSecretKeyVaultSecret = new Azurerm.Index.KeyVaultSecret("jwt_secret", new()
     ///     {
     ///         KeyVaultId = "some-azure-key-vault-id",
-    ///         Value = jwtSecretRandomBytes.Base64,
+    ///         Name = "JwtSecret",
+    ///         Value = jwtSecret.Base64,
     ///     });
     /// 
     /// });

@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomBytes;
  * import com.pulumi.random.RandomBytesArgs;
- * import com.pulumi.azure.keyvault.Secret;
- * import com.pulumi.azure.keyvault.SecretArgs;
+ * import com.pulumi.azurerm.keyVaultSecret;
+ * import com.pulumi.azurerm.KeyVaultSecretArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -48,13 +48,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var jwtSecretRandomBytes = new RandomBytes(&#34;jwtSecretRandomBytes&#34;, RandomBytesArgs.builder()        
+ *         var jwtSecret = new RandomBytes(&#34;jwtSecret&#34;, RandomBytesArgs.builder()        
  *             .length(64)
  *             .build());
  * 
- *         var jwtSecretSecret = new Secret(&#34;jwtSecretSecret&#34;, SecretArgs.builder()        
+ *         var jwtSecretKeyVaultSecret = new KeyVaultSecret(&#34;jwtSecretKeyVaultSecret&#34;, KeyVaultSecretArgs.builder()        
  *             .keyVaultId(&#34;some-azure-key-vault-id&#34;)
- *             .value(jwtSecretRandomBytes.base64())
+ *             .name(&#34;JwtSecret&#34;)
+ *             .value(jwtSecret.base64())
  *             .build());
  * 
  *     }
