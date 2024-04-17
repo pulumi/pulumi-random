@@ -111,14 +111,16 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.resultCount);
     }
     /**
-     * Random permutation of the list of strings given in `input`.
+     * Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+     * set, or the number of elements in `input`.
      * 
      */
     @Export(name="results", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> results;
 
     /**
-     * @return Random permutation of the list of strings given in `input`.
+     * @return Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+     * set, or the number of elements in `input`.
      * 
      */
     public Output<List<String>> results() {

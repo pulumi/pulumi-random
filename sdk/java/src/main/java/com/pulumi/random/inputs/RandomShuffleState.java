@@ -64,14 +64,16 @@ public final class RandomShuffleState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Random permutation of the list of strings given in `input`.
+     * Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+     * set, or the number of elements in `input`.
      * 
      */
     @Import(name="results")
     private @Nullable Output<List<String>> results;
 
     /**
-     * @return Random permutation of the list of strings given in `input`.
+     * @return Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+     * set, or the number of elements in `input`.
      * 
      */
     public Optional<Output<List<String>>> results() {
@@ -195,7 +197,8 @@ public final class RandomShuffleState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param results Random permutation of the list of strings given in `input`.
+         * @param results Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+         * set, or the number of elements in `input`.
          * 
          * @return builder
          * 
@@ -206,7 +209,8 @@ public final class RandomShuffleState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param results Random permutation of the list of strings given in `input`.
+         * @param results Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+         * set, or the number of elements in `input`.
          * 
          * @return builder
          * 
@@ -216,7 +220,8 @@ public final class RandomShuffleState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param results Random permutation of the list of strings given in `input`.
+         * @param results Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+         * set, or the number of elements in `input`.
          * 
          * @return builder
          * 

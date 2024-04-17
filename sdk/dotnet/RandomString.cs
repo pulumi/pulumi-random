@@ -88,13 +88,13 @@ namespace Pulumi.Random
         public Output<int> MinUpper { get; private set; } = null!;
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        /// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         /// </summary>
         [Output("number")]
         public Output<bool> Number { get; private set; } = null!;
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`.
+        /// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         /// </summary>
         [Output("numeric")]
         public Output<bool> Numeric { get; private set; } = null!;
@@ -218,13 +218,13 @@ namespace Pulumi.Random
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        /// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`.
+        /// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         /// </summary>
         [Input("numeric")]
         public Input<bool>? Numeric { get; set; }
@@ -304,13 +304,13 @@ namespace Pulumi.Random
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        /// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`.
+        /// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         /// </summary>
         [Input("numeric")]
         public Input<bool>? Numeric { get; set; }

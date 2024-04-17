@@ -125,7 +125,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
      * @deprecated
      * **NOTE**: This is deprecated, use `numeric` instead.
@@ -136,7 +136,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
     private @Nullable Output<Boolean> number;
 
     /**
-     * @return Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * @return Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
      * @deprecated
      * **NOTE**: This is deprecated, use `numeric` instead.
@@ -148,14 +148,14 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      * 
      */
     @Import(name="numeric")
     private @Nullable Output<Boolean> numeric;
 
     /**
-     * @return Include numeric characters in the result. Default value is `true`.
+     * @return Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      * 
      */
     public Optional<Output<Boolean>> numeric() {
@@ -390,7 +390,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param number Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+         * @param number Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
          * 
          * @return builder
          * 
@@ -405,7 +405,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param number Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+         * @param number Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
          * 
          * @return builder
          * 
@@ -419,7 +419,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param numeric Include numeric characters in the result. Default value is `true`.
+         * @param numeric Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
          * 
          * @return builder
          * 
@@ -430,7 +430,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param numeric Include numeric characters in the result. Default value is `true`.
+         * @param numeric Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
          * 
          * @return builder
          * 

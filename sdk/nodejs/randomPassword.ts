@@ -97,13 +97,13 @@ export class RandomPassword extends pulumi.CustomResource {
      */
     public readonly minUpper!: pulumi.Output<number>;
     /**
-     * Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      *
      * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      */
     public readonly number!: pulumi.Output<boolean>;
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      */
     public readonly numeric!: pulumi.Output<boolean>;
     /**
@@ -214,13 +214,13 @@ export interface RandomPasswordState {
      */
     minUpper?: pulumi.Input<number>;
     /**
-     * Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      *
      * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      */
     number?: pulumi.Input<boolean>;
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      */
     numeric?: pulumi.Input<boolean>;
     /**
@@ -274,13 +274,13 @@ export interface RandomPasswordArgs {
      */
     minUpper?: pulumi.Input<number>;
     /**
-     * Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      *
      * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      */
     number?: pulumi.Input<boolean>;
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      */
     numeric?: pulumi.Input<boolean>;
     /**

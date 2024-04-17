@@ -70,7 +70,8 @@ export class RandomShuffle extends pulumi.CustomResource {
      */
     public readonly resultCount!: pulumi.Output<number | undefined>;
     /**
-     * Random permutation of the list of strings given in `input`.
+     * Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+     * set, or the number of elements in `input`.
      */
     public /*out*/ readonly results!: pulumi.Output<string[]>;
     /**
@@ -129,7 +130,8 @@ export interface RandomShuffleState {
      */
     resultCount?: pulumi.Input<number>;
     /**
-     * Random permutation of the list of strings given in `input`.
+     * Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
+     * set, or the number of elements in `input`.
      */
     results?: pulumi.Input<pulumi.Input<string>[]>;
     /**
