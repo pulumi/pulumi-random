@@ -188,7 +188,7 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
         return this.minUpper;
     }
     /**
-     * Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
      * @deprecated
      * **NOTE**: This is deprecated, use `numeric` instead.
@@ -199,21 +199,21 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
     private Output<Boolean> number;
 
     /**
-     * @return Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+     * @return Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
      */
     public Output<Boolean> number() {
         return this.number;
     }
     /**
-     * Include numeric characters in the result. Default value is `true`.
+     * Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      * 
      */
     @Export(name="numeric", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> numeric;
 
     /**
-     * @return Include numeric characters in the result. Default value is `true`.
+     * @return Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      * 
      */
     public Output<Boolean> numeric() {

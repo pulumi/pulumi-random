@@ -35,8 +35,8 @@ class RandomPasswordArgs:
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
-        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
-        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
@@ -156,7 +156,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
         warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
         pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
@@ -171,7 +171,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def numeric(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include numeric characters in the result. Default value is `true`.
+        Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         """
         return pulumi.get(self, "numeric")
 
@@ -243,8 +243,8 @@ class _RandomPasswordState:
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
-        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
-        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[str] result: The generated random string.
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
@@ -382,7 +382,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
         warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
         pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
@@ -397,7 +397,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def numeric(self) -> Optional[pulumi.Input[bool]]:
         """
-        Include numeric characters in the result. Default value is `true`.
+        Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         """
         return pulumi.get(self, "numeric")
 
@@ -511,8 +511,8 @@ class RandomPassword(pulumi.CustomResource):
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
-        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
-        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
@@ -646,8 +646,8 @@ class RandomPassword(pulumi.CustomResource):
         :param pulumi.Input[int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_special: Minimum number of special characters in the result. Default value is `0`.
         :param pulumi.Input[int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
-        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
-        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`.
+        :param pulumi.Input[bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        :param pulumi.Input[bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         :param pulumi.Input[str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[str] result: The generated random string.
         :param pulumi.Input[bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
@@ -741,7 +741,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def number(self) -> pulumi.Output[bool]:
         """
-        Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
         warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
         pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
@@ -752,7 +752,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def numeric(self) -> pulumi.Output[bool]:
         """
-        Include numeric characters in the result. Default value is `true`.
+        Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         """
         return pulumi.get(self, "numeric")
 

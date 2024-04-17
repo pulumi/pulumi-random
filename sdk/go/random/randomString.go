@@ -68,11 +68,11 @@ type RandomString struct {
 	MinSpecial pulumi.IntOutput `pulumi:"minSpecial"`
 	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntOutput `pulumi:"minUpper"`
-	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
 	//
 	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolOutput `pulumi:"number"`
-	// Include numeric characters in the result. Default value is `true`.
+	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric pulumi.BoolOutput `pulumi:"numeric"`
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
@@ -131,11 +131,11 @@ type randomStringState struct {
 	MinSpecial *int `pulumi:"minSpecial"`
 	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper *int `pulumi:"minUpper"`
-	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
 	//
 	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number *bool `pulumi:"number"`
-	// Include numeric characters in the result. Default value is `true`.
+	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric *bool `pulumi:"numeric"`
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
@@ -162,11 +162,11 @@ type RandomStringState struct {
 	MinSpecial pulumi.IntPtrInput
 	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntPtrInput
-	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
 	//
 	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolPtrInput
-	// Include numeric characters in the result. Default value is `true`.
+	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric pulumi.BoolPtrInput
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
@@ -197,11 +197,11 @@ type randomStringArgs struct {
 	MinSpecial *int `pulumi:"minSpecial"`
 	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper *int `pulumi:"minUpper"`
-	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
 	//
 	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number *bool `pulumi:"number"`
-	// Include numeric characters in the result. Default value is `true`.
+	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric *bool `pulumi:"numeric"`
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
@@ -227,11 +227,11 @@ type RandomStringArgs struct {
 	MinSpecial pulumi.IntPtrInput
 	// Minimum number of uppercase alphabet characters in the result. Default value is `0`.
 	MinUpper pulumi.IntPtrInput
-	// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+	// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
 	//
 	// Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 	Number pulumi.BoolPtrInput
-	// Include numeric characters in the result. Default value is `true`.
+	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric pulumi.BoolPtrInput
 	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
@@ -363,14 +363,14 @@ func (o RandomStringOutput) MinUpper() pulumi.IntOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.IntOutput { return v.MinUpper }).(pulumi.IntOutput)
 }
 
-// Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
 //
 // Deprecated: **NOTE**: This is deprecated, use `numeric` instead.
 func (o RandomStringOutput) Number() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Number }).(pulumi.BoolOutput)
 }
 
-// Include numeric characters in the result. Default value is `true`.
+// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 func (o RandomStringOutput) Numeric() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RandomString) pulumi.BoolOutput { return v.Numeric }).(pulumi.BoolOutput)
 }
