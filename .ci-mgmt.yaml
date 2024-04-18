@@ -4,6 +4,9 @@ makeTemplate: bridged
 # TODO: Enable this once our random provider is updated with framework support
 # generate-nightly-test-workflow: true
 plugins:
+  - name: std
+    version: "1.6.2"
+
   - name: terraform
     version: "1.0.16"
     kind: converter
