@@ -465,7 +465,6 @@ class RandomString(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -475,7 +474,6 @@ class RandomString(pulumi.CustomResource):
             override_special="/@£$",
             special=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -511,7 +509,6 @@ class RandomString(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -521,7 +518,6 @@ class RandomString(pulumi.CustomResource):
             override_special="/@£$",
             special=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

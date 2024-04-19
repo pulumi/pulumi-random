@@ -16,7 +16,6 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -49,7 +48,6 @@ namespace Pulumi.Random
     ///     // ... (other aws_instance arguments) ...
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [RandomResourceType("random:index/randomPet:RandomPet")]
     public partial class RandomPet : global::Pulumi.CustomResource

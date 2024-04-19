@@ -213,7 +213,6 @@ class RandomId(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -233,7 +232,6 @@ class RandomId(pulumi.CustomResource):
             ami=server_random_id.keepers["amiId"])
         # ... (other aws_instance arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,7 +283,6 @@ class RandomId(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -305,7 +302,6 @@ class RandomId(pulumi.CustomResource):
             ami=server_random_id.keepers["amiId"])
         # ... (other aws_instance arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

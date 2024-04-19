@@ -187,7 +187,6 @@ class RandomShuffle(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -204,7 +203,6 @@ class RandomShuffle(pulumi.CustomResource):
         example = aws.elb.LoadBalancer("example", availability_zones=az.results)
         # ... and other aws_elb arguments ...
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,7 +222,6 @@ class RandomShuffle(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -241,7 +238,6 @@ class RandomShuffle(pulumi.CustomResource):
         example = aws.elb.LoadBalancer("example", availability_zones=az.results)
         # ... and other aws_elb arguments ...
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param RandomShuffleArgs args: The arguments to use to populate this resource's properties.
