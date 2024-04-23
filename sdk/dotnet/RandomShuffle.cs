@@ -14,7 +14,6 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -44,7 +43,6 @@ namespace Pulumi.Random
     ///     // ... and other aws_elb arguments ...
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [RandomResourceType("random:index/randomShuffle:RandomShuffle")]
     public partial class RandomShuffle : global::Pulumi.CustomResource

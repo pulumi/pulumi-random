@@ -85,7 +85,6 @@ class RandomUuid(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -94,7 +93,6 @@ class RandomUuid(pulumi.CustomResource):
         test_random_uuid = random.RandomUuid("testRandomUuid")
         test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -121,7 +119,6 @@ class RandomUuid(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -130,7 +127,6 @@ class RandomUuid(pulumi.CustomResource):
         test_random_uuid = random.RandomUuid("testRandomUuid")
         test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -479,7 +479,6 @@ class RandomPassword(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -496,7 +495,6 @@ class RandomPassword(pulumi.CustomResource):
             username="someone",
             password=password.result)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -530,7 +528,6 @@ class RandomPassword(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -547,7 +544,6 @@ class RandomPassword(pulumi.CustomResource):
             username="someone",
             password=password.result)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

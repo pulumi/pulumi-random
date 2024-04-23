@@ -186,7 +186,6 @@ class RandomInteger(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -209,7 +208,6 @@ class RandomInteger(pulumi.CustomResource):
             )])
         # ... (other aws_alb_listener_rule arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -245,7 +243,6 @@ class RandomInteger(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -268,7 +265,6 @@ class RandomInteger(pulumi.CustomResource):
             )])
         # ... (other aws_alb_listener_rule arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
