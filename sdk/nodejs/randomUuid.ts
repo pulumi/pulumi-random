@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as azure from "@pulumi/azure";
@@ -16,7 +15,6 @@ import * as utilities from "./utilities";
  * const testRandomUuid = new random.RandomUuid("testRandomUuid", {});
  * const testResourceGroup = new azure.core.ResourceGroup("testResourceGroup", {location: "Central US"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -16,7 +16,6 @@ namespace Pulumi.Random
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,7 +54,6 @@ namespace Pulumi.Random
     ///     // ... (other aws_alb_listener_rule arguments) ...
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
