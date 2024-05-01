@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomPet;
  * import com.pulumi.random.RandomPetArgs;
- * import com.pulumi.aws.instance;
- * import com.pulumi.aws.InstanceArgs;
+ * import com.pulumi.aws.ec2.Instance;
+ * import com.pulumi.aws.ec2.InstanceArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serverInstance = new Instance(&#34;serverInstance&#34;, InstanceArgs.builder()        
- *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .tags(Map.of(&#34;Name&#34;, server.id().applyValue(id -&gt; String.format(&#34;web-server-%s&#34;, id))))
  *             .ami(server.keepers().applyValue(keepers -&gt; keepers.amiId()))
  *             .build());
  * 

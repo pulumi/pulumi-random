@@ -184,11 +184,11 @@ class RandomPet(pulumi.CustomResource):
         server = random.RandomPet("server", keepers={
             "ami_id": ami_id,
         })
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.ec2.Instance("server",
             tags={
-                name: fweb-server-{server.id},
+                "Name": server.id.apply(lambda id: f"web-server-{id}"),
             },
-            ami=server.keepers.ami_id)
+            ami=server.keepers["amiId"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -224,11 +224,11 @@ class RandomPet(pulumi.CustomResource):
         server = random.RandomPet("server", keepers={
             "ami_id": ami_id,
         })
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.ec2.Instance("server",
             tags={
-                name: fweb-server-{server.id},
+                "Name": server.id.apply(lambda id: f"web-server-{id}"),
             },
-            ami=server.keepers.ami_id)
+            ami=server.keepers["amiId"])
         ```
         <!--End PulumiCodeChooser -->
 

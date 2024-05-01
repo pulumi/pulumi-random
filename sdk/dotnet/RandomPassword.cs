@@ -33,9 +33,9 @@ namespace Pulumi.Random
     ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
     ///     });
     /// 
-    ///     var example = new Aws.Index.DbInstance("example", new()
+    ///     var example = new Aws.Rds.Instance("example", new()
     ///     {
-    ///         InstanceClass = "db.t3.micro",
+    ///         InstanceClass = Aws.Rds.InstanceType.T3_Micro,
     ///         AllocatedStorage = 64,
     ///         Engine = "mysql",
     ///         Username = "someone",

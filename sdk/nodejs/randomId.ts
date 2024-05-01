@@ -36,11 +36,11 @@ import * as utilities from "./utilities";
  *     },
  *     byteLength: 8,
  * });
- * const serverInstance = new aws.index.Instance("server", {
+ * const serverInstance = new aws.ec2.Instance("server", {
  *     tags: {
- *         name: `web-server ${server.hex}`,
+ *         Name: pulumi.interpolate`web-server ${server.hex}`,
  *     },
- *     ami: server.keepers?.amiId,
+ *     ami: server.keepers.apply(keepers => keepers?.amiId),
  * });
  * ```
  * <!--End PulumiCodeChooser -->

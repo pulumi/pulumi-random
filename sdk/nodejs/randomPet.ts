@@ -23,11 +23,11 @@ import * as utilities from "./utilities";
  * const server = new random.RandomPet("server", {keepers: {
  *     ami_id: amiId,
  * }});
- * const serverInstance = new aws.index.Instance("server", {
+ * const serverInstance = new aws.ec2.Instance("server", {
  *     tags: {
- *         name: `web-server-${server.id}`,
+ *         Name: pulumi.interpolate`web-server-${server.id}`,
  *     },
- *     ami: server.keepers?.amiId,
+ *     ami: server.keepers.apply(keepers => keepers?.amiId),
  * });
  * ```
  * <!--End PulumiCodeChooser -->

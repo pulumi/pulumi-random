@@ -24,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/alb"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -44,13 +44,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = aws.NewAlbListenerRule(ctx, "main", &aws.AlbListenerRuleArgs{
-//				ListenerArn: priority.Keepers.ListenerArn,
-//				Priority:    priority.Result,
-//				Action: []map[string]interface{}{
-//					map[string]interface{}{
-//						"type":           "forward",
-//						"targetGroupArn": targetGroupArn,
+//			_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
+//				ListenerArn: priority.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
+//					return &keepers.ListenerArn, nil
+//				}).(pulumi.StringPtrOutput),
+//				Priority: priority.Result,
+//				Actions: alb.ListenerRuleActionArray{
+//					&alb.ListenerRuleActionArgs{
+//						Type:           pulumi.String("forward"),
+//						TargetGroupArn: pulumi.Any(targetGroupArn),
 //					},
 //				},
 //			})

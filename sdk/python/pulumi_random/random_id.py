@@ -226,11 +226,11 @@ class RandomId(pulumi.CustomResource):
                 "ami_id": ami_id,
             },
             byte_length=8)
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.ec2.Instance("server",
             tags={
-                name: fweb-server {server.hex},
+                "Name": server.hex.apply(lambda hex: f"web-server {hex}"),
             },
-            ami=server.keepers.ami_id)
+            ami=server.keepers["amiId"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -297,11 +297,11 @@ class RandomId(pulumi.CustomResource):
                 "ami_id": ami_id,
             },
             byte_length=8)
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.ec2.Instance("server",
             tags={
-                name: fweb-server {server.hex},
+                "Name": server.hex.apply(lambda hex: f"web-server {hex}"),
             },
-            ami=server.keepers.ami_id)
+            ami=server.keepers["amiId"])
         ```
         <!--End PulumiCodeChooser -->
 

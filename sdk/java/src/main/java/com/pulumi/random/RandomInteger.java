@@ -32,8 +32,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomInteger;
  * import com.pulumi.random.RandomIntegerArgs;
- * import com.pulumi.aws.albListenerRule;
- * import com.pulumi.aws.AlbListenerRuleArgs;
+ * import com.pulumi.aws.alb.ListenerRule;
+ * import com.pulumi.aws.alb.ListenerRuleArgs;
+ * import com.pulumi.aws.alb.inputs.ListenerRuleActionArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -55,10 +56,13 @@ import javax.annotation.Nullable;
  *             .keepers(Map.of(&#34;listener_arn&#34;, listenerArn))
  *             .build());
  * 
- *         var main = new AlbListenerRule(&#34;main&#34;, AlbListenerRuleArgs.builder()        
+ *         var main = new ListenerRule(&#34;main&#34;, ListenerRuleArgs.builder()        
  *             .listenerArn(priority.keepers().applyValue(keepers -&gt; keepers.listenerArn()))
  *             .priority(priority.result())
- *             .action(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .actions(ListenerRuleActionArgs.builder()
+ *                 .type(&#34;forward&#34;)
+ *                 .targetGroupArn(targetGroupArn)
+ *                 .build())
  *             .build());
  * 
  *     }

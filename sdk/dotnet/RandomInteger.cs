@@ -38,16 +38,16 @@ namespace Pulumi.Random
     ///         },
     ///     });
     /// 
-    ///     var main = new Aws.Index.AlbListenerRule("main", new()
+    ///     var main = new Aws.Alb.ListenerRule("main", new()
     ///     {
-    ///         ListenerArn = priority.Keepers?.ListenerArn,
+    ///         ListenerArn = priority.Keepers.Apply(keepers =&gt; keepers?.ListenerArn),
     ///         Priority = priority.Result,
-    ///         Action = new[]
+    ///         Actions = new[]
     ///         {
-    ///             
+    ///             new Aws.Alb.Inputs.ListenerRuleActionArgs
     ///             {
-    ///                 { "type", "forward" },
-    ///                 { "targetGroupArn", targetGroupArn },
+    ///                 Type = "forward",
+    ///                 TargetGroupArn = targetGroupArn,
     ///             },
     ///         },
     ///     });
