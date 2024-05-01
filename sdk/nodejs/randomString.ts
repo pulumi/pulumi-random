@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  *
  * const random = new random.RandomString("random", {
  *     length: 16,
- *     overrideSpecial: "/@£$",
  *     special: true,
+ *     overrideSpecial: "/@£$",
  * });
  * ```
  *

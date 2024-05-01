@@ -26,8 +26,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomUuid;
- * import com.pulumi.azure.core.ResourceGroup;
- * import com.pulumi.azure.core.ResourceGroupArgs;
+ * import com.pulumi.azurerm.resourceGroup;
+ * import com.pulumi.azurerm.ResourceGroupArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -41,9 +41,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testRandomUuid = new RandomUuid(&#34;testRandomUuid&#34;);
+ *         // The following example shows how to generate a unique name for an Azure Resource Group.
+ *         var test = new RandomUuid(&#34;test&#34;);
  * 
  *         var testResourceGroup = new ResourceGroup(&#34;testResourceGroup&#34;, ResourceGroupArgs.builder()        
+ *             .name(test.result().applyValue(result -&gt; String.format(&#34;%s-rg&#34;, result)))
  *             .location(&#34;Central US&#34;)
  *             .build());
  * 

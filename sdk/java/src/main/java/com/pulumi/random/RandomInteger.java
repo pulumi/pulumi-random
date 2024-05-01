@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *         var priority = new RandomInteger(&#34;priority&#34;, RandomIntegerArgs.builder()        
  *             .min(1)
  *             .max(50000)
- *             .keepers(Map.of(&#34;listener_arn&#34;, var_.listener_arn()))
+ *             .keepers(Map.of(&#34;listener_arn&#34;, listenerArn))
  *             .build());
  * 
  *         var main = new ListenerRule(&#34;main&#34;, ListenerRuleArgs.builder()        
@@ -61,11 +61,10 @@ import javax.annotation.Nullable;
  *             .priority(priority.result())
  *             .actions(ListenerRuleActionArgs.builder()
  *                 .type(&#34;forward&#34;)
- *                 .targetGroupArn(var_.target_group_arn())
+ *                 .targetGroupArn(targetGroupArn)
  *                 .build())
  *             .build());
  * 
- *         // ... (other aws_alb_listener_rule arguments) ...
  *     }
  * }
  * ```

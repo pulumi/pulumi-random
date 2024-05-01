@@ -220,17 +220,16 @@ class RandomId(pulumi.CustomResource):
 
         # The following example shows how to generate a unique name for an AWS EC2
         # instance that changes each time a new AMI id is selected.
-        server_random_id = random.RandomId("serverRandomId",
+        server = random.RandomId("server",
             keepers={
-                "ami_id": var["ami_id"],
+                "ami_id": ami_id,
             },
             byte_length=8)
-        server_instance = aws.ec2.Instance("serverInstance",
+        server_instance = aws.ec2.Instance("server",
             tags={
-                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
+                "Name": server.hex.apply(lambda hex: f"web-server {hex}"),
             },
-            ami=server_random_id.keepers["amiId"])
-        # ... (other aws_instance arguments) ...
+            ami=server.keepers["amiId"])
         ```
 
         ## Import
@@ -290,17 +289,16 @@ class RandomId(pulumi.CustomResource):
 
         # The following example shows how to generate a unique name for an AWS EC2
         # instance that changes each time a new AMI id is selected.
-        server_random_id = random.RandomId("serverRandomId",
+        server = random.RandomId("server",
             keepers={
-                "ami_id": var["ami_id"],
+                "ami_id": ami_id,
             },
             byte_length=8)
-        server_instance = aws.ec2.Instance("serverInstance",
+        server_instance = aws.ec2.Instance("server",
             tags={
-                "Name": server_random_id.hex.apply(lambda hex: f"web-server {hex}"),
+                "Name": server.hex.apply(lambda hex: f"web-server {hex}"),
             },
-            ami=server_random_id.keepers["amiId"])
-        # ... (other aws_instance arguments) ...
+            ami=server.keepers["amiId"])
         ```
 
         ## Import

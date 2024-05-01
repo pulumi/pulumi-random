@@ -29,8 +29,8 @@ namespace Pulumi.Random
     ///     var random = new Random.RandomString("random", new()
     ///     {
     ///         Length = 16,
-    ///         OverrideSpecial = "/@£$",
     ///         Special = true,
+    ///         OverrideSpecial = "/@£$",
     ///     });
     /// 
     /// });

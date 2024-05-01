@@ -13,13 +13,14 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as azure from "@pulumi/azure";
+ * import * as azurerm from "@pulumi/azurerm";
  * import * as random from "@pulumi/random";
  *
- * const jwtSecretRandomBytes = new random.RandomBytes("jwtSecretRandomBytes", {length: 64});
- * const jwtSecretSecret = new azure.keyvault.Secret("jwtSecretSecret", {
+ * const jwtSecret = new random.RandomBytes("jwt_secret", {length: 64});
+ * const jwtSecretKeyVaultSecret = new azurerm.index.KeyVaultSecret("jwt_secret", {
  *     keyVaultId: "some-azure-key-vault-id",
- *     value: jwtSecretRandomBytes.base64,
+ *     name: "JwtSecret",
+ *     value: jwtSecret.base64,
  * });
  * ```
  *

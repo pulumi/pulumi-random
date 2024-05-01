@@ -33,7 +33,7 @@ namespace Pulumi.Random
     ///         Max = 50000,
     ///         Keepers = 
     ///         {
-    ///             { "listener_arn", @var.Listener_arn },
+    ///             { "listener_arn", listenerArn },
     ///         },
     ///     });
     /// 
@@ -46,12 +46,11 @@ namespace Pulumi.Random
     ///             new Aws.Alb.Inputs.ListenerRuleActionArgs
     ///             {
     ///                 Type = "forward",
-    ///                 TargetGroupArn = @var.Target_group_arn,
+    ///                 TargetGroupArn = targetGroupArn,
     ///             },
     ///         },
     ///     });
     /// 
-    ///     // ... (other aws_alb_listener_rule arguments) ...
     /// });
     /// ```
     /// 

@@ -18,7 +18,9 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-azure/sdk/v5/go/azure/core"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-azurerm/sdk/v1/go/azurerm"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -26,12 +28,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := random.NewRandomUuid(ctx, "testRandomUuid", nil)
+//			// The following example shows how to generate a unique name for an Azure Resource Group.
+//			test, err := random.NewRandomUuid(ctx, "test", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = core.NewResourceGroup(ctx, "testResourceGroup", &core.ResourceGroupArgs{
-//				Location: pulumi.String("Central US"),
+//			_, err = index.NewResourceGroup(ctx, "test", &index.ResourceGroupArgs{
+//				Name:     pulumi.String(fmt.Sprintf("%v-rg", test.Result)),
+//				Location: "Central US",
 //			})
 //			if err != nil {
 //				return err

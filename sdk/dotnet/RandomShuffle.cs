@@ -40,7 +40,6 @@ namespace Pulumi.Random
     ///         AvailabilityZones = az.Results,
     ///     });
     /// 
-    ///     // ... and other aws_elb arguments ...
     /// });
     /// ```
     /// </summary>

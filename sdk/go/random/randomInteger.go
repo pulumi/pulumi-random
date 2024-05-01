@@ -23,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/alb"
+//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/alb"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -37,7 +37,7 @@ import (
 //				Min: pulumi.Int(1),
 //				Max: pulumi.Int(50000),
 //				Keepers: pulumi.StringMap{
-//					"listener_arn": pulumi.Any(_var.Listener_arn),
+//					"listener_arn": pulumi.Any(listenerArn),
 //				},
 //			})
 //			if err != nil {
@@ -51,7 +51,7 @@ import (
 //				Actions: alb.ListenerRuleActionArray{
 //					&alb.ListenerRuleActionArgs{
 //						Type:           pulumi.String("forward"),
-//						TargetGroupArn: pulumi.Any(_var.Target_group_arn),
+//						TargetGroupArn: pulumi.Any(targetGroupArn),
 //					},
 //				},
 //			})

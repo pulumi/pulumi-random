@@ -16,15 +16,17 @@ namespace Pulumi.Random
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Azure = Pulumi.Azure;
+    /// using Azurerm = Pulumi.Azurerm;
     /// using Random = Pulumi.Random;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRandomUuid = new Random.RandomUuid("testRandomUuid");
+    ///     // The following example shows how to generate a unique name for an Azure Resource Group.
+    ///     var test = new Random.RandomUuid("test");
     /// 
-    ///     var testResourceGroup = new Azure.Core.ResourceGroup("testResourceGroup", new()
+    ///     var testResourceGroup = new Azurerm.Index.ResourceGroup("test", new()
     ///     {
+    ///         Name = $"{test.Result}-rg",
     ///         Location = "Central US",
     ///     });
     /// 

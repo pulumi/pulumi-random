@@ -197,16 +197,15 @@ class RandomInteger(pulumi.CustomResource):
             min=1,
             max=50000,
             keepers={
-                "listener_arn": var["listener_arn"],
+                "listener_arn": listener_arn,
             })
         main = aws.alb.ListenerRule("main",
             listener_arn=priority.keepers["listenerArn"],
             priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
                 type="forward",
-                target_group_arn=var["target_group_arn"],
+                target_group_arn=target_group_arn,
             )])
-        # ... (other aws_alb_listener_rule arguments) ...
         ```
 
         ## Import
@@ -254,16 +253,15 @@ class RandomInteger(pulumi.CustomResource):
             min=1,
             max=50000,
             keepers={
-                "listener_arn": var["listener_arn"],
+                "listener_arn": listener_arn,
             })
         main = aws.alb.ListenerRule("main",
             listener_arn=priority.keepers["listenerArn"],
             priority=priority.result,
             actions=[aws.alb.ListenerRuleActionArgs(
                 type="forward",
-                target_group_arn=var["target_group_arn"],
+                target_group_arn=target_group_arn,
             )])
-        # ... (other aws_alb_listener_rule arguments) ...
         ```
 
         ## Import

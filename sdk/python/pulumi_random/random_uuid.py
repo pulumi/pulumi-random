@@ -87,11 +87,14 @@ class RandomUuid(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_random as random
 
-        test_random_uuid = random.RandomUuid("testRandomUuid")
-        test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
+        # The following example shows how to generate a unique name for an Azure Resource Group.
+        test = random.RandomUuid("test")
+        test_resource_group = azurerm.index.ResourceGroup("test",
+            name=f{test.result}-rg,
+            location=Central US)
         ```
 
         ## Import
@@ -121,11 +124,14 @@ class RandomUuid(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_random as random
 
-        test_random_uuid = random.RandomUuid("testRandomUuid")
-        test_resource_group = azure.core.ResourceGroup("testResourceGroup", location="Central US")
+        # The following example shows how to generate a unique name for an Azure Resource Group.
+        test = random.RandomUuid("test")
+        test_resource_group = azurerm.index.ResourceGroup("test",
+            name=f{test.result}-rg,
+            location=Central US)
         ```
 
         ## Import

@@ -19,16 +19,15 @@ import * as utilities from "./utilities";
  * // The following example shows how to generate a unique pet name
  * // for an AWS EC2 instance that changes each time a new AMI id is
  * // selected.
- * const serverRandomPet = new random.RandomPet("serverRandomPet", {keepers: {
- *     ami_id: _var.ami_id,
+ * const server = new random.RandomPet("server", {keepers: {
+ *     ami_id: amiId,
  * }});
- * const serverInstance = new aws.ec2.Instance("serverInstance", {
+ * const serverInstance = new aws.ec2.Instance("server", {
  *     tags: {
- *         Name: pulumi.interpolate`web-server-${serverRandomPet.id}`,
+ *         Name: pulumi.interpolate`web-server-${server.id}`,
  *     },
- *     ami: serverRandomPet.keepers.apply(keepers => keepers?.amiId),
+ *     ami: server.keepers.apply(keepers => keepers?.amiId),
  * });
- * // ... (other aws_instance arguments) ...
  * ```
  */
 export class RandomPet extends pulumi.CustomResource {

@@ -139,13 +139,14 @@ class RandomBytes(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_random as random
 
-        jwt_secret_random_bytes = random.RandomBytes("jwtSecretRandomBytes", length=64)
-        jwt_secret_secret = azure.keyvault.Secret("jwtSecretSecret",
-            key_vault_id="some-azure-key-vault-id",
-            value=jwt_secret_random_bytes.base64)
+        jwt_secret = random.RandomBytes("jwt_secret", length=64)
+        jwt_secret_key_vault_secret = azurerm.index.KeyVaultSecret("jwt_secret",
+            key_vault_id=some-azure-key-vault-id,
+            name=JwtSecret,
+            value=jwt_secret.base64)
         ```
 
         ## Import
@@ -176,13 +177,14 @@ class RandomBytes(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_random as random
 
-        jwt_secret_random_bytes = random.RandomBytes("jwtSecretRandomBytes", length=64)
-        jwt_secret_secret = azure.keyvault.Secret("jwtSecretSecret",
-            key_vault_id="some-azure-key-vault-id",
-            value=jwt_secret_random_bytes.base64)
+        jwt_secret = random.RandomBytes("jwt_secret", length=64)
+        jwt_secret_key_vault_secret = azurerm.index.KeyVaultSecret("jwt_secret",
+            key_vault_id=some-azure-key-vault-id,
+            name=JwtSecret,
+            value=jwt_secret.base64)
         ```
 
         ## Import

@@ -38,25 +38,24 @@ namespace Pulumi.Random
     /// {
     ///     // The following example shows how to generate a unique name for an AWS EC2
     ///     // instance that changes each time a new AMI id is selected.
-    ///     var serverRandomId = new Random.RandomId("serverRandomId", new()
+    ///     var server = new Random.RandomId("server", new()
     ///     {
     ///         Keepers = 
     ///         {
-    ///             { "ami_id", @var.Ami_id },
+    ///             { "ami_id", amiId },
     ///         },
     ///         ByteLength = 8,
     ///     });
     /// 
-    ///     var serverInstance = new Aws.Ec2.Instance("serverInstance", new()
+    ///     var serverInstance = new Aws.Ec2.Instance("server", new()
     ///     {
     ///         Tags = 
     ///         {
-    ///             { "Name", serverRandomId.Hex.Apply(hex =&gt; $"web-server {hex}") },
+    ///             { "Name", server.Hex.Apply(hex =&gt; $"web-server {hex}") },
     ///         },
-    ///         Ami = serverRandomId.Keepers.Apply(keepers =&gt; keepers?.AmiId),
+    ///         Ami = server.Keepers.Apply(keepers =&gt; keepers?.AmiId),
     ///     });
     /// 
-    ///     // ... (other aws_instance arguments) ...
     /// });
     /// ```
     /// 

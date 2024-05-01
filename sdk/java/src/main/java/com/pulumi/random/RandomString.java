@@ -50,8 +50,8 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var random = new RandomString(&#34;random&#34;, RandomStringArgs.builder()        
  *             .length(16)
- *             .overrideSpecial(&#34;/@£$&#34;)
  *             .special(true)
+ *             .overrideSpecial(&#34;/@£$&#34;)
  *             .build());
  * 
  *     }

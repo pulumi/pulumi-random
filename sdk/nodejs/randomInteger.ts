@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     min: 1,
  *     max: 50000,
  *     keepers: {
- *         listener_arn: _var.listener_arn,
+ *         listener_arn: listenerArn,
  *     },
  * });
  * const main = new aws.alb.ListenerRule("main", {
@@ -30,10 +30,9 @@ import * as utilities from "./utilities";
  *     priority: priority.result,
  *     actions: [{
  *         type: "forward",
- *         targetGroupArn: _var.target_group_arn,
+ *         targetGroupArn: targetGroupArn,
  *     }],
  * });
- * // ... (other aws_alb_listener_rule arguments) ...
  * ```
  *
  * ## Import
