@@ -112,6 +112,10 @@ jobs:
       run: make build_${{ matrix.language }}
     - name: Check worktree clean
       uses: pulumi/git-status-check-action@v1
+      with:
+        allowed-changes: |
+          sdk/go/random/pulumi-plugin.json
+          sdk/go/random/internal/pulumiUtilities.go
     - name: Compress SDK folder
       run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .
     - name: Upload artifacts

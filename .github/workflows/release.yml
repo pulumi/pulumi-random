@@ -102,6 +102,10 @@ jobs:
       run: make build_${{ matrix.language }}
     - name: Check worktree clean
       uses: pulumi/git-status-check-action@v1
+      with:
+        allowed-changes: |
+          sdk/go/random/pulumi-plugin.json
+          sdk/go/random/internal/pulumiUtilities.go
     - name: Compress SDK folder
       run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .
     - name: Upload artifacts
@@ -359,9 +363,14 @@ jobs:
         repo: pulumi/pulumictl
     - id: version
       uses: pulumi/provider-version-action@v1
-    - name: Add SDK version tag
-      run: git tag "sdk/v${{ steps.version.outputs.version }}" && git push origin
-        "sdk/v${{ steps.version.outputs.version }}"
+    - uses: pulumi/publish-go-sdk-action@v1
+      with:
+        repository: ${{ github.repository }}
+        base-ref: ${{ github.sha }}
+        source: sdk
+        path: sdk
+        version: ${{ steps.version.outputs.version }}
+        additive: false
 
   clean_up_release_labels:
     name: Clean up release labels
