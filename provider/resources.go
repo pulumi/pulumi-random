@@ -77,24 +77,17 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0",
-			},
-			DevDependencies: map[string]string{
-				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
-			},
+			RespectSchemaVersion: true,
 		},
 		Python: (func() *tfbridge.PythonInfo {
 			i := &tfbridge.PythonInfo{
-				Requires: map[string]string{
-					"pulumi": ">=3.0.0,<4.0.0",
-				}}
+				RespectSchemaVersion: true,
+			}
 			i.PyProject.Enabled = true
 			return i
 		})(),
 
 		Golang: &tfbridge.GolangInfo{
-			RespectSchemaVersion: true,
 			ImportBasePath: filepath.Join(
 				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", randomPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
@@ -102,11 +95,10 @@ func Provider() tfbridge.ProviderInfo {
 				randomPkg,
 			),
 			GenerateResourceContainerTypes: true,
+			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			PackageReferences: map[string]string{
-				"Pulumi": "3.*",
-			},
+			RespectSchemaVersion: true,
 			Namespaces: map[string]string{
 				"random": "Random",
 			},

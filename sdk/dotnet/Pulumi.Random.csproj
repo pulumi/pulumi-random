@@ -9,6 +9,7 @@
     <PackageProjectUrl>https://pulumi.io</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pulumi/pulumi-random</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
+    <Version>4.0.0-alpha.0+dev</Version>
 
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -44,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pulumi" Version="3.*" />
+    <PackageReference Include="Pulumi" Version="[3.54.1.0,4)" />
   </ItemGroup>
 
   <ItemGroup>

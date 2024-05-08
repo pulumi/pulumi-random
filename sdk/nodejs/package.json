@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/random",
-    "version": "${VERSION}",
+    "version": "4.0.0-alpha.0+dev",
     "description": "A Pulumi package to safely use randomness in Pulumi programs.",
     "keywords": [
         "pulumi",
@@ -13,14 +13,15 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.0.0"
+        "@pulumi/pulumi": "^3.42.0"
     },
     "devDependencies": {
-        "@types/node": "^10.0.0",
+        "@types/node": "^14",
         "typescript": "^4.3.5"
     },
     "pulumi": {
         "resource": true,
-        "name": "random"
+        "name": "random",
+        "version": "4.0.0-alpha.0+dev"
     }
 }
