@@ -36,7 +36,7 @@ worktreeAllowedChanges: |-
   sdk/dotnet/Pulumi.*.csproj
   sdk/go/random/internal/pulumiUtilities.go
   sdk/nodejs/package.json
-  sdk/python/*/pyproject.toml
+  sdk/python/pyproject.toml
 
 publish:
   goSdk:

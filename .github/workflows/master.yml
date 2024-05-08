@@ -104,8 +104,11 @@ jobs:
       uses: pulumi/git-status-check-action@v1
       with:
         allowed-changes: |
-          sdk/go/random/pulumi-plugin.json
+          sdk/**/pulumi-plugin.json
+          sdk/dotnet/Pulumi.*.csproj
           sdk/go/random/internal/pulumiUtilities.go
+          sdk/nodejs/package.json
+          sdk/python/pyproject.toml
     - name: Compress SDK folder
       run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .
     - name: Upload artifacts
