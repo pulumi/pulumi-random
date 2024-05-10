@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,16 +43,17 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // The following example shows how to generate a unique name for an Azure Resource Group.
- *         var test = new RandomUuid(&#34;test&#34;);
+ *         var test = new RandomUuid("test");
  * 
- *         var testResourceGroup = new ResourceGroup(&#34;testResourceGroup&#34;, ResourceGroupArgs.builder()        
- *             .name(test.result().applyValue(result -&gt; String.format(&#34;%s-rg&#34;, result)))
- *             .location(&#34;Central US&#34;)
+ *         var testResourceGroup = new ResourceGroup("testResourceGroup", ResourceGroupArgs.builder()        
+ *             .name(test.result().applyValue(result -> String.format("%s-rg", result)))
+ *             .location("Central US")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

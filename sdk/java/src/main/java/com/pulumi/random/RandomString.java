@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,15 +49,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var random = new RandomString(&#34;random&#34;, RandomStringArgs.builder()        
+ *         var random = new RandomString("random", RandomStringArgs.builder()        
  *             .length(16)
  *             .special(true)
- *             .overrideSpecial(&#34;/@£$&#34;)
+ *             .overrideSpecial("/{@literal @}£$")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -225,14 +227,14 @@ public class RandomString extends com.pulumi.resources.CustomResource {
         return this.result;
     }
     /**
-     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!{@literal @}#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     @Export(name="special", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!{@literal @}#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     public Output<Boolean> special() {

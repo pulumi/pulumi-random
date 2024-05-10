@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,18 +51,19 @@ import javax.annotation.Nullable;
  *         // The following example shows how to generate a unique pet name
  *         // for an AWS EC2 instance that changes each time a new AMI id is
  *         // selected.
- *         var server = new RandomPet(&#34;server&#34;, RandomPetArgs.builder()        
- *             .keepers(Map.of(&#34;ami_id&#34;, amiId))
+ *         var server = new RandomPet("server", RandomPetArgs.builder()        
+ *             .keepers(Map.of("ami_id", amiId))
  *             .build());
  * 
- *         var serverInstance = new Instance(&#34;serverInstance&#34;, InstanceArgs.builder()        
- *             .tags(Map.of(&#34;Name&#34;, server.id().applyValue(id -&gt; String.format(&#34;web-server-%s&#34;, id))))
- *             .ami(server.keepers().applyValue(keepers -&gt; keepers.amiId()))
+ *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()        
+ *             .tags(Map.of("Name", server.id().applyValue(id -> String.format("web-server-%s", id))))
+ *             .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

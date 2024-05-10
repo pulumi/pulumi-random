@@ -35,7 +35,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -60,19 +61,20 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // The following example shows how to generate a unique name for an AWS EC2
  *         // instance that changes each time a new AMI id is selected.
- *         var server = new RandomId(&#34;server&#34;, RandomIdArgs.builder()        
- *             .keepers(Map.of(&#34;ami_id&#34;, amiId))
+ *         var server = new RandomId("server", RandomIdArgs.builder()        
+ *             .keepers(Map.of("ami_id", amiId))
  *             .byteLength(8)
  *             .build());
  * 
- *         var serverInstance = new Instance(&#34;serverInstance&#34;, InstanceArgs.builder()        
- *             .tags(Map.of(&#34;Name&#34;, server.hex().applyValue(hex -&gt; String.format(&#34;web-server %s&#34;, hex))))
- *             .ami(server.keepers().applyValue(keepers -&gt; keepers.amiId()))
+ *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()        
+ *             .tags(Map.of("Name", server.hex().applyValue(hex -> String.format("web-server %s", hex))))
+ *             .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

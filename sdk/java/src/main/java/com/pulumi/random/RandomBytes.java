@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,19 +49,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var jwtSecret = new RandomBytes(&#34;jwtSecret&#34;, RandomBytesArgs.builder()        
+ *         var jwtSecret = new RandomBytes("jwtSecret", RandomBytesArgs.builder()        
  *             .length(64)
  *             .build());
  * 
- *         var jwtSecretKeyVaultSecret = new KeyVaultSecret(&#34;jwtSecretKeyVaultSecret&#34;, KeyVaultSecretArgs.builder()        
- *             .keyVaultId(&#34;some-azure-key-vault-id&#34;)
- *             .name(&#34;JwtSecret&#34;)
+ *         var jwtSecretKeyVaultSecret = new KeyVaultSecret("jwtSecretKeyVaultSecret", KeyVaultSecretArgs.builder()        
+ *             .keyVaultId("some-azure-key-vault-id")
+ *             .name("JwtSecret")
  *             .value(jwtSecret.base64())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
