@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,24 +51,25 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // The following example shows how to generate a random priority
  *         // between 1 and 50000 for a aws_alb_listener_rule resource:
- *         var priority = new RandomInteger(&#34;priority&#34;, RandomIntegerArgs.builder()        
+ *         var priority = new RandomInteger("priority", RandomIntegerArgs.builder()        
  *             .min(1)
  *             .max(50000)
- *             .keepers(Map.of(&#34;listener_arn&#34;, listenerArn))
+ *             .keepers(Map.of("listener_arn", listenerArn))
  *             .build());
  * 
- *         var main = new ListenerRule(&#34;main&#34;, ListenerRuleArgs.builder()        
- *             .listenerArn(priority.keepers().applyValue(keepers -&gt; keepers.listenerArn()))
+ *         var main = new ListenerRule("main", ListenerRuleArgs.builder()        
+ *             .listenerArn(priority.keepers().applyValue(keepers -> keepers.listenerArn()))
  *             .priority(priority.result())
  *             .actions(ListenerRuleActionArgs.builder()
- *                 .type(&#34;forward&#34;)
+ *                 .type("forward")
  *                 .targetGroupArn(targetGroupArn)
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,22 +47,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var az = new RandomShuffle(&#34;az&#34;, RandomShuffleArgs.builder()        
+ *         var az = new RandomShuffle("az", RandomShuffleArgs.builder()        
  *             .inputs(            
- *                 &#34;us-west-1a&#34;,
- *                 &#34;us-west-1c&#34;,
- *                 &#34;us-west-1d&#34;,
- *                 &#34;us-west-1e&#34;)
+ *                 "us-west-1a",
+ *                 "us-west-1c",
+ *                 "us-west-1d",
+ *                 "us-west-1e")
  *             .resultCount(2)
  *             .build());
  * 
- *         var example = new LoadBalancer(&#34;example&#34;, LoadBalancerArgs.builder()        
+ *         var example = new LoadBalancer("example", LoadBalancerArgs.builder()        
  *             .availabilityZones(az.results())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

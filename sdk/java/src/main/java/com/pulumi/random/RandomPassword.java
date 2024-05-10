@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,23 +50,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var password = new RandomPassword(&#34;password&#34;, RandomPasswordArgs.builder()        
+ *         var password = new RandomPassword("password", RandomPasswordArgs.builder()        
  *             .length(16)
  *             .special(true)
- *             .overrideSpecial(&#34;!#$%&amp;*()-_=+[]{}&lt;&gt;:?&#34;)
+ *             .overrideSpecial("!#$%&*()-_=+[]{}<>:?")
  *             .build());
  * 
- *         var example = new Instance(&#34;example&#34;, InstanceArgs.builder()        
- *             .instanceClass(&#34;db.t3.micro&#34;)
+ *         var example = new Instance("example", InstanceArgs.builder()        
+ *             .instanceClass("db.t3.micro")
  *             .allocatedStorage(64)
- *             .engine(&#34;mysql&#34;)
- *             .username(&#34;someone&#34;)
+ *             .engine("mysql")
+ *             .username("someone")
  *             .password(password.result())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -248,14 +250,14 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
         return this.result;
     }
     /**
-     * Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * Include special characters in the result. These are `!{@literal @}#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     @Export(name="special", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> special;
 
     /**
-     * @return Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+     * @return Include special characters in the result. These are `!{@literal @}#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
      * 
      */
     public Output<Boolean> special() {
