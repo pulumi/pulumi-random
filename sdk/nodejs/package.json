@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/random",
-    "version": "${VERSION}",
+    "version": "4.0.0-alpha.0+dev",
     "description": "A Pulumi package to safely use randomness in Pulumi programs.",
     "keywords": [
         "pulumi",
@@ -21,6 +21,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "random"
+        "name": "random",
+        "version": "4.0.0-alpha.0+dev"
     }
 }
