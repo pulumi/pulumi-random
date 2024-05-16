@@ -51,13 +51,13 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // The following example shows how to generate a random priority
  *         // between 1 and 50000 for a aws_alb_listener_rule resource:
- *         var priority = new RandomInteger("priority", RandomIntegerArgs.builder()        
+ *         var priority = new RandomInteger("priority", RandomIntegerArgs.builder()
  *             .min(1)
  *             .max(50000)
  *             .keepers(Map.of("listener_arn", listenerArn))
  *             .build());
  * 
- *         var main = new ListenerRule("main", ListenerRuleArgs.builder()        
+ *         var main = new ListenerRule("main", ListenerRuleArgs.builder()
  *             .listenerArn(priority.keepers().applyValue(keepers -> keepers.listenerArn()))
  *             .priority(priority.result())
  *             .actions(ListenerRuleActionArgs.builder()
