@@ -50,13 +50,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var password = new RandomPassword("password", RandomPasswordArgs.builder()        
+ *         var password = new RandomPassword("password", RandomPasswordArgs.builder()
  *             .length(16)
  *             .special(true)
  *             .overrideSpecial("!#$%&*()-_=+[]{}<>:?")
  *             .build());
  * 
- *         var example = new Instance("example", InstanceArgs.builder()        
+ *         var example = new Instance("example", InstanceArgs.builder()
  *             .instanceClass("db.t3.micro")
  *             .allocatedStorage(64)
  *             .engine("mysql")

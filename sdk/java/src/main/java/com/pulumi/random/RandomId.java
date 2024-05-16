@@ -61,12 +61,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // The following example shows how to generate a unique name for an AWS EC2
  *         // instance that changes each time a new AMI id is selected.
- *         var server = new RandomId("server", RandomIdArgs.builder()        
+ *         var server = new RandomId("server", RandomIdArgs.builder()
  *             .keepers(Map.of("ami_id", amiId))
  *             .byteLength(8)
  *             .build());
  * 
- *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()        
+ *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
  *             .tags(Map.of("Name", server.hex().applyValue(hex -> String.format("web-server %s", hex))))
  *             .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
  *             .build());
