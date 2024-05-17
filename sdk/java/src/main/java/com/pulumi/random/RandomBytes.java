@@ -49,11 +49,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var jwtSecret = new RandomBytes("jwtSecret", RandomBytesArgs.builder()        
+ *         var jwtSecret = new RandomBytes("jwtSecret", RandomBytesArgs.builder()
  *             .length(64)
  *             .build());
  * 
- *         var jwtSecretKeyVaultSecret = new KeyVaultSecret("jwtSecretKeyVaultSecret", KeyVaultSecretArgs.builder()        
+ *         var jwtSecretKeyVaultSecret = new KeyVaultSecret("jwtSecretKeyVaultSecret", KeyVaultSecretArgs.builder()
  *             .keyVaultId("some-azure-key-vault-id")
  *             .name("JwtSecret")
  *             .value(jwtSecret.base64())
