@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var az = new RandomShuffle("az", RandomShuffleArgs.builder()        
+ *         var az = new RandomShuffle("az", RandomShuffleArgs.builder()
  *             .inputs(            
  *                 "us-west-1a",
  *                 "us-west-1c",
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *             .resultCount(2)
  *             .build());
  * 
- *         var example = new LoadBalancer("example", LoadBalancerArgs.builder()        
+ *         var example = new LoadBalancer("example", LoadBalancerArgs.builder()
  *             .availabilityZones(az.results())
  *             .build());
  * 

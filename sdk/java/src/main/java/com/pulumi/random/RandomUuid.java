@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
  *         // The following example shows how to generate a unique name for an Azure Resource Group.
  *         var test = new RandomUuid("test");
  * 
- *         var testResourceGroup = new ResourceGroup("testResourceGroup", ResourceGroupArgs.builder()        
- *             .name(test.result().applyValue(result -> String.format("%s-rg", result)))
+ *         var testResourceGroup = new ResourceGroup("testResourceGroup", ResourceGroupArgs.builder()
+ *             .name(String.format("%s-rg", test.result()))
  *             .location("Central US")
  *             .build());
  * 
