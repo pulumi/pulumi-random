@@ -51,11 +51,11 @@ import javax.annotation.Nullable;
  *         // The following example shows how to generate a unique pet name
  *         // for an AWS EC2 instance that changes each time a new AMI id is
  *         // selected.
- *         var server = new RandomPet("server", RandomPetArgs.builder()        
+ *         var server = new RandomPet("server", RandomPetArgs.builder()
  *             .keepers(Map.of("ami_id", amiId))
  *             .build());
  * 
- *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()        
+ *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
  *             .tags(Map.of("Name", server.id().applyValue(id -> String.format("web-server-%s", id))))
  *             .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
  *             .build());
