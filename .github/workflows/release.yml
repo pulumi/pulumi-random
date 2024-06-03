@@ -224,7 +224,7 @@ jobs:
     - id: version
       uses: pulumi/provider-version-action@v1
     - name: Publish SDKs
-      uses: pulumi/pulumi-package-publisher@7ca5f2a
+      uses: pulumi/pulumi-package-publisher@7ca5f2adc7bbf15c76082edb7b7f0e5cf1704c99
       with:
         sdk: dotnet
         version: ${{ steps.version.outputs.version }}
