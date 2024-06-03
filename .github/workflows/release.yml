@@ -220,6 +220,7 @@ jobs:
   publish_sdk:
     name: publish_sdk
     runs-on: ubuntu-latest
+    needs: test
     steps:
     - id: version
       uses: pulumi/provider-version-action@v1
