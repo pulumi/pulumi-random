@@ -226,7 +226,7 @@ jobs:
     - name: Publish SDKs
       uses: pulumi/pulumi-package-publisher@v0.0.15
       with:
-        sdk: all
+        sdk: dotnet
         version: ${{ steps.version.outputs.version }}
     - env:
         SLACK_CHANNEL: provider-upgrade-publish-status
