@@ -12,6 +12,7 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NODEVERSION: 20.x
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   PUBLISH_REPO_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
   PUBLISH_REPO_USERNAME: ${{ secrets.OSSRH_USERNAME }}
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
@@ -236,7 +237,6 @@ jobs:
         SLACK_TITLE: ${{ github.event.repository.name }} upgrade result
         SLACK_USERNAME: provider-bot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        NUGET_PUBLISH_KEY: WRONG_KEY
       if: failure()
       name: Send Publish Failure To Slack
       uses: rtCamp/action-slack-notify@v2
