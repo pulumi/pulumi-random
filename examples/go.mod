@@ -9,8 +9,8 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-random/provider/v4 v4.0.0-20230306191832-8c7659ab0229
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.37.0
-	github.com/pulumi/pulumi-terraform-bridge/testing v0.0.1
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.36.1-0.20240622200535-0e6f548c1b53
+	github.com/pulumi/pulumi-terraform-bridge/testing v0.0.2-0.20240622200535-0e6f548c1b53
 	github.com/pulumi/pulumi/pkg/v3 v3.121.0
 	github.com/pulumi/pulumi/sdk/v3 v3.121.0
 	github.com/stretchr/testify v1.9.0
