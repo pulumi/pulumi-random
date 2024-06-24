@@ -154,13 +154,11 @@ class RandomPasswordArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""**NOTE**: This is deprecated, use `numeric` instead.""")
     def number(self) -> Optional[pulumi.Input[bool]]:
         """
         Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
-        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
-        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
-
         return pulumi.get(self, "number")
 
     @number.setter
@@ -380,13 +378,11 @@ class _RandomPasswordState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""**NOTE**: This is deprecated, use `numeric` instead.""")
     def number(self) -> Optional[pulumi.Input[bool]]:
         """
         Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
-        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
-        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
-
         return pulumi.get(self, "number")
 
     @number.setter
@@ -735,13 +731,11 @@ class RandomPassword(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""**NOTE**: This is deprecated, use `numeric` instead.""")
     def number(self) -> pulumi.Output[bool]:
         """
         Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
-        warnings.warn("""**NOTE**: This is deprecated, use `numeric` instead.""", DeprecationWarning)
-        pulumi.log.warn("""number is deprecated: **NOTE**: This is deprecated, use `numeric` instead.""")
-
         return pulumi.get(self, "number")
 
     @property
