@@ -90,7 +90,7 @@ export class RandomUuid extends pulumi.CustomResource {
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(RandomUuid.__pulumiType, name, resourceInputs, opts);
+        super(RandomUuid.__pulumiType, name, resourceInputs, opts, false /*remote*/);
     }
 }
 

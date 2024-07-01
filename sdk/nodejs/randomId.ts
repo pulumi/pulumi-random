@@ -154,7 +154,7 @@ export class RandomId extends pulumi.CustomResource {
             resourceInputs["hex"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(RandomId.__pulumiType, name, resourceInputs, opts);
+        super(RandomId.__pulumiType, name, resourceInputs, opts, false /*remote*/);
     }
 }
 
