@@ -1,11 +1,13 @@
 module github.com/pulumi/pulumi-random/provider/v4
 
-go 1.21
+go 1.21.12
+
+toolchain go1.22.4
 
 require (
 	github.com/pulumi/providertest v0.0.11
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.39.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.86.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.86.1-0.20240703153411-93899ba83df3
 	github.com/pulumi/pulumi/sdk/v3 v3.121.0
 	github.com/stretchr/testify v1.9.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
