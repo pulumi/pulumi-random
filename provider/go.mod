@@ -2,8 +2,6 @@ module github.com/pulumi/pulumi-random/provider/v4
 
 go 1.21.12
 
-toolchain go1.22.4
-
 require (
 	github.com/pulumi/providertest v0.0.11
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.39.0
