@@ -107,7 +107,7 @@ export class RandomBytes extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["base64", "hex"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(RandomBytes.__pulumiType, name, resourceInputs, opts);
+        super(RandomBytes.__pulumiType, name, resourceInputs, opts, false /*remote*/);
     }
 }
 

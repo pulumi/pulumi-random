@@ -100,7 +100,7 @@ export class RandomPet extends pulumi.CustomResource {
             resourceInputs["separator"] = args ? args.separator : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(RandomPet.__pulumiType, name, resourceInputs, opts);
+        super(RandomPet.__pulumiType, name, resourceInputs, opts, false /*remote*/);
     }
 }
 
