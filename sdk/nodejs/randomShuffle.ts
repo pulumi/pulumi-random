@@ -106,7 +106,7 @@ export class RandomShuffle extends pulumi.CustomResource {
             resourceInputs["results"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(RandomShuffle.__pulumiType, name, resourceInputs, opts);
+        super(RandomShuffle.__pulumiType, name, resourceInputs, opts, false /*remote*/);
     }
 }
 
