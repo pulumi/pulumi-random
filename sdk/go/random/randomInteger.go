@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = alb.NewListenerRule(ctx, "main", &alb.ListenerRuleArgs{
-//				ListenerArn: priority.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
+//				ListenerArn: priority.Keepers.ApplyT(func(keepers map[string]string) (*string, error) {
 //					return &keepers.ListenerArn, nil
 //				}).(pulumi.StringPtrOutput),
 //				Priority: priority.Result,
