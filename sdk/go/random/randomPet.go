@@ -49,7 +49,7 @@ import (
 //						return fmt.Sprintf("web-server-%v", id), nil
 //					}).(pulumi.StringOutput),
 //				},
-//				Ami: server.Keepers.ApplyT(func(keepers interface{}) (*string, error) {
+//				Ami: server.Keepers.ApplyT(func(keepers map[string]string) (*string, error) {
 //					return &keepers.AmiId, nil
 //				}).(pulumi.StringPtrOutput),
 //			})
