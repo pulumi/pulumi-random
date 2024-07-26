@@ -61,9 +61,9 @@ import (
 //						return fmt.Sprintf("web-server %v", hex), nil
 //					}).(pulumi.StringOutput),
 //				},
-//				Ami: server.Keepers.ApplyT(func(keepers map[string]string) (*string, error) {
+//				Ami: pulumi.String(server.Keepers.ApplyT(func(keepers map[string]string) (*string, error) {
 //					return &keepers.AmiId, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //			})
 //			if err != nil {
 //				return err
