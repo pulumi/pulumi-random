@@ -221,11 +221,18 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public RandomId(String name, RandomIdArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomId:RandomId", name, args == null ? RandomIdArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("random:index/randomId:RandomId", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private RandomId(String name, Output<String> id, @Nullable RandomIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("random:index/randomId:RandomId", name, state, makeResourceOptions(options, id));
+    }
+
+    private static RandomIdArgs makeArgs(RandomIdArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RandomIdArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
