@@ -148,11 +148,18 @@ public class RandomPet extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public RandomPet(String name, @Nullable RandomPetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomPet:RandomPet", name, args == null ? RandomPetArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("random:index/randomPet:RandomPet", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private RandomPet(String name, Output<String> id, @Nullable RandomPetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("random:index/randomPet:RandomPet", name, state, makeResourceOptions(options, id));
+    }
+
+    private static RandomPetArgs makeArgs(@Nullable RandomPetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RandomPetArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
