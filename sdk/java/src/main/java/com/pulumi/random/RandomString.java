@@ -277,11 +277,18 @@ public class RandomString extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public RandomString(String name, RandomStringArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomString:RandomString", name, args == null ? RandomStringArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("random:index/randomString:RandomString", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private RandomString(String name, Output<String> id, @Nullable RandomStringState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("random:index/randomString:RandomString", name, state, makeResourceOptions(options, id));
+    }
+
+    private static RandomStringArgs makeArgs(RandomStringArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RandomStringArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

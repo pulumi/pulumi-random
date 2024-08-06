@@ -164,11 +164,18 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public RandomShuffle(String name, RandomShuffleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomShuffle:RandomShuffle", name, args == null ? RandomShuffleArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("random:index/randomShuffle:RandomShuffle", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private RandomShuffle(String name, Output<String> id, @Nullable RandomShuffleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("random:index/randomShuffle:RandomShuffle", name, state, makeResourceOptions(options, id));
+    }
+
+    private static RandomShuffleArgs makeArgs(RandomShuffleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RandomShuffleArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
