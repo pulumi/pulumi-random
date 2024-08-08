@@ -203,7 +203,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public RandomId(String name) {
+    public RandomId(java.lang.String name) {
         this(name, RandomIdArgs.Empty);
     }
     /**
@@ -211,7 +211,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RandomId(String name, RandomIdArgs args) {
+    public RandomId(java.lang.String name, RandomIdArgs args) {
         this(name, args, null);
     }
     /**
@@ -220,15 +220,22 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RandomId(String name, RandomIdArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomId:RandomId", name, args == null ? RandomIdArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public RandomId(java.lang.String name, RandomIdArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("random:index/randomId:RandomId", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private RandomId(String name, Output<String> id, @Nullable RandomIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomId:RandomId", name, state, makeResourceOptions(options, id));
+    private RandomId(java.lang.String name, Output<java.lang.String> id, @Nullable RandomIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("random:index/randomId:RandomId", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RandomIdArgs makeArgs(RandomIdArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RandomIdArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -244,7 +251,7 @@ public class RandomId extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static RandomId get(String name, Output<String> id, @Nullable RandomIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static RandomId get(java.lang.String name, Output<java.lang.String> id, @Nullable RandomIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new RandomId(name, id, state, options);
     }
 }

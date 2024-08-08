@@ -146,7 +146,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public RandomShuffle(String name) {
+    public RandomShuffle(java.lang.String name) {
         this(name, RandomShuffleArgs.Empty);
     }
     /**
@@ -154,7 +154,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RandomShuffle(String name, RandomShuffleArgs args) {
+    public RandomShuffle(java.lang.String name, RandomShuffleArgs args) {
         this(name, args, null);
     }
     /**
@@ -163,15 +163,22 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RandomShuffle(String name, RandomShuffleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomShuffle:RandomShuffle", name, args == null ? RandomShuffleArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public RandomShuffle(java.lang.String name, RandomShuffleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("random:index/randomShuffle:RandomShuffle", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private RandomShuffle(String name, Output<String> id, @Nullable RandomShuffleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("random:index/randomShuffle:RandomShuffle", name, state, makeResourceOptions(options, id));
+    private RandomShuffle(java.lang.String name, Output<java.lang.String> id, @Nullable RandomShuffleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("random:index/randomShuffle:RandomShuffle", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RandomShuffleArgs makeArgs(RandomShuffleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RandomShuffleArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -187,7 +194,7 @@ public class RandomShuffle extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static RandomShuffle get(String name, Output<String> id, @Nullable RandomShuffleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static RandomShuffle get(java.lang.String name, Output<java.lang.String> id, @Nullable RandomShuffleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new RandomShuffle(name, id, state, options);
     }
 }
