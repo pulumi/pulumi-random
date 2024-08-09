@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			_, err = azurerm.NewResourceGroup(ctx, "test", &azurerm.ResourceGroupArgs{
-//				Name:     pulumi.String(fmt.Sprintf("%v-rg", test.Result)),
+//				Name:     pulumi.Sprintf("%v-rg", test.Result),
 //				Location: "Central US",
 //			})
 //			if err != nil {
