@@ -16,6 +16,7 @@ package random
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"path/filepath"
 
@@ -132,7 +133,7 @@ func computeRandomBytesID(_ context.Context, state resource.PropertyMap) (resour
 		"https://github.com/pulumi/pulumi-random."
 	b, ok := state["base64"]
 	if !ok {
-		return "", fmt.Errorf("No base64 property in state" + c)
+		return "", errors.New("No base64 property in state" + c)
 	}
 	// Although base64 is marked as sensitive in the TF schema and is wrapped in secrets in
 	// Pulumi which cannot yet support secret markers on resource IDs.
@@ -140,7 +141,7 @@ func computeRandomBytesID(_ context.Context, state resource.PropertyMap) (resour
 		b = b.SecretValue().Element
 	}
 	if !b.IsString() {
-		return "", fmt.Errorf("Expected base64 property to be a string" + c)
+		return "", errors.New("Expected base64 property to be a string" + c)
 	}
 	return resource.ID(b.StringValue()), nil
 }
