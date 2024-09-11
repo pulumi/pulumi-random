@@ -6,8 +6,8 @@ toolchain go1.22.7
 
 require (
 	github.com/pulumi/providertest v0.0.14
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.43.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.90.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.43.1-0.20240911122208-dd6e8bc0921d
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.90.1-0.20240911122208-dd6e8bc0921d
 	github.com/pulumi/pulumi/sdk/v3 v3.130.0
 	github.com/stretchr/testify v1.9.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
