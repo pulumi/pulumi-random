@@ -6,7 +6,7 @@ require (
 	github.com/pulumi/providertest v0.0.14
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.44.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.91.1
-	github.com/pulumi/pulumi/sdk/v3 v3.133.0
+	github.com/pulumi/pulumi/sdk/v3 v3.134.0
 	github.com/stretchr/testify v1.9.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
@@ -173,7 +173,7 @@ require (
 	github.com/pulumi/inflector v0.1.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.16.1 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
-	github.com/pulumi/pulumi-yaml v1.10.0 // indirect
+	github.com/pulumi/pulumi-yaml v1.10.3 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.133.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
@@ -239,3 +239,7 @@ require (
 )
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240520223432-0c0bf0d65f10
+
+replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.134.1-0.20240926033615-db061d5b9b0d
+
+replace github.com/pulumi/pulumi/sdk/v3 => github.com/pulumi/pulumi/sdk/v3 v3.134.2-0.20240926033615-db061d5b9b0d
