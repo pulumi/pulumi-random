@@ -15,6 +15,7 @@
 package random
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -54,6 +55,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:   "https://github.com/pulumi/pulumi-random",
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+		DocRules:     &tfbridge.DocRuleInfo{EditRules: editRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"random_password": {
 				Docs: &tfbridge.DocInfo{ImportDetails: string(docPasswordImport)},
@@ -138,4 +140,21 @@ func computeRandomBytesID(_ context.Context, state resource.PropertyMap) (resour
 		return "", errors.New("Expected base64 property to be a string" + c)
 	}
 	return resource.ID(b.StringValue()), nil
+}
+
+func editRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(
+		defaults,
+		tfbridge.DocsEdit{
+			Path: "*",
+			Edit: func(_ string, content []byte) ([]byte, error) {
+				b := bytes.ReplaceAll(content,
+					[]byte("To force a random result to be replaced, the `taint` command can be used to\n"+
+						"produce a new result on the next run."),
+					[]byte(""),
+				)
+				return b, nil
+			},
+		},
+	)
 }
