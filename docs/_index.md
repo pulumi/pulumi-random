@@ -1,4 +1,5 @@
 ---
+# *** WARNING: This file was auto-generated. Do not edit by hand unless you're certain you know what you are doing! ***
 title: Random Provider
 meta_desc: Provides an overview on how to configure the Pulumi Random provider.
 layout: package
