@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
- *             .tags(Map.of("Name", server.id().applyValue(id -> String.format("web-server-%s", id))))
- *             .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
+ *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .ami(server.keepers().amiId())
  *             .build());
  * 
  *     }

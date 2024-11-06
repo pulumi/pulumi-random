@@ -62,11 +62,11 @@ const server = new random.RandomId("server", {
     },
     byteLength: 8,
 });
-const serverInstance = new aws.ec2.Instance("server", {
+const serverInstance = new aws.ec2/instance.Instance("server", {
     tags: {
-        Name: pulumi.interpolate`web-server ${server.hex}`,
+        Name: `web-server ${server.hex}`,
     },
-    ami: server.keepers.apply(keepers => keepers?.amiId),
+    ami: server.keepers?.amiId,
 });
 ```
 {{% /choosable %}}
@@ -81,11 +81,11 @@ server = random.RandomId("server",
         "ami_id": ami_id,
     },
     byte_length=8)
-server_instance = aws.ec2.Instance("server",
+server_instance = aws.ec2.instance.Instance("server",
     tags={
-        "Name": server.hex.apply(lambda hex: f"web-server {hex}"),
+        Name: fweb-server {server.hex},
     },
-    ami=server.keepers["amiId"])
+    ami=server.keepers.ami_id)
 ```
 {{% /choosable %}}
 {{% choosable language csharp %}}
@@ -107,13 +107,13 @@ return await Deployment.RunAsync(() =>
         ByteLength = 8,
     });
 
-    var serverInstance = new Aws.Ec2.Instance("server", new()
+    var serverInstance = new Aws.Ec2.Instance.Instance("server", new()
     {
         Tags =
         {
-            { "Name", server.Hex.Apply(hex => $"web-server {hex}") },
+            { "Name", $"web-server {server.Hex}" },
         },
-        Ami = server.Keepers.Apply(keepers => keepers?.AmiId),
+        Ami = server.Keepers?.AmiId,
     });
 
 });
@@ -127,7 +127,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ec2"
+	"github.com/pulumi/pulumi-aws/sdk/go/aws/ec2"
 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -143,15 +143,11 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-			Tags: pulumi.StringMap{
-				"Name": server.Hex.ApplyT(func(hex string) (string, error) {
-					return fmt.Sprintf("web-server %v", hex), nil
-				}).(pulumi.StringOutput),
+		_, err = ec2 / instance.NewInstance(ctx, "server", &ec2/instance.InstanceArgs{
+			Tags: map[string]interface{}{
+				"Name": pulumi.Sprintf("web-server %v", server.Hex),
 			},
-			Ami: pulumi.String(server.Keepers.ApplyT(func(keepers map[string]string) (*string, error) {
-				return &keepers.AmiId, nil
-			}).(pulumi.StringPtrOutput)),
+			Ami: server.Keepers.AmiId,
 		})
 		if err != nil {
 			return err
@@ -209,8 +205,8 @@ public class App {
             .build());
 
         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
-            .tags(Map.of("Name", server.hex().applyValue(hex -> String.format("web-server %s", hex))))
-            .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
+            .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+            .ami(server.keepers().amiId())
             .build());
 
     }

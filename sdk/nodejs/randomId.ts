@@ -35,11 +35,11 @@ import * as utilities from "./utilities";
  *     },
  *     byteLength: 8,
  * });
- * const serverInstance = new aws.ec2.Instance("server", {
+ * const serverInstance = new aws.ec2/instance.Instance("server", {
  *     tags: {
- *         Name: pulumi.interpolate`web-server ${server.hex}`,
+ *         Name: `web-server ${server.hex}`,
  *     },
- *     ami: server.keepers.apply(keepers => keepers?.amiId),
+ *     ami: server.keepers?.amiId,
  * });
  * ```
  *

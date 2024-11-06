@@ -24,7 +24,7 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws/ec2"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -43,15 +43,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-//				Tags: pulumi.StringMap{
-//					"Name": server.ID().ApplyT(func(id string) (string, error) {
-//						return fmt.Sprintf("web-server-%v", id), nil
-//					}).(pulumi.StringOutput),
+//			_, err = ec2 / instance.NewInstance(ctx, "server", &ec2/instance.InstanceArgs{
+//				Tags: map[string]interface{}{
+//					"Name": pulumi.Sprintf("web-server-%v", server.ID()),
 //				},
-//				Ami: pulumi.String(server.Keepers.ApplyT(func(keepers map[string]string) (*string, error) {
-//					return &keepers.AmiId, nil
-//				}).(pulumi.StringPtrOutput)),
+//				Ami: server.Keepers.AmiId,
 //			})
 //			if err != nil {
 //				return err

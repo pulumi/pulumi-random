@@ -35,7 +35,7 @@ namespace Pulumi.Random
     ///         ResultCount = 2,
     ///     });
     /// 
-    ///     var example = new Aws.Elb.LoadBalancer("example", new()
+    ///     var example = new Aws.Elb.LoadBalancer.LoadBalancer("example", new()
     ///     {
     ///         AvailabilityZones = az.Results,
     ///     });

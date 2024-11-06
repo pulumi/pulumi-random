@@ -485,11 +485,11 @@ class RandomPassword(pulumi.CustomResource):
             length=16,
             special=True,
             override_special="!#$%&*()-_=+[]{}<>:?")
-        example = aws.rds.Instance("example",
-            instance_class=aws.rds.InstanceType.T3_MICRO,
+        example = aws.rds.instance.Instance("example",
+            instance_class=db.t3.micro,
             allocated_storage=64,
-            engine="mysql",
-            username="someone",
+            engine=mysql,
+            username=someone,
             password=password.result)
         ```
 
@@ -530,11 +530,11 @@ class RandomPassword(pulumi.CustomResource):
             length=16,
             special=True,
             override_special="!#$%&*()-_=+[]{}<>:?")
-        example = aws.rds.Instance("example",
-            instance_class=aws.rds.InstanceType.T3_MICRO,
+        example = aws.rds.instance.Instance("example",
+            instance_class=db.t3.micro,
             allocated_storage=64,
-            engine="mysql",
-            username="someone",
+            engine=mysql,
+            username=someone,
             password=password.result)
         ```
 

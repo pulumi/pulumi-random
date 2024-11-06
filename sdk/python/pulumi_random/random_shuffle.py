@@ -205,7 +205,7 @@ class RandomShuffle(pulumi.CustomResource):
                 "us-west-1e",
             ],
             result_count=2)
-        example = aws.elb.LoadBalancer("example", availability_zones=az.results)
+        example = aws.elb.load_balancer.LoadBalancer("example", availability_zones=az.results)
         ```
 
         :param str resource_name: The name of the resource.
@@ -239,7 +239,7 @@ class RandomShuffle(pulumi.CustomResource):
                 "us-west-1e",
             ],
             result_count=2)
-        example = aws.elb.LoadBalancer("example", availability_zones=az.results)
+        example = aws.elb.load_balancer.LoadBalancer("example", availability_zones=az.results)
         ```
 
         :param str resource_name: The name of the resource.

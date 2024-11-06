@@ -47,13 +47,13 @@ namespace Pulumi.Random
     ///         ByteLength = 8,
     ///     });
     /// 
-    ///     var serverInstance = new Aws.Ec2.Instance("server", new()
+    ///     var serverInstance = new Aws.Ec2.Instance.Instance("server", new()
     ///     {
     ///         Tags = 
     ///         {
-    ///             { "Name", server.Hex.Apply(hex =&gt; $"web-server {hex}") },
+    ///             { "Name", $"web-server {server.Hex}" },
     ///         },
-    ///         Ami = server.Keepers.Apply(keepers =&gt; keepers?.AmiId),
+    ///         Ami = server.Keepers?.AmiId,
     ///     });
     /// 
     /// });
