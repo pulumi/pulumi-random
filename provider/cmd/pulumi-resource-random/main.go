@@ -21,7 +21,7 @@ import (
 
 	_ "embed"
 
-	tfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	tfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	random "github.com/pulumi/pulumi-random/provider/v4"
 )

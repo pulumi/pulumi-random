@@ -17,7 +17,7 @@ package examples
 import (
 	"testing"
 
-	testutils "github.com/pulumi/pulumi-terraform-bridge/testing/x"
+	testutils "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/x/testing"
 )
 
 func TestRegress272(t *testing.T) {
