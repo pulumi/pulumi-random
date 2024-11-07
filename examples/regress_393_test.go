@@ -17,7 +17,7 @@ package examples
 import (
 	"testing"
 
-	testutils "github.com/pulumi/pulumi-terraform-bridge/testing/x"
+	testutils "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/x/testing"
 )
 
 func TestRegress393(t *testing.T) {
@@ -95,5 +95,4 @@ func TestRegress393(t *testing.T) {
 	}
 	`
 	testutils.Replay(t, providerServer(t), create)
-
 }

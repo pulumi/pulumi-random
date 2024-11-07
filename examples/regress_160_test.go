@@ -17,7 +17,7 @@ package examples
 import (
 	"testing"
 
-	testutils "github.com/pulumi/pulumi-terraform-bridge/testing/x"
+	testutils "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/x/testing"
 )
 
 // This makes sure that importing a random password works. The key method is Read.
