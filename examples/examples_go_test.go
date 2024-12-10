@@ -1,6 +1,6 @@
 // Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
-//go:build python || all
-// +build python all
+//go:build go || all
+// +build go all
 
 package examples
 
@@ -11,20 +11,20 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func TestSimplePy(t *testing.T) {
-	test := getPythonBaseOptions(t).
+func TestSimpleGo(t *testing.T) {
+	test := getGoBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir:           filepath.Join(getCwd(t), "simple", "py"),
+			Dir:           filepath.Join(getCwd(t), "simple", "go"),
 			RunUpdateTest: false,
 		})
 
 	integration.ProgramTest(t, &test)
 }
 
-func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
+func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	return getBaseOptions(t).With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			filepath.Join("..", "sdk", "python", "bin"),
+			"github.com/pulumi/pulumi-random/sdk/v4",
 		},
 	})
 }
