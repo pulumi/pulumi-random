@@ -9,6 +9,7 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-random/provider/v4 v4.0.0-20230306191832-8c7659ab0229
+	github.com/pulumi/pulumi-random/sdk/v4 v4.16.7
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.97.0
 	github.com/pulumi/pulumi/pkg/v3 v3.142.0
 	github.com/pulumi/pulumi/sdk/v3 v3.142.0

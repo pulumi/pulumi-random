@@ -41,12 +41,9 @@ func TestProviderUpdate(t *testing.T) {
 }
 
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	base := getBaseOptions(t)
-	baseJS := base.With(integration.ProgramTestOptions{
+	return getBaseOptions(t).With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"@pulumi/random",
 		},
 	})
-
-	return baseJS
 }
