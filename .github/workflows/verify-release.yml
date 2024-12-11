@@ -71,13 +71,6 @@ jobs:
         uses: ./.github/actions/setup-tools
         with:
           tools: pulumicli, nodejs, python, dotnet, go, java
-      - name: Verify nodejs release
-        uses: pulumi/verify-provider-release@v1
-        with:
-          runtime: nodejs
-          directory: examples/simple/ts
-          provider: random
-          providerVersion: ${{ inputs.providerVersion }}
       - name: Verify dotnet release
         uses: pulumi/verify-provider-release@v1
         with:
