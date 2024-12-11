@@ -75,21 +75,21 @@ jobs:
         uses: pulumi/verify-provider-release@v1
         with:
           runtime: nodejs
-          directory: simple/ts
+          directory: examples/simple/ts
           provider: random
           providerVersion: ${{ inputs.providerVersion }}
       - name: Verify python release
         uses: pulumi/verify-provider-release@v1
         with:
           runtime: python
-          directory: simple/py
+          directory: examples/simple/py
           provider: random
           providerVersion: ${{ inputs.providerVersion }}
       - name: Verify dotnet release
         uses: pulumi/verify-provider-release@v1
         with:
           runtime: dotnet
-          directory: simple/csharp
+          directory: examples/simple/csharp
           provider: random
           providerVersion: ${{ inputs.providerVersion }}
       - name: Verify go release
@@ -97,6 +97,6 @@ jobs:
         if: inputs.skipGoSdk == false
         with:
           runtime: go
-          directory: simple/go
+          directory: examples/simple/go
           provider: random
           providerVersion: ${{ inputs.providerVersion }}
