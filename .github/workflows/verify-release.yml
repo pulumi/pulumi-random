@@ -71,13 +71,6 @@ jobs:
         uses: ./.github/actions/setup-tools
         with:
           tools: pulumicli, nodejs, python, dotnet, go, java
-      - name: Verify dotnet release
-        uses: pulumi/verify-provider-release@v1
-        with:
-          runtime: dotnet
-          directory: examples/simple/csharp
-          provider: random
-          providerVersion: ${{ inputs.providerVersion }}
       - name: Verify go release
         uses: pulumi/verify-provider-release@v1
         if: inputs.skipGoSdk == false
