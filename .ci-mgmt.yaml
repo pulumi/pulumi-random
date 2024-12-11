@@ -32,6 +32,6 @@ pulumiConvert: 1
 registryDocs: true
 releaseVerification:
   nodejs: examples/simple/ts
-  python: examples/simple/py
+  # python: examples/simple/py # TODO[https://github.com/pulumi/verify-provider-release/issues/74]
   dotnet: examples/simple/csharp
   go: examples/simple/go
