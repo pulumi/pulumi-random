@@ -31,7 +31,7 @@ actions:
 pulumiConvert: 1
 registryDocs: true
 releaseVerification:
-  nodejs: simple/ts
-  python: simple/py
-  dotnet: simple/csharp
-  go: simple/go
+  nodejs: examples/simple/ts
+  python: examples/simple/py
+  dotnet: examples/simple/csharp
+  go: examples/simple/go
