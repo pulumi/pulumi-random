@@ -85,7 +85,8 @@ jobs:
           runtime: python
           directory: examples/simple/py
           provider: random
-          providerVersion: ${{ inputs.pythonVersion || inputs.providerVersion }}
+          providerVersion: ${{ inputs.providerVersion }}
+          packageVersion: ${{ inputs.pythonVersion || inputs.providerVersion }}
       - name: Verify go release
         uses: pulumi/verify-provider-release@v1
         if: inputs.skipGoSdk == false
