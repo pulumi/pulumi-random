@@ -16,6 +16,10 @@ on:
         required: false
         type: boolean
         default: false
+      pythonVersion:
+        description: "Optional python SDK version to verify. Defaults to inputs.providerVersion."
+        type: string
+        required: false
   workflow_call:
     inputs:
       providerVersion:
@@ -32,6 +36,10 @@ on:
         required: false
         type: boolean
         default: false
+      pythonVersion:
+        description: "Optional python SDK version to verify. Defaults to inputs.providerVersion."
+        type: string
+        required: false
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -71,6 +79,13 @@ jobs:
         uses: ./.github/actions/setup-tools
         with:
           tools: pulumicli, nodejs, python, dotnet, go, java
+      - name: Verify python release
+        uses: pulumi/verify-provider-release@v1
+        with:
+          runtime: python
+          directory: examples/simple/py
+          provider: random
+          providerVersion: ${{ inputs.pythonVersion || inputs.providerVersion }}
       - name: Verify go release
         uses: pulumi/verify-provider-release@v1
         if: inputs.skipGoSdk == false
