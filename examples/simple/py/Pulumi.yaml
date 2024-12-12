@@ -1,3 +1,6 @@
 name: simple-random-py
-runtime: python
 description: A simple example of using various random resources in python
+runtime:
+  name: python
+  options:
+    virtualenv: venv
