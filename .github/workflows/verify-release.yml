@@ -79,6 +79,13 @@ jobs:
         uses: ./.github/actions/setup-tools
         with:
           tools: pulumicli, nodejs, python, dotnet, go, java
+      - name: Verify python release
+        uses: pulumi/verify-provider-release@v1
+        with:
+          runtime: python
+          directory: examples/simple/py
+          provider: random
+          providerVersion: ${{ inputs.pythonVersion || inputs.providerVersion }}
       - name: Verify go release
         uses: pulumi/verify-provider-release@v1
         if: inputs.skipGoSdk == false
