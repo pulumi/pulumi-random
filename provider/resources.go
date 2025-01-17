@@ -112,6 +112,7 @@ func Provider() tfbridge.ProviderInfo {
 				"random": "Random",
 			},
 		},
+		EnableAccurateBridgePreview: true,
 	}
 
 	makeToken := func(module, name string) (string, error) {
