@@ -5,7 +5,7 @@ go 1.22.7
 require (
 	github.com/pulumi/providertest v0.1.3
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.101.0
-	github.com/pulumi/pulumi/sdk/v3 v3.145.0
+	github.com/pulumi/pulumi/sdk/v3 v3.146.0
 	github.com/stretchr/testify v1.10.0
 	github.com/terraform-providers/terraform-provider-random/shim v0.0.0
 )
@@ -241,3 +241,7 @@ require (
 )
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240520223432-0c0bf0d65f10
+
+replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.146.1-0.20250121115902-4870b4a501ae
+
+replace github.com/pulumi/pulumi/sdk/v3 => github.com/pulumi/pulumi/sdk/v3 v3.146.1-0.20250121115902-4870b4a501ae
