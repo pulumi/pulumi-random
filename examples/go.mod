@@ -9,9 +9,9 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-random/provider/v4 v4.0.0-20230306191832-8c7659ab0229
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.103.0
-	github.com/pulumi/pulumi/pkg/v3 v3.148.0
-	github.com/pulumi/pulumi/sdk/v3 v3.148.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.103.1-0.20250301020926-55d6d458e811
+	github.com/pulumi/pulumi/pkg/v3 v3.153.0
+	github.com/pulumi/pulumi/sdk/v3 v3.153.0
 	github.com/stretchr/testify v1.10.0
 
 )
@@ -206,7 +206,7 @@ require (
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
 	github.com/yuin/goldmark v1.7.4 // indirect
-	github.com/zclconf/go-cty v1.15.1 // indirect
+	github.com/zclconf/go-cty v1.16.2 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 // indirect
@@ -218,7 +218,7 @@ require (
 	gocloud.dev/secrets/hashivault v0.37.0 // indirect
 	golang.org/x/crypto v0.33.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
-	golang.org/x/mod v0.21.0 // indirect
+	golang.org/x/mod v0.22.0 // indirect
 	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/oauth2 v0.23.0 // indirect
 	golang.org/x/sync v0.11.0 // indirect
