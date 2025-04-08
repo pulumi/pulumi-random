@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.random.RandomBytes;
  * import com.pulumi.random.RandomBytesArgs;
  * import com.pulumi.azurerm.keyVaultSecret;
- * import com.pulumi.azurerm.KeyVaultSecretArgs;
+ * import com.pulumi.azurerm.keyVaultSecretArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;

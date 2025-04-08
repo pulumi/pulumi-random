@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomUuid;
  * import com.pulumi.azurerm.resourceGroup;
- * import com.pulumi.azurerm.ResourceGroupArgs;
+ * import com.pulumi.azurerm.resourceGroupArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
