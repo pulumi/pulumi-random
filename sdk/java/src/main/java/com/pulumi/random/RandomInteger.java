@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var main = new ListenerRule("main", ListenerRuleArgs.builder()
- *             .listenerArn(priority.keepers().applyValue(keepers -> keepers.listenerArn()))
+ *             .listenerArn(priority.keepers().applyValue(_keepers -> _keepers.listenerArn()))
  *             .priority(priority.result())
  *             .actions(ListenerRuleActionArgs.builder()
  *                 .type("forward")

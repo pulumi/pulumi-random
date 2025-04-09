@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
- *             .tags(Map.of("Name", server.id().applyValue(id -> String.format("web-server-%s", id))))
- *             .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
+ *             .tags(Map.of("Name", server.id().applyValue(_id -> String.format("web-server-%s", _id))))
+ *             .ami(server.keepers().applyValue(_keepers -> _keepers.amiId()))
  *             .build());
  * 
  *     }
