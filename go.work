@@ -1,0 +1,28 @@
+go 1.22.7
+
+toolchain go1.23.1
+
+use (
+	../pulumi-terraform-bridge
+	../pulumi-terraform-bridge/dynamic
+	../pulumi-terraform-bridge/dynamic/internal/shim
+	../pulumi-terraform-bridge/dynamic/test/pfprovider
+	../pulumi-terraform-bridge/pf
+	../pulumi-terraform-bridge/pf/tests
+	../pulumi-terraform-bridge/pf/tests/internal/randomshim
+	../pulumi-terraform-bridge/pf/tests/internal/tlsshim
+	../pulumi-terraform-bridge/pf/tests/testdatagen/genrandom
+	../pulumi-terraform-bridge/pkg/tests
+	../pulumi-terraform-bridge/testing
+	../pulumi-terraform-bridge/x/muxer
+	../pulumi-terraform-bridge/x/muxer/tests
+	../terraform-plugin-framework
+	./examples
+	./provider
+	./provider/shim
+	./sdk
+	./sdk/dotnet
+	./sdk/java
+	./sdk/nodejs
+	./sdk/python
+)
