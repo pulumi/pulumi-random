@@ -82,6 +82,9 @@ class _RandomUuidState:
 
 
 class RandomUuid(pulumi.CustomResource):
+
+    pulumi_type = "random:index/randomUuid:RandomUuid"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

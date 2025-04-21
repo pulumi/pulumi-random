@@ -129,6 +129,9 @@ class _RandomBytesState:
 
 
 class RandomBytes(pulumi.CustomResource):
+
+    pulumi_type = "random:index/randomBytes:RandomBytes"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
