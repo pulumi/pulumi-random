@@ -457,6 +457,9 @@ class _RandomPasswordState:
 
 
 class RandomPassword(pulumi.CustomResource):
+
+    pulumi_type = "random:index/randomPassword:RandomPassword"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

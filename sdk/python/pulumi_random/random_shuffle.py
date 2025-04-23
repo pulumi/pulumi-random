@@ -179,6 +179,9 @@ class _RandomShuffleState:
 
 
 class RandomShuffle(pulumi.CustomResource):
+
+    pulumi_type = "random:index/randomShuffle:RandomShuffle"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
