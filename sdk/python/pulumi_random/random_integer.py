@@ -176,6 +176,9 @@ class _RandomIntegerState:
 
 
 class RandomInteger(pulumi.CustomResource):
+
+    pulumi_type = "random:index/randomInteger:RandomInteger"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
