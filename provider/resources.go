@@ -113,6 +113,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		EnableAccurateBridgePreview: true,
+		EnableRawStateDelta:         true,
 	}
 
 	makeToken := func(module, name string) (string, error) {
