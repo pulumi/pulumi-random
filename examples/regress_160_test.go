@@ -17,7 +17,7 @@ package examples
 import (
 	"testing"
 
-	testutils "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/x/testing"
+	testutils "github.com/pulumi/providertest/replay"
 )
 
 // This makes sure that importing a random password works. The key method is Read.
@@ -57,6 +57,7 @@ func TestRegress160(t *testing.T) {
 	    "response": {
 	      "id": "none",
 	      "properties": {
+                "*": "*",
 		"__meta": "{\"schema_version\":\"3\"}",
 		"bcryptHash": {
 		  "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",

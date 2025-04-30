@@ -17,7 +17,7 @@ package examples
 import (
 	"testing"
 
-	testutils "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/x/testing"
+	testutils "github.com/pulumi/providertest/replay"
 )
 
 func TestRegress272(t *testing.T) {
@@ -105,7 +105,7 @@ func TestRegress272(t *testing.T) {
 	  "response": {
 	    "id": "*",
 	    "properties": {
-	      "__meta": "*",
+              "*": "*",
 	      "id": "*",
 	      "length": 6,
 	      "lower": true,

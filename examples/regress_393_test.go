@@ -17,7 +17,7 @@ package examples
 import (
 	"testing"
 
-	testutils "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/x/testing"
+	testutils "github.com/pulumi/providertest/replay"
 )
 
 func TestRegress393(t *testing.T) {
@@ -35,6 +35,7 @@ func TestRegress393(t *testing.T) {
 		},
 		"response": {
 			"properties": {
+				"*": "*",
 				"bcryptHash": "04da6b54-80e4-46f7-96ec-b56ff0331ba9",
 				"id": "04da6b54-80e4-46f7-96ec-b56ff0331ba9",
 				"length": 256,
@@ -71,6 +72,7 @@ func TestRegress393(t *testing.T) {
 		"response": {
 			"id": "none",
 			"properties": {
+				"*": "*",
 				"__meta": "{\"schema_version\":\"3\"}",
 				"bcryptHash": "*",
 				"id": "none",
