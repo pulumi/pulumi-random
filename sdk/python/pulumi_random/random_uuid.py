@@ -81,10 +81,8 @@ class _RandomUuidState:
         pulumi.set(self, "result", value)
 
 
+@pulumi.type_token("random:index/randomUuid:RandomUuid")
 class RandomUuid(pulumi.CustomResource):
-
-    pulumi_type = "random:index/randomUuid:RandomUuid"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

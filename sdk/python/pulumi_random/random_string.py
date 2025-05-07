@@ -440,10 +440,8 @@ class _RandomStringState:
         pulumi.set(self, "upper", value)
 
 
+@pulumi.type_token("random:index/randomString:RandomString")
 class RandomString(pulumi.CustomResource):
-
-    pulumi_type = "random:index/randomString:RandomString"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

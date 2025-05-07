@@ -161,10 +161,8 @@ class _RandomPetState:
         pulumi.set(self, "separator", value)
 
 
+@pulumi.type_token("random:index/randomPet:RandomPet")
 class RandomPet(pulumi.CustomResource):
-
-    pulumi_type = "random:index/randomPet:RandomPet"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
