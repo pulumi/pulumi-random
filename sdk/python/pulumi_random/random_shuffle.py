@@ -178,10 +178,8 @@ class _RandomShuffleState:
         pulumi.set(self, "seed", value)
 
 
+@pulumi.type_token("random:index/randomShuffle:RandomShuffle")
 class RandomShuffle(pulumi.CustomResource):
-
-    pulumi_type = "random:index/randomShuffle:RandomShuffle"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

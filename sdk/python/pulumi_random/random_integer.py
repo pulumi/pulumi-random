@@ -175,10 +175,8 @@ class _RandomIntegerState:
         pulumi.set(self, "seed", value)
 
 
+@pulumi.type_token("random:index/randomInteger:RandomInteger")
 class RandomInteger(pulumi.CustomResource):
-
-    pulumi_type = "random:index/randomInteger:RandomInteger"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

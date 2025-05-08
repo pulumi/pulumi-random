@@ -128,10 +128,8 @@ class _RandomBytesState:
         pulumi.set(self, "length", value)
 
 
+@pulumi.type_token("random:index/randomBytes:RandomBytes")
 class RandomBytes(pulumi.CustomResource):
-
-    pulumi_type = "random:index/randomBytes:RandomBytes"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
