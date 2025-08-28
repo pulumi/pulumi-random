@@ -59,57 +59,57 @@ export class RandomString extends pulumi.CustomResource {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      */
-    public readonly length!: pulumi.Output<number>;
+    declare public readonly length: pulumi.Output<number>;
     /**
      * Include lowercase alphabet characters in the result. Default value is `true`.
      */
-    public readonly lower!: pulumi.Output<boolean>;
+    declare public readonly lower: pulumi.Output<boolean>;
     /**
      * Minimum number of lowercase alphabet characters in the result. Default value is `0`.
      */
-    public readonly minLower!: pulumi.Output<number>;
+    declare public readonly minLower: pulumi.Output<number>;
     /**
      * Minimum number of numeric characters in the result. Default value is `0`.
      */
-    public readonly minNumeric!: pulumi.Output<number>;
+    declare public readonly minNumeric: pulumi.Output<number>;
     /**
      * Minimum number of special characters in the result. Default value is `0`.
      */
-    public readonly minSpecial!: pulumi.Output<number>;
+    declare public readonly minSpecial: pulumi.Output<number>;
     /**
      * Minimum number of uppercase alphabet characters in the result. Default value is `0`.
      */
-    public readonly minUpper!: pulumi.Output<number>;
+    declare public readonly minUpper: pulumi.Output<number>;
     /**
      * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      *
      * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      */
-    public readonly number!: pulumi.Output<boolean>;
+    declare public readonly number: pulumi.Output<boolean>;
     /**
      * Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
      */
-    public readonly numeric!: pulumi.Output<boolean>;
+    declare public readonly numeric: pulumi.Output<boolean>;
     /**
      * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      */
-    public readonly overrideSpecial!: pulumi.Output<string | undefined>;
+    declare public readonly overrideSpecial: pulumi.Output<string | undefined>;
     /**
      * The generated random string.
      */
-    public /*out*/ readonly result!: pulumi.Output<string>;
+    declare public /*out*/ readonly result: pulumi.Output<string>;
     /**
      * Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
      */
-    public readonly special!: pulumi.Output<boolean>;
+    declare public readonly special: pulumi.Output<boolean>;
     /**
      * Include uppercase alphabet characters in the result. Default value is `true`.
      */
-    public readonly upper!: pulumi.Output<boolean>;
+    declare public readonly upper: pulumi.Output<boolean>;
 
     /**
      * Create a RandomString resource with the given unique name, arguments, and options.
@@ -124,36 +124,36 @@ export class RandomString extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomStringState | undefined;
-            resourceInputs["keepers"] = state ? state.keepers : undefined;
-            resourceInputs["length"] = state ? state.length : undefined;
-            resourceInputs["lower"] = state ? state.lower : undefined;
-            resourceInputs["minLower"] = state ? state.minLower : undefined;
-            resourceInputs["minNumeric"] = state ? state.minNumeric : undefined;
-            resourceInputs["minSpecial"] = state ? state.minSpecial : undefined;
-            resourceInputs["minUpper"] = state ? state.minUpper : undefined;
-            resourceInputs["number"] = state ? state.number : undefined;
-            resourceInputs["numeric"] = state ? state.numeric : undefined;
-            resourceInputs["overrideSpecial"] = state ? state.overrideSpecial : undefined;
-            resourceInputs["result"] = state ? state.result : undefined;
-            resourceInputs["special"] = state ? state.special : undefined;
-            resourceInputs["upper"] = state ? state.upper : undefined;
+            resourceInputs["keepers"] = state?.keepers;
+            resourceInputs["length"] = state?.length;
+            resourceInputs["lower"] = state?.lower;
+            resourceInputs["minLower"] = state?.minLower;
+            resourceInputs["minNumeric"] = state?.minNumeric;
+            resourceInputs["minSpecial"] = state?.minSpecial;
+            resourceInputs["minUpper"] = state?.minUpper;
+            resourceInputs["number"] = state?.number;
+            resourceInputs["numeric"] = state?.numeric;
+            resourceInputs["overrideSpecial"] = state?.overrideSpecial;
+            resourceInputs["result"] = state?.result;
+            resourceInputs["special"] = state?.special;
+            resourceInputs["upper"] = state?.upper;
         } else {
             const args = argsOrState as RandomStringArgs | undefined;
-            if ((!args || args.length === undefined) && !opts.urn) {
+            if (args?.length === undefined && !opts.urn) {
                 throw new Error("Missing required property 'length'");
             }
-            resourceInputs["keepers"] = args ? args.keepers : undefined;
-            resourceInputs["length"] = args ? args.length : undefined;
-            resourceInputs["lower"] = args ? args.lower : undefined;
-            resourceInputs["minLower"] = args ? args.minLower : undefined;
-            resourceInputs["minNumeric"] = args ? args.minNumeric : undefined;
-            resourceInputs["minSpecial"] = args ? args.minSpecial : undefined;
-            resourceInputs["minUpper"] = args ? args.minUpper : undefined;
-            resourceInputs["number"] = args ? args.number : undefined;
-            resourceInputs["numeric"] = args ? args.numeric : undefined;
-            resourceInputs["overrideSpecial"] = args ? args.overrideSpecial : undefined;
-            resourceInputs["special"] = args ? args.special : undefined;
-            resourceInputs["upper"] = args ? args.upper : undefined;
+            resourceInputs["keepers"] = args?.keepers;
+            resourceInputs["length"] = args?.length;
+            resourceInputs["lower"] = args?.lower;
+            resourceInputs["minLower"] = args?.minLower;
+            resourceInputs["minNumeric"] = args?.minNumeric;
+            resourceInputs["minSpecial"] = args?.minSpecial;
+            resourceInputs["minUpper"] = args?.minUpper;
+            resourceInputs["number"] = args?.number;
+            resourceInputs["numeric"] = args?.numeric;
+            resourceInputs["overrideSpecial"] = args?.overrideSpecial;
+            resourceInputs["special"] = args?.special;
+            resourceInputs["upper"] = args?.upper;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

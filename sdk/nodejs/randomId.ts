@@ -94,31 +94,31 @@ export class RandomId extends pulumi.CustomResource {
     /**
      * The generated id presented in base64 without additional transformations.
      */
-    public /*out*/ readonly b64Std!: pulumi.Output<string>;
+    declare public /*out*/ readonly b64Std: pulumi.Output<string>;
     /**
      * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      */
-    public /*out*/ readonly b64Url!: pulumi.Output<string>;
+    declare public /*out*/ readonly b64Url: pulumi.Output<string>;
     /**
      * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
      */
-    public readonly byteLength!: pulumi.Output<number>;
+    declare public readonly byteLength: pulumi.Output<number>;
     /**
      * The generated id presented in non-padded decimal digits.
      */
-    public /*out*/ readonly dec!: pulumi.Output<string>;
+    declare public /*out*/ readonly dec: pulumi.Output<string>;
     /**
      * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      */
-    public /*out*/ readonly hex!: pulumi.Output<string>;
+    declare public /*out*/ readonly hex: pulumi.Output<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      */
-    public readonly prefix!: pulumi.Output<string | undefined>;
+    declare public readonly prefix: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomId resource with the given unique name, arguments, and options.
@@ -133,21 +133,21 @@ export class RandomId extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomIdState | undefined;
-            resourceInputs["b64Std"] = state ? state.b64Std : undefined;
-            resourceInputs["b64Url"] = state ? state.b64Url : undefined;
-            resourceInputs["byteLength"] = state ? state.byteLength : undefined;
-            resourceInputs["dec"] = state ? state.dec : undefined;
-            resourceInputs["hex"] = state ? state.hex : undefined;
-            resourceInputs["keepers"] = state ? state.keepers : undefined;
-            resourceInputs["prefix"] = state ? state.prefix : undefined;
+            resourceInputs["b64Std"] = state?.b64Std;
+            resourceInputs["b64Url"] = state?.b64Url;
+            resourceInputs["byteLength"] = state?.byteLength;
+            resourceInputs["dec"] = state?.dec;
+            resourceInputs["hex"] = state?.hex;
+            resourceInputs["keepers"] = state?.keepers;
+            resourceInputs["prefix"] = state?.prefix;
         } else {
             const args = argsOrState as RandomIdArgs | undefined;
-            if ((!args || args.byteLength === undefined) && !opts.urn) {
+            if (args?.byteLength === undefined && !opts.urn) {
                 throw new Error("Missing required property 'byteLength'");
             }
-            resourceInputs["byteLength"] = args ? args.byteLength : undefined;
-            resourceInputs["keepers"] = args ? args.keepers : undefined;
-            resourceInputs["prefix"] = args ? args.prefix : undefined;
+            resourceInputs["byteLength"] = args?.byteLength;
+            resourceInputs["keepers"] = args?.keepers;
+            resourceInputs["prefix"] = args?.prefix;
             resourceInputs["b64Std"] = undefined /*out*/;
             resourceInputs["b64Url"] = undefined /*out*/;
             resourceInputs["dec"] = undefined /*out*/;

@@ -80,23 +80,23 @@ export class RandomInteger extends pulumi.CustomResource {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The maximum inclusive value of the range.
      */
-    public readonly max!: pulumi.Output<number>;
+    declare public readonly max: pulumi.Output<number>;
     /**
      * The minimum inclusive value of the range.
      */
-    public readonly min!: pulumi.Output<number>;
+    declare public readonly min: pulumi.Output<number>;
     /**
      * The random integer result.
      */
-    public /*out*/ readonly result!: pulumi.Output<number>;
+    declare public /*out*/ readonly result: pulumi.Output<number>;
     /**
      * A custom seed to always produce the same value.
      */
-    public readonly seed!: pulumi.Output<string | undefined>;
+    declare public readonly seed: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomInteger resource with the given unique name, arguments, and options.
@@ -111,23 +111,23 @@ export class RandomInteger extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomIntegerState | undefined;
-            resourceInputs["keepers"] = state ? state.keepers : undefined;
-            resourceInputs["max"] = state ? state.max : undefined;
-            resourceInputs["min"] = state ? state.min : undefined;
-            resourceInputs["result"] = state ? state.result : undefined;
-            resourceInputs["seed"] = state ? state.seed : undefined;
+            resourceInputs["keepers"] = state?.keepers;
+            resourceInputs["max"] = state?.max;
+            resourceInputs["min"] = state?.min;
+            resourceInputs["result"] = state?.result;
+            resourceInputs["seed"] = state?.seed;
         } else {
             const args = argsOrState as RandomIntegerArgs | undefined;
-            if ((!args || args.max === undefined) && !opts.urn) {
+            if (args?.max === undefined && !opts.urn) {
                 throw new Error("Missing required property 'max'");
             }
-            if ((!args || args.min === undefined) && !opts.urn) {
+            if (args?.min === undefined && !opts.urn) {
                 throw new Error("Missing required property 'min'");
             }
-            resourceInputs["keepers"] = args ? args.keepers : undefined;
-            resourceInputs["max"] = args ? args.max : undefined;
-            resourceInputs["min"] = args ? args.min : undefined;
-            resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["keepers"] = args?.keepers;
+            resourceInputs["max"] = args?.max;
+            resourceInputs["min"] = args?.min;
+            resourceInputs["seed"] = args?.seed;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
