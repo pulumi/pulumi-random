@@ -65,8 +65,7 @@ namespace Pulumi.Random
         public Output<int?> ResultCount { get; private set; } = null!;
 
         /// <summary>
-        /// Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
-        /// set, or the number of elements in `input`.
+        /// Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if set, or the number of elements in `input`.
         /// </summary>
         [Output("results")]
         public Output<ImmutableArray<string>> Results { get; private set; } = null!;
@@ -201,8 +200,7 @@ namespace Pulumi.Random
         private InputList<string>? _results;
 
         /// <summary>
-        /// Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if
-        /// set, or the number of elements in `input`.
+        /// Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if set, or the number of elements in `input`.
         /// </summary>
         public InputList<string> Results
         {

@@ -4,6 +4,7 @@ title: Random Provider
 meta_desc: Provides an overview on how to configure the Pulumi Random provider.
 layout: package
 ---
+
 ## Installation
 
 The Random provider is available as a package in all Pulumi languages:
@@ -13,6 +14,7 @@ The Random provider is available as a package in all Pulumi languages:
 * Go: [`github.com/pulumi/pulumi-random/sdk/v4/go/random`](https://github.com/pulumi/pulumi-random)
 * .NET: [`Pulumi.Random`](https://www.nuget.org/packages/Pulumi.Random)
 * Java: [`com.pulumi/random`](https://central.sonatype.com/artifact/com.pulumi/random)
+
 ## Overview
 
 The "random" provider allows the use of randomness within Pulumi
@@ -127,7 +129,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ec2"
+	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/ec2"
 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -209,8 +211,8 @@ public class App {
             .build());
 
         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
-            .tags(Map.of("Name", server.hex().applyValue(hex -> String.format("web-server %s", hex))))
-            .ami(server.keepers().applyValue(keepers -> keepers.amiId()))
+            .tags(Map.of("Name", server.hex().applyValue(_hex -> String.format("web-server %s", _hex))))
+            .ami(server.keepers().applyValue(_keepers -> _keepers.amiId()))
             .build());
 
     }
