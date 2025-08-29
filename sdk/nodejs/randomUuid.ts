@@ -63,11 +63,11 @@ export class RandomUuid extends pulumi.CustomResource {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The generated uuid presented in string format.
      */
-    public /*out*/ readonly result!: pulumi.Output<string>;
+    declare public /*out*/ readonly result: pulumi.Output<string>;
 
     /**
      * Create a RandomUuid resource with the given unique name, arguments, and options.
@@ -82,11 +82,11 @@ export class RandomUuid extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomUuidState | undefined;
-            resourceInputs["keepers"] = state ? state.keepers : undefined;
-            resourceInputs["result"] = state ? state.result : undefined;
+            resourceInputs["keepers"] = state?.keepers;
+            resourceInputs["result"] = state?.result;
         } else {
             const args = argsOrState as RandomUuidArgs | undefined;
-            resourceInputs["keepers"] = args ? args.keepers : undefined;
+            resourceInputs["keepers"] = args?.keepers;
             resourceInputs["result"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -61,19 +61,19 @@ export class RandomPet extends pulumi.CustomResource {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The length (in words) of the pet name. Defaults to 2
      */
-    public readonly length!: pulumi.Output<number>;
+    declare public readonly length: pulumi.Output<number>;
     /**
      * A string to prefix the name with.
      */
-    public readonly prefix!: pulumi.Output<string | undefined>;
+    declare public readonly prefix: pulumi.Output<string | undefined>;
     /**
      * The character to separate words in the pet name. Defaults to "-"
      */
-    public readonly separator!: pulumi.Output<string>;
+    declare public readonly separator: pulumi.Output<string>;
 
     /**
      * Create a RandomPet resource with the given unique name, arguments, and options.
@@ -88,16 +88,16 @@ export class RandomPet extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomPetState | undefined;
-            resourceInputs["keepers"] = state ? state.keepers : undefined;
-            resourceInputs["length"] = state ? state.length : undefined;
-            resourceInputs["prefix"] = state ? state.prefix : undefined;
-            resourceInputs["separator"] = state ? state.separator : undefined;
+            resourceInputs["keepers"] = state?.keepers;
+            resourceInputs["length"] = state?.length;
+            resourceInputs["prefix"] = state?.prefix;
+            resourceInputs["separator"] = state?.separator;
         } else {
             const args = argsOrState as RandomPetArgs | undefined;
-            resourceInputs["keepers"] = args ? args.keepers : undefined;
-            resourceInputs["length"] = args ? args.length : undefined;
-            resourceInputs["prefix"] = args ? args.prefix : undefined;
-            resourceInputs["separator"] = args ? args.separator : undefined;
+            resourceInputs["keepers"] = args?.keepers;
+            resourceInputs["length"] = args?.length;
+            resourceInputs["prefix"] = args?.prefix;
+            resourceInputs["separator"] = args?.separator;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RandomPet.__pulumiType, name, resourceInputs, opts);

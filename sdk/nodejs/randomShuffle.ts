@@ -57,24 +57,23 @@ export class RandomShuffle extends pulumi.CustomResource {
     /**
      * The list of strings to shuffle.
      */
-    public readonly inputs!: pulumi.Output<string[]>;
+    declare public readonly inputs: pulumi.Output<string[]>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    public readonly keepers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      */
-    public readonly resultCount!: pulumi.Output<number | undefined>;
+    declare public readonly resultCount: pulumi.Output<number | undefined>;
     /**
-     * Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if
-     * set, or the number of elements in `input`.
+     * Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if set, or the number of elements in `input`.
      */
-    public /*out*/ readonly results!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly results: pulumi.Output<string[]>;
     /**
      * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      */
-    public readonly seed!: pulumi.Output<string | undefined>;
+    declare public readonly seed: pulumi.Output<string | undefined>;
 
     /**
      * Create a RandomShuffle resource with the given unique name, arguments, and options.
@@ -89,20 +88,20 @@ export class RandomShuffle extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RandomShuffleState | undefined;
-            resourceInputs["inputs"] = state ? state.inputs : undefined;
-            resourceInputs["keepers"] = state ? state.keepers : undefined;
-            resourceInputs["resultCount"] = state ? state.resultCount : undefined;
-            resourceInputs["results"] = state ? state.results : undefined;
-            resourceInputs["seed"] = state ? state.seed : undefined;
+            resourceInputs["inputs"] = state?.inputs;
+            resourceInputs["keepers"] = state?.keepers;
+            resourceInputs["resultCount"] = state?.resultCount;
+            resourceInputs["results"] = state?.results;
+            resourceInputs["seed"] = state?.seed;
         } else {
             const args = argsOrState as RandomShuffleArgs | undefined;
-            if ((!args || args.inputs === undefined) && !opts.urn) {
+            if (args?.inputs === undefined && !opts.urn) {
                 throw new Error("Missing required property 'inputs'");
             }
-            resourceInputs["inputs"] = args ? args.inputs : undefined;
-            resourceInputs["keepers"] = args ? args.keepers : undefined;
-            resourceInputs["resultCount"] = args ? args.resultCount : undefined;
-            resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["inputs"] = args?.inputs;
+            resourceInputs["keepers"] = args?.keepers;
+            resourceInputs["resultCount"] = args?.resultCount;
+            resourceInputs["seed"] = args?.seed;
             resourceInputs["results"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -127,8 +126,7 @@ export interface RandomShuffleState {
      */
     resultCount?: pulumi.Input<number>;
     /**
-     * Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if
-     * set, or the number of elements in `input`.
+     * Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if set, or the number of elements in `input`.
      */
     results?: pulumi.Input<pulumi.Input<string>[]>;
     /**
