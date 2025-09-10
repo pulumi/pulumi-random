@@ -112,6 +112,13 @@ func Provider() tfbridge.ProviderInfo {
 				"random": "Random",
 			},
 		},
+		Java: &tfbridge.JavaInfo{
+			Overlay: &tfbridge.OverlayInfo{
+				DestFiles: []string{
+					"src/main/java/com/pulumi/random/RandomUtils.java",
+				},
+			},
+		},
 		EnableAccurateBridgePreview: true,
 		EnableRawStateDelta:         true,
 	}
