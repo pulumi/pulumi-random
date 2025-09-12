@@ -23,3 +23,6 @@ releaseVerification:
   dotnet: examples/simple/csharp
   go: examples/simple/go
 integrationTestProvider: true
+esc:
+  enabled: true
+  environment: imports/github-secrets # No repo-specific secrets.
