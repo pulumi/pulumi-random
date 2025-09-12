@@ -23,3 +23,5 @@ releaseVerification:
   dotnet: examples/simple/csharp
   go: examples/simple/go
 integrationTestProvider: true
+esc:
+  enabled: true
