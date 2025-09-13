@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-random/examples/v4
 
-go 1.23.11
+go 1.24.0
 
 toolchain go1.24.6
 
