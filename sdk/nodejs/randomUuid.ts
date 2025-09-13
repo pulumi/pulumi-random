@@ -9,13 +9,13 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as azurerm from "@pulumi/azurerm";
+ * import * as azure from "@pulumi/azure";
  * import * as random from "@pulumi/random";
  *
  * // The following example shows how to generate a unique name for an Azure Resource Group.
  * const test = new random.RandomUuid("test", {});
- * const testResourceGroup = new azurerm.index.ResourceGroup("test", {
- *     name: `${test.result}-rg`,
+ * const testResourceGroup = new azure.core.ResourceGroup("test", {
+ *     name: pulumi.interpolate`${test.result}-rg`,
  *     location: "Central US",
  * });
  * ```

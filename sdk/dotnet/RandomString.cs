@@ -50,7 +50,7 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
         /// </summary>
         [Input("length", required: true)]
         public Input<int> Length { get; set; } = null!;
@@ -266,7 +266,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }

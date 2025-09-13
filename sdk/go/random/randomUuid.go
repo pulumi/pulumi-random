@@ -20,7 +20,7 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-azurerm/sdk/go/azurerm"
+//	"github.com/pulumi/pulumi-azure/sdk/v6/go/azure/core"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -33,9 +33,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = azurerm.NewResourceGroup(ctx, "test", &azurerm.ResourceGroupArgs{
-//				Name:     pulumi.Sprintf("%v-rg", test.Result),
-//				Location: "Central US",
+//			_, err = core.NewResourceGroup(ctx, "test", &core.ResourceGroupArgs{
+//				Name: test.Result.ApplyT(func(result string) (string, error) {
+//					return fmt.Sprintf("%v-rg", result), nil
+//				}).(pulumi.StringOutput),
+//				Location: pulumi.String("Central US"),
 //			})
 //			if err != nil {
 //				return err

@@ -13,11 +13,11 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as azurerm from "@pulumi/azurerm";
+ * import * as azure from "@pulumi/azure";
  * import * as random from "@pulumi/random";
  *
  * const jwtSecret = new random.RandomBytes("jwt_secret", {length: 64});
- * const jwtSecretKeyVaultSecret = new azurerm.index.KeyVaultSecret("jwt_secret", {
+ * const jwtSecretSecret = new azure.keyvault.Secret("jwt_secret", {
  *     keyVaultId: "some-azure-key-vault-id",
  *     name: "JwtSecret",
  *     value: jwtSecret.base64,

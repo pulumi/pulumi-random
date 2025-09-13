@@ -12,7 +12,7 @@ namespace Pulumi.Random
     /// <summary>
     /// The resource `random.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
     /// 
-    /// This resource can be used in conjunction with resources that have the `create_before_destroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
+    /// This resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.
     /// 
     /// ## Example Usage
     /// 

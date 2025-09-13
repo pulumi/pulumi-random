@@ -48,7 +48,7 @@ namespace Pulumi.Random
     public partial class RandomPassword : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
+        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
         /// </summary>
         [Output("bcryptHash")]
         public Output<string> BcryptHash { get; private set; } = null!;
@@ -60,7 +60,7 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
@@ -195,7 +195,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
         /// </summary>
         [Input("length", required: true)]
         public Input<int> Length { get; set; } = null!;
@@ -272,7 +272,7 @@ namespace Pulumi.Random
         private Input<string>? _bcryptHash;
 
         /// <summary>
-        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
+        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
         /// </summary>
         public Input<string>? BcryptHash
         {
@@ -297,7 +297,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }

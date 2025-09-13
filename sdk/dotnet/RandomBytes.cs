@@ -20,7 +20,7 @@ namespace Pulumi.Random
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Azurerm = Pulumi.Azurerm;
+    /// using Azure = Pulumi.Azure;
     /// using Random = Pulumi.Random;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -30,7 +30,7 @@ namespace Pulumi.Random
     ///         Length = 64,
     ///     });
     /// 
-    ///     var jwtSecretKeyVaultSecret = new Azurerm.Index.KeyVaultSecret("jwt_secret", new()
+    ///     var jwtSecretSecret = new Azure.KeyVault.Secret("jwt_secret", new()
     ///     {
     ///         KeyVaultId = "some-azure-key-vault-id",
     ///         Name = "JwtSecret",
