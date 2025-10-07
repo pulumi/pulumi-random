@@ -81,14 +81,14 @@ public class RandomString extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keepers);
     }
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     @Export(name="length", refs={Integer.class}, tree="[0]")
     private Output<Integer> length;
 
     /**
-     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     public Output<Integer> length() {

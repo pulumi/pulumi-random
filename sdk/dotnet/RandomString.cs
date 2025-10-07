@@ -50,13 +50,13 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
 
         /// <summary>
-        /// Include lowercase alphabet characters in the result. Default value is `true`.
+        /// Include lowercase alphabet characters in the result. Default value is `True`.
         /// </summary>
         [Output("lower")]
         public Output<bool> Lower { get; private set; } = null!;
@@ -86,19 +86,19 @@ namespace Pulumi.Random
         public Output<int> MinUpper { get; private set; } = null!;
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        /// Include numeric characters in the result. Default value is `True`. If `Number`, `Upper`, `Lower`, and `Special` are all configured, at least one of them must be set to `True`. **NOTE**: This is deprecated, use `Numeric` instead.
         /// </summary>
         [Output("number")]
         public Output<bool> Number { get; private set; } = null!;
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
+        /// Include numeric characters in the result. Default value is `True`. If `Numeric`, `Upper`, `Lower`, and `Special` are all configured, at least one of them must be set to `True`.
         /// </summary>
         [Output("numeric")]
         public Output<bool> Numeric { get; private set; } = null!;
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Output("overrideSpecial")]
         public Output<string?> OverrideSpecial { get; private set; } = null!;
@@ -110,13 +110,13 @@ namespace Pulumi.Random
         public Output<string> Result { get; private set; } = null!;
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `True`.
         /// </summary>
         [Output("special")]
         public Output<bool> Special { get; private set; } = null!;
 
         /// <summary>
-        /// Include uppercase alphabet characters in the result. Default value is `true`.
+        /// Include uppercase alphabet characters in the result. Default value is `True`.
         /// </summary>
         [Output("upper")]
         public Output<bool> Upper { get; private set; } = null!;
@@ -180,13 +180,13 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
         /// </summary>
         [Input("length", required: true)]
         public Input<int> Length { get; set; } = null!;
 
         /// <summary>
-        /// Include lowercase alphabet characters in the result. Default value is `true`.
+        /// Include lowercase alphabet characters in the result. Default value is `True`.
         /// </summary>
         [Input("lower")]
         public Input<bool>? Lower { get; set; }
@@ -216,31 +216,31 @@ namespace Pulumi.Random
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        /// Include numeric characters in the result. Default value is `True`. If `Number`, `Upper`, `Lower`, and `Special` are all configured, at least one of them must be set to `True`. **NOTE**: This is deprecated, use `Numeric` instead.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
+        /// Include numeric characters in the result. Default value is `True`. If `Numeric`, `Upper`, `Lower`, and `Special` are all configured, at least one of them must be set to `True`.
         /// </summary>
         [Input("numeric")]
         public Input<bool>? Numeric { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `True`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
 
         /// <summary>
-        /// Include uppercase alphabet characters in the result. Default value is `true`.
+        /// Include uppercase alphabet characters in the result. Default value is `True`.
         /// </summary>
         [Input("upper")]
         public Input<bool>? Upper { get; set; }
@@ -266,13 +266,13 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
 
         /// <summary>
-        /// Include lowercase alphabet characters in the result. Default value is `true`.
+        /// Include lowercase alphabet characters in the result. Default value is `True`.
         /// </summary>
         [Input("lower")]
         public Input<bool>? Lower { get; set; }
@@ -302,19 +302,19 @@ namespace Pulumi.Random
         public Input<int>? MinUpper { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
+        /// Include numeric characters in the result. Default value is `True`. If `Number`, `Upper`, `Lower`, and `Special` are all configured, at least one of them must be set to `True`. **NOTE**: This is deprecated, use `Numeric` instead.
         /// </summary>
         [Input("number")]
         public Input<bool>? Number { get; set; }
 
         /// <summary>
-        /// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
+        /// Include numeric characters in the result. Default value is `True`. If `Numeric`, `Upper`, `Lower`, and `Special` are all configured, at least one of them must be set to `True`.
         /// </summary>
         [Input("numeric")]
         public Input<bool>? Numeric { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
@@ -326,13 +326,13 @@ namespace Pulumi.Random
         public Input<string>? Result { get; set; }
 
         /// <summary>
-        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `true`.
+        /// Include special characters in the result. These are `!@#$%&amp;*()-_=+[]{}&lt;&gt;:?`. Default value is `True`.
         /// </summary>
         [Input("special")]
         public Input<bool>? Special { get; set; }
 
         /// <summary>
-        /// Include uppercase alphabet characters in the result. Default value is `true`.
+        /// Include uppercase alphabet characters in the result. Default value is `True`.
         /// </summary>
         [Input("upper")]
         public Input<bool>? Upper { get; set; }
