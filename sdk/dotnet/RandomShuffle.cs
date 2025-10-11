@@ -59,13 +59,13 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        /// The number of results to return. Defaults to the number of items in the `Input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         /// </summary>
         [Output("resultCount")]
         public Output<int?> ResultCount { get; private set; } = null!;
 
         /// <summary>
-        /// Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if set, or the number of elements in `input`.
+        /// Random permutation of the list of strings given in `Input`. The number of elements is determined by `ResultCount` if set, or the number of elements in `Input`.
         /// </summary>
         [Output("results")]
         public Output<ImmutableArray<string>> Results { get; private set; } = null!;
@@ -147,7 +147,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        /// The number of results to return. Defaults to the number of items in the `Input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         /// </summary>
         [Input("resultCount")]
         public Input<int>? ResultCount { get; set; }
@@ -191,7 +191,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+        /// The number of results to return. Defaults to the number of items in the `Input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         /// </summary>
         [Input("resultCount")]
         public Input<int>? ResultCount { get; set; }
@@ -200,7 +200,7 @@ namespace Pulumi.Random
         private InputList<string>? _results;
 
         /// <summary>
-        /// Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if set, or the number of elements in `input`.
+        /// Random permutation of the list of strings given in `Input`. The number of elements is determined by `ResultCount` if set, or the number of elements in `Input`.
         /// </summary>
         public InputList<string> Results
         {
