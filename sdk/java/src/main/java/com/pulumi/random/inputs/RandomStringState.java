@@ -34,14 +34,14 @@ public final class RandomStringState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     @Import(name="length")
     private @Nullable Output<Integer> length;
 
     /**
-     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     public Optional<Output<Integer>> length() {
@@ -279,7 +279,7 @@ public final class RandomStringState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
          * 
          * @return builder
          * 
@@ -290,7 +290,7 @@ public final class RandomStringState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
          * 
          * @return builder
          * 
