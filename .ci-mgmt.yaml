@@ -1,16 +1,6 @@
 provider: random
 major-version: 4
 makeTemplate: bridged
-plugins:
-    - name: std
-      version: "1.6.2"
-    - name: terraform
-      version: "1.0.16"
-      kind: converter
-    - name: aws
-      version: "6.32.0"
-    - name: azure
-      version: "5.24.0"
 team: ecosystem
 license:
     ignore:
