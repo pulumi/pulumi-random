@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomShuffle;
  * import com.pulumi.random.RandomShuffleArgs;
- * import com.pulumi.aws.elb.LoadBalancer;
- * import com.pulumi.aws.elb.LoadBalancerArgs;
+ * import com.pulumi.aws.Elb;
+ * import com.pulumi.aws.ElbArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *             .resultCount(2)
  *             .build());
  * 
- *         var example = new LoadBalancer("example", LoadBalancerArgs.builder()
+ *         var example = new Elb("example", ElbArgs.builder()
  *             .availabilityZones(az.results())
  *             .build());
  * 

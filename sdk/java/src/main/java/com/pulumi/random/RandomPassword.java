@@ -30,8 +30,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomPassword;
  * import com.pulumi.random.RandomPasswordArgs;
- * import com.pulumi.aws.rds.Instance;
- * import com.pulumi.aws.rds.InstanceArgs;
+ * import com.pulumi.aws.DbInstance;
+ * import com.pulumi.aws.DbInstanceArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *             .overrideSpecial("!#$%&*()-_=+[]{}<>:?")
  *             .build());
  * 
- *         var example = new Instance("example", InstanceArgs.builder()
+ *         var example = new DbInstance("example", DbInstanceArgs.builder()
  *             .instanceClass("db.t3.micro")
  *             .allocatedStorage(64)
  *             .engine("mysql")

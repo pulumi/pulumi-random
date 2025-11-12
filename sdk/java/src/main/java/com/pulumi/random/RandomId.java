@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomId;
  * import com.pulumi.random.RandomIdArgs;
- * import com.pulumi.aws.ec2.Instance;
- * import com.pulumi.aws.ec2.InstanceArgs;
+ * import com.pulumi.aws.Instance;
+ * import com.pulumi.aws.InstanceArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -66,8 +66,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
- *             .tags(Map.of("Name", server.hex().applyValue(_hex -> String.format("web-server %s", _hex))))
- *             .ami(server.keepers().applyValue(_keepers -> _keepers.amiId()))
+ *             .tags(Map.of("name", String.format("web-server %s", server.hex())))
+ *             .ami(server.keepers().amiId())
  *             .build());
  * 
  *     }
