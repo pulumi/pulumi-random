@@ -111,7 +111,7 @@ build_registry_docs: .make/build_registry_docs
 
 build_sdks: .make/build_sdks
 .make/build_sdks: .make/schema
-	provider-sdk-builder build-sdks --language all --providerName $(PACK)
+	provider-sdk-builder build-sdks --providerName $(PACK) --language $(SDK_LANG)
 	@touch $@
 .PHONY: build_sdks
 
