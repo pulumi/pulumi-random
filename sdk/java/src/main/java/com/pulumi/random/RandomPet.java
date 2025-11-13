@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomPet;
  * import com.pulumi.random.RandomPetArgs;
- * import com.pulumi.aws.ec2.Instance;
- * import com.pulumi.aws.ec2.InstanceArgs;
+ * import com.pulumi.aws.Instance;
+ * import com.pulumi.aws.InstanceArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -55,8 +55,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
- *             .tags(Map.of("Name", server.id().applyValue(_id -> String.format("web-server-%s", _id))))
- *             .ami(server.keepers().applyValue(_keepers -> _keepers.amiId()))
+ *             .tags(Map.of("name", String.format("web-server-%s", server.id())))
+ *             .ami(server.keepers().amiId())
  *             .build());
  * 
  *     }
