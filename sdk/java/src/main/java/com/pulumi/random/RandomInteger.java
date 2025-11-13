@@ -32,9 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.RandomInteger;
  * import com.pulumi.random.RandomIntegerArgs;
- * import com.pulumi.aws.alb.ListenerRule;
- * import com.pulumi.aws.alb.ListenerRuleArgs;
- * import com.pulumi.aws.alb.inputs.ListenerRuleActionArgs;
+ * import com.pulumi.aws.AlbListenerRule;
+ * import com.pulumi.aws.AlbListenerRuleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -56,13 +55,13 @@ import javax.annotation.Nullable;
  *             .keepers(Map.of("listener_arn", listenerArn))
  *             .build());
  * 
- *         var main = new ListenerRule("main", ListenerRuleArgs.builder()
- *             .listenerArn(priority.keepers().applyValue(_keepers -> _keepers.listenerArn()))
+ *         var main = new AlbListenerRule("main", AlbListenerRuleArgs.builder()
+ *             .listenerArn(priority.keepers().listenerArn())
  *             .priority(priority.result())
- *             .actions(ListenerRuleActionArgs.builder()
- *                 .type("forward")
- *                 .targetGroupArn(targetGroupArn)
- *                 .build())
+ *             .action(List.of(Map.ofEntries(
+ *                 Map.entry("type", "forward"),
+ *                 Map.entry("targetGroupArn", targetGroupArn)
+ *             )))
  *             .build());
  * 
  *     }
