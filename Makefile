@@ -13,6 +13,7 @@ WORKING_DIR := $(shell pwd)
 PULUMI_PROVIDER_BUILD_PARALLELISM ?=
 PULUMI_CONVERT := 1
 PULUMI_MISSING_DOCS_ERROR := false
+SDK_LANG ?= all
 
 # Override during CI using `make [TARGET] PROVIDER_VERSION=""` or by setting a PROVIDER_VERSION environment variable
 # Local & branch builds will just used this fixed default version unless specified
@@ -93,7 +94,7 @@ help:
 	@echo "  mise_install             Install tools with mise"
 	@echo "  upstream                 Initialize the upstream submodule, if present"
 	@echo ""
-	@echo "  [language] = nodejs python dotnet go java"
+	@echo "  [SDK_LANG] = nodejs python dotnet go java"
 	@echo ""
 .PHONY: help
 
