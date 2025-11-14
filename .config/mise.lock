@@ -34,7 +34,7 @@ size = 78583176
 url = "https://dl.google.com/go/go1.24.6.linux-amd64.tar.gz"
 
 [[tools."go:github.com/pulumi/provider-sdk-builder"]]
-version = "0.0.3"
+version = "0.0.4"
 backend = "go:github.com/pulumi/provider-sdk-builder"
 
 [[tools.golangci-lint]]

@@ -1,0 +1,970 @@
+{
+    "name": "random",
+    "description": "A Pulumi package to safely use randomness in Pulumi programs.",
+    "keywords": [
+        "pulumi",
+        "random"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`random` Terraform Provider](https://github.com/terraform-providers/terraform-provider-random).",
+    "repository": "https://github.com/pulumi/pulumi-random",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "namespaces": {
+                "random": "Random"
+            },
+            "compatibility": "tfbridge20",
+            "respectSchemaVersion": true
+        },
+        "go": {
+            "importBasePath": "github.com/pulumi/pulumi-random/sdk/v4/go/random",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true,
+            "respectSchemaVersion": true
+        },
+        "nodejs": {
+            "packageDescription": "A Pulumi package to safely use randomness in Pulumi programs.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-random)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-random` repo](https://github.com/pulumi/pulumi-random/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-random` repo](https://github.com/terraform-providers/terraform-provider-random/issues).",
+            "devDependencies": {
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true,
+            "respectSchemaVersion": true
+        },
+        "python": {
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-random)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-random` repo](https://github.com/pulumi/pulumi-random/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-random` repo](https://github.com/terraform-providers/terraform-provider-random/issues).",
+            "compatibility": "tfbridge20",
+            "respectSchemaVersion": true,
+            "pyproject": {
+                "enabled": true
+            }
+        }
+    },
+    "config": {},
+    "provider": {
+        "description": "The provider type for the random package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "methods": {
+            "terraformConfig": "pulumi:providers:random/terraformConfig"
+        }
+    },
+    "resources": {
+        "random:index/randomBytes:RandomBytes": {
+            "description": "The resource `random.RandomBytes` generates random bytes that are intended to be used as a secret, or key. Use this in preference to `random.RandomId` when the output is considered sensitive, and should not be displayed in the CLI.\n\nThis resource *does* use a cryptographic random number generator.\n\n## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomBytes;\nimport com.pulumi.random.RandomBytesArgs;\nimport com.pulumi.azurerm.KeyVaultSecret;\nimport com.pulumi.azurerm.KeyVaultSecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var jwtSecret = new RandomBytes(\"jwtSecret\", RandomBytesArgs.builder()\n            .length(64)\n            .build());\n\n        var jwtSecretKeyVaultSecret = new KeyVaultSecret(\"jwtSecretKeyVaultSecret\", KeyVaultSecretArgs.builder()\n            .keyVaultId(\"some-azure-key-vault-id\")\n            .name(\"JwtSecret\")\n            .value(jwtSecret.base64())\n            .build());\n\n    }\n}\n```\n\n## Import\n\nRandom bytes can be imported by specifying the value as base64 string.\n\n```sh\n$ pulumi import random:index/randomBytes:RandomBytes basic \"8/fu3q+2DcgSJ19i0jZ5Cw==\"\n```\n\n",
+            "properties": {
+                "base64": {
+                    "type": "string",
+                    "description": "The generated bytes presented in base64 string format.\n",
+                    "secret": true
+                },
+                "hex": {
+                    "type": "string",
+                    "description": "The generated bytes presented in lowercase hexadecimal string format. The length of the encoded string is exactly twice the `length` parameter.\n",
+                    "secret": true
+                },
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The number of bytes requested. The minimum value for length is 1.\n"
+                }
+            },
+            "required": [
+                "base64",
+                "hex",
+                "length"
+            ],
+            "inputProperties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The number of bytes requested. The minimum value for length is 1.\n"
+                }
+            },
+            "requiredInputs": [
+                "length"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomBytes resources.\n",
+                "properties": {
+                    "base64": {
+                        "type": "string",
+                        "description": "The generated bytes presented in base64 string format.\n",
+                        "secret": true
+                    },
+                    "hex": {
+                        "type": "string",
+                        "description": "The generated bytes presented in lowercase hexadecimal string format. The length of the encoded string is exactly twice the `length` parameter.\n",
+                        "secret": true
+                    },
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "The number of bytes requested. The minimum value for length is 1.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomId:RandomId": {
+            "description": "The resource `random.RandomId` generates random numbers that are intended to be\nused as unique identifiers for other resources. If the output is considered \nsensitive, and should not be displayed in the CLI, use `random.RandomBytes`\ninstead.\n\nThis resource *does* use a cryptographic random number generator in order\nto minimize the chance of collisions, making the results of this resource\nwhen a 16-byte identifier is requested of equivalent uniqueness to a\ntype-4 UUID.\n\nThis resource can be used in conjunction with resources that have\nthe `createBeforeDestroy` lifecycle flag set to avoid conflicts with\nunique names during the brief period where both the old and new resources\nexist concurrently.\n\n## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomId;\nimport com.pulumi.random.RandomIdArgs;\nimport com.pulumi.aws.ec2.Instance;\nimport com.pulumi.aws.ec2.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The following example shows how to generate a unique name for an AWS EC2\n        // instance that changes each time a new AMI id is selected.\n        var server = new RandomId(\"server\", RandomIdArgs.builder()\n            .keepers(Map.of(\"ami_id\", amiId))\n            .byteLength(8)\n            .build());\n\n        var serverInstance = new Instance(\"serverInstance\", InstanceArgs.builder()\n            .tags(Map.of(\"Name\", server.hex().applyValue(_hex -\u003e String.format(\"web-server %s\", _hex))))\n            .ami(server.keepers().applyValue(_keepers -\u003e _keepers.amiId()))\n            .build());\n\n    }\n}\n```\n\n## Import\n\nRandom IDs can be imported using the b64_url with an optional prefix. This\n\ncan be used to replace a config value with a value interpolated from the\n\nrandom provider without experiencing diffs.\n\nExample with no prefix:\n\n```sh\n$ pulumi import random:index/randomId:RandomId server p-9hUg\n```\n\nExample with prefix (prefix is separated by a ,):\n\n```sh\n$ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg\n```\n\n",
+            "properties": {
+                "b64Std": {
+                    "type": "string",
+                    "description": "The generated id presented in base64 without additional transformations.\n"
+                },
+                "b64Url": {
+                    "type": "string",
+                    "description": "The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.\n"
+                },
+                "byteLength": {
+                    "type": "integer",
+                    "description": "The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.\n"
+                },
+                "dec": {
+                    "type": "string",
+                    "description": "The generated id presented in non-padded decimal digits.\n"
+                },
+                "hex": {
+                    "type": "string",
+                    "description": "The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.\n"
+                },
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.\n"
+                }
+            },
+            "required": [
+                "b64Std",
+                "b64Url",
+                "byteLength",
+                "dec",
+                "hex"
+            ],
+            "inputProperties": {
+                "byteLength": {
+                    "type": "integer",
+                    "description": "The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.\n"
+                },
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.\n"
+                }
+            },
+            "requiredInputs": [
+                "byteLength"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomId resources.\n",
+                "properties": {
+                    "b64Std": {
+                        "type": "string",
+                        "description": "The generated id presented in base64 without additional transformations.\n"
+                    },
+                    "b64Url": {
+                        "type": "string",
+                        "description": "The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.\n"
+                    },
+                    "byteLength": {
+                        "type": "integer",
+                        "description": "The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.\n"
+                    },
+                    "dec": {
+                        "type": "string",
+                        "description": "The generated id presented in non-padded decimal digits.\n"
+                    },
+                    "hex": {
+                        "type": "string",
+                        "description": "The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.\n"
+                    },
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "prefix": {
+                        "type": "string",
+                        "description": "Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomInteger:RandomInteger": {
+            "description": "The resource `random.RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.\n\nThis resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.\n\n## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomInteger;\nimport com.pulumi.random.RandomIntegerArgs;\nimport com.pulumi.aws.alb.ListenerRule;\nimport com.pulumi.aws.alb.ListenerRuleArgs;\nimport com.pulumi.aws.alb.inputs.ListenerRuleActionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The following example shows how to generate a random priority\n        // between 1 and 50000 for a aws_alb_listener_rule resource:\n        var priority = new RandomInteger(\"priority\", RandomIntegerArgs.builder()\n            .min(1)\n            .max(50000)\n            .keepers(Map.of(\"listener_arn\", listenerArn))\n            .build());\n\n        var main = new ListenerRule(\"main\", ListenerRuleArgs.builder()\n            .listenerArn(priority.keepers().applyValue(_keepers -\u003e _keepers.listenerArn()))\n            .priority(priority.result())\n            .actions(ListenerRuleActionArgs.builder()\n                .type(\"forward\")\n                .targetGroupArn(targetGroupArn)\n                .build())\n            .build());\n\n    }\n}\n```\n\n## Import\n\nRandom integers can be imported using the result, min, and max, with an\n\noptional seed. This can be used to replace a config value with a value\n\ninterpolated from the random provider without experiencing diffs.\n\nExample (values are separated by a ,):\n\n```sh\n$ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000\n```\n\n",
+            "properties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "The maximum inclusive value of the range.\n"
+                },
+                "min": {
+                    "type": "integer",
+                    "description": "The minimum inclusive value of the range.\n"
+                },
+                "result": {
+                    "type": "integer",
+                    "description": "The random integer result.\n"
+                },
+                "seed": {
+                    "type": "string",
+                    "description": "A custom seed to always produce the same value.\n"
+                }
+            },
+            "required": [
+                "max",
+                "min",
+                "result"
+            ],
+            "inputProperties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "The maximum inclusive value of the range.\n"
+                },
+                "min": {
+                    "type": "integer",
+                    "description": "The minimum inclusive value of the range.\n"
+                },
+                "seed": {
+                    "type": "string",
+                    "description": "A custom seed to always produce the same value.\n"
+                }
+            },
+            "requiredInputs": [
+                "max",
+                "min"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomInteger resources.\n",
+                "properties": {
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "max": {
+                        "type": "integer",
+                        "description": "The maximum inclusive value of the range.\n"
+                    },
+                    "min": {
+                        "type": "integer",
+                        "description": "The minimum inclusive value of the range.\n"
+                    },
+                    "result": {
+                        "type": "integer",
+                        "description": "The random integer result.\n"
+                    },
+                    "seed": {
+                        "type": "string",
+                        "description": "A custom seed to always produce the same value.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomPassword:RandomPassword": {
+            "description": "## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomPassword;\nimport com.pulumi.random.RandomPasswordArgs;\nimport com.pulumi.aws.rds.Instance;\nimport com.pulumi.aws.rds.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var password = new RandomPassword(\"password\", RandomPasswordArgs.builder()\n            .length(16)\n            .special(true)\n            .overrideSpecial(\"!#$%\u0026*()-_=+[]{}\u003c\u003e:?\")\n            .build());\n\n        var example = new Instance(\"example\", InstanceArgs.builder()\n            .instanceClass(\"db.t3.micro\")\n            .allocatedStorage(64)\n            .engine(\"mysql\")\n            .username(\"someone\")\n            .password(password.result())\n            .build());\n\n    }\n}\n```\n\n## Import\n\nYou can import external passwords into your Pulumi programs as follows:\n\n```sh\u003cbreak\u003e\n$ import random:index/randomPassword:RandomPassword newPassword supersecret\n\u003cbreak\u003e```\n\nThis command will encode the `supersecret` token in Pulumi state and generate a code suggestion to\ninclude a new RandomPassword resource in your Pulumi program. Include the suggested code and do a\n`pulumi up`. Your secret password is now securely stored in Pulumi, and you can reference it in your\nPulumi program as `newPassword.result`.\n```",
+            "properties": {
+                "bcryptHash": {
+                    "type": "string",
+                    "description": "A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.\n",
+                    "secret": true
+                },
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).\n"
+                },
+                "lower": {
+                    "type": "boolean",
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
+                },
+                "minLower": {
+                    "type": "integer",
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "minNumeric": {
+                    "type": "integer",
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
+                },
+                "minSpecial": {
+                    "type": "integer",
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
+                },
+                "minUpper": {
+                    "type": "integer",
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "number": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.\n",
+                    "deprecationMessage": "**NOTE**: This is deprecated, use `numeric` instead."
+                },
+                "numeric": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.\n"
+                },
+                "overrideSpecial": {
+                    "type": "string",
+                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                },
+                "result": {
+                    "type": "string",
+                    "description": "The generated random string.\n",
+                    "secret": true
+                },
+                "special": {
+                    "type": "boolean",
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
+                },
+                "upper": {
+                    "type": "boolean",
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
+                }
+            },
+            "required": [
+                "bcryptHash",
+                "length",
+                "lower",
+                "minLower",
+                "minNumeric",
+                "minSpecial",
+                "minUpper",
+                "number",
+                "numeric",
+                "result",
+                "special",
+                "upper"
+            ],
+            "inputProperties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).\n"
+                },
+                "lower": {
+                    "type": "boolean",
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
+                },
+                "minLower": {
+                    "type": "integer",
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "minNumeric": {
+                    "type": "integer",
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
+                },
+                "minSpecial": {
+                    "type": "integer",
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
+                },
+                "minUpper": {
+                    "type": "integer",
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "number": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.\n",
+                    "deprecationMessage": "**NOTE**: This is deprecated, use `numeric` instead."
+                },
+                "numeric": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.\n"
+                },
+                "overrideSpecial": {
+                    "type": "string",
+                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                },
+                "special": {
+                    "type": "boolean",
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
+                },
+                "upper": {
+                    "type": "boolean",
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
+                }
+            },
+            "requiredInputs": [
+                "length"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomPassword resources.\n",
+                "properties": {
+                    "bcryptHash": {
+                        "type": "string",
+                        "description": "A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.\n",
+                        "secret": true
+                    },
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).\n"
+                    },
+                    "lower": {
+                        "type": "boolean",
+                        "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
+                    },
+                    "minLower": {
+                        "type": "integer",
+                        "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
+                    },
+                    "minNumeric": {
+                        "type": "integer",
+                        "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
+                    },
+                    "minSpecial": {
+                        "type": "integer",
+                        "description": "Minimum number of special characters in the result. Default value is `0`.\n"
+                    },
+                    "minUpper": {
+                        "type": "integer",
+                        "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
+                    },
+                    "number": {
+                        "type": "boolean",
+                        "description": "Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.\n",
+                        "deprecationMessage": "**NOTE**: This is deprecated, use `numeric` instead."
+                    },
+                    "numeric": {
+                        "type": "boolean",
+                        "description": "Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.\n"
+                    },
+                    "overrideSpecial": {
+                        "type": "string",
+                        "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                    },
+                    "result": {
+                        "type": "string",
+                        "description": "The generated random string.\n",
+                        "secret": true
+                    },
+                    "special": {
+                        "type": "boolean",
+                        "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
+                    },
+                    "upper": {
+                        "type": "boolean",
+                        "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomPet:RandomPet": {
+            "description": "The resource `random.RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.\n\nThis resource can be used in conjunction with resources that have the `createBeforeDestroy` lifecycle flag set, to avoid conflicts with unique names during the brief period where both the old and new resources exist concurrently.\n\n## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomPet;\nimport com.pulumi.random.RandomPetArgs;\nimport com.pulumi.aws.ec2.Instance;\nimport com.pulumi.aws.ec2.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The following example shows how to generate a unique pet name\n        // for an AWS EC2 instance that changes each time a new AMI id is\n        // selected.\n        var server = new RandomPet(\"server\", RandomPetArgs.builder()\n            .keepers(Map.of(\"ami_id\", amiId))\n            .build());\n\n        var serverInstance = new Instance(\"serverInstance\", InstanceArgs.builder()\n            .tags(Map.of(\"Name\", server.id().applyValue(_id -\u003e String.format(\"web-server-%s\", _id))))\n            .ami(server.keepers().applyValue(_keepers -\u003e _keepers.amiId()))\n            .build());\n\n    }\n}\n```\n",
+            "properties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The length (in words) of the pet name. Defaults to 2\n"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "A string to prefix the name with.\n"
+                },
+                "separator": {
+                    "type": "string",
+                    "description": "The character to separate words in the pet name. Defaults to \"-\"\n"
+                }
+            },
+            "required": [
+                "length",
+                "separator"
+            ],
+            "inputProperties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The length (in words) of the pet name. Defaults to 2\n"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "A string to prefix the name with.\n"
+                },
+                "separator": {
+                    "type": "string",
+                    "description": "The character to separate words in the pet name. Defaults to \"-\"\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomPet resources.\n",
+                "properties": {
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "The length (in words) of the pet name. Defaults to 2\n"
+                    },
+                    "prefix": {
+                        "type": "string",
+                        "description": "A string to prefix the name with.\n"
+                    },
+                    "separator": {
+                        "type": "string",
+                        "description": "The character to separate words in the pet name. Defaults to \"-\"\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomShuffle:RandomShuffle": {
+            "description": "The resource `random.RandomShuffle` generates a random permutation of a list of strings given as an argument.\n\n## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomShuffle;\nimport com.pulumi.random.RandomShuffleArgs;\nimport com.pulumi.aws.elb.LoadBalancer;\nimport com.pulumi.aws.elb.LoadBalancerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var az = new RandomShuffle(\"az\", RandomShuffleArgs.builder()\n            .inputs(            \n                \"us-west-1a\",\n                \"us-west-1c\",\n                \"us-west-1d\",\n                \"us-west-1e\")\n            .resultCount(2)\n            .build());\n\n        var example = new LoadBalancer(\"example\", LoadBalancerArgs.builder()\n            .availabilityZones(az.results())\n            .build());\n\n    }\n}\n```\n",
+            "properties": {
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of strings to shuffle.\n"
+                },
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "resultCount": {
+                    "type": "integer",
+                    "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.\n"
+                },
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if set, or the number of elements in `input`."
+                },
+                "seed": {
+                    "type": "string",
+                    "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.\n"
+                }
+            },
+            "required": [
+                "inputs",
+                "results"
+            ],
+            "inputProperties": {
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of strings to shuffle.\n"
+                },
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "resultCount": {
+                    "type": "integer",
+                    "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.\n"
+                },
+                "seed": {
+                    "type": "string",
+                    "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.\n"
+                }
+            },
+            "requiredInputs": [
+                "inputs"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomShuffle resources.\n",
+                "properties": {
+                    "inputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of strings to shuffle.\n"
+                    },
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "resultCount": {
+                        "type": "integer",
+                        "description": "The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.\n"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if set, or the number of elements in `input`."
+                    },
+                    "seed": {
+                        "type": "string",
+                        "description": "Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomString:RandomString": {
+            "description": "The resource `random.RandomString` generates a random permutation of alphanumeric characters and optionally special characters.\n\nThis resource *does* use a cryptographic random number generator.\n\nHistorically this resource's intended usage has been ambiguous as the original example used it in a password. For backwards compatibility it will continue to exist. For unique ids please use random_id, for sensitive random values please use random_password.\n\n## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomString;\nimport com.pulumi.random.RandomStringArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var random = new RandomString(\"random\", RandomStringArgs.builder()\n            .length(16)\n            .special(true)\n            .overrideSpecial(\"/@£$\")\n            .build());\n\n    }\n}\n```\n\n## Import\n\nYou can import external strings into your Pulumi programs as RandomString resources as follows:\n\n```sh\u003cbreak\u003e\n$ import random:index/randomString:RandomString newString myspecialdata\n\u003cbreak\u003e```\n\nThis command will encode the `myspecialdata` token in Pulumi state and generate a code suggestion to\ninclude a new RandomString resource in your Pulumi program. Include the suggested code and do a\n`pulumi up`. Your data is now stored in Pulumi, and you can reference it in your Pulumi program as\n`newString.result`.\n\nIf the data needs to be stored securily as a secret, consider using the RandomPassword resource\ninstead.\n\n```",
+            "properties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).\n"
+                },
+                "lower": {
+                    "type": "boolean",
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
+                },
+                "minLower": {
+                    "type": "integer",
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "minNumeric": {
+                    "type": "integer",
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
+                },
+                "minSpecial": {
+                    "type": "integer",
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
+                },
+                "minUpper": {
+                    "type": "integer",
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "number": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.\n",
+                    "deprecationMessage": "**NOTE**: This is deprecated, use `numeric` instead."
+                },
+                "numeric": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.\n"
+                },
+                "overrideSpecial": {
+                    "type": "string",
+                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                },
+                "result": {
+                    "type": "string",
+                    "description": "The generated random string.\n"
+                },
+                "special": {
+                    "type": "boolean",
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
+                },
+                "upper": {
+                    "type": "boolean",
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
+                }
+            },
+            "required": [
+                "length",
+                "lower",
+                "minLower",
+                "minNumeric",
+                "minSpecial",
+                "minUpper",
+                "number",
+                "numeric",
+                "result",
+                "special",
+                "upper"
+            ],
+            "inputProperties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).\n"
+                },
+                "lower": {
+                    "type": "boolean",
+                    "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
+                },
+                "minLower": {
+                    "type": "integer",
+                    "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "minNumeric": {
+                    "type": "integer",
+                    "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
+                },
+                "minSpecial": {
+                    "type": "integer",
+                    "description": "Minimum number of special characters in the result. Default value is `0`.\n"
+                },
+                "minUpper": {
+                    "type": "integer",
+                    "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
+                },
+                "number": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.\n",
+                    "deprecationMessage": "**NOTE**: This is deprecated, use `numeric` instead."
+                },
+                "numeric": {
+                    "type": "boolean",
+                    "description": "Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.\n"
+                },
+                "overrideSpecial": {
+                    "type": "string",
+                    "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                },
+                "special": {
+                    "type": "boolean",
+                    "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
+                },
+                "upper": {
+                    "type": "boolean",
+                    "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
+                }
+            },
+            "requiredInputs": [
+                "length"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomString resources.\n",
+                "properties": {
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "The length of the string desired. The minimum value for length is 1 and, length must also be \u003e= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).\n"
+                    },
+                    "lower": {
+                        "type": "boolean",
+                        "description": "Include lowercase alphabet characters in the result. Default value is `true`.\n"
+                    },
+                    "minLower": {
+                        "type": "integer",
+                        "description": "Minimum number of lowercase alphabet characters in the result. Default value is `0`.\n"
+                    },
+                    "minNumeric": {
+                        "type": "integer",
+                        "description": "Minimum number of numeric characters in the result. Default value is `0`.\n"
+                    },
+                    "minSpecial": {
+                        "type": "integer",
+                        "description": "Minimum number of special characters in the result. Default value is `0`.\n"
+                    },
+                    "minUpper": {
+                        "type": "integer",
+                        "description": "Minimum number of uppercase alphabet characters in the result. Default value is `0`.\n"
+                    },
+                    "number": {
+                        "type": "boolean",
+                        "description": "Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.\n",
+                        "deprecationMessage": "**NOTE**: This is deprecated, use `numeric` instead."
+                    },
+                    "numeric": {
+                        "type": "boolean",
+                        "description": "Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.\n"
+                    },
+                    "overrideSpecial": {
+                        "type": "string",
+                        "description": "Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.\n"
+                    },
+                    "result": {
+                        "type": "string",
+                        "description": "The generated random string.\n"
+                    },
+                    "special": {
+                        "type": "boolean",
+                        "description": "Include special characters in the result. These are `!@#$%\u0026*()-_=+[]{}\u003c\u003e:?`. Default value is `true`.\n"
+                    },
+                    "upper": {
+                        "type": "boolean",
+                        "description": "Include uppercase alphabet characters in the result. Default value is `true`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "random:index/randomUuid:RandomUuid": {
+            "description": "## Example Usage\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomUuid;\nimport com.pulumi.azurerm.ResourceGroup;\nimport com.pulumi.azurerm.ResourceGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The following example shows how to generate a unique name for an Azure Resource Group.\n        var test = new RandomUuid(\"test\");\n\n        var testResourceGroup = new ResourceGroup(\"testResourceGroup\", ResourceGroupArgs.builder()\n            .name(String.format(\"%s-rg\", test.result()))\n            .location(\"Central US\")\n            .build());\n\n    }\n}\n```\n\n## Import\n\nRandom UUID's can be imported. This can be used to replace a config\n\nvalue with a value interpolated from the random provider without\n\nexperiencing diffs.\n\n```sh\n$ pulumi import random:index/randomUuid:RandomUuid main aabbccdd-eeff-0011-2233-445566778899\n```\n\n",
+            "properties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                },
+                "result": {
+                    "type": "string",
+                    "description": "The generated uuid presented in string format.\n"
+                }
+            },
+            "required": [
+                "result"
+            ],
+            "inputProperties": {
+                "keepers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RandomUuid resources.\n",
+                "properties": {
+                    "keepers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.\n"
+                    },
+                    "result": {
+                        "type": "string",
+                        "description": "The generated uuid presented in string format.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "pulumi:providers:random/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/provider"
+                    }
+                },
+                "type": "pulumi:providers:random/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
+                ],
+                "type": "object"
+            }
+        }
+    }
+}
