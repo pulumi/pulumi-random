@@ -88,6 +88,8 @@ jobs:
       run: |-
         pip3 install virtualenv==20.0.23
         pip3 install pipenv
+    - name: Install dependencies
+      run: provider-sdk-builder install  --sdkLocation ./sdk/${{ matrix.language}} -l ${{ matrix.language}}
     - name: Run provider tests
       if: matrix.testTarget == 'local'
       working-directory: provider
