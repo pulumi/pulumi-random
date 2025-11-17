@@ -23,14 +23,10 @@ ci-scripts
 **/nuget
 **/dist
 
-sdk/java/build
-sdk/java/.gradle
-sdk/java/gradle
-sdk/java/gradlew
-sdk/java/gradlew.bat
-
-
-sdk/python/venv
+sdk/java
+sdk/python
+sdk/nodejs
+sdk/dotnet
 
 
 # Ignore local build tracking directory
