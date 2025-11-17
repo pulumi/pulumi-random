@@ -16,4 +16,4 @@ runs:
         path: ${{ github.workspace}}/sdk/
     - name: Uncompress SDK folder
       shell: bash
-      run: tar -zxf ${{ github.workspace }}/sdk/${{ inputs.language }}.tar.gz -C ${{ github.workspace }}/sdk/${{ inputs.language }}
+      run: mkdir -p ${{ github.workspace }}/sdk/${{ inputs.language }} && tar -zxf ${{ github.workspace }}/sdk/${{ inputs.language }}.tar.gz -C ${{ github.workspace }}/sdk/${{ inputs.language }}
