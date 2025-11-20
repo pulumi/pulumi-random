@@ -28,6 +28,8 @@ sdk/python
 sdk/nodejs
 sdk/dotnet
 
+sdk/language-schemas/
+
 
 # Ignore local build tracking directory
 .make

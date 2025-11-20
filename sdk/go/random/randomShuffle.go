@@ -21,7 +21,11 @@ import (
 //
 // import (
 //
+<<<<<<< Updated upstream
 //	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+=======
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/elb"
+>>>>>>> Stashed changes
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -41,7 +45,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
+<<<<<<< Updated upstream
 //			_, err = aws.NewElb(ctx, "example", &aws.ElbArgs{
+=======
+//			_, err = elb.NewLoadBalancer(ctx, "example", &elb.LoadBalancerArgs{
+>>>>>>> Stashed changes
 //				AvailabilityZones: az.Results,
 //			})
 //			if err != nil {
