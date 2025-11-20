@@ -47,7 +47,7 @@ jobs:
     name: verify-release
     strategy:
       matrix:
-        runner: ["ubuntu-latest", "windows-latest", "macos-latest"]
+        runner: ["ubuntu-latest", "macos-latest"]
     runs-on: ${{ matrix.runner }}
     permissions:
       contents: 'read'

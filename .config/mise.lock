@@ -86,6 +86,11 @@ checksum = "sha256:6ebc94fdf98833f4573b6a086f636f53c59245a490f516e03b875dabc4151
 size = 94603881
 url = "https://github.com/pulumi/pulumi/releases/download/v3.207.0/pulumi-v3.207.0-linux-x64.tar.gz"
 
+[tools.pulumi.platforms.macos-arm64]
+checksum = "sha256:5e381f987c8f86b94e7bb92ed6fc809e8dddfe8d5af1c5d5b5e47a6493a69f80"
+size = 86123229
+url = "https://github.com/pulumi/pulumi/releases/download/v3.207.0/pulumi-v3.207.0-darwin-arm64.tar.gz"
+
 [[tools.python]]
 version = "3.11.8"
 backend = "core:python"
