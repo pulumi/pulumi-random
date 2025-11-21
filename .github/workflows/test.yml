@@ -53,10 +53,8 @@ jobs:
       env:
         MISE_ENV: test
       with:
-        # Latest working version. See https://github.com/jdx/mise/discussions/6781
-        version: 2025.10.16
+        version: 2025.11.6
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        cache_key: "mise-{{platform}}-{{file_hash}}"
         # also save this cache since we are using a different mise env.
         cache_save: true
     - name: Prepare local workspace
@@ -66,7 +64,7 @@ jobs:
     - name: Download bin
       uses: ./.github/actions/download-provider
     - name: Setup Go Cache
-      uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5
+      uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6
       if: matrix.language == 'go' || contains(matrix.language, 'go')
       with:
         cache-dependency-path: |
@@ -80,7 +78,7 @@ jobs:
       with:
         language: ${{ matrix.language }}
     - name: Restore makefile progress
-      run: make --touch provider schema build_sdks SDK_LANG=${{ matrix.language }}
+      run: make --touch provider schema build_${{ matrix.language }}
     - name: Update path
       run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
     - name: Install Python deps
@@ -89,7 +87,7 @@ jobs:
         pip3 install virtualenv==20.0.23
         pip3 install pipenv
     - name: Install dependencies
-      run: provider-sdk-builder install  --sdkLocation ./sdk/${{ matrix.language}} -l ${{ matrix.language}} --installLocation ${{ github.workspace }}
+      run: make install_${{ matrix.language}}_sdk
     - name: Run provider tests
       if: matrix.testTarget == 'local'
       working-directory: provider
