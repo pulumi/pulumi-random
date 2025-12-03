@@ -29,7 +29,7 @@ jobs:
       PROVIDER_VERSION: ${{ inputs.version }}
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       with:
         ref: ${{ env.PR_COMMIT_SHA }}
         persist-credentials: false    
@@ -44,7 +44,7 @@ jobs:
       uses: pulumi/esc-action@9eb774255b1a4afb7855678ae8d4a77359da0d9b
     - name: Checkout p/examples
       if: matrix.testTarget == 'pulumiExamples'
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       with:
         repository: pulumi/examples
         path: p-examples
@@ -52,11 +52,10 @@ jobs:
       uses: jdx/mise-action@v3
       env:
         MISE_ENV: test
+        MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
-        # Latest working version. See https://github.com/jdx/mise/discussions/6781
-        version: 2025.10.16
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        cache_key: "mise-{{platform}}-{{file_hash}}"
+        version: 2025.11.6
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         # also save this cache since we are using a different mise env.
         cache_save: true
     - name: Prepare local workspace
@@ -66,7 +65,7 @@ jobs:
     - name: Download bin
       uses: ./.github/actions/download-provider
     - name: Setup Go Cache
-      uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5
+      uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6
       if: matrix.language == 'go' || contains(matrix.language, 'go')
       with:
         cache-dependency-path: |
@@ -80,7 +79,7 @@ jobs:
       with:
         language: ${{ matrix.language }}
     - name: Restore makefile progress
-      run: make --touch provider schema build_sdks SDK_LANG=${{ matrix.language }}
+      run: make --touch provider schema build_sdks
     - name: Update path
       run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
     - name: Install Python deps
@@ -88,7 +87,9 @@ jobs:
       run: |-
         pip3 install virtualenv==20.0.23
         pip3 install pipenv
-    - name: Install dependencies
+    - name: Link SDKs
+      run: provider-sdk-builder install  --sdkLocation ./sdk/${{ matrix.language}} -l ${{ matrix.language}} --installLocation ${{ github.workspace }}
+    - name: Link SDKs
       run: provider-sdk-builder install  --sdkLocation ./sdk/${{ matrix.language}} -l ${{ matrix.language}} --installLocation ${{ github.workspace }}
     - name: Run provider tests
       if: matrix.testTarget == 'local'

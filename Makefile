@@ -40,23 +40,10 @@ LDFLAGS=$(LDFLAGS_PROJ_VERSION) $(LDFLAGS_UPSTREAM_VERSION) $(LDFLAGS_EXTRAS) $(
 # Ensure all directories exist before evaluating targets to avoid issues with `touch` creating directories.
 _ := $(shell mkdir -p .make bin .pulumi/bin)
 
-# Installs all necessary tools with mise and records completion in a sentinel
-# file so dependent targets can participate in make's caching behaviour. The
-# environment is refreshed via an order-only prerequisite so it still runs on
-# every invocation without invalidating the sentinel.
-mise_install: .make/mise_install | mise_env
-
-.PHONY: mise_env
-mise_env:
-	@mise env -q  > /dev/null
-
-.make/mise_install:
-	@mise install -q
-	@touch $@
-
 # Build the provider and all SDKs and install ready for testing
 build: .make/mise_install provider build_sdks build_registry_docs
 build: | mise_env
+
 # Keep aliases for old targets to ensure backwards compatibility
 development: build
 only_build: build
@@ -67,6 +54,20 @@ prepare_local_workspace: | mise_env
 # Creates all generated files of which the schema is committed
 generate: build_sdks schema build_registry_docs
 .PHONY: development only_build build generate build_sdks mise_install mise_env
+
+# Installs all necessary tools with mise and records completion in a sentinel
+# file so dependent targets can participate in make's caching behaviour. The
+# environment is refreshed via an order-only prerequisite so it still runs on
+# every invocation without invalidating the sentinel.
+mise_install: .make/mise_install | mise_env
+
+mise_env:
+	@mise env -q  > /dev/null
+
+.make/mise_install:
+	@mise install -q
+	@touch $@
+
 
 help:
 	@echo "Usage: make [target]"
@@ -82,7 +83,8 @@ help:
 	@echo ""
 	@echo "More Precise Targets"
 	@echo "  schema        Generate the schema"
-	@echo "  build_sdks    Build all SDKs"
+	@echo "  build_sdks    Build and compile all SDKs"
+	@echo "  install_sdks  Install SDKs. Installs nodejs and dotnet SDKs. Noop for go, java, and python, "
 	@echo "  provider_dist Build and package the provider for all platforms"
 	@echo ""
 	@echo "Tool Targets"
@@ -115,8 +117,21 @@ build_sdks: .make/build_sdks
 	@touch $@
 .PHONY: build_sdks
 
+install_sdks: .make/install_sdks
+.make/install_sdks: .make/build_sdks
+	provider-sdk-builder build-sdks --language $(SDK_LANG)
+	@touch $@
+.PHONY: install_sdks
+
 clean:
-	rm -rf sdk/*
+	
+	rm -rf sdk/dotnet 
+	rm -rf sdk/go
+	rm -rf sdk/java
+	rm -rf sdk/nodejs
+	rm -rf sdk/python
+	rm -rf sdk/language-schemas
+
 	rm -rf bin/*
 	rm -rf .make/*
 	rm -rf "$(GEN_PULUMI_CONVERT_EXAMPLES_CACHE_DIR)"
