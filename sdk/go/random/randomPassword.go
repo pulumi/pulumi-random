@@ -19,11 +19,7 @@ import (
 //
 // import (
 //
-<<<<<<< Updated upstream
 //	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
-=======
-//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/rds"
->>>>>>> Stashed changes
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -39,19 +35,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-<<<<<<< Updated upstream
 //			_, err = aws.NewDbInstance(ctx, "example", &aws.DbInstanceArgs{
 //				InstanceClass:    "db.t3.micro",
 //				AllocatedStorage: 64,
 //				Engine:           "mysql",
 //				Username:         "someone",
-=======
-//			_, err = rds.NewInstance(ctx, "example", &rds.InstanceArgs{
-//				InstanceClass:    pulumi.String(rds.InstanceType_T3_Micro),
-//				AllocatedStorage: pulumi.Int(64),
-//				Engine:           pulumi.String("mysql"),
-//				Username:         pulumi.String("someone"),
->>>>>>> Stashed changes
 //				Password:         password.Result,
 //			})
 //			if err != nil {
