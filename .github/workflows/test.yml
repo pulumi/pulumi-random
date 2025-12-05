@@ -79,7 +79,7 @@ jobs:
       with:
         language: ${{ matrix.language }}
     - name: Restore makefile progress
-      run: make --touch provider schema build_sdks
+      run: make --touch provider schema build_sdks SDK_LANG=${{ matrix.language }}
     - name: Update path
       run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
     - name: Install Python deps
@@ -87,8 +87,8 @@ jobs:
       run: |-
         pip3 install virtualenv==20.0.23
         pip3 install pipenv
-    - name: Link SDKs
-      run: provider-sdk-builder install  --sdkLocation ${{ github.workspace }}/sdk/ -l ${{ matrix.language}} --installLocation ${{ github.workspace }}
+    - name: Install dependencies
+      run: provider-sdk-builder install  --sdkLocation ./sdk/${{ matrix.language}} -l ${{ matrix.language}} --installLocation ${{ github.workspace }}
     - name: Run provider tests
       if: matrix.testTarget == 'local'
       working-directory: provider

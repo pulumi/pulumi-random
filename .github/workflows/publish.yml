@@ -176,7 +176,7 @@ jobs:
         NUGET_PUBLISH_KEY: ${{ steps.esc-secrets.outputs.NUGET_PUBLISH_KEY }}
     - name: Publish SDKs (except Java)
       if: inputs.skipJavaSdk == true
-      uses: pulumi/pulumi-package-publisher@3ec1409d3e894142b9825c7859be8e57d362762a # v0.0.23
+      uses: pulumi/pulumi-package-publisher@3ec1409d3e894142b9825c7859be8e57d362762a
       with:
         sdk: all,!java
         version: ${{ inputs.version }}
