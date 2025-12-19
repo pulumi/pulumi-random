@@ -10,9 +10,9 @@ replace (
 )
 
 require (
-	github.com/pulumi/providertest v0.3.0
+	github.com/pulumi/providertest v0.6.0
 	github.com/pulumi/pulumi-random/provider/v4 v4.0.0-20230306191832-8c7659ab0229
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.118.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.118.1-0.20251217235649-75725c2ab88b
 	github.com/pulumi/pulumi/pkg/v3 v3.209.0
 	github.com/pulumi/pulumi/sdk/v3 v3.209.0
 	github.com/stretchr/testify v1.10.0
