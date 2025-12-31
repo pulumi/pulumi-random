@@ -71,6 +71,7 @@ const serverInstance = new aws.ec2.Instance("server", {
     ami: server.keepers.apply(keepers => keepers?.amiId),
 });
 ```
+
 {{% /choosable %}}
 {{% choosable language python %}}
 ```python
@@ -89,6 +90,7 @@ server_instance = aws.ec2.Instance("server",
     },
     ami=server.keepers["amiId"])
 ```
+
 {{% /choosable %}}
 {{% choosable language csharp %}}
 ```csharp
@@ -121,6 +123,7 @@ return await Deployment.RunAsync(() =>
 });
 
 ```
+
 {{% /choosable %}}
 {{% choosable language go %}}
 ```go
@@ -162,6 +165,7 @@ func main() {
 	})
 }
 ```
+
 {{% /choosable %}}
 {{% choosable language yaml %}}
 ```yaml
@@ -180,6 +184,7 @@ resources:
         Name: web-server ${server.hex}
       ami: ${server.keepers.amiId}
 ```
+
 {{% /choosable %}}
 {{% choosable language java %}}
 ```java
@@ -218,6 +223,7 @@ public class App {
     }
 }
 ```
+
 {{% /choosable %}}
 {{< /chooser >}}
 
