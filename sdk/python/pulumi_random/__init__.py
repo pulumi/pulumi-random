@@ -15,6 +15,8 @@ from .random_pet import *
 from .random_shuffle import *
 from .random_string import *
 from .random_uuid import *
+from .random_uuid4 import *
+from .random_uuid7 import *
 _utilities.register(
     resource_modules="""
 [
@@ -80,6 +82,22 @@ _utilities.register(
   "fqn": "pulumi_random",
   "classes": {
    "random:index/randomUuid:RandomUuid": "RandomUuid"
+  }
+ },
+ {
+  "pkg": "random",
+  "mod": "index/randomUuid4",
+  "fqn": "pulumi_random",
+  "classes": {
+   "random:index/randomUuid4:RandomUuid4": "RandomUuid4"
+  }
+ },
+ {
+  "pkg": "random",
+  "mod": "index/randomUuid7",
+  "fqn": "pulumi_random",
+  "classes": {
+   "random:index/randomUuid7:RandomUuid7": "RandomUuid7"
   }
  }
 ]

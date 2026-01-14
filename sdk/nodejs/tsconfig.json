@@ -23,6 +23,8 @@
         "randomShuffle.ts",
         "randomString.ts",
         "randomUuid.ts",
+        "randomUuid4.ts",
+        "randomUuid7.ts",
         "utilities.ts"
     ]
 }
