@@ -40,6 +40,14 @@
             "random_uuid": {
                 "current": "random:index/randomUuid:RandomUuid",
                 "majorVersion": 4
+            },
+            "random_uuid4": {
+                "current": "random:index/randomUuid4:RandomUuid4",
+                "majorVersion": 4
+            },
+            "random_uuid7": {
+                "current": "random:index/randomUuid7:RandomUuid7",
+                "majorVersion": 4
             }
         }
     },
