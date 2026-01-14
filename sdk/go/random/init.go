@@ -35,6 +35,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RandomShuffle{}
 	case "random:index/randomString:RandomString":
 		r = &RandomString{}
+	case "random:index/randomUuid4:RandomUuid4":
+		r = &RandomUuid4{}
+	case "random:index/randomUuid7:RandomUuid7":
+		r = &RandomUuid7{}
 	case "random:index/randomUuid:RandomUuid":
 		r = &RandomUuid{}
 	default:
@@ -106,6 +110,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"random",
 		"index/randomUuid",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"random",
+		"index/randomUuid4",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"random",
+		"index/randomUuid7",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

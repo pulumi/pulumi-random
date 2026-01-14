@@ -56,6 +56,8 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
+ * The `pulumi import` command can be used, for example:
+ * 
  * Random UUID&#39;s can be imported. This can be used to replace a config
  * 
  * value with a value interpolated from the random provider without

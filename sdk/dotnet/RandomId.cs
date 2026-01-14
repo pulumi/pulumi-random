@@ -61,6 +61,8 @@ namespace Pulumi.Random
     /// 
     /// ## Import
     /// 
+    /// The `pulumi import` command can be used, for example:
+    /// 
     /// Random IDs can be imported using the b64_url with an optional prefix. This
     /// 
     /// can be used to replace a config value with a value interpolated from the

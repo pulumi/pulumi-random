@@ -48,6 +48,16 @@ export type RandomUuid = import("./randomUuid").RandomUuid;
 export const RandomUuid: typeof import("./randomUuid").RandomUuid = null as any;
 utilities.lazyLoad(exports, ["RandomUuid"], () => require("./randomUuid"));
 
+export { RandomUuid4Args, RandomUuid4State } from "./randomUuid4";
+export type RandomUuid4 = import("./randomUuid4").RandomUuid4;
+export const RandomUuid4: typeof import("./randomUuid4").RandomUuid4 = null as any;
+utilities.lazyLoad(exports, ["RandomUuid4"], () => require("./randomUuid4"));
+
+export { RandomUuid7Args, RandomUuid7State } from "./randomUuid7";
+export type RandomUuid7 = import("./randomUuid7").RandomUuid7;
+export const RandomUuid7: typeof import("./randomUuid7").RandomUuid7 = null as any;
+utilities.lazyLoad(exports, ["RandomUuid7"], () => require("./randomUuid7"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -67,6 +77,10 @@ const _module = {
                 return new RandomShuffle(name, <any>undefined, { urn })
             case "random:index/randomString:RandomString":
                 return new RandomString(name, <any>undefined, { urn })
+            case "random:index/randomUuid4:RandomUuid4":
+                return new RandomUuid4(name, <any>undefined, { urn })
+            case "random:index/randomUuid7:RandomUuid7":
+                return new RandomUuid7(name, <any>undefined, { urn })
             case "random:index/randomUuid:RandomUuid":
                 return new RandomUuid(name, <any>undefined, { urn })
             default:
@@ -82,6 +96,8 @@ pulumi.runtime.registerResourceModule("random", "index/randomPet", _module)
 pulumi.runtime.registerResourceModule("random", "index/randomShuffle", _module)
 pulumi.runtime.registerResourceModule("random", "index/randomString", _module)
 pulumi.runtime.registerResourceModule("random", "index/randomUuid", _module)
+pulumi.runtime.registerResourceModule("random", "index/randomUuid4", _module)
+pulumi.runtime.registerResourceModule("random", "index/randomUuid7", _module)
 pulumi.runtime.registerResourcePackage("random", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

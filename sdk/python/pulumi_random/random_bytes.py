@@ -157,6 +157,8 @@ class RandomBytes(pulumi.CustomResource):
 
         ## Import
 
+        The `pulumi import` command can be used, for example:
+
         Random bytes can be imported by specifying the value as base64 string.
 
         ```sh
@@ -194,6 +196,8 @@ class RandomBytes(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The `pulumi import` command can be used, for example:
 
         Random bytes can be imported by specifying the value as base64 string.
 

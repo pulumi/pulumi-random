@@ -71,6 +71,8 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
+ * The `pulumi import` command can be used, for example:
+ * 
  * Random integers can be imported using the result, min, and max, with an
  * 
  * optional seed. This can be used to replace a config value with a value
