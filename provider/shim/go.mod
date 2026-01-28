@@ -4,7 +4,7 @@ go 1.24.11
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.17.0
-	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260113181300-1a47b641ab25
+	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260127150608-de3700a633e4
 )
 
 require (
