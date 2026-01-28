@@ -158,7 +158,7 @@ require (
 	github.com/spf13/cobra v1.10.1 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/teekennedy/goldmark-markdown v0.3.0 // indirect
-	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260113181300-1a47b641ab25 // indirect
+	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260127150608-de3700a633e4 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect

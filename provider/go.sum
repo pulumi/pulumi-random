@@ -1321,8 +1321,8 @@ github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOf
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/teekennedy/goldmark-markdown v0.3.0 h1:ik9/biVGCwGWFg8dQ3KVm2pQ/wiiG0whYiUcz9xH0W8=
 github.com/teekennedy/goldmark-markdown v0.3.0/go.mod h1:kMhDz8La77A9UHvJGsxejd0QUflN9sS+QXCqnhmxmNo=
-github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260113181300-1a47b641ab25 h1:CRCSiu5ESayqQ1zQ2eblpmfBd4KNPc+ycutysl1NYJA=
-github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260113181300-1a47b641ab25/go.mod h1:ciPSOedYfsokiy7hPs7DjNyU0Q8a2hf+whVsW693/Vg=
+github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260127150608-de3700a633e4 h1:Ds2rf35kr1MHPUyI1k9kvG8mjChG2vYNFEzuH3JKqOo=
+github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260127150608-de3700a633e4/go.mod h1:ciPSOedYfsokiy7hPs7DjNyU0Q8a2hf+whVsW693/Vg=
 github.com/texttheater/golang-levenshtein v1.0.1 h1:+cRNoVrfiwufQPhoMzB6N0Yf/Mqajr6t1lOv8GyGE2U=
 github.com/texttheater/golang-levenshtein v1.0.1/go.mod h1:PYAKrbF5sAiq9wd+H82hs7gNaen0CplQ9uvm6+enD/8=
 github.com/tidwall/gjson v1.17.0 h1:/Jocvlh98kcTfpN2+JzGQWQcqrPQwDrVEMApx/M5ZwM=
