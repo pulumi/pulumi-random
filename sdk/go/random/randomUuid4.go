@@ -22,8 +22,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-azurerm/sdk/go/azurerm"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -55,9 +53,7 @@ import (
 // The `pulumi import` command can be used, for example:
 //
 // Random UUID's can be imported. This can be used to replace a config
-//
 // value with a value interpolated from the random provider without
-//
 // experiencing diffs.
 //
 // ```sh

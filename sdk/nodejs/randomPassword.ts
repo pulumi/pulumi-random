@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > If the managed resource supports a write-only attribute for the password (first introduced in Terraform 1.11), then the ephemeral variant of `random.RandomPassword` should be used, when possible, to avoid storing the password in the plan or state file.
+ *
+ * Identical to `random.RandomString` with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output. Read more about sensitive data handling in the Terraform documentation.
+ *
+ * This resource *does* use a cryptographic random number generator.
+ *
  * ## Example Usage
  *
  * ```typescript
