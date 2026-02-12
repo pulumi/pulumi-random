@@ -16,6 +16,10 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * The resource `random.RandomUuid` generates a random uuid string that is intended to be used as a unique identifier for other resources.
+ * 
+ * This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needing a unique string identifier.
+ * 
  * ## Example Usage
  * 
  * <pre>
@@ -59,9 +63,7 @@ import javax.annotation.Nullable;
  * The `pulumi import` command can be used, for example:
  * 
  * Random UUID&#39;s can be imported. This can be used to replace a config
- * 
  * value with a value interpolated from the random provider without
- * 
  * experiencing diffs.
  * 
  * ```sh

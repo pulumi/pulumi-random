@@ -475,6 +475,12 @@ class RandomPassword(pulumi.CustomResource):
                  upper: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        > If the managed resource supports a write-only attribute for the password (first introduced in Terraform 1.11), then the ephemeral variant of `RandomPassword` should be used, when possible, to avoid storing the password in the plan or state file.
+
+        Identical to `RandomString` with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output. Read more about sensitive data handling in the Terraform documentation.
+
+        This resource *does* use a cryptographic random number generator.
+
         ## Example Usage
 
         ```python
@@ -520,6 +526,12 @@ class RandomPassword(pulumi.CustomResource):
                  args: RandomPasswordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > If the managed resource supports a write-only attribute for the password (first introduced in Terraform 1.11), then the ephemeral variant of `RandomPassword` should be used, when possible, to avoid storing the password in the plan or state file.
+
+        Identical to `RandomString` with the exception that the result is treated as sensitive and, thus, _not_ displayed in console output. Read more about sensitive data handling in the Terraform documentation.
+
+        This resource *does* use a cryptographic random number generator.
+
         ## Example Usage
 
         ```python

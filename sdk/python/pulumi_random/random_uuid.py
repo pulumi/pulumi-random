@@ -89,6 +89,10 @@ class RandomUuid(pulumi.CustomResource):
                  keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        The resource `RandomUuid` generates a random uuid string that is intended to be used as a unique identifier for other resources.
+
+        This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needing a unique string identifier.
+
         ## Example Usage
 
         ```python
@@ -108,9 +112,7 @@ class RandomUuid(pulumi.CustomResource):
         The `pulumi import` command can be used, for example:
 
         Random UUID's can be imported. This can be used to replace a config
-
         value with a value interpolated from the random provider without
-
         experiencing diffs.
 
         ```sh
@@ -128,6 +130,10 @@ class RandomUuid(pulumi.CustomResource):
                  args: Optional[RandomUuidArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The resource `RandomUuid` generates a random uuid string that is intended to be used as a unique identifier for other resources.
+
+        This resource uses [hashicorp/go-uuid](https://github.com/hashicorp/go-uuid) to generate a UUID-formatted string for use with services needing a unique string identifier.
+
         ## Example Usage
 
         ```python
@@ -147,9 +153,7 @@ class RandomUuid(pulumi.CustomResource):
         The `pulumi import` command can be used, for example:
 
         Random UUID's can be imported. This can be used to replace a config
-
         value with a value interpolated from the random provider without
-
         experiencing diffs.
 
         ```sh
