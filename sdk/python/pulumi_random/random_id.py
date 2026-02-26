@@ -24,6 +24,7 @@ class RandomIdArgs:
                  prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomId resource.
+
         :param pulumi.Input[_builtins.int] byte_length: The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.str] prefix: Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
@@ -83,6 +84,7 @@ class _RandomIdState:
                  prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomId resources.
+
         :param pulumi.Input[_builtins.str] b64_std: The generated id presented in base64 without additional transformations.
         :param pulumi.Input[_builtins.str] b64_url: The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
         :param pulumi.Input[_builtins.int] byte_length: The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
@@ -258,6 +260,7 @@ class RandomId(pulumi.CustomResource):
         $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] byte_length: The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
@@ -326,6 +329,7 @@ class RandomId(pulumi.CustomResource):
         ```sh
         $ pulumi import random:index/randomId:RandomId server my-prefix-,p-9hUg
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RandomIdArgs args: The arguments to use to populate this resource's properties.
