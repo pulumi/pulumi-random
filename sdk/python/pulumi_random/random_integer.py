@@ -25,6 +25,7 @@ class RandomIntegerArgs:
                  seed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomInteger resource.
+
         :param pulumi.Input[_builtins.int] max: The maximum inclusive value of the range.
         :param pulumi.Input[_builtins.int] min: The minimum inclusive value of the range.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -96,6 +97,7 @@ class _RandomIntegerState:
                  seed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomInteger resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.int] max: The maximum inclusive value of the range.
         :param pulumi.Input[_builtins.int] min: The minimum inclusive value of the range.
@@ -228,6 +230,7 @@ class RandomInteger(pulumi.CustomResource):
         $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -283,6 +286,7 @@ class RandomInteger(pulumi.CustomResource):
         ```sh
         $ pulumi import random:index/randomInteger:RandomInteger priority 15390,1,50000
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RandomIntegerArgs args: The arguments to use to populate this resource's properties.

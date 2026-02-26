@@ -25,6 +25,7 @@ class RandomPetArgs:
                  separator: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomPet resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.int] length: The length (in words) of the pet name. Defaults to 2
         :param pulumi.Input[_builtins.str] prefix: A string to prefix the name with.
@@ -97,6 +98,7 @@ class _RandomPetState:
                  separator: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomPet resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.int] length: The length (in words) of the pet name. Defaults to 2
         :param pulumi.Input[_builtins.str] prefix: A string to prefix the name with.
@@ -196,6 +198,7 @@ class RandomPet(pulumi.CustomResource):
             ami=server.keepers.ami_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -233,6 +236,7 @@ class RandomPet(pulumi.CustomResource):
             },
             ami=server.keepers.ami_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RandomPetArgs args: The arguments to use to populate this resource's properties.

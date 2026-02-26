@@ -25,6 +25,7 @@ class RandomShuffleArgs:
                  seed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomShuffle resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inputs: The list of strings to shuffle.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
@@ -97,6 +98,7 @@ class _RandomShuffleState:
                  seed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomShuffle resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inputs: The list of strings to shuffle.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.int] result_count: The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
@@ -207,6 +209,7 @@ class RandomShuffle(pulumi.CustomResource):
         example = aws.index.Elb("example", availability_zones=az.results)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inputs: The list of strings to shuffle.
@@ -240,6 +243,7 @@ class RandomShuffle(pulumi.CustomResource):
             result_count=2)
         example = aws.index.Elb("example", availability_zones=az.results)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RandomShuffleArgs args: The arguments to use to populate this resource's properties.
