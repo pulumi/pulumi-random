@@ -1,5 +1,7 @@
 # Provider cross-platform build & packaging
 
+SHELL := /bin/bash -o pipefail
+
 # Set these variables to enable signing of the windows binary with Azure Trusted Signing.
 AZURE_SIGNING_CLIENT_ID ?=
 AZURE_SIGNING_CLIENT_SECRET ?=
