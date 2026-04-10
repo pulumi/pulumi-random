@@ -494,7 +494,7 @@ class RandomPassword(pulumi.CustomResource):
             length=16,
             special=True,
             override_special="!#$%&*()-_=+[]{}<>:?")
-        example = aws.index.DbInstance("example",
+        example = aws.DbInstance("example",
             instance_class=db.t3.micro,
             allocated_storage=64,
             engine=mysql,
@@ -546,7 +546,7 @@ class RandomPassword(pulumi.CustomResource):
             length=16,
             special=True,
             override_special="!#$%&*()-_=+[]{}<>:?")
-        example = aws.index.DbInstance("example",
+        example = aws.DbInstance("example",
             instance_class=db.t3.micro,
             allocated_storage=64,
             engine=mysql,

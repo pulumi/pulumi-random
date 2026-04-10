@@ -206,7 +206,7 @@ class RandomShuffle(pulumi.CustomResource):
                 "us-west-1e",
             ],
             result_count=2)
-        example = aws.index.Elb("example", availability_zones=az.results)
+        example = aws.Elb("example", availability_zones=az.results)
         ```
 
 
@@ -241,7 +241,7 @@ class RandomShuffle(pulumi.CustomResource):
                 "us-west-1e",
             ],
             result_count=2)
-        example = aws.index.Elb("example", availability_zones=az.results)
+        example = aws.Elb("example", availability_zones=az.results)
         ```
 
 

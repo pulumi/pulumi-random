@@ -23,7 +23,7 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var az = new Random.RandomShuffle("az", new()
+    ///     var az = new Random.Index.RandomShuffle("az", new()
     ///     {
     ///         Inputs = new[]
     ///         {

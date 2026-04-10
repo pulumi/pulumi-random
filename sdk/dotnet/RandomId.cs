@@ -38,7 +38,7 @@ namespace Pulumi.Random
     /// {
     ///     // The following example shows how to generate a unique name for an AWS EC2
     ///     // instance that changes each time a new AMI id is selected.
-    ///     var server = new Random.RandomId("server", new()
+    ///     var server = new Random.Index.RandomId("server", new()
     ///     {
     ///         Keepers = 
     ///         {

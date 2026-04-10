@@ -191,7 +191,7 @@ class RandomPet(pulumi.CustomResource):
         server = random.RandomPet("server", keepers={
             "ami_id": ami_id,
         })
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.Instance("server",
             tags={
                 name: fweb-server-{server.id},
             },
@@ -230,7 +230,7 @@ class RandomPet(pulumi.CustomResource):
         server = random.RandomPet("server", keepers={
             "ami_id": ami_id,
         })
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.Instance("server",
             tags={
                 name: fweb-server-{server.id},
             },

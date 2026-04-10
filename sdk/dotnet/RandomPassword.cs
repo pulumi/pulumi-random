@@ -27,7 +27,7 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var password = new Random.RandomPassword("password", new()
+    ///     var password = new Random.Index.RandomPassword("password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,

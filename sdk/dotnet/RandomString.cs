@@ -26,7 +26,7 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var random = new Random.RandomString("random", new()
+    ///     var random = new Random.Index.RandomString("random", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,

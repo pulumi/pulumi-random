@@ -28,7 +28,7 @@ namespace Pulumi.Random
     ///     // The following example shows how to generate a unique pet name
     ///     // for an AWS EC2 instance that changes each time a new AMI id is
     ///     // selected.
-    ///     var server = new Random.RandomPet("server", new()
+    ///     var server = new Random.Index.RandomPet("server", new()
     ///     {
     ///         Keepers = 
     ///         {
