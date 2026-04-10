@@ -233,7 +233,7 @@ class RandomId(pulumi.CustomResource):
                 "ami_id": ami_id,
             },
             byte_length=8)
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.Instance("server",
             tags={
                 name: fweb-server {server.hex},
             },
@@ -303,7 +303,7 @@ class RandomId(pulumi.CustomResource):
                 "ami_id": ami_id,
             },
             byte_length=8)
-        server_instance = aws.index.Instance("server",
+        server_instance = aws.Instance("server",
             tags={
                 name: fweb-server {server.hex},
             },

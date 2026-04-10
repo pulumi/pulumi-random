@@ -104,7 +104,7 @@ class RandomUuid(pulumi.CustomResource):
 
         # The following example shows how to generate a unique name for an Azure Resource Group.
         test = random.RandomUuid("test")
-        test_resource_group = azurerm.index.ResourceGroup("test",
+        test_resource_group = azurerm.ResourceGroup("test",
             name=f{test.result}-rg,
             location=Central US)
         ```
@@ -146,7 +146,7 @@ class RandomUuid(pulumi.CustomResource):
 
         # The following example shows how to generate a unique name for an Azure Resource Group.
         test = random.RandomUuid("test")
-        test_resource_group = azurerm.index.ResourceGroup("test",
+        test_resource_group = azurerm.ResourceGroup("test",
             name=f{test.result}-rg,
             location=Central US)
         ```
