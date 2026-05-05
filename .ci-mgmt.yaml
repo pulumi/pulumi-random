@@ -1,5 +1,6 @@
 provider: random
 major-version: 4
+disableMajorProviderUpgrades: true
 makeTemplate: bridged
 team: ecosystem
 license:
