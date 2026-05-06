@@ -473,7 +473,7 @@ class RandomString(pulumi.CustomResource):
         import pulumi
         import pulumi_random as random
 
-        random = random.RandomString("random",
+        random_1 = random.RandomString("random",
             length=16,
             special=True,
             override_special="/@£$")
@@ -518,7 +518,7 @@ class RandomString(pulumi.CustomResource):
         import pulumi
         import pulumi_random as random
 
-        random = random.RandomString("random",
+        random_1 = random.RandomString("random",
             length=16,
             special=True,
             override_special="/@£$")

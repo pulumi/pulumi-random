@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.random.RandomIntegerArgs;
  * import com.pulumi.aws.AlbListenerRule;
  * import com.pulumi.aws.AlbListenerRuleArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *         var main = new AlbListenerRule("main", AlbListenerRuleArgs.builder()
  *             .listenerArn(priority.keepers().listenerArn())
  *             .priority(priority.result())
- *             .action(List.of(Map.ofEntries(
+ *             .action(Arrays.asList(Map.ofEntries(
  *                 Map.entry("type", "forward"),
  *                 Map.entry("targetGroupArn", targetGroupArn)
  *             )))

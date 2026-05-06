@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as random from "@pulumi/random";
  *
- * const random = new random.RandomString("random", {
+ * const random2 = new random.RandomString("random", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "/@£$",

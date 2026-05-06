@@ -27,14 +27,14 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var password = new Random.Index.RandomPassword("password", new()
+    ///     var password = new Random.RandomPassword("password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
     ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
     ///     });
     /// 
-    ///     var example = new Aws.Index.DbInstance("example", new()
+    ///     var example = new Aws.DbInstance("example", new()
     ///     {
     ///         InstanceClass = "db.t3.micro",
     ///         AllocatedStorage = 64,
