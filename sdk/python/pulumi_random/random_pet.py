@@ -19,10 +19,10 @@ __all__ = ['RandomPetArgs', 'RandomPet']
 @pulumi.input_type
 class RandomPetArgs:
     def __init__(__self__, *,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 separator: Optional[pulumi.Input[_builtins.str]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 separator: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomPet resource.
 
@@ -42,60 +42,60 @@ class RandomPetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The length (in words) of the pet name. Defaults to 2
         """
         return pulumi.get(self, "length")
 
     @length.setter
-    def length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "length", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string to prefix the name with.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def separator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def separator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The character to separate words in the pet name. Defaults to "-"
         """
         return pulumi.get(self, "separator")
 
     @separator.setter
-    def separator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def separator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "separator", value)
 
 
 @pulumi.input_type
 class _RandomPetState:
     def __init__(__self__, *,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 separator: Optional[pulumi.Input[_builtins.str]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 separator: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomPet resources.
 
@@ -115,50 +115,50 @@ class _RandomPetState:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The length (in words) of the pet name. Defaults to 2
         """
         return pulumi.get(self, "length")
 
     @length.setter
-    def length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "length", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string to prefix the name with.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def separator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def separator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The character to separate words in the pet name. Defaults to "-"
         """
         return pulumi.get(self, "separator")
 
     @separator.setter
-    def separator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def separator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "separator", value)
 
 
@@ -168,10 +168,10 @@ class RandomPet(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 separator: Optional[pulumi.Input[_builtins.str]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 separator: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The resource `RandomPet` generates random pet names that are intended to be used as unique identifiers for other resources.
@@ -253,10 +253,10 @@ class RandomPet(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 separator: Optional[pulumi.Input[_builtins.str]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 separator: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -280,10 +280,10 @@ class RandomPet(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            length: Optional[pulumi.Input[_builtins.int]] = None,
-            prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            separator: Optional[pulumi.Input[_builtins.str]] = None) -> 'RandomPet':
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            length: pulumi.Input[Optional[_builtins.int]] = None,
+            prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            separator: pulumi.Input[Optional[_builtins.str]] = None) -> 'RandomPet':
         """
         Get an existing RandomPet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

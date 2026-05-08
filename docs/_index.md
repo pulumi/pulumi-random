@@ -102,7 +102,7 @@ using Random = Pulumi.Random;
 
 return await Deployment.RunAsync(() =>
 {
-    var server = new Random.Index.RandomId("server", new()
+    var server = new Random.RandomId("server", new()
     {
         Keepers =
         {
@@ -197,8 +197,8 @@ import com.pulumi.random.RandomId;
 import com.pulumi.random.RandomIdArgs;
 import com.pulumi.aws.ec2.Instance;
 import com.pulumi.aws.ec2.InstanceArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

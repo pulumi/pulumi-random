@@ -21,8 +21,8 @@ class RandomIntegerArgs:
     def __init__(__self__, *,
                  max: pulumi.Input[_builtins.int],
                  min: pulumi.Input[_builtins.int],
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomInteger resource.
 
@@ -64,37 +64,37 @@ class RandomIntegerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def seed(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def seed(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom seed to always produce the same value.
         """
         return pulumi.get(self, "seed")
 
     @seed.setter
-    def seed(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def seed(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "seed", value)
 
 
 @pulumi.input_type
 class _RandomIntegerState:
     def __init__(__self__, *,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max: Optional[pulumi.Input[_builtins.int]] = None,
-                 min: Optional[pulumi.Input[_builtins.int]] = None,
-                 result: Optional[pulumi.Input[_builtins.int]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max: pulumi.Input[Optional[_builtins.int]] = None,
+                 min: pulumi.Input[Optional[_builtins.int]] = None,
+                 result: pulumi.Input[Optional[_builtins.int]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomInteger resources.
 
@@ -117,62 +117,62 @@ class _RandomIntegerState:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def max(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum inclusive value of the range.
         """
         return pulumi.get(self, "max")
 
     @max.setter
-    def max(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max", value)
 
     @_builtins.property
     @pulumi.getter
-    def min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum inclusive value of the range.
         """
         return pulumi.get(self, "min")
 
     @min.setter
-    def min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min", value)
 
     @_builtins.property
     @pulumi.getter
-    def result(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def result(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The random integer result.
         """
         return pulumi.get(self, "result")
 
     @result.setter
-    def result(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def result(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "result", value)
 
     @_builtins.property
     @pulumi.getter
-    def seed(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def seed(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom seed to always produce the same value.
         """
         return pulumi.get(self, "seed")
 
     @seed.setter
-    def seed(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def seed(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "seed", value)
 
 
@@ -182,10 +182,10 @@ class RandomInteger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max: Optional[pulumi.Input[_builtins.int]] = None,
-                 min: Optional[pulumi.Input[_builtins.int]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max: pulumi.Input[Optional[_builtins.int]] = None,
+                 min: pulumi.Input[Optional[_builtins.int]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The resource `RandomInteger` generates random values from a given range, described by the `min` and `max` attributes of a given resource.
@@ -303,10 +303,10 @@ class RandomInteger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max: Optional[pulumi.Input[_builtins.int]] = None,
-                 min: Optional[pulumi.Input[_builtins.int]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max: pulumi.Input[Optional[_builtins.int]] = None,
+                 min: pulumi.Input[Optional[_builtins.int]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -335,11 +335,11 @@ class RandomInteger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            max: Optional[pulumi.Input[_builtins.int]] = None,
-            min: Optional[pulumi.Input[_builtins.int]] = None,
-            result: Optional[pulumi.Input[_builtins.int]] = None,
-            seed: Optional[pulumi.Input[_builtins.str]] = None) -> 'RandomInteger':
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            max: pulumi.Input[Optional[_builtins.int]] = None,
+            min: pulumi.Input[Optional[_builtins.int]] = None,
+            result: pulumi.Input[Optional[_builtins.int]] = None,
+            seed: pulumi.Input[Optional[_builtins.str]] = None) -> 'RandomInteger':
         """
         Get an existing RandomInteger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

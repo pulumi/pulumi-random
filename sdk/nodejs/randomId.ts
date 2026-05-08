@@ -165,31 +165,31 @@ export interface RandomIdState {
     /**
      * The generated id presented in base64 without additional transformations.
      */
-    b64Std?: pulumi.Input<string>;
+    b64Std?: pulumi.Input<string | undefined>;
     /**
      * The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
      */
-    b64Url?: pulumi.Input<string>;
+    b64Url?: pulumi.Input<string | undefined>;
     /**
      * The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
      */
-    byteLength?: pulumi.Input<number>;
+    byteLength?: pulumi.Input<number | undefined>;
     /**
      * The generated id presented in non-padded decimal digits.
      */
-    dec?: pulumi.Input<string>;
+    dec?: pulumi.Input<string | undefined>;
     /**
      * The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
      */
-    hex?: pulumi.Input<string>;
+    hex?: pulumi.Input<string | undefined>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -203,9 +203,9 @@ export interface RandomIdArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }
