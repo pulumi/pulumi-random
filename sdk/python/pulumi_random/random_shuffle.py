@@ -20,9 +20,9 @@ __all__ = ['RandomShuffleArgs', 'RandomShuffle']
 class RandomShuffleArgs:
     def __init__(__self__, *,
                  inputs: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 result_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 result_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomShuffle resource.
 
@@ -53,49 +53,49 @@ class RandomShuffleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter(name="resultCount")
-    def result_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def result_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         """
         return pulumi.get(self, "result_count")
 
     @result_count.setter
-    def result_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def result_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "result_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def seed(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def seed(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         """
         return pulumi.get(self, "seed")
 
     @seed.setter
-    def seed(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def seed(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "seed", value)
 
 
 @pulumi.input_type
 class _RandomShuffleState:
     def __init__(__self__, *,
-                 inputs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 result_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 results: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None):
+                 inputs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 result_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 results: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomShuffle resources.
 
@@ -118,62 +118,62 @@ class _RandomShuffleState:
 
     @_builtins.property
     @pulumi.getter
-    def inputs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def inputs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of strings to shuffle.
         """
         return pulumi.get(self, "inputs")
 
     @inputs.setter
-    def inputs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def inputs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "inputs", value)
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter(name="resultCount")
-    def result_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def result_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
         """
         return pulumi.get(self, "result_count")
 
     @result_count.setter
-    def result_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def result_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "result_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def results(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def results(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Random permutation of the list of strings given in `input`. The number of elements is determined by `result_count` if set, or the number of elements in `input`.
         """
         return pulumi.get(self, "results")
 
     @results.setter
-    def results(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def results(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "results", value)
 
     @_builtins.property
     @pulumi.getter
-    def seed(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def seed(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
         """
         return pulumi.get(self, "seed")
 
     @seed.setter
-    def seed(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def seed(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "seed", value)
 
 
@@ -183,10 +183,10 @@ class RandomShuffle(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inputs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 result_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None,
+                 inputs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 result_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The resource `RandomShuffle` generates a random permutation of a list of strings given as an argument.
@@ -260,10 +260,10 @@ class RandomShuffle(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inputs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 result_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 seed: Optional[pulumi.Input[_builtins.str]] = None,
+                 inputs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 result_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 seed: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -290,11 +290,11 @@ class RandomShuffle(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            inputs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            result_count: Optional[pulumi.Input[_builtins.int]] = None,
-            results: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            seed: Optional[pulumi.Input[_builtins.str]] = None) -> 'RandomShuffle':
+            inputs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            result_count: pulumi.Input[Optional[_builtins.int]] = None,
+            results: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            seed: pulumi.Input[Optional[_builtins.str]] = None) -> 'RandomShuffle':
         """
         Get an existing RandomShuffle resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

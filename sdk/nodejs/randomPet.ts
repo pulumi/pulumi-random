@@ -111,19 +111,19 @@ export interface RandomPetState {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The length (in words) of the pet name. Defaults to 2
      */
-    length?: pulumi.Input<number>;
+    length?: pulumi.Input<number | undefined>;
     /**
      * A string to prefix the name with.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
     /**
      * The character to separate words in the pet name. Defaults to "-"
      */
-    separator?: pulumi.Input<string>;
+    separator?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -133,17 +133,17 @@ export interface RandomPetArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The length (in words) of the pet name. Defaults to 2
      */
-    length?: pulumi.Input<number>;
+    length?: pulumi.Input<number | undefined>;
     /**
      * A string to prefix the name with.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
     /**
      * The character to separate words in the pet name. Defaults to "-"
      */
-    separator?: pulumi.Input<string>;
+    separator?: pulumi.Input<string | undefined>;
 }

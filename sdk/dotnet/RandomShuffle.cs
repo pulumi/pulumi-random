@@ -23,7 +23,7 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var az = new Random.Index.RandomShuffle("az", new()
+    ///     var az = new Random.RandomShuffle("az", new()
     ///     {
     ///         Inputs = new[]
     ///         {
@@ -35,7 +35,7 @@ namespace Pulumi.Random
     ///         ResultCount = 2,
     ///     });
     /// 
-    ///     var example = new Aws.Index.Elb("example", new()
+    ///     var example = new Aws.Elb("example", new()
     ///     {
     ///         AvailabilityZones = az.Results,
     ///     });

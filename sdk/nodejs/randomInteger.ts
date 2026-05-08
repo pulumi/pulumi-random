@@ -142,23 +142,23 @@ export interface RandomIntegerState {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The maximum inclusive value of the range.
      */
-    max?: pulumi.Input<number>;
+    max?: pulumi.Input<number | undefined>;
     /**
      * The minimum inclusive value of the range.
      */
-    min?: pulumi.Input<number>;
+    min?: pulumi.Input<number | undefined>;
     /**
      * The random integer result.
      */
-    result?: pulumi.Input<number>;
+    result?: pulumi.Input<number | undefined>;
     /**
      * A custom seed to always produce the same value.
      */
-    seed?: pulumi.Input<string>;
+    seed?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -168,7 +168,7 @@ export interface RandomIntegerArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The maximum inclusive value of the range.
      */
@@ -180,5 +180,5 @@ export interface RandomIntegerArgs {
     /**
      * A custom seed to always produce the same value.
      */
-    seed?: pulumi.Input<string>;
+    seed?: pulumi.Input<string | undefined>;
 }

@@ -116,23 +116,23 @@ export interface RandomShuffleState {
     /**
      * The list of strings to shuffle.
      */
-    inputs?: pulumi.Input<pulumi.Input<string>[]>;
+    inputs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      */
-    resultCount?: pulumi.Input<number>;
+    resultCount?: pulumi.Input<number | undefined>;
     /**
      * Random permutation of the list of strings given in `input`. The number of elements is determined by `resultCount` if set, or the number of elements in `input`.
      */
-    results?: pulumi.Input<pulumi.Input<string>[]>;
+    results?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      */
-    seed?: pulumi.Input<string>;
+    seed?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -146,13 +146,13 @@ export interface RandomShuffleArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
      */
-    resultCount?: pulumi.Input<number>;
+    resultCount?: pulumi.Input<number | undefined>;
     /**
      * Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
      */
-    seed?: pulumi.Input<string>;
+    seed?: pulumi.Input<string | undefined>;
 }

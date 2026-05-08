@@ -105,11 +105,11 @@ export interface RandomUuidState {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The generated uuid presented in string format.
      */
-    result?: pulumi.Input<string>;
+    result?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -119,5 +119,5 @@ export interface RandomUuidArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
      */
-    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

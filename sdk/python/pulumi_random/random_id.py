@@ -20,8 +20,8 @@ __all__ = ['RandomIdArgs', 'RandomId']
 class RandomIdArgs:
     def __init__(__self__, *,
                  byte_length: pulumi.Input[_builtins.int],
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RandomId resource.
 
@@ -49,39 +49,39 @@ class RandomIdArgs:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
 class _RandomIdState:
     def __init__(__self__, *,
-                 b64_std: Optional[pulumi.Input[_builtins.str]] = None,
-                 b64_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 byte_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 dec: Optional[pulumi.Input[_builtins.str]] = None,
-                 hex: Optional[pulumi.Input[_builtins.str]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None):
+                 b64_std: pulumi.Input[Optional[_builtins.str]] = None,
+                 b64_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 byte_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 dec: pulumi.Input[Optional[_builtins.str]] = None,
+                 hex: pulumi.Input[Optional[_builtins.str]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RandomId resources.
 
@@ -110,86 +110,86 @@ class _RandomIdState:
 
     @_builtins.property
     @pulumi.getter(name="b64Std")
-    def b64_std(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def b64_std(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The generated id presented in base64 without additional transformations.
         """
         return pulumi.get(self, "b64_std")
 
     @b64_std.setter
-    def b64_std(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def b64_std(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "b64_std", value)
 
     @_builtins.property
     @pulumi.getter(name="b64Url")
-    def b64_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def b64_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
         """
         return pulumi.get(self, "b64_url")
 
     @b64_url.setter
-    def b64_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def b64_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "b64_url", value)
 
     @_builtins.property
     @pulumi.getter(name="byteLength")
-    def byte_length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def byte_length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
         """
         return pulumi.get(self, "byte_length")
 
     @byte_length.setter
-    def byte_length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def byte_length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "byte_length", value)
 
     @_builtins.property
     @pulumi.getter
-    def dec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The generated id presented in non-padded decimal digits.
         """
         return pulumi.get(self, "dec")
 
     @dec.setter
-    def dec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dec", value)
 
     @_builtins.property
     @pulumi.getter
-    def hex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hex(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
         """
         return pulumi.get(self, "hex")
 
     @hex.setter
-    def hex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hex", value)
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
 
@@ -199,9 +199,9 @@ class RandomId(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 byte_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 byte_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The resource `RandomId` generates random numbers that are intended to be
@@ -346,9 +346,9 @@ class RandomId(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 byte_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 byte_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -377,13 +377,13 @@ class RandomId(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            b64_std: Optional[pulumi.Input[_builtins.str]] = None,
-            b64_url: Optional[pulumi.Input[_builtins.str]] = None,
-            byte_length: Optional[pulumi.Input[_builtins.int]] = None,
-            dec: Optional[pulumi.Input[_builtins.str]] = None,
-            hex: Optional[pulumi.Input[_builtins.str]] = None,
-            keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            prefix: Optional[pulumi.Input[_builtins.str]] = None) -> 'RandomId':
+            b64_std: pulumi.Input[Optional[_builtins.str]] = None,
+            b64_url: pulumi.Input[Optional[_builtins.str]] = None,
+            byte_length: pulumi.Input[Optional[_builtins.int]] = None,
+            dec: pulumi.Input[Optional[_builtins.str]] = None,
+            hex: pulumi.Input[Optional[_builtins.str]] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            prefix: pulumi.Input[Optional[_builtins.str]] = None) -> 'RandomId':
         """
         Get an existing RandomId resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -25,12 +25,12 @@ namespace Pulumi.Random
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var jwtSecret = new Random.Index.RandomBytes("jwt_secret", new()
+    ///     var jwtSecret = new Random.RandomBytes("jwt_secret", new()
     ///     {
     ///         Length = 64,
     ///     });
     /// 
-    ///     var jwtSecretKeyVaultSecret = new Azurerm.Index.KeyVaultSecret("jwt_secret", new()
+    ///     var jwtSecretKeyVaultSecret = new Azurerm.KeyVaultSecret("jwt_secret", new()
     ///     {
     ///         KeyVaultId = "some-azure-key-vault-id",
     ///         Name = "JwtSecret",

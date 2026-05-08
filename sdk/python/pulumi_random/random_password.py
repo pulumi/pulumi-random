@@ -20,17 +20,17 @@ __all__ = ['RandomPasswordArgs', 'RandomPassword']
 class RandomPasswordArgs:
     def __init__(__self__, *,
                  length: pulumi.Input[_builtins.int],
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lower: Optional[pulumi.Input[_builtins.bool]] = None,
-                 min_lower: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_numeric: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_special: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_upper: Optional[pulumi.Input[_builtins.int]] = None,
-                 number: Optional[pulumi.Input[_builtins.bool]] = None,
-                 numeric: Optional[pulumi.Input[_builtins.bool]] = None,
-                 override_special: Optional[pulumi.Input[_builtins.str]] = None,
-                 special: Optional[pulumi.Input[_builtins.bool]] = None,
-                 upper: Optional[pulumi.Input[_builtins.bool]] = None):
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 lower: pulumi.Input[Optional[_builtins.bool]] = None,
+                 min_lower: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_numeric: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_special: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_upper: pulumi.Input[Optional[_builtins.int]] = None,
+                 number: pulumi.Input[Optional[_builtins.bool]] = None,
+                 numeric: pulumi.Input[Optional[_builtins.bool]] = None,
+                 override_special: pulumi.Input[Optional[_builtins.str]] = None,
+                 special: pulumi.Input[Optional[_builtins.bool]] = None,
+                 upper: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a RandomPassword resource.
 
@@ -88,155 +88,155 @@ class RandomPasswordArgs:
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def lower(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def lower(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include lowercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "lower")
 
     @lower.setter
-    def lower(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def lower(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "lower", value)
 
     @_builtins.property
     @pulumi.getter(name="minLower")
-    def min_lower(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_lower(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_lower")
 
     @min_lower.setter
-    def min_lower(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_lower(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_lower", value)
 
     @_builtins.property
     @pulumi.getter(name="minNumeric")
-    def min_numeric(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_numeric(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of numeric characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_numeric")
 
     @min_numeric.setter
-    def min_numeric(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_numeric(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_numeric", value)
 
     @_builtins.property
     @pulumi.getter(name="minSpecial")
-    def min_special(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_special(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of special characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_special")
 
     @min_special.setter
-    def min_special(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_special(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_special", value)
 
     @_builtins.property
     @pulumi.getter(name="minUpper")
-    def min_upper(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_upper(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_upper")
 
     @min_upper.setter
-    def min_upper(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_upper(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_upper", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""**NOTE**: This is deprecated, use `numeric` instead.""")
-    def number(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def number(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
         return pulumi.get(self, "number")
 
     @number.setter
-    def number(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def number(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "number", value)
 
     @_builtins.property
     @pulumi.getter
-    def numeric(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def numeric(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         """
         return pulumi.get(self, "numeric")
 
     @numeric.setter
-    def numeric(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def numeric(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "numeric", value)
 
     @_builtins.property
     @pulumi.getter(name="overrideSpecial")
-    def override_special(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def override_special(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         """
         return pulumi.get(self, "override_special")
 
     @override_special.setter
-    def override_special(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def override_special(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "override_special", value)
 
     @_builtins.property
     @pulumi.getter
-    def special(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def special(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
     @special.setter
-    def special(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def special(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "special", value)
 
     @_builtins.property
     @pulumi.getter
-    def upper(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def upper(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include uppercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "upper")
 
     @upper.setter
-    def upper(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def upper(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "upper", value)
 
 
 @pulumi.input_type
 class _RandomPasswordState:
     def __init__(__self__, *,
-                 bcrypt_hash: Optional[pulumi.Input[_builtins.str]] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 lower: Optional[pulumi.Input[_builtins.bool]] = None,
-                 min_lower: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_numeric: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_special: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_upper: Optional[pulumi.Input[_builtins.int]] = None,
-                 number: Optional[pulumi.Input[_builtins.bool]] = None,
-                 numeric: Optional[pulumi.Input[_builtins.bool]] = None,
-                 override_special: Optional[pulumi.Input[_builtins.str]] = None,
-                 result: Optional[pulumi.Input[_builtins.str]] = None,
-                 special: Optional[pulumi.Input[_builtins.bool]] = None,
-                 upper: Optional[pulumi.Input[_builtins.bool]] = None):
+                 bcrypt_hash: pulumi.Input[Optional[_builtins.str]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 lower: pulumi.Input[Optional[_builtins.bool]] = None,
+                 min_lower: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_numeric: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_special: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_upper: pulumi.Input[Optional[_builtins.int]] = None,
+                 number: pulumi.Input[Optional[_builtins.bool]] = None,
+                 numeric: pulumi.Input[Optional[_builtins.bool]] = None,
+                 override_special: pulumi.Input[Optional[_builtins.str]] = None,
+                 result: pulumi.Input[Optional[_builtins.str]] = None,
+                 special: pulumi.Input[Optional[_builtins.bool]] = None,
+                 upper: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering RandomPassword resources.
 
@@ -289,171 +289,171 @@ class _RandomPasswordState:
 
     @_builtins.property
     @pulumi.getter(name="bcryptHash")
-    def bcrypt_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bcrypt_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         """
         return pulumi.get(self, "bcrypt_hash")
 
     @bcrypt_hash.setter
-    def bcrypt_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bcrypt_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bcrypt_hash", value)
 
     @_builtins.property
     @pulumi.getter
-    def keepers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def keepers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         """
         return pulumi.get(self, "keepers")
 
     @keepers.setter
-    def keepers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def keepers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keepers", value)
 
     @_builtins.property
     @pulumi.getter
-    def length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
     @length.setter
-    def length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "length", value)
 
     @_builtins.property
     @pulumi.getter
-    def lower(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def lower(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include lowercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "lower")
 
     @lower.setter
-    def lower(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def lower(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "lower", value)
 
     @_builtins.property
     @pulumi.getter(name="minLower")
-    def min_lower(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_lower(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_lower")
 
     @min_lower.setter
-    def min_lower(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_lower(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_lower", value)
 
     @_builtins.property
     @pulumi.getter(name="minNumeric")
-    def min_numeric(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_numeric(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of numeric characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_numeric")
 
     @min_numeric.setter
-    def min_numeric(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_numeric(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_numeric", value)
 
     @_builtins.property
     @pulumi.getter(name="minSpecial")
-    def min_special(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_special(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of special characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_special")
 
     @min_special.setter
-    def min_special(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_special(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_special", value)
 
     @_builtins.property
     @pulumi.getter(name="minUpper")
-    def min_upper(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_upper(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         """
         return pulumi.get(self, "min_upper")
 
     @min_upper.setter
-    def min_upper(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_upper(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_upper", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""**NOTE**: This is deprecated, use `numeric` instead.""")
-    def number(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def number(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         """
         return pulumi.get(self, "number")
 
     @number.setter
-    def number(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def number(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "number", value)
 
     @_builtins.property
     @pulumi.getter
-    def numeric(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def numeric(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
         """
         return pulumi.get(self, "numeric")
 
     @numeric.setter
-    def numeric(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def numeric(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "numeric", value)
 
     @_builtins.property
     @pulumi.getter(name="overrideSpecial")
-    def override_special(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def override_special(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         """
         return pulumi.get(self, "override_special")
 
     @override_special.setter
-    def override_special(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def override_special(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "override_special", value)
 
     @_builtins.property
     @pulumi.getter
-    def result(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def result(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The generated random string.
         """
         return pulumi.get(self, "result")
 
     @result.setter
-    def result(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def result(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "result", value)
 
     @_builtins.property
     @pulumi.getter
-    def special(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def special(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         """
         return pulumi.get(self, "special")
 
     @special.setter
-    def special(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def special(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "special", value)
 
     @_builtins.property
     @pulumi.getter
-    def upper(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def upper(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include uppercase alphabet characters in the result. Default value is `true`.
         """
         return pulumi.get(self, "upper")
 
     @upper.setter
-    def upper(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def upper(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "upper", value)
 
 
@@ -463,18 +463,18 @@ class RandomPassword(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 lower: Optional[pulumi.Input[_builtins.bool]] = None,
-                 min_lower: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_numeric: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_special: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_upper: Optional[pulumi.Input[_builtins.int]] = None,
-                 number: Optional[pulumi.Input[_builtins.bool]] = None,
-                 numeric: Optional[pulumi.Input[_builtins.bool]] = None,
-                 override_special: Optional[pulumi.Input[_builtins.str]] = None,
-                 special: Optional[pulumi.Input[_builtins.bool]] = None,
-                 upper: Optional[pulumi.Input[_builtins.bool]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 lower: pulumi.Input[Optional[_builtins.bool]] = None,
+                 min_lower: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_numeric: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_special: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_upper: pulumi.Input[Optional[_builtins.int]] = None,
+                 number: pulumi.Input[Optional[_builtins.bool]] = None,
+                 numeric: pulumi.Input[Optional[_builtins.bool]] = None,
+                 override_special: pulumi.Input[Optional[_builtins.str]] = None,
+                 special: pulumi.Input[Optional[_builtins.bool]] = None,
+                 upper: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         > If the managed resource supports a write-only attribute for the password (first introduced in Terraform 1.11), then the ephemeral variant of `RandomPassword` should be used, when possible, to avoid storing the password in the plan or state file.
@@ -574,18 +574,18 @@ class RandomPassword(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 length: Optional[pulumi.Input[_builtins.int]] = None,
-                 lower: Optional[pulumi.Input[_builtins.bool]] = None,
-                 min_lower: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_numeric: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_special: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_upper: Optional[pulumi.Input[_builtins.int]] = None,
-                 number: Optional[pulumi.Input[_builtins.bool]] = None,
-                 numeric: Optional[pulumi.Input[_builtins.bool]] = None,
-                 override_special: Optional[pulumi.Input[_builtins.str]] = None,
-                 special: Optional[pulumi.Input[_builtins.bool]] = None,
-                 upper: Optional[pulumi.Input[_builtins.bool]] = None,
+                 keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 length: pulumi.Input[Optional[_builtins.int]] = None,
+                 lower: pulumi.Input[Optional[_builtins.bool]] = None,
+                 min_lower: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_numeric: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_special: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_upper: pulumi.Input[Optional[_builtins.int]] = None,
+                 number: pulumi.Input[Optional[_builtins.bool]] = None,
+                 numeric: pulumi.Input[Optional[_builtins.bool]] = None,
+                 override_special: pulumi.Input[Optional[_builtins.str]] = None,
+                 special: pulumi.Input[Optional[_builtins.bool]] = None,
+                 upper: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -623,20 +623,20 @@ class RandomPassword(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bcrypt_hash: Optional[pulumi.Input[_builtins.str]] = None,
-            keepers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            length: Optional[pulumi.Input[_builtins.int]] = None,
-            lower: Optional[pulumi.Input[_builtins.bool]] = None,
-            min_lower: Optional[pulumi.Input[_builtins.int]] = None,
-            min_numeric: Optional[pulumi.Input[_builtins.int]] = None,
-            min_special: Optional[pulumi.Input[_builtins.int]] = None,
-            min_upper: Optional[pulumi.Input[_builtins.int]] = None,
-            number: Optional[pulumi.Input[_builtins.bool]] = None,
-            numeric: Optional[pulumi.Input[_builtins.bool]] = None,
-            override_special: Optional[pulumi.Input[_builtins.str]] = None,
-            result: Optional[pulumi.Input[_builtins.str]] = None,
-            special: Optional[pulumi.Input[_builtins.bool]] = None,
-            upper: Optional[pulumi.Input[_builtins.bool]] = None) -> 'RandomPassword':
+            bcrypt_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            length: pulumi.Input[Optional[_builtins.int]] = None,
+            lower: pulumi.Input[Optional[_builtins.bool]] = None,
+            min_lower: pulumi.Input[Optional[_builtins.int]] = None,
+            min_numeric: pulumi.Input[Optional[_builtins.int]] = None,
+            min_special: pulumi.Input[Optional[_builtins.int]] = None,
+            min_upper: pulumi.Input[Optional[_builtins.int]] = None,
+            number: pulumi.Input[Optional[_builtins.bool]] = None,
+            numeric: pulumi.Input[Optional[_builtins.bool]] = None,
+            override_special: pulumi.Input[Optional[_builtins.str]] = None,
+            result: pulumi.Input[Optional[_builtins.str]] = None,
+            special: pulumi.Input[Optional[_builtins.bool]] = None,
+            upper: pulumi.Input[Optional[_builtins.bool]] = None) -> 'RandomPassword':
         """
         Get an existing RandomPassword resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

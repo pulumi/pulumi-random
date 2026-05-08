@@ -27,7 +27,7 @@ namespace Pulumi.Random
     /// {
     ///     // The following example shows how to generate a random priority
     ///     // between 1 and 50000 for a aws_alb_listener_rule resource:
-    ///     var priority = new Random.Index.RandomInteger("priority", new()
+    ///     var priority = new Random.RandomInteger("priority", new()
     ///     {
     ///         Min = 1,
     ///         Max = 50000,
@@ -37,7 +37,7 @@ namespace Pulumi.Random
     ///         },
     ///     });
     /// 
-    ///     var main = new Aws.Index.AlbListenerRule("main", new()
+    ///     var main = new Aws.AlbListenerRule("main", new()
     ///     {
     ///         ListenerArn = priority.Keepers?.ListenerArn,
     ///         Priority = priority.Result,
