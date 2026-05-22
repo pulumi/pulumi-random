@@ -51,7 +51,7 @@ the same until new random values are desired.
 
 For example:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
@@ -221,6 +221,34 @@ public class App {
             .build());
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    aws = {
+      source = "pulumi/aws"
+    }
+    random = {
+      source = "pulumi/random"
+    }
+  }
+}
+
+resource "random_randomid" "server" {
+  keepers = {
+    "ami_id" = amiId
+  }
+  byte_length = 8
+}
+resource "aws_ec2_instance" "server" {
+  tags = {
+    "Name" ="web-server ${random_randomid.server.hex}"
+  }
+  ami = random_randomid.server.keepers.amiId
 }
 ```
 
