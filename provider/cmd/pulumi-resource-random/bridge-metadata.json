@@ -52,6 +52,20 @@
         }
     },
     "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "random_bytes": {},
+            "random_id": {},
+            "random_integer": {},
+            "random_password": {},
+            "random_pet": {},
+            "random_shuffle": {},
+            "random_string": {},
+            "random_uuid": {},
+            "random_uuid4": {},
+            "random_uuid7": {}
+        }
+    },
     "renamedProperties": {
         "random:index/randomId:RandomId": {
             "b64Std": "b64_std",
