@@ -483,7 +483,6 @@ class RandomString(pulumi.CustomResource):
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
 
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
@@ -527,7 +526,6 @@ class RandomString(pulumi.CustomResource):
         ## Import
 
         You can import external strings into your Pulumi programs as RandomString resources as follows:
-
 
         :param str resource_name: The name of the resource.
         :param RandomStringArgs args: The arguments to use to populate this resource's properties.
