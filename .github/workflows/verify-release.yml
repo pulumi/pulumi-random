@@ -84,7 +84,7 @@ jobs:
             sdk/*.sum
             *.sum
       - name: Verify nodejs release
-        uses: pulumi/verify-provider-release@679d5e6838ac4f68696bfa1bf9e2c5da94509dd6 # v1.3.1
+        uses: pulumi/verify-provider-release@52165c3d89dbd49691b82c056f377f37e6c21012 # v1.3.2
         with:
           runtime: nodejs
           directory: examples/simple/ts
@@ -93,7 +93,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify python release
-        uses: pulumi/verify-provider-release@679d5e6838ac4f68696bfa1bf9e2c5da94509dd6 # v1.3.1
+        uses: pulumi/verify-provider-release@52165c3d89dbd49691b82c056f377f37e6c21012 # v1.3.2
         with:
           runtime: python
           directory: examples/simple/py
@@ -103,7 +103,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify dotnet release
-        uses: pulumi/verify-provider-release@679d5e6838ac4f68696bfa1bf9e2c5da94509dd6 # v1.3.1
+        uses: pulumi/verify-provider-release@52165c3d89dbd49691b82c056f377f37e6c21012 # v1.3.2
         with:
           runtime: dotnet
           directory: examples/simple/csharp
@@ -112,7 +112,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify go release
-        uses: pulumi/verify-provider-release@679d5e6838ac4f68696bfa1bf9e2c5da94509dd6 # v1.3.1
+        uses: pulumi/verify-provider-release@52165c3d89dbd49691b82c056f377f37e6c21012 # v1.3.2
         if: inputs.skipGoSdk == false
         with:
           runtime: go
