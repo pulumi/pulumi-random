@@ -54,7 +54,7 @@ import (
 //				return err
 //			}
 //			_, err = aws.NewInstance(ctx, "server", &aws.InstanceArgs{
-//				Tags: map[string]interface{}{
+//				Tags: map[string]pulumi.String{
 //					"name": pulumi.Sprintf("web-server %v", server.Hex),
 //				},
 //				Ami: server.Keepers.AmiId,
