@@ -1,10 +1,10 @@
 module github.com/terraform-providers/terraform-provider-random/shim
 
-go 1.25.8
+go 1.26.8
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
-	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260513075824-f8d869dc98d9
+	github.com/terraform-providers/terraform-provider-random v1.3.2-0.20260911123554-b59b1791a688
 )
 
 require (
@@ -21,6 +21,6 @@ require (
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
-	golang.org/x/crypto v0.51.0 // indirect
-	golang.org/x/sys v0.44.0 // indirect
+	golang.org/x/crypto v0.56.0 // indirect
+	golang.org/x/sys v0.47.0 // indirect
 )

@@ -34,7 +34,7 @@ class RandomPasswordArgs:
         """
         The set of arguments for constructing a RandomPassword resource.
 
-        :param pulumi.Input[_builtins.int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        :param pulumi.Input[_builtins.int] length: The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
         :param pulumi.Input[_builtins.bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[_builtins.int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
@@ -43,7 +43,7 @@ class RandomPasswordArgs:
         :param pulumi.Input[_builtins.int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         :param pulumi.Input[_builtins.bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
-        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[_builtins.bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[_builtins.bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
@@ -78,7 +78,7 @@ class RandomPasswordArgs:
     @pulumi.getter
     def length(self) -> pulumi.Input[_builtins.int]:
         """
-        The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
@@ -187,7 +187,7 @@ class RandomPasswordArgs:
     @pulumi.getter(name="overrideSpecial")
     def override_special(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         """
         return pulumi.get(self, "override_special")
 
@@ -240,9 +240,9 @@ class _RandomPasswordState:
         """
         Input properties used for looking up and filtering RandomPassword resources.
 
-        :param pulumi.Input[_builtins.str] bcrypt_hash: A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
+        :param pulumi.Input[_builtins.str] bcrypt_hash: A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[_builtins.int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        :param pulumi.Input[_builtins.int] length: The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[_builtins.bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[_builtins.int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
@@ -250,8 +250,8 @@ class _RandomPasswordState:
         :param pulumi.Input[_builtins.int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         :param pulumi.Input[_builtins.bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
-        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
-        :param pulumi.Input[_builtins.str] result: The generated random string.
+        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        :param pulumi.Input[_builtins.str] result: The generated random password.
         :param pulumi.Input[_builtins.bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[_builtins.bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
@@ -291,7 +291,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="bcryptHash")
     def bcrypt_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
+        A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         """
         return pulumi.get(self, "bcrypt_hash")
 
@@ -315,7 +315,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
@@ -412,7 +412,7 @@ class _RandomPasswordState:
     @pulumi.getter(name="overrideSpecial")
     def override_special(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         """
         return pulumi.get(self, "override_special")
 
@@ -424,7 +424,7 @@ class _RandomPasswordState:
     @pulumi.getter
     def result(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The generated random string.
+        The generated random password.
         """
         return pulumi.get(self, "result")
 
@@ -509,7 +509,7 @@ class RandomPassword(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[_builtins.int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        :param pulumi.Input[_builtins.int] length: The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[_builtins.bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[_builtins.int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
@@ -517,7 +517,7 @@ class RandomPassword(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         :param pulumi.Input[_builtins.bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
-        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         :param pulumi.Input[_builtins.bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[_builtins.bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
@@ -642,9 +642,9 @@ class RandomPassword(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bcrypt_hash: A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
+        :param pulumi.Input[_builtins.str] bcrypt_hash: A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] keepers: Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
-        :param pulumi.Input[_builtins.int] length: The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        :param pulumi.Input[_builtins.int] length: The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         :param pulumi.Input[_builtins.bool] lower: Include lowercase alphabet characters in the result. Default value is `true`.
         :param pulumi.Input[_builtins.int] min_lower: Minimum number of lowercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.int] min_numeric: Minimum number of numeric characters in the result. Default value is `0`.
@@ -652,8 +652,8 @@ class RandomPassword(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] min_upper: Minimum number of uppercase alphabet characters in the result. Default value is `0`.
         :param pulumi.Input[_builtins.bool] number: Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
         :param pulumi.Input[_builtins.bool] numeric: Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
-        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
-        :param pulumi.Input[_builtins.str] result: The generated random string.
+        :param pulumi.Input[_builtins.str] override_special: Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        :param pulumi.Input[_builtins.str] result: The generated random password.
         :param pulumi.Input[_builtins.bool] special: Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
         :param pulumi.Input[_builtins.bool] upper: Include uppercase alphabet characters in the result. Default value is `true`.
         """
@@ -681,7 +681,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="bcryptHash")
     def bcrypt_hash(self) -> pulumi.Output[_builtins.str]:
         """
-        A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
+        A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcrypt_hash` will contain a hash of the first 72 bytes.
         """
         return pulumi.get(self, "bcrypt_hash")
 
@@ -697,7 +697,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def length(self) -> pulumi.Output[_builtins.int]:
         """
-        The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+        The length of the password desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
         """
         return pulumi.get(self, "length")
 
@@ -762,7 +762,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter(name="overrideSpecial")
     def override_special(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+        Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
         """
         return pulumi.get(self, "override_special")
 
@@ -770,7 +770,7 @@ class RandomPassword(pulumi.CustomResource):
     @pulumi.getter
     def result(self) -> pulumi.Output[_builtins.str]:
         """
-        The generated random string.
+        The generated random password.
         """
         return pulumi.get(self, "result")
 
