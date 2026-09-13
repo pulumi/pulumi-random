@@ -35,14 +35,14 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     @Import(name="length", required=true)
     private Output<Integer> length;
 
     /**
-     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * @return The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     public Output<Integer> length() {
@@ -163,14 +163,14 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      * 
      */
     @Import(name="overrideSpecial")
     private @Nullable Output<String> overrideSpecial;
 
     /**
-     * @return Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * @return Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      * 
      */
     public Optional<Output<String>> overrideSpecial() {
@@ -264,7 +264,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+         * @param length The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+         * @param length The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
          * 
          * @return builder
          * 
@@ -440,7 +440,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param overrideSpecial Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+         * @param overrideSpecial Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
          * 
          * @return builder
          * 
@@ -451,7 +451,7 @@ public final class RandomPasswordArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param overrideSpecial Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+         * @param overrideSpecial Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
          * 
          * @return builder
          * 

@@ -54,7 +54,7 @@ namespace Pulumi.Random
     public partial class RandomPassword : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `BcryptHash` will contain a hash of the first 72 bytes.
+        /// A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `BcryptHash` will contain a hash of the first 72 bytes.
         /// </summary>
         [Output("bcryptHash")]
         public Output<string> BcryptHash { get; private set; } = null!;
@@ -66,7 +66,7 @@ namespace Pulumi.Random
         public Output<ImmutableDictionary<string, string>?> Keepers { get; private set; } = null!;
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
+        /// The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
@@ -114,13 +114,13 @@ namespace Pulumi.Random
         public Output<bool> Numeric { get; private set; } = null!;
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Output("overrideSpecial")]
         public Output<string?> OverrideSpecial { get; private set; } = null!;
 
         /// <summary>
-        /// The generated random string.
+        /// The generated random password.
         /// </summary>
         [Output("result")]
         public Output<string> Result { get; private set; } = null!;
@@ -201,7 +201,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
+        /// The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
         /// </summary>
         [Input("length", required: true)]
         public Input<int> Length { get; set; } = null!;
@@ -249,7 +249,7 @@ namespace Pulumi.Random
         public Input<bool>? Numeric { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
@@ -278,7 +278,7 @@ namespace Pulumi.Random
         private Input<string>? _bcryptHash;
 
         /// <summary>
-        /// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `BcryptHash` will contain a hash of the first 72 bytes.
+        /// A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `BcryptHash` will contain a hash of the first 72 bytes.
         /// </summary>
         public Input<string>? BcryptHash
         {
@@ -303,7 +303,7 @@ namespace Pulumi.Random
         }
 
         /// <summary>
-        /// The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
+        /// The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`MinUpper` + `MinLower` + `MinNumeric` + `MinSpecial`).
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -351,7 +351,7 @@ namespace Pulumi.Random
         public Input<bool>? Numeric { get; set; }
 
         /// <summary>
-        /// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
+        /// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `Special` argument must still be set to true for any overwritten characters to be used in generation.
         /// </summary>
         [Input("overrideSpecial")]
         public Input<string>? OverrideSpecial { get; set; }
@@ -360,7 +360,7 @@ namespace Pulumi.Random
         private Input<string>? _result;
 
         /// <summary>
-        /// The generated random string.
+        /// The generated random password.
         /// </summary>
         public Input<string>? Result
         {
