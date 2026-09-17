@@ -47,9 +47,9 @@ var metadata []byte
 func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:            pf.ShimProvider(shim.NewProvider()),
-		Name:         "random",
+		Name:         randomPkg,
 		Description:  "A Pulumi package to safely use randomness in Pulumi programs.",
-		Keywords:     []string{"pulumi", "random"},
+		Keywords:     []string{"pulumi", randomPkg},
 		License:      "Apache-2.0",
 		Homepage:     "https://pulumi.io",
 		Repository:   "https://github.com/pulumi/pulumi-random",
@@ -109,7 +109,7 @@ func Provider() tfbridge.ProviderInfo {
 				"Pulumi": "3.*",
 			},
 			Namespaces: map[string]string{
-				"random": "Random",
+				randomPkg: "Random",
 			},
 		},
 		EnableAccurateBridgePreview: true,

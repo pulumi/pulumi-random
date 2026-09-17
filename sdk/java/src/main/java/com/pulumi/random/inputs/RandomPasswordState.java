@@ -19,14 +19,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     public static final RandomPasswordState Empty = new RandomPasswordState();
 
     /**
-     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+     * A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
      * 
      */
     @Import(name="bcryptHash")
     private @Nullable Output<String> bcryptHash;
 
     /**
-     * @return A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+     * @return A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
      * 
      */
     public Optional<Output<String>> bcryptHash() {
@@ -49,14 +49,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     @Import(name="length")
     private @Nullable Output<Integer> length;
 
     /**
-     * @return The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * @return The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      * 
      */
     public Optional<Output<Integer>> length() {
@@ -177,14 +177,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      * 
      */
     @Import(name="overrideSpecial")
     private @Nullable Output<String> overrideSpecial;
 
     /**
-     * @return Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * @return Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      * 
      */
     public Optional<Output<String>> overrideSpecial() {
@@ -192,14 +192,14 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The generated random string.
+     * The generated random password.
      * 
      */
     @Import(name="result")
     private @Nullable Output<String> result;
 
     /**
-     * @return The generated random string.
+     * @return The generated random password.
      * 
      */
     public Optional<Output<String>> result() {
@@ -274,7 +274,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bcryptHash A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+         * @param bcryptHash A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bcryptHash A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+         * @param bcryptHash A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
          * 
          * @return builder
          * 
@@ -316,7 +316,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+         * @param length The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
          * 
          * @return builder
          * 
@@ -327,7 +327,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param length The length of the string desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+         * @param length The length of the password desired. The minimum value for length is 1 and, length must also be &gt;= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
          * 
          * @return builder
          * 
@@ -492,7 +492,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param overrideSpecial Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+         * @param overrideSpecial Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
          * 
          * @return builder
          * 
@@ -503,7 +503,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param overrideSpecial Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+         * @param overrideSpecial Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
          * 
          * @return builder
          * 
@@ -513,7 +513,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param result The generated random string.
+         * @param result The generated random password.
          * 
          * @return builder
          * 
@@ -524,7 +524,7 @@ public final class RandomPasswordState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param result The generated random string.
+         * @param result The generated random password.
          * 
          * @return builder
          * 
