@@ -1,3 +1,0 @@
-name: simple-cs
-description: "A minimal C# Pulumi program using Pulumi.Random."
-runtime: dotnet
