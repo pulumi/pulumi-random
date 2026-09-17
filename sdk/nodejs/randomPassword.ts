@@ -65,7 +65,7 @@ export class RandomPassword extends pulumi.CustomResource {
     }
 
     /**
-     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+     * A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
      */
     declare public /*out*/ readonly bcryptHash: pulumi.Output<string>;
     /**
@@ -73,7 +73,7 @@ export class RandomPassword extends pulumi.CustomResource {
      */
     declare public readonly keepers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      */
     declare public readonly length: pulumi.Output<number>;
     /**
@@ -107,11 +107,11 @@ export class RandomPassword extends pulumi.CustomResource {
      */
     declare public readonly numeric: pulumi.Output<boolean>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      */
     declare public readonly overrideSpecial: pulumi.Output<string | undefined>;
     /**
-     * The generated random string.
+     * The generated random password.
      */
     declare public /*out*/ readonly result: pulumi.Output<string>;
     /**
@@ -182,7 +182,7 @@ export class RandomPassword extends pulumi.CustomResource {
  */
 export interface RandomPasswordState {
     /**
-     * A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+     * A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
      */
     bcryptHash?: pulumi.Input<string | undefined>;
     /**
@@ -190,7 +190,7 @@ export interface RandomPasswordState {
      */
     keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      */
     length?: pulumi.Input<number | undefined>;
     /**
@@ -224,11 +224,11 @@ export interface RandomPasswordState {
      */
     numeric?: pulumi.Input<boolean | undefined>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      */
     overrideSpecial?: pulumi.Input<string | undefined>;
     /**
-     * The generated random string.
+     * The generated random password.
      */
     result?: pulumi.Input<string | undefined>;
     /**
@@ -250,7 +250,7 @@ export interface RandomPasswordArgs {
      */
     keepers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+     * The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
      */
     length: pulumi.Input<number>;
     /**
@@ -284,7 +284,7 @@ export interface RandomPasswordArgs {
      */
     numeric?: pulumi.Input<boolean | undefined>;
     /**
-     * Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+     * Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
      */
     overrideSpecial?: pulumi.Input<string | undefined>;
     /**

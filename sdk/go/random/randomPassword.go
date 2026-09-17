@@ -63,11 +63,11 @@ import (
 type RandomPassword struct {
 	pulumi.CustomResourceState
 
-	// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+	// A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 	BcryptHash pulumi.StringOutput `pulumi:"bcryptHash"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.StringMapOutput `pulumi:"keepers"`
-	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+	// The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntOutput `pulumi:"length"`
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolOutput `pulumi:"lower"`
@@ -85,9 +85,9 @@ type RandomPassword struct {
 	Number pulumi.BoolOutput `pulumi:"number"`
 	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric pulumi.BoolOutput `pulumi:"numeric"`
-	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+	// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrOutput `pulumi:"overrideSpecial"`
-	// The generated random string.
+	// The generated random password.
 	Result pulumi.StringOutput `pulumi:"result"`
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolOutput `pulumi:"special"`
@@ -133,11 +133,11 @@ func GetRandomPassword(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RandomPassword resources.
 type randomPasswordState struct {
-	// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+	// A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 	BcryptHash *string `pulumi:"bcryptHash"`
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`
-	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+	// The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length *int `pulumi:"length"`
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
@@ -155,9 +155,9 @@ type randomPasswordState struct {
 	Number *bool `pulumi:"number"`
 	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric *bool `pulumi:"numeric"`
-	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+	// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
-	// The generated random string.
+	// The generated random password.
 	Result *string `pulumi:"result"`
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
@@ -166,11 +166,11 @@ type randomPasswordState struct {
 }
 
 type RandomPasswordState struct {
-	// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+	// A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 	BcryptHash pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.StringMapInput
-	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+	// The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntPtrInput
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
@@ -188,9 +188,9 @@ type RandomPasswordState struct {
 	Number pulumi.BoolPtrInput
 	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric pulumi.BoolPtrInput
-	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+	// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
-	// The generated random string.
+	// The generated random password.
 	Result pulumi.StringPtrInput
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
@@ -205,7 +205,7 @@ func (RandomPasswordState) ElementType() reflect.Type {
 type randomPasswordArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`
-	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+	// The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length int `pulumi:"length"`
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower *bool `pulumi:"lower"`
@@ -223,7 +223,7 @@ type randomPasswordArgs struct {
 	Number *bool `pulumi:"number"`
 	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric *bool `pulumi:"numeric"`
-	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+	// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial *string `pulumi:"overrideSpecial"`
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special *bool `pulumi:"special"`
@@ -235,7 +235,7 @@ type randomPasswordArgs struct {
 type RandomPasswordArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers pulumi.StringMapInput
-	// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+	// The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 	Length pulumi.IntInput
 	// Include lowercase alphabet characters in the result. Default value is `true`.
 	Lower pulumi.BoolPtrInput
@@ -253,7 +253,7 @@ type RandomPasswordArgs struct {
 	Number pulumi.BoolPtrInput
 	// Include numeric characters in the result. Default value is `true`. If `numeric`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`.
 	Numeric pulumi.BoolPtrInput
-	// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+	// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 	OverrideSpecial pulumi.StringPtrInput
 	// Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
 	Special pulumi.BoolPtrInput
@@ -348,7 +348,7 @@ func (o RandomPasswordOutput) ToRandomPasswordOutputWithContext(ctx context.Cont
 	return o
 }
 
-// A bcrypt hash of the generated random string. **NOTE**: If the generated random string is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
+// A bcrypt hash of the generated random password. **NOTE**: If the generated random password is greater than 72 bytes in length, `bcryptHash` will contain a hash of the first 72 bytes.
 func (o RandomPasswordOutput) BcryptHash() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.BcryptHash }).(pulumi.StringOutput)
 }
@@ -358,7 +358,7 @@ func (o RandomPasswordOutput) Keepers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringMapOutput { return v.Keepers }).(pulumi.StringMapOutput)
 }
 
-// The length of the string desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
+// The length of the password desired. The minimum value for length is 1 and, length must also be >= (`minUpper` + `minLower` + `minNumeric` + `minSpecial`).
 func (o RandomPasswordOutput) Length() pulumi.IntOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
 }
@@ -400,12 +400,12 @@ func (o RandomPasswordOutput) Numeric() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.BoolOutput { return v.Numeric }).(pulumi.BoolOutput)
 }
 
-// Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+// Supply your own list of special characters to use for password generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
 func (o RandomPasswordOutput) OverrideSpecial() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringPtrOutput { return v.OverrideSpecial }).(pulumi.StringPtrOutput)
 }
 
-// The generated random string.
+// The generated random password.
 func (o RandomPasswordOutput) Result() pulumi.StringOutput {
 	return o.ApplyT(func(v *RandomPassword) pulumi.StringOutput { return v.Result }).(pulumi.StringOutput)
 }
