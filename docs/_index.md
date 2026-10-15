@@ -217,7 +217,7 @@ public class App {
 
         var serverInstance = new Instance("serverInstance", InstanceArgs.builder()
             .tags(Map.of("Name", server.hex().applyValue(_hex -> String.format("web-server %s", _hex))))
-            .ami(server.keepers().applyValue(_keepers -> _keepers.amiId()))
+            .ami(server.keepers().applyValue(_keepers -> _keepers.get("amiId")))
             .build());
 
     }
@@ -227,7 +227,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     aws = {
       source = "pulumi/aws"
@@ -238,17 +238,23 @@ pulumi {
   }
 }
 
-resource "random_randomid" "server" {
+resource "random_random_id" "server" {
+  lifecycle {
+    create_before_destroy = true
+  }
   keepers = {
     "ami_id" = amiId
   }
   byte_length = 8
 }
 resource "aws_ec2_instance" "server" {
-  tags = {
-    "Name" ="web-server ${random_randomid.server.hex}"
+  lifecycle {
+    create_before_destroy = true
   }
-  ami = random_randomid.server.keepers.amiId
+  tags = {
+    "Name" ="web-server ${random_random_id.server.hex}"
+  }
+  ami = random_random_id.server.keepers.amiId
 }
 ```
 
