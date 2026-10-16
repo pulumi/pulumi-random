@@ -1,8 +1,0 @@
-name: test
-runtime: yaml
-
-resources:
-  username:
-    type: random:RandomPassword
-    properties:
-      length: 256
