@@ -44,7 +44,9 @@ func ProviderUpdateTest(t *testing.T, providerBinary string, opts integration.Pr
 
 	// The environment may have providerBinary in PATH, but the first update should use a different version.
 	// Restrict the PATH so pulumi CLI does not see it.
-	opts = opts.With(restrictPath(t, "node", "pulumi", "yarn"))
+	//
+	// dirname is included because the yarn bin wrapper installed by mise is a shell script that calls it.
+	opts = opts.With(restrictPath(t, "node", "pulumi", "yarn", "dirname"))
 
 	// Capture workdir from PrepareProject, as integration.ProgramTester does not expose it.
 	var workdir string
@@ -81,7 +83,7 @@ func ProviderUpdateTest(t *testing.T, providerBinary string, opts integration.Pr
 	require.NoError(t, err)
 
 	// Now bring the local binary being tested back in PATH.
-	opts = opts.With(restrictPath(t, "node", "pulumi", "yarn", providerBinary))
+	opts = opts.With(restrictPath(t, "node", "pulumi", "yarn", "dirname", providerBinary))
 
 	// Also bring local Node SDK versions in for testing via yarn link.
 	for _, d := range opts.Dependencies {
