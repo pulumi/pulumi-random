@@ -319,6 +319,22 @@ class RandomShuffle(pulumi.CustomResource):
         __props__.__dict__["seed"] = seed
         return RandomShuffle(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            inputs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            result_count: pulumi.Input[Optional[_builtins.int]] = None,
+            results: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            seed: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["inputs"] = inputs
+        __props__["keepers"] = keepers
+        __props__["resultCount"] = result_count
+        __props__["results"] = results
+        __props__["seed"] = seed
+        return pulumi.runtime.exists_resource(None, 'random:index/randomShuffle:RandomShuffle', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def inputs(self) -> pulumi.Output[Sequence[_builtins.str]]:

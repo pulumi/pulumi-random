@@ -129,6 +129,12 @@ func (RandomShuffleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomShuffleState)(nil)).Elem()
 }
 
+// RandomShuffleExists checks whether an existing RandomShuffle resource with the given ID exists.
+func RandomShuffleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomShuffleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomShuffle:RandomShuffle", id, state, "", opts...)
+}
+
 type randomShuffleArgs struct {
 	// The list of strings to shuffle.
 	Inputs []string `pulumi:"inputs"`

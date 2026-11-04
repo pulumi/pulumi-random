@@ -641,6 +641,38 @@ class RandomString(pulumi.CustomResource):
         __props__.__dict__["upper"] = upper
         return RandomString(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            length: pulumi.Input[Optional[_builtins.int]] = None,
+            lower: pulumi.Input[Optional[_builtins.bool]] = None,
+            min_lower: pulumi.Input[Optional[_builtins.int]] = None,
+            min_numeric: pulumi.Input[Optional[_builtins.int]] = None,
+            min_special: pulumi.Input[Optional[_builtins.int]] = None,
+            min_upper: pulumi.Input[Optional[_builtins.int]] = None,
+            number: pulumi.Input[Optional[_builtins.bool]] = None,
+            numeric: pulumi.Input[Optional[_builtins.bool]] = None,
+            override_special: pulumi.Input[Optional[_builtins.str]] = None,
+            result: pulumi.Input[Optional[_builtins.str]] = None,
+            special: pulumi.Input[Optional[_builtins.bool]] = None,
+            upper: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["keepers"] = keepers
+        __props__["length"] = length
+        __props__["lower"] = lower
+        __props__["minLower"] = min_lower
+        __props__["minNumeric"] = min_numeric
+        __props__["minSpecial"] = min_special
+        __props__["minUpper"] = min_upper
+        __props__["number"] = number
+        __props__["numeric"] = numeric
+        __props__["overrideSpecial"] = override_special
+        __props__["result"] = result
+        __props__["special"] = special
+        __props__["upper"] = upper
+        return pulumi.runtime.exists_resource(None, 'random:index/randomString:RandomString', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

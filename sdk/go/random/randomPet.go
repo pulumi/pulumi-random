@@ -123,6 +123,12 @@ func (RandomPetState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomPetState)(nil)).Elem()
 }
 
+// RandomPetExists checks whether an existing RandomPet resource with the given ID exists.
+func RandomPetExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomPetState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomPet:RandomPet", id, state, "", opts...)
+}
+
 type randomPetArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`

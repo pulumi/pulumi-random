@@ -306,6 +306,20 @@ class RandomPet(pulumi.CustomResource):
         __props__.__dict__["separator"] = separator
         return RandomPet(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            length: pulumi.Input[Optional[_builtins.int]] = None,
+            prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            separator: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["keepers"] = keepers
+        __props__["length"] = length
+        __props__["prefix"] = prefix
+        __props__["separator"] = separator
+        return pulumi.runtime.exists_resource(None, 'random:index/randomPet:RandomPet', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

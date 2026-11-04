@@ -176,6 +176,12 @@ func (RandomIdState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomIdState)(nil)).Elem()
 }
 
+// RandomIdExists checks whether an existing RandomId resource with the given ID exists.
+func RandomIdExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomIdState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomId:RandomId", id, state, "", opts...)
+}
+
 type randomIdArgs struct {
 	// The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
 	ByteLength int `pulumi:"byteLength"`

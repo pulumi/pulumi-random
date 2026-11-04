@@ -279,6 +279,20 @@ class RandomBytes(pulumi.CustomResource):
         __props__.__dict__["length"] = length
         return RandomBytes(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            base64: pulumi.Input[Optional[_builtins.str]] = None,
+            hex: pulumi.Input[Optional[_builtins.str]] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            length: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["base64"] = base64
+        __props__["hex"] = hex
+        __props__["keepers"] = keepers
+        __props__["length"] = length
+        return pulumi.runtime.exists_resource(None, 'random:index/randomBytes:RandomBytes', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def base64(self) -> pulumi.Output[_builtins.str]:
