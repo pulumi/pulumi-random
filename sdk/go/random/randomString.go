@@ -180,6 +180,12 @@ func (RandomStringState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomStringState)(nil)).Elem()
 }
 
+// RandomStringExists checks whether an existing RandomString resource with the given ID exists.
+func RandomStringExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomStringState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomString:RandomString", id, state, "", opts...)
+}
+
 type randomStringArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`

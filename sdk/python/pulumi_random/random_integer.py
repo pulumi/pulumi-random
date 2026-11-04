@@ -364,6 +364,22 @@ class RandomInteger(pulumi.CustomResource):
         __props__.__dict__["seed"] = seed
         return RandomInteger(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            max: pulumi.Input[Optional[_builtins.int]] = None,
+            min: pulumi.Input[Optional[_builtins.int]] = None,
+            result: pulumi.Input[Optional[_builtins.int]] = None,
+            seed: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["keepers"] = keepers
+        __props__["max"] = max
+        __props__["min"] = min
+        __props__["result"] = result
+        __props__["seed"] = seed
+        return pulumi.runtime.exists_resource(None, 'random:index/randomInteger:RandomInteger', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

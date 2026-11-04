@@ -115,6 +115,12 @@ func (RandomUuid7State) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomUuid7State)(nil)).Elem()
 }
 
+// RandomUuid7Exists checks whether an existing RandomUuid7 resource with the given ID exists.
+func RandomUuid7Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomUuid7State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomUuid7:RandomUuid7", id, state, "", opts...)
+}
+
 type randomUuid7Args struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`

@@ -155,6 +155,12 @@ func (RandomIntegerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomIntegerState)(nil)).Elem()
 }
 
+// RandomIntegerExists checks whether an existing RandomInteger resource with the given ID exists.
+func RandomIntegerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomIntegerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomInteger:RandomInteger", id, state, "", opts...)
+}
+
 type randomIntegerArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`

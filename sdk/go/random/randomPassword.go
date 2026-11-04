@@ -202,6 +202,12 @@ func (RandomPasswordState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomPasswordState)(nil)).Elem()
 }
 
+// RandomPasswordExists checks whether an existing RandomPassword resource with the given ID exists.
+func RandomPasswordExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomPasswordState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomPassword:RandomPassword", id, state, "", opts...)
+}
+
 type randomPasswordArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`

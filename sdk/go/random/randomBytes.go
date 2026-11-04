@@ -136,6 +136,12 @@ func (RandomBytesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*randomBytesState)(nil)).Elem()
 }
 
+// RandomBytesExists checks whether an existing RandomBytes resource with the given ID exists.
+func RandomBytesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RandomBytesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("random:index/randomBytes:RandomBytes", id, state, "", opts...)
+}
+
 type randomBytesArgs struct {
 	// Arbitrary map of values that, when changed, will trigger recreation of resource. See the main provider documentation for more information.
 	Keepers map[string]string `pulumi:"keepers"`

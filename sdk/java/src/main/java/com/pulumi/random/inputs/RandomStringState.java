@@ -126,22 +126,20 @@ public final class RandomStringState extends com.pulumi.resources.ResourceArgs {
     /**
      * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
-     * @deprecated
-     * **NOTE**: This is deprecated, use `numeric` instead.
+     * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      * 
      */
-    @Deprecated /* **NOTE**: This is deprecated, use `numeric` instead. */
+    @Deprecated
     @Import(name="number")
     private @Nullable Output<Boolean> number;
 
     /**
      * @return Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
-     * @deprecated
-     * **NOTE**: This is deprecated, use `numeric` instead.
+     * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      * 
      */
-    @Deprecated /* **NOTE**: This is deprecated, use `numeric` instead. */
+    @Deprecated
     public Optional<Output<Boolean>> number() {
         return Optional.ofNullable(this.number);
     }
@@ -409,11 +407,10 @@ public final class RandomStringState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * **NOTE**: This is deprecated, use `numeric` instead.
+         * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
          * 
          */
-        @Deprecated /* **NOTE**: This is deprecated, use `numeric` instead. */
+        @Deprecated
         public Builder number(@Nullable Output<Boolean> number) {
             $.number = number;
             return this;
@@ -424,11 +421,10 @@ public final class RandomStringState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * **NOTE**: This is deprecated, use `numeric` instead.
+         * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
          * 
          */
-        @Deprecated /* **NOTE**: This is deprecated, use `numeric` instead. */
+        @Deprecated
         public Builder number(Boolean number) {
             return number(Output.of(number));
         }

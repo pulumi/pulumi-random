@@ -412,6 +412,26 @@ class RandomId(pulumi.CustomResource):
         __props__.__dict__["prefix"] = prefix
         return RandomId(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            b64_std: pulumi.Input[Optional[_builtins.str]] = None,
+            b64_url: pulumi.Input[Optional[_builtins.str]] = None,
+            byte_length: pulumi.Input[Optional[_builtins.int]] = None,
+            dec: pulumi.Input[Optional[_builtins.str]] = None,
+            hex: pulumi.Input[Optional[_builtins.str]] = None,
+            keepers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            prefix: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["b64Std"] = b64_std
+        __props__["b64Url"] = b64_url
+        __props__["byteLength"] = byte_length
+        __props__["dec"] = dec
+        __props__["hex"] = hex
+        __props__["keepers"] = keepers
+        __props__["prefix"] = prefix
+        return pulumi.runtime.exists_resource(None, 'random:index/randomId:RandomId', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="b64Std")
     def b64_std(self) -> pulumi.Output[_builtins.str]:

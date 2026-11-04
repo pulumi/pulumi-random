@@ -192,11 +192,10 @@ public class RandomPassword extends com.pulumi.resources.CustomResource {
     /**
      * Include numeric characters in the result. Default value is `true`. If `number`, `upper`, `lower`, and `special` are all configured, at least one of them must be set to `true`. **NOTE**: This is deprecated, use `numeric` instead.
      * 
-     * @deprecated
-     * **NOTE**: This is deprecated, use `numeric` instead.
+     * @deprecated **NOTE**: This is deprecated, use `numeric` instead.
      * 
      */
-    @Deprecated /* **NOTE**: This is deprecated, use `numeric` instead. */
+    @Deprecated
     @Export(name="number", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> number;
 
